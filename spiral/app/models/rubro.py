@@ -22,6 +22,3 @@ class Rubro(models.Model):
 	status = models.SmallIntegerField(
 		choices= CHOICE_STATUS
 		) 
-
-	def __unicode__(self):
-        return self.nombre
