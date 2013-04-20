@@ -1,9 +1,9 @@
 from django.db import models
-from app.models.marca import Marcas
-from app.models.modelo_has_contratos import Modelo_has_contratos
+from app.models.Marca import Marcas
+from app.models.ModeloHasContrato import ModelosHasContratos
 
 
-class Comerciales(models.Model):
+class Comercial(models.Model):
 		
 	STATUS_ACTIVO = 1
 	STATUS_INACTIVO = 0
@@ -24,4 +24,4 @@ class Comerciales(models.Model):
 		choices= CHOICE_STATUS
 		) 
 
-	modelo_has_contratos = models.ForeingKey(Modelo_has_contratos)
+	modelo_has_contratos = models.ForeingKey(ModelosHasContratos)
