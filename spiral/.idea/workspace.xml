@@ -4,13 +4,13 @@
     <list default="true" id="2310c889-d82f-4e89-8489-34470569f488" name="Default" comment="" />
     <ignored path="spiral.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/settings.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503787372" ignored="false" />
+    <file path="/settings.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1367104017695" ignored="false" />
     <file path="/comerciales.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366502611828" ignored="false" />
     <file path="/modelo_has_contratos.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366501311541" ignored="false" />
     <file path="/Contrato.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503854851" ignored="false" />
     <file path="/Marca.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503880035" ignored="false" />
     <file path="/Rubro.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503893144" ignored="false" />
-    <file path="/__init__.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366502197277" ignored="false" />
+    <file path="/__init__.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1367104151889" ignored="false" />
     <file path="/a.dummy" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366502604297" ignored="false" />
     <file path="/Comercial.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503860179" ignored="false" />
     <file path="/ModeloHasContrato.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503885023" ignored="false" />
@@ -28,75 +28,23 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DatabaseView">
-    <flatten value="false" />
-    <groupTables value="false" />
-    <sortChildren value="false" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="spiral" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Comercial.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/Comercial.py">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spiral/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="23" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0">
+            <state line="9" column="45" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Contrato.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/Contrato.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="23" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Marca.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/Marca.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="23" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModeloHasContrato.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/ModeloHasContrato.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="23" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rubro.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/Rubro.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="7" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="0001_initial.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/sp/migrations/0001_initial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="137" selection-end="137" vertical-scroll-proportion="0.21384929">
-              <folding>
-                <element signature="e#24#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/__init__.py">
+      <file leaf-file-name="_settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spiral/_settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -104,10 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spiral/settings.py">
+      <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="9" selection-start="4343" selection-end="4343" vertical-scroll-proportion="0.0">
+            <state line="7" column="44" selection-start="206" selection-end="206" vertical-scroll-proportion="0.27131784">
+              <folding>
+                <element signature="e#25#67#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -123,22 +82,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/modelo_has_contratos.py" />
-        <option value="$PROJECT_DIR$/app/models/marca.py" />
-        <option value="$PROJECT_DIR$/app/models/__init__.py" />
         <option value="$PROJECT_DIR$/app/migrations/0002_initial.py" />
         <option value="$PROJECT_DIR$/app/models/Marca.py" />
         <option value="$PROJECT_DIR$/app/models/Comercial.py" />
         <option value="$PROJECT_DIR$/app/models/Contrato.py" />
         <option value="$PROJECT_DIR$/app/models/ModeloHasContrato.py" />
         <option value="$PROJECT_DIR$/app/models/Rubro.py" />
-        <option value="$PROJECT_DIR$/spiral/settings.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/Contrato.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/Comercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/Marca.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/ModeloHasContrato.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/Rubro.py" />
         <option value="$PROJECT_DIR$/apps/sp/migrations/0001_initial.py" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/spiral/base.py" />
+        <option value="$PROJECT_DIR$/spiral/settings.py" />
+        <option value="$PROJECT_DIR$/spiral/urls.py" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py" />
       </list>
     </option>
   </component>
@@ -238,6 +197,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="urls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="urls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -260,6 +267,11 @@
     <option name="myDjangoConsoleState">
       <PyConsoleSettings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spiral" />
+    </key>
   </component>
   <component name="RunManager" selected="Django server.spiral">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -410,6 +422,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3410341" sideWeight="0.6714976" order="0" side_tool="false" content_ui="combo" />
@@ -421,7 +434,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -488,39 +500,12 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Contrato.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="23" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Marca.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="23" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/ModeloHasContrato.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Rubro.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="7" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="8" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#24#39#0" expanded="true" />
+            <marker date="1367103390956" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -546,10 +531,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="9" selection-start="4343" selection-end="4343" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="70" column="0" selection-start="3520" selection-end="3520" vertical-scroll-proportion="0.12975779">
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+            <marker date="1367103390956" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -560,46 +548,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Comercial.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="23" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Contrato.py">
+    <entry file="file://$PROJECT_DIR$/spiral/_settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="23" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Marca.py">
+    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="23" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
+        <state line="14" column="23" selection-start="317" selection-end="317" vertical-scroll-proportion="-6.774194">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/ModeloHasContrato.py">
+    <entry file="file://$PROJECT_DIR$/spiral/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
+        <state line="9" column="45" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Rubro.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="7" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="137" selection-end="137" vertical-scroll-proportion="0.21384929">
+        <state line="7" column="44" selection-start="206" selection-end="206" vertical-scroll-proportion="0.27131784">
           <folding>
-            <element signature="e#24#39#0" expanded="true" />
+            <element signature="e#25#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
