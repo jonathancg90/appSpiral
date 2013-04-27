@@ -12,14 +12,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-<<<<<<< HEAD
         'NAME': 'spiraldb',                      # Or path to database file if using sqlite3.
-=======
-        'NAME': 'spiral',                      # Or path to database file if using sqlite3.
->>>>>>> b18a6d77f1b08d128867ef57a4e35d08e134e834
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': '123',
+        'PASSWORD': 'gustavo',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -160,3 +156,4 @@ LOGGING = {
         },
     }
 }
+

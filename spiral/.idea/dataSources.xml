@@ -3,9 +3,9 @@
   <component name="DataSourceManagerImpl" format="xml" hash="483658708">
     <data-source source="LOCAL" name="Django default" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="100d090e-95d0-4260-a429-f71212d4cf2c">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql:///spiral</jdbc-url>
+      <jdbc-url>jdbc:mysql:///spiraldb</jdbc-url>
       <user-name>root</user-name>
-      <user-password>df9bdf98df99</user-password>
+      <user-password>dfcddfdfdfd9dfdedfcbdfdcdfc5</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.PyCharm20/config/jdbc-drivers/mysql-connector-license.txt</url>
