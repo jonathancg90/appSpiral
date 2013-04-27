@@ -24,6 +24,9 @@ class Project(models.Model):
         auto_now_add=True
     )
 
+    def __unicode__(self):
+        return self.project_name
+
     class Meta:
         app_label = 'sp'
 
