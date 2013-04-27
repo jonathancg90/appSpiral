@@ -9,3 +9,5 @@ class CountryHasContract(models.Model):
     contract_id =models.ForeignKey(
         Contract
     )
+    class Meta:
+        app_label = 'sp'

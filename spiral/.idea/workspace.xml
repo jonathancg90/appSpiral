@@ -4,7 +4,7 @@
     <list default="true" id="2310c889-d82f-4e89-8489-34470569f488" name="Default" comment="" />
     <ignored path="spiral.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/settings.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503787372" ignored="false" />
+    <file path="/settings.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1367104512986" ignored="false" />
     <file path="/comerciales.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366502611828" ignored="false" />
     <file path="/modelo_has_contratos.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366501311541" ignored="false" />
     <file path="/Contrato.py" changelist="2310c889-d82f-4e89-8489-34470569f488" time="1366503854851" ignored="false" />
@@ -40,11 +40,6 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DatabaseView">
-    <flatten value="false" />
-    <groupTables value="false" />
-    <sortChildren value="false" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="spiral" />
@@ -76,19 +71,39 @@
       <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/models/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="39" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
+            <state line="6" column="31" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Country.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ContryHasContract.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/sp/models/ContryHasContract.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="24" selection-start="315" selection-end="315" vertical-scroll-proportion="0.32967034">
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Country.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/models/Country.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="23" selection-start="656" selection-end="656" vertical-scroll-proportion="0.78809106">
+            <state line="29" column="4" selection-start="621" selection-end="657" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spiral/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="0" selection-start="75" selection-end="75" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,7 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/apps/sp/templates/base.html" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/base.py" />
         <option value="$PROJECT_DIR$/spiral/urls.py" />
@@ -117,8 +131,9 @@
         <option value="$PROJECT_DIR$/apps/sp/views/Brand.py" />
         <option value="$PROJECT_DIR$/apps/sp/forms/Project.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/Project.py" />
-        <option value="$PROJECT_DIR$/apps/sp/models/ContryHasContract.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/__init__.py" />
+        <option value="$PROJECT_DIR$/spiral/settings.py" />
+        <option value="$PROJECT_DIR$/apps/sp/models/ContryHasContract.py" />
       </list>
     </option>
   </component>
@@ -643,13 +658,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="39" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="4" selection-start="682" selection-end="729" vertical-scroll-proportion="0.0">
@@ -756,27 +764,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/ContryHasContract.py">
+    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="20" selection-start="138" selection-end="138" vertical-scroll-proportion="0.10507881">
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
+        <state line="4" column="0" selection-start="75" selection-end="75" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="39" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
+        <state line="6" column="31" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/Country.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="23" selection-start="656" selection-end="656" vertical-scroll-proportion="0.78809106">
+        <state line="29" column="4" selection-start="621" selection-end="657" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/ContryHasContract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="24" selection-start="315" selection-end="315" vertical-scroll-proportion="0.32967034">
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
