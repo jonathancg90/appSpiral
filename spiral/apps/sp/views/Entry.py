@@ -37,16 +37,6 @@ class EntryDeleteView(DeleteView):
         context['action'] = 'delete'
         return context
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+class EntryListView(ListView):
+    model = Entry
+    template = ''

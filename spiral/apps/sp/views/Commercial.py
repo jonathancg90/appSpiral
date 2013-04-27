@@ -2,42 +2,42 @@ from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
-from apps.sp.forms.Brand import BrandForm
-from apps.sp.models.Brand import Brand
+from apps.sp.forms.Commercial import CommercialForm
+from apps.sp.models.Commercial import Commercial
 
 
-class BrandCreateView(CreateView):
-    form_class = BrandForm
+class CommercialCreateView(CreateView):
+    form_class = CommercialForm
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(BrandCreateView,self).get_context_data(**kwargs)
+        context = super(CommercialCreateView,self).get_context_data(**kwargs)
         context['action'] = 'create'
         return context
 
 
-class BrandUpdateView(UpdateView):
-    form_class = BrandForm
+class CommercialUpdateView(UpdateView):
+    form_class = CommercialForm
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(BrandUpdateView,self).get_context_data(**kwargs)
+        context = super(CommercialUpdateView,self).get_context_data(**kwargs)
         context['action'] = 'update'
         return context
 
-class BrandDeleteView(DeleteView):
-    model = Brand
+class CommercialDeleteView(DeleteView):
+    model = Commercial
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(BrandDeleteView,self).get_context_data(**kwargs)
+        context = super(CommercialDeleteView,self).get_context_data(**kwargs)
         context['action'] = 'delete'
         return context
 
-
-class BrandListView(ListView):
-    model = Brand
+class CommercialListView(ListView):
+    model = Commercial
     template = ''
+

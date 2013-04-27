@@ -37,16 +37,6 @@ class ProjectDeleteView(DeleteView):
         context['action'] = 'delete'
         return context
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+class ProjectListView(ListView):
+    model = Project
+    template = ''

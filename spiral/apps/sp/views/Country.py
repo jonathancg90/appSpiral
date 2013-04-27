@@ -2,42 +2,42 @@ from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
-from apps.sp.forms.Brand import BrandForm
-from apps.sp.models.Brand import Brand
+from apps.sp.forms.Country import CountryForm
+from apps.sp.models.Country import Country
 
 
-class BrandCreateView(CreateView):
-    form_class = BrandForm
+class CountryCreateView(CreateView):
+    form_class = CountryForm
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(BrandCreateView,self).get_context_data(**kwargs)
+        context = super(CountryCreateView,self).get_context_data(**kwargs)
         context['action'] = 'create'
         return context
 
 
-class BrandUpdateView(UpdateView):
-    form_class = BrandForm
+class CountryUpdateView(UpdateView):
+    form_class = CountryForm
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(BrandUpdateView,self).get_context_data(**kwargs)
+        context = super(CountryUpdateView,self).get_context_data(**kwargs)
         context['action'] = 'update'
         return context
 
-class BrandDeleteView(DeleteView):
-    model = Brand
+class CountryDeleteView(DeleteView):
+    model = Country
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(BrandDeleteView,self).get_context_data(**kwargs)
+        context = super(CountryDeleteView,self).get_context_data(**kwargs)
         context['action'] = 'delete'
         return context
 
-
-class BrandListView(ListView):
-    model = Brand
+class CountryListView(ListView):
+    model = Country
     template = ''
+
