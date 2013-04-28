@@ -7,6 +7,7 @@ from apps.sp.models.Brand import Brand
 
 
 class BrandCreateView(CreateView):
+    model = Brand
     form_class = BrandForm
     template = 'templates/CRUD.html'
     success_url = ''
@@ -18,6 +19,7 @@ class BrandCreateView(CreateView):
 
 
 class BrandUpdateView(UpdateView):
+    model = Brand
     form_class = BrandForm
     template = 'templates/CRUD.html'
     success_url = ''

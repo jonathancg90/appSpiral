@@ -2,30 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c86eb925-4b9b-4d8b-9381-8f0ca8bb6fec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/appSpiral.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/brand.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/commercial.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/contract.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/model_has_commercial.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/other.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/testrunner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/base.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiral/apps/sp/urls/__init__.py" afterPath="$PROJECT_DIR$/spiral/apps/sp/urls/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/__init__.py" afterPath="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiral/spiral/_settings.py" afterPath="$PROJECT_DIR$/spiral/spiral/_settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiral/spiral/settings.py" afterPath="$PROJECT_DIR$/spiral/spiral/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiral/spiral/urls.py" afterPath="$PROJECT_DIR$/spiral/spiral/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiral/apps/sp/views/Brand.py" afterPath="$PROJECT_DIR$/spiral/apps/sp/views/Brand.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spiral/apps/sp/views/Commercial.py" afterPath="$PROJECT_DIR$/spiral/apps/sp/views/Commercial.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="appSpiral.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="c86eb925-4b9b-4d8b-9381-8f0ca8bb6fec" time="1367154357000" ignored="false" />
     <file path="/__init__.py" changelist="c86eb925-4b9b-4d8b-9381-8f0ca8bb6fec" time="1367155352756" ignored="false" />
     <file path="/urls.py" changelist="c86eb925-4b9b-4d8b-9381-8f0ca8bb6fec" time="1367155190956" ignored="false" />
+    <file path="/Commercial.py" changelist="c86eb925-4b9b-4d8b-9381-8f0ca8bb6fec" time="1367159099479" ignored="false" />
+    <file path="/Brand.py" changelist="c86eb925-4b9b-4d8b-9381-8f0ca8bb6fec" time="1367159066786" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,11 +41,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Brand.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spiral/apps/sp/views/Brand.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="17" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Commercial.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spiral/apps/sp/forms/Commercial.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spiral/apps/sp/urls/spiral/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="366" selection-end="366" vertical-scroll-proportion="0.31779662">
+            <state line="10" column="0" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spiral/spiral/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="119" column="27" selection-start="4278" selection-end="4278" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Commercial.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spiral/apps/sp/views/Commercial.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="22" selection-start="675" selection-end="675" vertical-scroll-proportion="0.6673729">
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,6 +119,8 @@
         <option value="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/model_has_commercial.py" />
         <option value="$PROJECT_DIR$/spiral/spiral/urls.py" />
         <option value="$PROJECT_DIR$/spiral/apps/sp/urls/spiral/__init__.py" />
+        <option value="$PROJECT_DIR$/spiral/apps/sp/views/Brand.py" />
+        <option value="$PROJECT_DIR$/spiral/apps/sp/views/Commercial.py" />
       </list>
     </option>
   </component>
@@ -171,6 +202,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appSpiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appSpiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="spiral" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -237,7 +286,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="urls" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -263,11 +312,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="urls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -293,7 +338,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="panel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -320,6 +369,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spiral/apps/sp/templates/panel" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="tests" factoryName="Nosetests">
@@ -393,14 +447,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1537" height="905" extended-state="6" />
-    <editor active="true" />
+    <frame x="64" y="-4" width="1537" height="905" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983165" sideWeight="0.670227" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983165" sideWeight="0.670227" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -483,13 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiral/spiral/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="11" selection-start="2011" selection-end="2021" vertical-scroll-proportion="0.5006954">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spiral/apps/sp/models/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -542,6 +589,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spiral/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiral/spiral/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="27" selection-start="4278" selection-end="4278" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiral/apps/sp/urls/spiral/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spiral/spiral/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="133" selection-end="133" vertical-scroll-proportion="0.0">
@@ -549,10 +617,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiral/apps/sp/urls/spiral/__init__.py">
+    <entry file="file://$PROJECT_DIR$/spiral/apps/sp/views/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="366" selection-end="366" vertical-scroll-proportion="0.31779662">
-          <folding />
+        <state line="44" column="17" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiral/apps/sp/forms/Commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiral/apps/sp/views/Commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="22" selection-start="675" selection-end="675" vertical-scroll-proportion="0.6673729">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

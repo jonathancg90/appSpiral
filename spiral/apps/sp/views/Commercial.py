@@ -7,6 +7,7 @@ from apps.sp.models.Commercial import Commercial
 
 
 class CommercialCreateView(CreateView):
+    model = Commercial
     form_class = CommercialForm
     template = 'templates/CRUD.html'
     success_url = ''
@@ -18,6 +19,7 @@ class CommercialCreateView(CreateView):
 
 
 class CommercialUpdateView(UpdateView):
+    model = Commercial
     form_class = CommercialForm
     template = 'templates/CRUD.html'
     success_url = ''
@@ -28,6 +30,7 @@ class CommercialUpdateView(UpdateView):
         return context
 
 class CommercialDeleteView(DeleteView):
+    model = Commercial
     model = Commercial
     template = 'templates/CRUD.html'
     success_url = ''
