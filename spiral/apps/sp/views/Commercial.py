@@ -1,8 +1,6 @@
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic import ListView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from apps.sp.forms.Commercial import CommercialForm
+from django.core.urlresolvers import reverse
 from apps.sp.models.Commercial import Commercial
 
 
