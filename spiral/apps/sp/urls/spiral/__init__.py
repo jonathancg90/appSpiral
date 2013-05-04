@@ -7,5 +7,5 @@ urlpatterns = patterns('',
     url(r'^commercial/', include('apps.sp.urls.spiral.commercial')),
     url(r'^contract/', include('apps.sp.urls.spiral.contract')),
     url(r'^model-has-commercial/', include('apps.sp.urls.spiral.model_has_commercial')),
-    url(r'^retry/', include('apps.sp.urls.spiral.entry')),
+    url(r'^entry/', include('apps.sp.urls.spiral.entry')),
 )
