@@ -1,0 +1,63 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>ProySpiral</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap-responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/main.css" type="text/css" />
+    {% block extra_style %}
+    {% endblock extra_style %}
+
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/bootstrap.min.js"></script>
+    {% block script_top %}
+    {% endblock script_top %}
+
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Spiral</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                      <li><a href=" {% url "retry_list" %}">Rubro</a></li>
+                      <li><a href="#">Marca</a></li>
+                      <li><a href="#">Comercial</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+</div>
+<div class="container" style='margin-top: 100px;'>
+    {% for message in messages %}
+    <div class="alert  alert-{{ message.tags }}">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+    </div>
+    {% endfor %}
+</div>
+<section class="container">
+    {% block content %}
+    {% endblock content %}
+</section>
+
+
+{% block script_bottom %}
+{% endblock script_bottom %}
+</body>
+</html>

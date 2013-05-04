@@ -1,4 +1,8 @@
 # Django settings for spiral project.
+from os.path import join, dirname, realpath
+
+PROJECT_ROOT = realpath(join(dirname(__file__), '../..'))
+ROOT_PATH = realpath(join(dirname(__file__), '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -55,7 +59,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -72,6 +76,8 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    join(ROOT_PATH, 'static'),
+    join(ROOT_PATH, 'media')
 )
 
 # List of finder classes that know how to find static files in

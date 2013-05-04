@@ -1,0 +1,43 @@
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo comercial realizado' %}</a>
+        </div>
+        <h2>{%  trans 'Comerciales realizados' %}</h2>
+    </div>
+	<form method="get" action="" class="form-horizontal well well-small search-form">
+        <div class="row-fluid">
+            <div class="form-actions">
+            	<input type="submit" class="btn" value="{% trans 'Search' %}">
+            </div>
+        </div>
+    </form>
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans 'Rugro' %}</th>
+                    <th>{% trans 'Marca' %}</th>
+                    <th>{% trans 'Comercial' %}</th>
+                    <th>{% trans 'Realizado' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for model_commercial in model_has_commercial %}
+                <tr>
+                    <td>{{ model_commercial.commercial.brand.entry.name }}</td>
+                    <td>{{ model_commercial.commercial.brand.name }}</td>
+                    <td>{{ model_commercial.commercial.name }}</td>
+                    <td></td>
+                    <td><a href="">{% trans 'Delete' %}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

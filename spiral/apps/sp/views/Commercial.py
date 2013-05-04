@@ -1,12 +1,11 @@
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic import ListView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from apps.sp.forms.Commercial import CommercialForm
+from django.core.urlresolvers import reverse
 from apps.sp.models.Commercial import Commercial
 
 
 class CommercialCreateView(CreateView):
+    model = Commercial
     form_class = CommercialForm
     template = 'templates/CRUD.html'
     success_url = ''
@@ -18,6 +17,7 @@ class CommercialCreateView(CreateView):
 
 
 class CommercialUpdateView(UpdateView):
+    model = Commercial
     form_class = CommercialForm
     template = 'templates/CRUD.html'
     success_url = ''
@@ -28,6 +28,7 @@ class CommercialUpdateView(UpdateView):
         return context
 
 class CommercialDeleteView(DeleteView):
+    model = Commercial
     model = Commercial
     template = 'templates/CRUD.html'
     success_url = ''
