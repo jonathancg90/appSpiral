@@ -10,8 +10,8 @@ from apps.sp.forms.Entry import EntryFiltersForm
 
 class EntryCreateView(CreateView):
     form_class = EntryForm
-    template = 'templates/CRUD.html'
-    success_url = ''
+    template_name = 'panel/entry/crud.html'
+    success_url = 'entry_list'
 
     def get_context_data(self, **kwargs):
         context = super(EntryCreateView,self).get_context_data(**kwargs)
@@ -21,8 +21,8 @@ class EntryCreateView(CreateView):
 
 class EntryUpdateView(UpdateView):
     form_class = EntryForm
-    template = 'templates/CRUD.html'
-    success_url = ''
+    template_name = 'panel/entry/crud.html'
+    success_url = 'entry_list'
 
     def get_context_data(self, **kwargs):
         context = super(EntryUpdateView,self).get_context_data(**kwargs)
@@ -32,8 +32,8 @@ class EntryUpdateView(UpdateView):
 
 class EntryDeleteView(DeleteView):
     model = Entry
-    template = 'templates/CRUD.html'
-    success_url = ''
+    template_name = 'panel/entry/crud.html'
+    success_url = 'entry_list'
 
     def get_context_data(self, **kwargs):
         context = super(EntryUpdateView,self).get_context_data(**kwargs)

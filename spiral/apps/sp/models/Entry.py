@@ -24,11 +24,13 @@ class Entry(models.Model):
         auto_now_add=True
     )
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS
+        choices= CHOICE_STATUS,
+        default= STATUS_ACTIVE
         )
 
     def __unicode__(self):
         return self.nane
+
 
     class Meta:
         app_label = 'sp'

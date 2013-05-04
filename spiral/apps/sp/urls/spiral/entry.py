@@ -6,17 +6,17 @@ from apps.sp.views.Entry import EntryListView, EntryCreateView, EntryUpdateView,
 
 urlpatterns = patterns('',
 
-     #Entry
-    url(r'entry/$',
+     #Retry
+    url(r'list/$',
         EntryListView.as_view(),
         name='entry_list'),
-    url(r'ertry/create$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'create/$',
+        EntryCreateView.as_view(),
         name='entry_create'),
-    url(r'entry/edit/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'edit/(?P<pk>\d+)/$',
+        EntryUpdateView.as_view(),
         name='entry_edit'),
-    url(r'entry/delete/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'delete/(?P<pk>\d+)/$',
+        EntryDeleteView.as_view(),
         name='entry_delete'),
 )

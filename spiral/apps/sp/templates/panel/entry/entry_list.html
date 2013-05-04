@@ -5,7 +5,7 @@
 {% block content %}
     <div class="page-header">
         <div class="tools">
-            <a href="#" class="btn btn-success">
+            <a href="{%   url "entry_create" %}" class="btn btn-success">
                 <i class="icon-plus icon-white"></i> {% trans 'Nuevo rubro' %}</a>
         </div>
         <h2>{%  trans 'Rubros registrados' %}</h2>
@@ -32,8 +32,8 @@
                 <tr>
                     <td>{{ retry.name }}</td>
                     <td>{{ retry.modified }}</td>
-                    <td><a href="">{% trans 'Update' %}</a></td>
-                    <td><a href="">{% trans 'Delete' %}</a></td>
+                    <td><a href="{% url "entry_edit"  %}">{% trans 'Update' %}</a></td>
+                    <td><a href="{% url "entry_delete" entry.pk %}">{% trans 'Delete' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
