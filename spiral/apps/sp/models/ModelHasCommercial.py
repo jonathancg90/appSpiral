@@ -6,11 +6,11 @@ from apps.sp.models.Commercial import Commercial
 
 class ModelHasCommercial(models.Model):
 
-    model_id = models.ForeignKey(
+    model = models.ForeignKey(
         Model
     )
 
-    commercial_id = models.ForeignKey(
+    commercial = models.ForeignKey(
         Commercial
     )
 

@@ -2,41 +2,44 @@ from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
-from apps.sp.forms.Entry import EntryForm
-from apps.sp.models.Entry import Entry
+from apps.sp.forms.Brand import BrandForm
+from apps.sp.models.Brand import Brand
 
 
-class EntryCreateView(CreateView):
-    form_class = EntryForm
+class BrandCreateView(CreateView):
+    model = Brand
+    form_class = BrandForm
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(EntryCreateView,self).get_context_data(**kwargs)
+        context = super(BrandCreateView,self).get_context_data(**kwargs)
         context['action'] = 'create'
         return context
 
 
-class EntryUpdateView(UpdateView):
-    form_class = EntryForm
+class BrandUpdateView(UpdateView):
+    model = Brand
+    form_class = BrandForm
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(EntryUpdateView,self).get_context_data(**kwargs)
+        context = super(BrandUpdateView,self).get_context_data(**kwargs)
         context['action'] = 'update'
         return context
 
-class EntryDeleteView(DeleteView):
-    model = Entry
+class BrandDeleteView(DeleteView):
+    model = Brand
     template = 'templates/CRUD.html'
     success_url = ''
 
     def get_context_data(self, **kwargs):
-        context = super(EntryUpdateView,self).get_context_data(**kwargs)
+        context = super(BrandDeleteView,self).get_context_data(**kwargs)
         context['action'] = 'delete'
         return context
 
-class EntryListView(ListView):
-    model = Entry
+
+class BrandListView(ListView):
+    model = Brand
     template = ''

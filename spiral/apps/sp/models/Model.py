@@ -13,5 +13,8 @@ class Model(models.Model):
         auto_now_add=True
     )
 
+    def __unicode__(self):
+        return self.model_code
+
     class Meta:
         app_label = 'sp'

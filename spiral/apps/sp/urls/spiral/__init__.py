@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
+from django.conf.urls import patterns, include, url
 
-from django.conf.urls import url, patterns
-from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
-    url(r'hello/$',
-        TemplateView.as_view(template_name='base.html'),
-        name='main'),
+
+    url(r'^brand/', include('apps.sp.urls.spiral.brand')),
+    url(r'^commercial/', include('apps.sp.urls.spiral.commercial')),
+    url(r'^contract/', include('apps.sp.urls.spiral.contract')),
+    url(r'^model-has-commercial/', include('apps.sp.urls.spiral.model_has_commercial')),
 )
