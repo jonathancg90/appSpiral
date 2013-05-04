@@ -4,7 +4,6 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Button
 
 
-
 class BrandForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -18,3 +17,8 @@ class BrandForm(forms.ModelForm):
         exclude = ['created', 'modified', 'status']
 
 
+class BrandFiltersForm(forms.Form):
+    name__icontains = forms.CharField(max_length=100,
+            required=False,
+            label=(u'Name')
+        )
