@@ -27,6 +27,7 @@ class EntryUpdateView(UpdateView):
         context['action'] = 'update'
         return context
 
+
 class EntryDeleteView(DeleteView):
     model = Entry
     template_name = 'panel/entry/crud.html'
@@ -36,6 +37,7 @@ class EntryDeleteView(DeleteView):
         context = super(EntryUpdateView,self).get_context_data(**kwargs)
         context['action'] = 'delete'
         return context
+
 
 class EntryListView(ListView):
     model = Entry
