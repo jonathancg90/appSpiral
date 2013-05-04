@@ -1,5 +1,6 @@
 {% extends 'panel/panel_base.html' %}
 {% load i18n %}
+{% load common_tags %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -38,5 +39,9 @@
                 {% endfor %}
             </tbody>
         </table>
+
+    {% url 'entry_list' as page_url %}
+    {% pagination_ctl page_obj url=page_url %}
+
     </div>
 {% endblock %}

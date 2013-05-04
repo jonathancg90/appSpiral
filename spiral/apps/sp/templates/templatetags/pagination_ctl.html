@@ -1,0 +1,27 @@
+{% load i18n %}
+
+{% if page_obj.paginator.num_pages > 1 %}
+<div class="pagination pagination-right">
+    <ul>
+    {% if page_obj.has_previous %}
+        <li><a href="{{ url }}?page={{ page_obj.previous_page_number }}&amp;{{ url_params }}"
+                title="{% trans 'Previous' %}"> « </a></li>
+    {% else %}
+        <li class="disabled"><a href="#"> « </a></li>
+    {% endif %}
+
+    {% for page_num in page_range %}
+        <li class="{% if page_obj.number == page_num %}active{% endif %}">
+            <a href="{{ url }}?page={{ page_num }}&amp;{{ url_params|safe }}">{{ page_num }}</a>
+        </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <li><a href="{{ url }}?page={{ page_obj.next_page_number }}&amp;{{ url_params }}"
+                title="{% trans 'Next' %}"> » </a></li>
+    {% else %}
+        <li class="disabled"><a href="#"> » </a></li>
+    {% endif %}
+    </ul>
+</div>
+{% endif %}

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from apps.sp.forms.Commercial import CommercialForm
 from django.core.urlresolvers import reverse

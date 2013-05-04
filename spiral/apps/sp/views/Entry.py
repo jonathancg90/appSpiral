@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
 
 from apps.common.view import  SearchFormMixin
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic import ListView
+from django.views.generic import CreateView, UpdateView,\
+    DeleteView, ListView
+from django.conf import settings
 from apps.sp.forms.Entry import EntryForm
 from apps.sp.models.Entry import Entry
 from apps.sp.forms.Entry import EntryFiltersForm
@@ -48,8 +48,11 @@ class EntryListView(SearchFormMixin, ListView):
     model = Entry
     template_name = 'panel/entry/entry_list.html'
     search_form_class = EntryFiltersForm
+    context_object_name = 'entry_list'
+    paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
         'name': SearchFormMixin.ALL,
     }
+
     def get_context_data(self, **kwargs):
         return super(EntryListView, self).get_context_data(**kwargs)
