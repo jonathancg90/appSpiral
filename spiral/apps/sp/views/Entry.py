@@ -1,4 +1,4 @@
-from apps.common.view import  SearchMixin
+from apps.common.view import  SearchFormMixin
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
@@ -41,10 +41,12 @@ class EntryDeleteView(DeleteView):
         return context
 
 
-class EntryListView(SearchMixin, ListView):
+class EntryListView(SearchFormMixin, ListView):
     model = Entry
     template_name = 'panel/entry/entry_list.html'
     search_form_class = EntryFiltersForm
-
+    filtering = {
+        'name': SearchFormMixin.ALL,
+    }
     def get_context_data(self, **kwargs):
         return super(EntryListView, self).get_context_data(**kwargs)
