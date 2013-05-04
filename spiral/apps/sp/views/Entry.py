@@ -41,7 +41,7 @@ class EntryDeleteView(DeleteView):
 
 class EntryListView(ListView):
     model = Entry
-    template = 'entry_list.html'
+    template_name = 'panel/entry/entry_list.html'
 
     def get_context_data(self, **kwargs):
         return super(EntryListView, self).get_context_data(**kwargs)

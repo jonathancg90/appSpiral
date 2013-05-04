@@ -8,6 +8,7 @@
     <file path="/a.dummy" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367697382768" ignored="false" />
     <file path="/ModelHasCommercial.py" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367697085437" ignored="false" />
     <file path="/panel_base.html" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367698251642" ignored="false" />
+    <file path="/entry.py" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367698568610" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,16 +53,16 @@
       <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="18" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
+            <state line="6" column="18" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="panel_base.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="panel_base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="28" selection-start="1217" selection-end="1217" vertical-scroll-proportion="0.48333332">
+            <state line="31" column="28" selection-start="1217" selection-end="1217" vertical-scroll-proportion="-4.7916665">
               <folding />
             </state>
           </provider>
@@ -87,10 +88,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entry.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="entry.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="16" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0">
+            <state line="10" column="32" selection-start="304" selection-end="304" vertical-scroll-proportion="0.28783384">
               <folding />
             </state>
           </provider>
@@ -139,9 +140,9 @@
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html" />
         <option value="$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py" />
         <option value="$PROJECT_DIR$/spiral/settings.py" />
-        <option value="$PROJECT_DIR$/apps/sp/urls/spiral/entry.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/Entry.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/spiral/entry.py" />
       </list>
     </option>
   </component>
@@ -578,13 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="16" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/model_has_commercial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="30" selection-start="342" selection-end="342" vertical-scroll-proportion="0.47115386">
@@ -626,14 +620,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="18" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
+        <state line="6" column="18" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="28" selection-start="1217" selection-end="1217" vertical-scroll-proportion="0.48333332">
+        <state line="31" column="28" selection-start="1217" selection-end="1217" vertical-scroll-proportion="-4.7916665">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="32" selection-start="304" selection-end="304" vertical-scroll-proportion="0.28783384">
           <folding />
         </state>
       </provider>
