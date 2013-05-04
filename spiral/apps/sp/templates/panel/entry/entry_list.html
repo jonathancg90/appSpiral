@@ -1,0 +1,33 @@
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="#" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo rubro' %}</a>
+        </div>
+        <h2>{%  trans 'Rurbos registrados' %}</h2>
+    </div>
+
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans 'Rubro' %}</th>
+                    <th>{% trans 'Modificado' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for retry in object_list %}
+                <tr>
+                    <td>{{ retry.name }}</td>
+                    <td>{{ retry.modified }}</td>
+                    <td><a href="">{% trans 'Update' %}</a></td>
+                    <td><a href="">{% trans 'Delete' %}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
