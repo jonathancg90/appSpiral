@@ -33,31 +33,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Entry.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Entry.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/Entry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="45" selection-start="45" selection-end="45" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="51" column="13" selection-start="1492" selection-end="1496" vertical-scroll-proportion="0.58563536">
+              <folding>
+                <element signature="e#1#46#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entry.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Entry.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/models/Entry.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/common/view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="6" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -83,7 +76,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spiral/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="32" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
+            <state line="21" column="24" selection-start="649" selection-end="649" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -121,10 +114,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/sp/migrations/0002_auto__del_field_modelhascommercial_model_id__del_field_modelhascommerc.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html" />
-        <option value="$PROJECT_DIR$/spiral/settings.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/entry.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py" />
@@ -136,7 +127,9 @@
         <option value="$PROJECT_DIR$/apps/sp/templatetags/verbatim.py" />
         <option value="$PROJECT_DIR$/apps/common/templatetags/common_tags.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
+        <option value="$PROJECT_DIR$/apps/sp/models/Entry.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/Entry.py" />
+        <option value="$PROJECT_DIR$/spiral/settings.py" />
       </list>
     </option>
   </component>
@@ -557,13 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="32" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/forms/Entry.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="30" selection-start="849" selection-end="849" vertical-scroll-proportion="0.0">
@@ -596,14 +582,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/common/view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="6" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/Entry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="45" selection-start="45" selection-end="45" vertical-scroll-proportion="0.0">
+        <state line="8" column="6" selection-start="122" selection-end="122" vertical-scroll-proportion="-7.424069">
           <folding />
         </state>
       </provider>
@@ -613,6 +592,22 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="24" selection-start="649" selection-end="649" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/Entry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="13" selection-start="1492" selection-end="1496" vertical-scroll-proportion="0.58563536">
+          <folding>
+            <element signature="e#1#46#0" expanded="true" />
           </folding>
         </state>
       </provider>

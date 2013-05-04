@@ -29,7 +29,7 @@ class Entry(models.Model):
         )
 
     def __unicode__(self):
-        return self.nane
+        return self.name
 
 
     class Meta:
