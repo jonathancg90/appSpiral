@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.views.generic import ListView, RedirectView
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Model import Model

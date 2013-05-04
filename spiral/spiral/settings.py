@@ -25,6 +25,9 @@ DATABASES = {
     }
 }
 
+
+PANEL_PAGE_SIZE = 10
+DEFAULT_PAGE_SIZE = 10
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -129,6 +132,7 @@ INSTALLED_APPS = (
     'apps.sp',
     'south',
     'crispy_forms',
+    'apps.common',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
