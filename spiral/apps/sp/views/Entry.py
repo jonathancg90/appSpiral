@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
@@ -9,7 +10,7 @@ from apps.sp.models.Entry import Entry
 class EntryCreateView(CreateView):
     form_class = EntryForm
     template_name = 'panel/entry/crud.html'
-    success_url = 'entry_list'
+    success_url = "entry_list"
 
     def get_context_data(self, **kwargs):
         context = super(EntryCreateView,self).get_context_data(**kwargs)
@@ -17,10 +18,12 @@ class EntryCreateView(CreateView):
         return context
 
 
+
 class EntryUpdateView(UpdateView):
+    model = Entry
     form_class = EntryForm
     template_name = 'panel/entry/crud.html'
-    success_url = 'entry_list'
+    success_url = "entry_list"
 
     def get_context_data(self, **kwargs):
         context = super(EntryUpdateView,self).get_context_data(**kwargs)
@@ -31,12 +34,14 @@ class EntryUpdateView(UpdateView):
 class EntryDeleteView(DeleteView):
     model = Entry
     template_name = 'panel/entry/crud.html'
-    success_url = 'entry_list'
+    success_url = "entry_list"
 
     def get_context_data(self, **kwargs):
-        context = super(EntryUpdateView,self).get_context_data(**kwargs)
+        context = super(EntryDeleteView,self).get_context_data(**kwargs)
         context['action'] = 'delete'
         return context
+
+
 
 
 class EntryListView(ListView):

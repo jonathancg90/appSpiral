@@ -4,13 +4,13 @@
     <list default="true" id="7dc7e2f4-6f66-486d-a233-90f5152bc28b" name="Default" comment="" />
     <ignored path="spiral.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Entry.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367699558656" ignored="false" />
-    <file path="/settings.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367698147869" ignored="false" />
-    <file path="/entry_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367699805459" ignored="false" />
+    <file path="/Entry.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367701319327" ignored="false" />
+    <file path="/settings.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367700391658" ignored="false" />
+    <file path="/entry_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367700209720" ignored="false" />
     <file path="/__init__.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367699076341" ignored="false" />
     <file path="/entry.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367699050081" ignored="false" />
     <file path="/panel_base.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367697702401" ignored="false" />
-    <file path="/crud.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367699318862" ignored="false" />
+    <file path="/crud.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367701120812" ignored="false" />
     <file path="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367699976785" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,10 +49,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entry.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="entry.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="0.29821074">
+            <state line="20" column="28" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#25#67#0" expanded="true" />
               </folding>
@@ -60,11 +60,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entry.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Entry.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/Entry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="24" column="31" selection-start="712" selection-end="712" vertical-scroll-proportion="0.48065174">
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,7 +74,7 @@
       <file leaf-file-name="crud.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/crud.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="25" selection-start="129" selection-end="129" vertical-scroll-proportion="-3.125">
+            <state line="11" column="72" selection-start="442" selection-end="442" vertical-scroll-proportion="-6.875">
               <folding />
             </state>
           </provider>
@@ -81,7 +83,7 @@
       <file leaf-file-name="Entry.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/models/Entry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="30" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
+            <state line="29" column="0" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
@@ -92,7 +94,16 @@
       <file leaf-file-name="entry_list.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="53" selection-start="879" selection-end="879" vertical-scroll-proportion="-10.291667">
+            <state line="24" column="37" selection-start="813" selection-end="813" vertical-scroll-proportion="-15.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spiral/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="28" selection-start="655" selection-end="655" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,14 +120,14 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
-        <option value="$PROJECT_DIR$/apps/sp/views/Entry.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py" />
-        <option value="$PROJECT_DIR$/spiral/settings.py" />
         <option value="$PROJECT_DIR$/spiral/_settings.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/crud.html" />
-        <option value="$PROJECT_DIR$/apps/sp/models/Entry.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/entry.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
+        <option value="$PROJECT_DIR$/spiral/settings.py" />
+        <option value="$PROJECT_DIR$/apps/sp/models/Entry.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/crud.html" />
+        <option value="$PROJECT_DIR$/apps/sp/views/Entry.py" />
       </list>
     </option>
   </component>
@@ -375,6 +386,26 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spiral" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
     <configuration default="false" name="spiral" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -511,44 +542,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/model_has_commercial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="15" selection-start="15" selection-end="15" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/Entry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/crud.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="25" selection-start="129" selection-end="129" vertical-scroll-proportion="-3.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="19" selection-start="4609" selection-end="4609" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="53" selection-start="879" selection-end="879" vertical-scroll-proportion="-10.291667">
           <folding />
         </state>
       </provider>
@@ -560,15 +556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Entry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="30" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="52" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0">
@@ -576,11 +563,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="28" selection-start="655" selection-end="655" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/model_has_commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="37" selection-start="813" selection-end="813" vertical-scroll-proportion="-15.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="0.29821074">
+        <state line="20" column="28" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#25#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Entry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/crud.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="72" selection-start="442" selection-end="442" vertical-scroll-proportion="-6.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/Entry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="31" selection-start="712" selection-end="712" vertical-scroll-proportion="0.48065174">
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
