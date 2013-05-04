@@ -6,7 +6,7 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367695157836" ignored="false" />
     <file path="/a.dummy" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367695647005" ignored="false" />
-    <file path="/ModelHasCommercial.py" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367695838433" ignored="false" />
+    <file path="/ModelHasCommercial.py" changelist="ac9d713c-809f-457a-94a6-9c8c26d28f41" time="1367697085437" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,16 +29,27 @@
       <file leaf-file-name="model_has_commercial.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/model_has_commercial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="30" selection-start="342" selection-end="342" vertical-scroll-proportion="-6.0">
+            <state line="13" column="30" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="16" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="27" selection-start="292" selection-end="292" vertical-scroll-proportion="-4.2">
+            <state line="16" column="31" selection-start="562" selection-end="562" vertical-scroll-proportion="0.39252338">
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
@@ -46,10 +57,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py">
+      <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="173" selection-end="173" vertical-scroll-proportion="0.027726432">
+            <state line="34" column="24" selection-start="1254" selection-end="1254" vertical-scroll-proportion="-15.166667">
               <folding />
             </state>
           </provider>
@@ -58,16 +69,7 @@
       <file leaf-file-name="Model.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="14" selection-start="62" selection-end="72" vertical-scroll-proportion="-2.4">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python2.7/dist-packages/django/views/generic/list.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="11" selection-start="4405" selection-end="4408" vertical-scroll-proportion="0.0">
+            <state line="4" column="14" selection-start="62" selection-end="72" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -85,9 +87,10 @@
       <list>
         <option value="$PROJECT_DIR$/spiral/settings.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/model_has_commercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/migrations/0002_auto__del_field_modelhascommercial_model_id__del_field_modelhascommerc.py" />
+        <option value="$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html" />
+        <option value="$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py" />
       </list>
     </option>
   </component>
@@ -219,6 +222,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,36 +436,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/model_has_commercial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="30" selection-start="342" selection-end="342" vertical-scroll-proportion="-6.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/views/generic/list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="11" selection-start="4405" selection-end="4408" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="14" selection-start="62" selection-end="72" vertical-scroll-proportion="-2.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="27" selection-start="292" selection-end="292" vertical-scroll-proportion="-4.2">
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -455,10 +450,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/model_has_commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="30" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/views/generic/list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="11" selection-start="4405" selection-end="4408" vertical-scroll-proportion="0.37432188">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="173" selection-end="173" vertical-scroll-proportion="0.027726432">
+        <state line="7" column="16" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="14" selection-start="62" selection-end="72" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="24" selection-start="1254" selection-end="1254" vertical-scroll-proportion="-15.166667">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="31" selection-start="562" selection-end="562" vertical-scroll-proportion="0.39252338">
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

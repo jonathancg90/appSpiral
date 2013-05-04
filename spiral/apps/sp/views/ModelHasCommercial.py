@@ -10,21 +10,19 @@ class ModelHasCommercialListView(ListView):
 
 
     def get(self, request, *args, **kwargs):
-        model_code =  self.kwargs.get('key')
+        model_code = self.kwargs.get('key')
         try:
             self.model = Model.objects.get(model_code=model_code)
         except:
-            model = Model(
+            self.model = Model(
                 model_code = model_code
             )
             self.model.save()
 
-
         return super(ModelHasCommercialListView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = super(ModelHasCommercialListView, self).get_queryset()
-        qs = qs.filter()
+        qs = ModelHasCommercial.objects.filter(model=self.model)
         return qs
 
 
