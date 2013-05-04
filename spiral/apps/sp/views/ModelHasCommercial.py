@@ -31,7 +31,7 @@ class ModelHasCommercialAddListView(ListView):
     model = ModelHasCommercial
 
     def get_queryset(self):
-        qs = super(ModelHasCommercialListView, self).get_queryset()
+        qs = super(ModelHasCommercialAddListView, self).get_queryset()
         return qs
 
 

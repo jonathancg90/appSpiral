@@ -4,10 +4,10 @@
 {% block content %}
     <div class="page-header">
         <div class="tools">
-            <a href="{%   url "brand_create" %}" class="btn btn-success">
-                <i class="icon-plus icon-white"></i> {% trans 'Nueva Marca' %}</a>
+            <a href="{%   url "commercial_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo Comercial' %}</a>
         </div>
-        <h2>{%  trans 'Marcas registradas' %}</h2>
+        <h2>{%  trans 'Comerciales registrados' %}</h2>
     </div>
 
     <form method="get" action="" class="form-horizontal well well-small search-form">
@@ -23,19 +23,21 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>{% trans 'Comercial' %}</th>
                     <th>{% trans 'Marca' %}</th>
                     <th>{% trans 'Rubro' %}</th>
-                    <th>{% trans 'Modificado' %}</th>
+                    <th>{% trans 'Realizado' %}</th>
                 </tr>
             </thead>
             <tbody>
-                {% for brand in object_list %}
+                {% for commercial in object_list %}
                 <tr>
-                    <td>{{ brand.name }}</td>
-                    <td>{{ brand.entry_id }}</td>
-                    <td>{{ brand.modified }}</td>
-                    <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a></td>
-                    <td><a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a></td>
+                    <td>{{ commercial.name }}</td>
+                    <td>{{ commercial.brand_id }}</td>
+                    <td>{{ commercial.brand_id.entry_id }}</td>
+                    <td>{{ commercial.realized }}</td>
+                    <td><a href="{% url "commercial_edit" commercial.pk %}">{% trans 'Update' %}</a></td>
+                    <td><a href="{% url "commercial_delete" commercial.pk %}">{% trans 'Delete' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

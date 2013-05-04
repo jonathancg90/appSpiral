@@ -9,15 +9,15 @@ urlpatterns = patterns('',
 
      #Brand
     url(r'list/$',
-        BrandListView.ad_view(),
+        BrandListView.as_view(),
         name='brand_list'),
     url(r'create/$',
         BrandCreateView.as_view(),
         name='brand_create'),
-    url(r'edit/$',
+    url(r'edit/(?P<pk>\d+)/$',
         BrandUpdateView.as_view(),
         name='brand_edit'),
-    url(r'delete/$',
+    url(r'delete/(?P<pk>\d+)/$',
         BrandDeleteView.as_view(),
         name='brand_delete'),
 )
