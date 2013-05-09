@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from apps.common.view import SearchFormMixin
 from apps.sp.forms.Contract import ContractForm, ContractFiltersForm
@@ -20,6 +21,14 @@ class ContractCreateView(CreateView):
         context['model_has_commercial'] = get_object_or_404(ModelHasCommercial, id=self.kwargs.get('fk'))
         return context
 
+    def form_valid(self, form):
+        value = form.save(commit=False)
+        value.model_has_commercial = get_object_or_404(ModelHasCommercial, id=self.kwargs.get('fk', 0))
+        return super(ContractCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
+
 
 class ContractUpdateView(UpdateView):
     model = Contract
@@ -32,6 +41,9 @@ class ContractUpdateView(UpdateView):
         context['model_has_commercial'] = get_object_or_404(ModelHasCommercial, id=self.kwargs.get('fk'))
         return context
 
+    def get_success_url(self):
+        return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
+
 
 class ContractDeleteView(DeleteView):
     model = Contract
@@ -42,6 +54,9 @@ class ContractDeleteView(DeleteView):
         context = super(ContractDeleteView, self).get_context_data(**kwargs)
         context['model_has_commercial'] = get_object_or_404(ModelHasCommercial, id=self.kwargs.get('fk'))
         return context
+
+    def get_success_url(self):
+        return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
 
 
 class ContractListView(SearchFormMixin,ListView):
@@ -57,3 +72,8 @@ class ContractListView(SearchFormMixin,ListView):
         context = super(ContractListView, self).get_context_data(**kwargs)
         context['model_has_commercial'] = get_object_or_404(ModelHasCommercial, id=self.kwargs.get('fk'))
         return context
+
+    def get_queryset(self):
+        qs = super(ContractListView, self).get_queryset()
+        qs =  qs.filter(model_has_commercial_id=self.kwargs.get('fk'))
+        return qs

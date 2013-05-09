@@ -15,6 +15,5 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        exclude = ['created', 'modified']
 
 

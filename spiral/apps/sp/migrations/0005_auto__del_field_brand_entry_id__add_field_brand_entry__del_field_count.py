@@ -13,7 +13,39 @@ class Migration(SchemaMigration):
 
         # Adding field 'Brand.entry'
         db.add_column(u'sp_brand', 'entry',
-                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['sp.Entry']),
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, related_name='brand_set', to=orm['sp.Entry']),
+                      keep_default=False)
+
+        # Deleting field 'CountryHasContract.country_id'
+        db.delete_column(u'sp_countryhascontract', 'country_id_id')
+
+        # Deleting field 'CountryHasContract.contract_id'
+        db.delete_column(u'sp_countryhascontract', 'contract_id_id')
+
+        # Adding field 'CountryHasContract.country'
+        db.add_column(u'sp_countryhascontract', 'country',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['sp.Country']),
+                      keep_default=False)
+
+        # Adding field 'CountryHasContract.contract'
+        db.add_column(u'sp_countryhascontract', 'contract',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['sp.Contract']),
+                      keep_default=False)
+
+        # Deleting field 'Commercial.brand_id'
+        db.delete_column(u'sp_commercial', 'brand_id_id')
+
+        # Deleting field 'Commercial.project_id'
+        db.delete_column(u'sp_commercial', 'project_id_id')
+
+        # Adding field 'Commercial.brand'
+        db.add_column(u'sp_commercial', 'brand',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, related_name='commercial_set', to=orm['sp.Brand']),
+                      keep_default=False)
+
+        # Adding field 'Commercial.project'
+        db.add_column(u'sp_commercial', 'project',
+                      self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='commercial_set', null=True, to=orm['sp.Project']),
                       keep_default=False)
 
 
@@ -26,12 +58,44 @@ class Migration(SchemaMigration):
         # Deleting field 'Brand.entry'
         db.delete_column(u'sp_brand', 'entry_id')
 
+        # Adding field 'CountryHasContract.country_id'
+        db.add_column(u'sp_countryhascontract', 'country_id',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['sp.Country']),
+                      keep_default=False)
+
+        # Adding field 'CountryHasContract.contract_id'
+        db.add_column(u'sp_countryhascontract', 'contract_id',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['sp.Contract']),
+                      keep_default=False)
+
+        # Deleting field 'CountryHasContract.country'
+        db.delete_column(u'sp_countryhascontract', 'country_id')
+
+        # Deleting field 'CountryHasContract.contract'
+        db.delete_column(u'sp_countryhascontract', 'contract_id')
+
+        # Adding field 'Commercial.brand_id'
+        db.add_column(u'sp_commercial', 'brand_id',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['sp.Brand']),
+                      keep_default=False)
+
+        # Adding field 'Commercial.project_id'
+        db.add_column(u'sp_commercial', 'project_id',
+                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sp.Project'], null=True, blank=True),
+                      keep_default=False)
+
+        # Deleting field 'Commercial.brand'
+        db.delete_column(u'sp_commercial', 'brand_id')
+
+        # Deleting field 'Commercial.project'
+        db.delete_column(u'sp_commercial', 'project_id')
+
 
     models = {
         'sp.brand': {
             'Meta': {'object_name': 'Brand'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'entry': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sp.Entry']"}),
+            'entry': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'brand_set'", 'to': "orm['sp.Entry']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '45'}),
@@ -39,10 +103,10 @@ class Migration(SchemaMigration):
         },
         'sp.commercial': {
             'Meta': {'object_name': 'Commercial'},
-            'brand': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sp.Brand']"}),
+            'brand': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'commercial_set'", 'to': "orm['sp.Brand']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sp.Project']", 'null': 'True', 'blank': 'True'}),
+            'project': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'commercial_set'", 'null': 'True', 'to': "orm['sp.Project']"}),
             'realized': ('django.db.models.fields.DateTimeField', [], {}),
             'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'})
         },
@@ -55,7 +119,7 @@ class Migration(SchemaMigration):
             'model_has_commercial': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sp.ModelHasCommercial']"}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'start_date': ('django.db.models.fields.DateTimeField', [], {}),
-            'status': ('django.db.models.fields.SmallIntegerField', [], {}),
+            'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'}),
             'type': ('django.db.models.fields.SmallIntegerField', [], {})
         },
         'sp.country': {

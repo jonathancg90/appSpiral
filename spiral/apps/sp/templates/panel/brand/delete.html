@@ -3,21 +3,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-    <div class="row-fluid">
-        <table class="table table-bordered table-striped">
-            <h2>
-                 {% trans "Está seguro de eliminar esta marca?" %}
-            </h2>
-            <hr>
+     <div class="page-header">
+         <h2>{% trans "Está seguro de eliminar esta marca?" %}</h2>
+     </div>
 
-      <form method="post" action="" class="">{% csrf_token %}
-
-
-
-                    <a class="btn" href="{% url "brand_list" %}">{% trans 'Cancelar' %}</a>
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Eliminar' %}" />
-
-        </form>
-        </table>
-    </div>
+      <form method="post" action="" class="">
+          {% csrf_token %}
+          <div class="form-actions">
+              <a class="btn" href="{% url "brand_list" %}">{% trans 'Cancelar' %}</a> o
+              <input type="submit" class="btn btn-danger" value="{% trans 'Eliminar' %}" />
+          </div>
+      </form>
 {% endblock %}

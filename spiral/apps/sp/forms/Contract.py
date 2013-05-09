@@ -4,7 +4,6 @@ from crispy_forms.helper import FormHelper
 from django.utils.translation import ugettext_lazy as _
 
 
-
 class ContractForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -15,7 +14,7 @@ class ContractForm(forms.ModelForm):
 
     class Meta:
         model = Contract
-        exclude = [ 'created', 'modified', 'status']
+        exclude = ['status', 'model_has_commercial']
 
 
 class ContractFiltersForm(forms.Form):

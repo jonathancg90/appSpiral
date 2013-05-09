@@ -22,7 +22,8 @@ class CommercialCreateForm(forms.ModelForm):
         self.fields['project'] = forms.CharField(
             label='Codigo del proyecto',
             max_length=9,
-            min_length=9
+            min_length=9,
+            required=False
         )
         self.Meta.fields.append('project')
         self.set_entry()
@@ -38,7 +39,7 @@ class CommercialCreateForm(forms.ModelForm):
     class Meta:
         model = Commercial
         fields = ['name', 'realized', 'brand']
-        exclude = [ 'status', 'project' ]
+        exclude = ['status', 'project']
 
 
 class CommercialUpdateForm(forms.ModelForm):

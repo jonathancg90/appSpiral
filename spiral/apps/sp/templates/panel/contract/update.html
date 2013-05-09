@@ -8,25 +8,21 @@
 {% endblock extra_style %}
 {% block content %}
 
-    <div class="row-fluid">
-        <table class="table table-bordered table-striped">
-
-        <h2>
-            {% trans  'Actualizar contrato:'  %} {{ object.character }}
-        </h2>
-        <hr>
-
-
-      <form method="post" action="" class="">{% csrf_token %}
-
-                    {% crispy form %}
-
-                    <a class="btn" href="{% url "contract_list" model_has_commercial.id %}">{% trans 'Cancel' %}</a>
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Actualizar' %}" />
-
-        </form>
-        </table>
+    <div class="page-header">
+        <h2>{% trans  'Actualizar contrato:'  %} {{ object.character }}</h2>
     </div>
+
+
+    <form method="post" action="" class="form-horizontal">
+          {% csrf_token %}
+
+          {% crispy form %}
+          <div class="form-actions">
+                    <a class="btn" href="{% url "contract_list" model_has_commercial.id %}">{% trans 'Cancel' %}</a> o
+                    <input type="submit" class="btn btn-inverse" value="{% trans 'Actualizar' %}" />
+          </div>
+        </form>
+
 {% endblock %}
 
 {% block script_bottom %}

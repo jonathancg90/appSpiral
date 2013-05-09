@@ -10,13 +10,14 @@
 {% block content %}
     <div class="page-header">
         <div class="tools">
+            <a href="{% url "model_has_commercial_model_list" model_has_commercial.model.id %}" class="btn btn-primary">
+                <i class="icon-chevron-left icon-white"></i> {% trans 'Volver' %}</a>
             <a href="{% url "contract_create" model_has_commercial.id %}" class="btn btn-success">
-                <i class="icon-plus icon-white"></i> {% trans 'Nueva contracto' %}</a>
-            <a href="{% url "model_has_commercial_model_list" model_has_commercial.model.id %}" class="btn btn-success">
-                <i class="icon-plus icon-white"></i> {% trans 'Volver' %}</a>
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo contracto' %}</a>
         </div>
         <h2>{%  trans 'Contratos' %}</h2>
     </div>
+    <!--
     <ul class="nav nav-pills">
       <li class="active">
         <a href="#" id="hide-show-search">Mostrar / Ocultar</a>
@@ -32,7 +33,7 @@
             </div>
         </form>
     </div>
-
+    -->
     <div class="row-fluid">
         <table class="table table-bordered table-striped">
             <thead>
@@ -47,10 +48,10 @@
                 {% for contract in object_list %}
                 <tr>
                     <td>{{ contract.character }}</td>
-                    <td>{{ contract.start_data }}</td>
+                    <td>{{ contract.start_date }}</td>
                     <td>{{ contract.ending_date }}</td>
-                    <td><a href="{% url "contract_edit" contract.pk %}">{% trans 'Update' %}</a> |
-                        <a href="{% url "contract_delete" contract.pk %}">{% trans 'Delete' %}</a>
+                    <td><a href="{% url "contract_edit" model_has_commercial.id contract.pk %}">{% trans 'Update' %}</a> |
+                        <a href="{% url "contract_delete" model_has_commercial.id contract.pk %}">{% trans 'Delete' %}</a>
                     </td>
                 </tr>
                 {% endfor %}

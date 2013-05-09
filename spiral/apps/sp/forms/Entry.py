@@ -15,7 +15,7 @@ class EntryForm(forms.ModelForm):
 
     class Meta:
         model = Entry
-        exclude = ['created', 'modified', 'status']
+        exclude = [ 'status']
 
 
 class EntryFiltersForm(forms.Form):

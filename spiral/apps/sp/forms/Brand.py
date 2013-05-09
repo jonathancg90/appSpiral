@@ -18,7 +18,7 @@ class BrandForm(forms.ModelForm):
 
     class Meta:
         model = Brand
-        exclude = ['created', 'modified', 'status']
+        exclude = ['status']
 
 
 class BrandFiltersForm(forms.Form):

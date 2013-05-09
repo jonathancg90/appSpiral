@@ -1,22 +1,32 @@
 {% extends 'panel/panel_base.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    {% endblock %}
+
 {% block content %}
 
-    <div class="row-fluid">
-        <table class="table table-bordered table-striped">
-            <h2>
-            {% trans "Nueva Marca:" %}
-            </h2>
-            <hr>
-      <form method="post" action="" class="">{% csrf_token %}
-
-                    {% crispy form %}
-
-                    <a class="btn" href="{% url "brand_list" %}">{% trans 'Cancelar' %}</a>
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Crear'%}" />
-
-        </form>
-        </table>
+    <div class="page-header">
+            <h2>{% trans "Nueva Marca:" %}</h2>
     </div>
+      <form method="post" action="" class="form-horizontal">
+          {% csrf_token %}
+
+          {% crispy form %}
+          <div class="form-actions">
+              <a class="btn" href="{% url "brand_list" %}">{% trans 'Cancelar' %}</a> o
+              <input type="submit" class="btn btn-inverse" value="{% trans 'Crear'%}" />
+          </div>
+      </form>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+        $(document).on('ready',function(){
+            $('#id_entry').addClass('chzn-select');
+            $('#id_entry').chosen({});
+        });
+    </script>
 {% endblock %}

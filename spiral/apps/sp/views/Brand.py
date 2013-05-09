@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-
+from django.core.urlresolvers import reverse
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
@@ -9,7 +9,6 @@ from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.forms.Brand import BrandForm, BrandFiltersForm
 from apps.sp.models.Brand import Brand
-
 
 
 class BrandListView(SearchFormMixin, ListView):
@@ -23,6 +22,7 @@ class BrandListView(SearchFormMixin, ListView):
 
     }
 
+
 class BrandCreateView(CreateView):
     model = Brand
     form_class = BrandForm
@@ -32,6 +32,9 @@ class BrandCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(BrandCreateView,self).get_context_data(**kwargs)
         return context
+
+    def get_success_url(self):
+        return reverse('brand_list')
 
 
 class BrandUpdateView(UpdateView):
@@ -44,6 +47,9 @@ class BrandUpdateView(UpdateView):
         context = super(BrandUpdateView,self).get_context_data(**kwargs)
         return context
 
+    def get_success_url(self):
+        return reverse('brand_list')
+
 
 class BrandDeleteView(DeleteView):
     model = Brand
@@ -53,6 +59,9 @@ class BrandDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super(BrandDeleteView,self).get_context_data(**kwargs)
         return context
+
+    def get_success_url(self):
+        return reverse('brand_list')
 
 
 class BrandByEntryIdJson(JSONResponseMixin, ListView):

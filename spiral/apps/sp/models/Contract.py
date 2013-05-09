@@ -1,5 +1,4 @@
 from django.db import models
-from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -9,8 +8,8 @@ class Contract(models.Model):
     TYPE_VIDEO = 1
 
     CHOICE_TYPE = (
-        (TYPE_PHOTO,_(u'foto')),
-        (TYPE_VIDEO, _(u'video'))
+        (TYPE_PHOTO,_(u'Foto')),
+        (TYPE_VIDEO, _(u'Video'))
     )
 
     STATUS_ACTIVE = 1
@@ -25,16 +24,22 @@ class Contract(models.Model):
         default=TYPE_VIDEO
         )
 
-    start_date = models.DateTimeField()
+    start_date = models.DateTimeField(
+        verbose_name=_(u'Inicio de contrato'),
+    )
 
-    ending_date = models.DateTimeField()
+    ending_date = models.DateTimeField(
+        verbose_name=_(u'Fin del contrato'),
+    )
 
     type = models.SmallIntegerField(
-        choices = CHOICE_TYPE
+        choices=CHOICE_TYPE,
+        verbose_name=_(u'Tipo'),
     )
 
     character = models.CharField(
-        max_length=45
+        max_length=45,
+        verbose_name=_(u'Personaje'),
     )
 
     created = models.DateTimeField(
@@ -46,7 +51,7 @@ class Contract(models.Model):
     )
 
     model_has_commercial = models.ForeignKey(
-        ModelHasCommercial
+        'ModelHasCommercial'
     )
 
     class Meta:

@@ -19,8 +19,8 @@ class Project(models.Model):
     project_name = models.CharField(
         max_length=45
     )
-    project_type=models.SmallIntegerField(
-        choices = CHOICE_TYPE,
+    project_type = models.SmallIntegerField(
+        choices=CHOICE_TYPE,
     )
     created = models.DateTimeField(
         auto_now_add=True,

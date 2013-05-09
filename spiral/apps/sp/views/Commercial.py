@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-
+from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from apps.common.view import SearchFormMixin
 from apps.sp.forms.Commercial import CommercialCreateForm, CommercialUpdateForm,\
@@ -47,6 +47,9 @@ class CommercialCreateView(CreateView):
         except:
             return False
 
+    def get_success_url(self):
+        return reverse('commercial_list')
+
 
 class CommercialUpdateView(UpdateView):
     model = Commercial
@@ -87,6 +90,9 @@ class CommercialUpdateView(UpdateView):
         except:
             return False
 
+    def get_success_url(self):
+        return reverse('commercial_list')
+
 
 class CommercialDeleteView(DeleteView):
     model = Commercial
@@ -96,6 +102,9 @@ class CommercialDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super(CommercialDeleteView,self).get_context_data(**kwargs)
         return context
+
+    def get_success_url(self):
+        return reverse('commercial_list')
 
 
 class CommercialListView(SearchFormMixin, ListView):

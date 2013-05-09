@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from apps.common.view import  SearchFormMixin
+from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, UpdateView,\
     DeleteView, ListView
 from django.conf import settings
@@ -18,6 +19,8 @@ class EntryCreateView(CreateView):
         context = super(EntryCreateView,self).get_context_data(**kwargs)
         return context
 
+    def get_success_url(self):
+        return reverse('entry_list')
 
 
 class EntryUpdateView(UpdateView):
@@ -30,6 +33,9 @@ class EntryUpdateView(UpdateView):
         context = super(EntryUpdateView,self).get_context_data(**kwargs)
         return context
 
+    def get_success_url(self):
+        return reverse('entry_list')
+
 
 class EntryDeleteView(DeleteView):
     model = Entry
@@ -39,6 +45,9 @@ class EntryDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super(EntryDeleteView,self).get_context_data(**kwargs)
         return context
+
+    def get_success_url(self):
+        return reverse('entry_list')
 
 
 class EntryListView(SearchFormMixin, ListView):

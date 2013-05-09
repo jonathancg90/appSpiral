@@ -15,6 +15,6 @@ class CountryForm(forms.ModelForm):
 
     class Meta:
         model = Country
-        exclude = ['created', 'modified', 'status']
+        exclude = ['status']
 
 
