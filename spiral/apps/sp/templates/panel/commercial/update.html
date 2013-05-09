@@ -5,6 +5,7 @@
 
 {% block extra_style %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
 {% endblock extra_style %}
 {% block content %}
 
@@ -31,9 +32,12 @@
 
 {% block script_bottom %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
     <script>
-      $(function() {
+    $(document).on('ready', function(){
         $( "#id_realized" ).datepicker();
-      });
+        $('#id_brand').addClass('chzn-select');
+        $('#id_brand').chosen({});
+    });
     </script>
 {% endblock script_bottom %}

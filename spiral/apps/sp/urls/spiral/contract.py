@@ -7,16 +7,16 @@ from apps.sp.views.Contract import ContractCreateView, ContractDeleteView, Contr
 urlpatterns = patterns('',
 
     #Contract
-    url(r'contract/$',
+    url(r'^model-commercial/(?P<fk>\d+)/list/$',
         ContractListView.as_view(),
         name='contract_list'),
-    url(r'create/$',
+    url(r'^model-commercial/(?P<fk>\d+)/create/$',
         ContractCreateView.as_view(),
         name='contract_create'),
-    url(r'edit/(?P<pk>\d+)/$',
+    url(r'^model-commercial/(?P<fk>\d+)/edit/(?P<pk>\d+)/$',
         ContractUpdateView.as_view(),
         name='contract_edit'),
-    url(r'delete/(?P<pk>\d+)/$',
+    url(r'^model-commercial/(?P<fk>\d+)/delete/(?P<pk>\d+)/$',
         ContractDeleteView.as_view(),
         name='contract_delete'),
     )

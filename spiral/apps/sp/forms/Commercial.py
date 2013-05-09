@@ -6,29 +6,64 @@ from apps.sp.models.Entry import Entry
 from apps.sp.models.Brand import Brand
 
 
+class CommercialCreateForm(forms.ModelForm):
 
-class CommercialForm(forms.ModelForm):
+    entry_id = forms.ChoiceField(
+        label=_(u'Rubro'),
+        choices=[('', '--------------')],
+        required=False
+    )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_show_errors = True
         self.helper.form_tag = False
-        super(CommercialForm, self).__init__(*args, **kwargs)
-        self.fields['name'].label = 'comercial'
-        self.fields['realized'].label = 'realizado'
-        self.fields['brand_id'].label = 'marca'
-        self.fields['project'] = forms.CharField(label='project', max_length=9, min_length=9)
+        super(CommercialCreateForm, self).__init__(*args, **kwargs)
+        self.fields['project'] = forms.CharField(
+            label='Codigo del proyecto',
+            max_length=9,
+            min_length=9
+        )
         self.Meta.fields.append('project')
+        self.set_entry()
+        self.fields['entry_id'].widget.attrs.update({'class' : 'form-entry'})
+        self.fields['brand'].widget.attrs.update({'class' : 'form-brand'})
+        self.fields['brand'].choices = [('', '--------------')]
+        self.fields.keyOrder = ['name', 'realized','entry_id', 'brand', 'project']
+
+    def set_entry(self):
+        self.fields['entry_id'].choices = [('', '--------------')] +\
+                                         list(Entry.objects.all().values_list('id', 'name'))
 
     class Meta:
         model = Commercial
-        fields = ['name', 'realized', 'brand_id']
-        exclude = [ 'status', 'project_id' ]
+        fields = ['name', 'realized', 'brand']
+        exclude = [ 'status', 'project' ]
 
+
+class CommercialUpdateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_show_errors = True
+        self.helper.form_tag = False
+        super(CommercialUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['project'] = forms.CharField(
+            label='Codigo del proyecto',
+            max_length=9,
+            min_length=9
+        )
+        self.Meta.fields.append('project')
+
+
+    class Meta:
+        model = Commercial
+        fields = ['name', 'realized', 'brand']
+        exclude = [ 'status', 'project' ]
 
 
 class CommercialFiltersForm(forms.Form):
-    entry_id = forms.ChoiceField(
+    brand__entry = forms.ChoiceField(
         label=_(u'Rubro'),
         choices=[('', '--------------')],
         required=False
@@ -49,14 +84,14 @@ class CommercialFiltersForm(forms.Form):
         self.helper.form_tag = False
         super(CommercialFiltersForm, self).__init__(*args, **kwargs)
         self.set_entry()
-        self.fields['entry_id'].widget.attrs.update({'class' : 'form-entry'})
+        self.fields['brand__entry'].widget.attrs.update({'class' : 'form-entry'})
         self.fields['brand_id'].widget.attrs.update({'class' : 'form-brand'})
 
     def set_entry(self):
-        self.fields['entry_id'].choices = [('', '--------------')] +\
+        self.fields['brand__entry'].choices = [('', '--------------')] +\
                                          list(Entry.objects.all().values_list('id', 'name'))
 
     def set_brand(self, entry_id):
         self.fields['brand_id'].choices = [('', '--------------')] +list(Brand.objects.filter(
-                                            entry_id=entry_id).values_list('id', 'name'))
+                                            entry=entry_id).values_list('id', 'name'))
 

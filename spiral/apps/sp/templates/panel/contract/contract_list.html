@@ -10,10 +10,12 @@
 {% block content %}
     <div class="page-header">
         <div class="tools">
-            <a href="{%   url "contract_create" %}" class="btn btn-success">
+            <a href="{% url "contract_create" model_has_commercial.id %}" class="btn btn-success">
                 <i class="icon-plus icon-white"></i> {% trans 'Nueva contracto' %}</a>
+            <a href="{% url "model_has_commercial_model_list" model_has_commercial.model.id %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Volver' %}</a>
         </div>
-        <h2>{%  trans 'Marcas registradas' %}</h2>
+        <h2>{%  trans 'Contratos' %}</h2>
     </div>
     <ul class="nav nav-pills">
       <li class="active">
@@ -35,9 +37,10 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>{% trans 'Persoaneje' %}</th>
+                    <th>{% trans 'Personaje' %}</th>
                     <th>{% trans 'Fecha de inicio' %}</th>
                     <th>{% trans 'Fecha final' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
                 </tr>
             </thead>
             <tbody>

@@ -45,7 +45,7 @@
                 {% for brand in object_list %}
                 <tr>
                     <td>{{ brand.name }}</td>
-                    <td>{{ brand.entry_id }}</td>
+                    <td>{{ brand.entry }}</td>
                     <td>{{ brand.modified }}</td>
                     <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a> |
                         <a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a>

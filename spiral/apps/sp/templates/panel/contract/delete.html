@@ -18,7 +18,7 @@
 
       <form method="post" action="" class="">{% csrf_token %}
 
-                    <a class="btn" href="{% url "contract_list" %}">{% trans 'Cancelar' %}</a>
+                    <a class="btn" href="{% url "contract_list" model_has_commercial.id %}">{% trans 'Cancelar' %}</a>
                     <input type="submit" class="btn btn-inverse" value="{% trans 'Eliminar' %}" />
 
         </form>

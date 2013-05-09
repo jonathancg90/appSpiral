@@ -4,7 +4,6 @@ $(function(){
     var commercial = $('.form-commercial');
 
     if(entry.length > 0) {
-        console.log('1');
         entry.change(setBrand);
         entry.addClass('chzn-select');
         entry.chosen({});
@@ -63,7 +62,35 @@ $(function(){
     }
 
     function setCommercial() {
+        var value = $(this).find('option:selected').val();
+        var url = url_commercial_by_brand;
+        //Selecciono opcion valida
+        if (value !== undefined && value.length !== 0) {
+            url=url.replace("0",value);
+        } else {
+            commercial.empty();
+            commercial.trigger("liszt:updated");
+        return;
+        }
 
+        $.ajax({
+             url: url,
+             dataType:'json',
+             success : function(data){
+                 commercial.trigger("liszt:updated");
+                 commercial.empty();
+                 commercial.append("<option value=''>--------------</option>");
+
+             $.each(data['commercial'],function(i, value){
+                commercial.append("<option value="+value['id']+">"+value['name']+"</option>");
+             });
+         },
+         complete : function(){
+             //Actualizacion e inicializacion de chosen
+             commercial.trigger("liszt:updated");
+             commercial.chosen();
+             }
+         });
     }
 /*
     //Asignar clase de chozen

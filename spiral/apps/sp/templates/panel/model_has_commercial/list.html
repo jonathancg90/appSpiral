@@ -1,5 +1,12 @@
 {% extends 'panel/panel_base.html' %}
 {% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    {% endblock %}
+
 {% block content %}
     <div class="page-header">
         <div class="tools">
@@ -16,6 +23,7 @@
     <div id="search-form">
 	<form method="get" action="" class="form-horizontal well well-small search-form">
         <div class="row-fluid">
+            {% crispy search_form %}
             <div class="form-actions">
             	<input type="submit" class="btn" value="{% trans 'Search' %}">
             </div>
@@ -37,11 +45,13 @@
             <tbody>
                 {% for model_commercial in model_has_commercial %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">{% trans 'Delete' %}</a></td>
+                    <td>{{ model_commercial.commercial.brand.entry }}</td>
+                    <td>{{ model_commercial.commercial.brand }}</td>
+                    <td>{{ model_commercial.commercial }}</td>
+                    <td>{{ model_commercial.commercial.realized }}</td>
+                    <td><a href="{% url 'model_has_commercial_delete' model_commercial.pk %}">{% trans 'Delete' %}</a> |
+                        <a href="{% url 'contract_list' model_commercial.pk %}">{% trans 'Contrato' %}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -49,12 +59,17 @@
     </div>
 {% endblock %}
 {% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
     <script>
+        url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
+        url_commercial_by_brand = '{% url 'commercial_by_brand_json' brand=0 %}'
+
         $(document).on('ready',function(){
             $('#hide-show-search').click(function(){
                 $('#search-form').toggle('fade');
             });
         });
     </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>
 
 {% endblock %}

@@ -5,6 +5,7 @@
 
 {% block extra_style %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
 {% endblock extra_style %}
 {% block content %}
 
@@ -28,10 +29,13 @@
 {% endblock %}
 
 {% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
     <script>
+      url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
       $(function() {
         $( "#id_realized" ).datepicker();
       });
     </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>
 {% endblock script_bottom %}

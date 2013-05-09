@@ -45,8 +45,8 @@
                 {% for commercial in object_list %}
                 <tr>
                     <td>{{ commercial.name }}</td>
-                    <td>{{ commercial.brand_id }}</td>
-                    <td>{{ commercial.brand_id.entry_id }}</td>
+                    <td>{{ commercial.brand }}</td>
+                    <td>{{ commercial.brand.entry }}</td>
                     <td>{{ commercial.project }}</td>
                     <td>{{ commercial.realized }}</td>
                     <td><a href="{% url "commercial_edit" commercial.pk %}">{% trans 'Update' %}</a></td>

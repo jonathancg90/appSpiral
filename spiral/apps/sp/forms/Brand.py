@@ -14,7 +14,7 @@ class BrandForm(forms.ModelForm):
         self.helper.form_tag = False
         super(BrandForm, self).__init__(*args, **kwargs)
         self.fields['name'].label = 'nombre'
-        self.fields['entry_id'].label = 'Rubro'
+        self.fields['entry'].label = 'Rubro'
 
     class Meta:
         model = Brand

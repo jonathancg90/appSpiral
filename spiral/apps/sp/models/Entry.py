@@ -14,15 +14,15 @@ class Entry(models.Model):
     )
 
     name = models.CharField(
-        max_length = 45
-	    )
+        max_length=45
+        )
     created = models.DateTimeField(
-		auto_now_add=True,
+        auto_now_add=True,
         editable=False
-	    )
+        )
     modified = models.DateTimeField(
         auto_now_add=True
-    )
+        )
     status = models.SmallIntegerField(
         choices= CHOICE_STATUS,
         default= STATUS_ACTIVE
@@ -30,7 +30,6 @@ class Entry(models.Model):
 
     def __unicode__(self):
         return self.name
-
 
     class Meta:
         app_label = 'sp'

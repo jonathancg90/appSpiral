@@ -3,10 +3,10 @@ from apps.sp.models.Contract import Contract
 from django.db import models
 
 class CountryHasContract(models.Model):
-    country_id = models.ForeignKey(
+    country = models.ForeignKey(
         Country
     )
-    contract_id =models.ForeignKey(
+    contract =models.ForeignKey(
         Contract
     )
     class Meta:

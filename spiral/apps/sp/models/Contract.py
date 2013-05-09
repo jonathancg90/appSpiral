@@ -5,8 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class Contract(models.Model):
 
-    TYPE_PHOTO = 1
-    TYPE_VIDEO = 0
+    TYPE_PHOTO = 2
+    TYPE_VIDEO = 1
 
     CHOICE_TYPE = (
         (TYPE_PHOTO,_(u'foto')),
@@ -21,12 +21,21 @@ class Contract(models.Model):
         )
 
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS
+        choices=CHOICE_STATUS,
+        default=TYPE_VIDEO
         )
 
     start_date = models.DateTimeField()
 
     ending_date = models.DateTimeField()
+
+    type = models.SmallIntegerField(
+        choices = CHOICE_TYPE
+    )
+
+    character = models.CharField(
+        max_length=45
+    )
 
     created = models.DateTimeField(
     	auto_now_add=True,
@@ -38,14 +47,6 @@ class Contract(models.Model):
 
     model_has_commercial = models.ForeignKey(
         ModelHasCommercial
-    )
-
-    type = models.SmallIntegerField(
-        choices = CHOICE_TYPE
-    )
-
-    character = models.CharField(
-        max_length=45
     )
 
     class Meta:

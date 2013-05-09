@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+
 class Project(models.Model):
 
     TYPE_EXTRA = 2
@@ -22,9 +23,9 @@ class Project(models.Model):
         choices = CHOICE_TYPE,
     )
     created = models.DateTimeField(
-		auto_now_add=True,
+        auto_now_add=True,
         editable=False
-	    )
+        )
     modified = models.DateTimeField(
         auto_now_add=True
     )

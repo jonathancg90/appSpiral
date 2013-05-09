@@ -1,7 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-from apps.sp.models.Project import Project
-from apps.sp.models.Brand import Brand
+
 
 class Commercial(models.Model):
 
@@ -16,10 +15,14 @@ class Commercial(models.Model):
         verbose_name=_(u'Nombre'),
         max_length=50
     )
-    realized = models.DateTimeField()
+    realized = models.DateTimeField(
+        verbose_name=_(u'Realizado'),
+    )
 
     brand = models.ForeignKey(
-        Brand
+        'Brand',
+        verbose_name=_(u'Marca'),
+        related_name='commercial_set',
     )
     status = models.SmallIntegerField(
         choices=CHOICE_STATUS,
@@ -27,7 +30,8 @@ class Commercial(models.Model):
         )
 
     project = models.ForeignKey(
-        "Project",
+        'Project',
+        related_name='commercial_set',
         null=True,
         blank=True
     )
