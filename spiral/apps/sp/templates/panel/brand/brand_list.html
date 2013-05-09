@@ -26,6 +26,7 @@
                     <th>{% trans 'Marca' %}</th>
                     <th>{% trans 'Rubro' %}</th>
                     <th>{% trans 'Modificado' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,8 +35,10 @@
                     <td>{{ brand.name }}</td>
                     <td>{{ brand.entry_id }}</td>
                     <td>{{ brand.modified }}</td>
-                    <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a></td>
-                    <td><a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a></td>
+                    <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a> |
+                        <a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a> |
+                        <a href="">{% trans 'Comerciales' %}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

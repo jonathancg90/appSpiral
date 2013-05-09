@@ -3,7 +3,7 @@
 {% block content %}
     <div class="page-header">
         <div class="tools">
-            <a href="" class="btn btn-success">
+            <a href="{% url 'model_commercial_create' model.id %}" class="btn btn-success">
                 <i class="icon-plus icon-white"></i> {% trans 'Nuevo comercial realizado' %}</a>
         </div>
         <h2>{%  trans 'Comerciales realizados' %}</h2>

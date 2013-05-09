@@ -46,6 +46,8 @@ class CommercialListView(SearchFormMixin, ListView):
     search_form_class = CommercialFiltersForm
     filtering = {
         'name': SearchFormMixin.ALL,
+        'entry_id': SearchFormMixin.ALL,
+        'brand_id': SearchFormMixin.ALL,
     }
 
     def get_context_data(self, **kwargs):

@@ -14,7 +14,7 @@ urlpatterns = patterns('',
         ModelHasCommercialListView.as_view(),
         name='model_commercial_list'),
 
-    url(r'create/$',
+    url(r'(?P<pk>\d+)/add/$',
         ModelHasCommercialAddListView.as_view(),
         name='model_commercial_create'),
 

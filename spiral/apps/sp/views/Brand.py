@@ -32,6 +32,7 @@ class BrandUpdateView(UpdateView):
         context['action'] = 'update'
         return context
 
+
 class BrandDeleteView(DeleteView):
     model = Brand
     template_name = 'panel/brand/crud.html'
@@ -48,9 +49,13 @@ class BrandListView(SearchFormMixin, ListView):
     template_name = 'panel/brand/brand_list.html'
     search_form_class = BrandFiltersForm
     filtering = {
+        'entry_id': SearchFormMixin.ALL,
         'name': SearchFormMixin.ALL,
+
     }
 
     def get_context_data(self, **kwargs):
         return super(BrandListView, self).get_context_data(**kwargs)
+
+
 

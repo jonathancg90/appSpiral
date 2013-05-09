@@ -26,6 +26,7 @@
                 <tr>
                     <th>{% trans 'Rubro' %}</th>
                     <th>{% trans 'Modificado' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,8 +34,10 @@
                 <tr>
                     <td>{{ entry.name }}</td>
                     <td>{{ entry.modified }}</td>
-                    <td><a href="{% url "entry_edit" entry.pk %}">{% trans 'Update' %}</a></td>
-                    <td><a href="{% url "entry_delete" entry.pk %}">{% trans 'Delete' %}</a></td>
+                    <td><a href="{% url "entry_edit" entry.pk %}">{% trans 'Update' %}</a>  |
+                        <a href="{% url "entry_delete" entry.pk %}">{% trans 'Delete' %}</a> |
+                        <a href="">{% trans 'Marcas' %}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
