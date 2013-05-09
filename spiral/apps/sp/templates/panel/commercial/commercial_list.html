@@ -1,6 +1,11 @@
 {% extends 'panel/panel_base.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    {% endblock %}
+
 {% block content %}
     <div class="page-header">
         <div class="tools">
@@ -43,4 +48,16 @@
             </tbody>
         </table>
     </div>
+{% endblock %}
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+        $(document).on('ready',function(){
+            $('#id_entry_id').addClass('chzn-select');
+            $('#id_entry_id').chosen({});
+
+            $('#id_brand_id').addClass('chzn-select');
+            $('#id_brand_id').chosen({});
+        });
+    </script>
 {% endblock %}
