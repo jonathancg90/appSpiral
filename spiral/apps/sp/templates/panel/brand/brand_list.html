@@ -1,0 +1,44 @@
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="{%   url "brand_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nueva Marca' %}</a>
+        </div>
+        <h2>{%  trans 'Marcas registradas' %}</h2>
+    </div>
+
+    <form method="get" action="" class="form-horizontal well well-small search-form">
+        <div class="row-fluid">
+            {% crispy search_form %}
+            <div class="form-actions">
+            	<input type="submit" class="btn" value="{% trans 'Search' %}">
+            </div>
+        </div>
+    </form>
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans 'Marca' %}</th>
+                    <th>{% trans 'Rubro' %}</th>
+                    <th>{% trans 'Modificado' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for brand in object_list %}
+                <tr>
+                    <td>{{ brand.name }}</td>
+                    <td>{{ brand.entry_id }}</td>
+                    <td>{{ brand.modified }}</td>
+                    <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a></td>
+                    <td><a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

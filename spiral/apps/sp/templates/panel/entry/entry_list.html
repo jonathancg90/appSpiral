@@ -1,0 +1,47 @@
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="{%   url "entry_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo rubro' %}</a>
+        </div>
+        <h2>{%  trans 'Rubros registrados' %}</h2>
+    </div>
+	<form method="get" action="" class="form-horizontal well well-small search-form">
+        <div class="row-fluid">
+            {% crispy search_form %}
+            <div class="form-actions">
+            	<input type="submit" class="btn" value="{% trans 'Search' %}">
+            </div>
+        </div>
+    </form>
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans 'Rubro' %}</th>
+                    <th>{% trans 'Modificado' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in object_list %}
+                <tr>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.modified }}</td>
+                    <td><a href="{% url "entry_edit" entry.pk %}">{% trans 'Update' %}</a></td>
+                    <td><a href="{% url "entry_delete" entry.pk %}">{% trans 'Delete' %}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% url 'entry_list' as page_url %}
+    {% pagination_ctl page_obj url=page_url %}
+
+    </div>
+{% endblock %}

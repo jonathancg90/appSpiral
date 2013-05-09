@@ -1,9 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
 
-</body>
-</html>
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+      <form method="post" action="" class="">{% csrf_token %}
+                    {% if action != "delete" %}
+                    {% crispy form %}
+                    {% else %}
+                    {% trans "Are you sure you want to delete this entry" %}
+                    {% endif %}
+
+                    <a class="btn" href="{% url "entry_list" %}">{% trans 'Cancel' %}</a>
+                    <input type="submit" class="btn btn-inverse" value="{{ action }}" />
+
+        </form>
+        </table>
+    </div>
+{% endblock %}
