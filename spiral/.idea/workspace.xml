@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/apps/sp/templates/panel/brand/brand_list.html" line="69" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7dc7e2f4-6f66-486d-a233-90f5152bc28b" name="Default" comment="" />
+    <list default="true" id="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" name="Default" comment="" />
     <ignored path="spiral.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Entry.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368311165026" ignored="false" />
-    <file path="/settings.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368302448927" ignored="false" />
-    <file path="/entry_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368316601888" ignored="false" />
-    <file path="/__init__.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368317715331" ignored="false" />
-    <file path="/entry.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1367699050081" ignored="false" />
-    <file path="/panel_base.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318002910" ignored="false" />
-    <file path="/crud.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368309455217" ignored="false" />
-    <file path="/brand_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368319701320" ignored="false" />
-    <file path="/brand.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368313676626" ignored="false" />
-    <file path="/Brand.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368315826007" ignored="false" />
-    <file path="/commercial.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368313076865" ignored="false" />
-    <file path="/commercial_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368317289590" ignored="false" />
-    <file path="/Commercial.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368314369899" ignored="false" />
-    <file path="/Project.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368302667264" ignored="false" />
-    <file path="/create.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318143095" ignored="false" />
-    <file path="/delete.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368319222900" ignored="false" />
-    <file path="/update.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318153097" ignored="false" />
-    <file path="/contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368317953093" ignored="false" />
-    <file path="/contract_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368320371903" ignored="false" />
-    <file path="/Contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368320849895" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/views/generic/detail.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073864583" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/conf/__init__.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073864584" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/templatetags/i18n.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073864584" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073864584" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/views/generic/edit.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073864584" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/views/generic/list.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073864584" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/http/__init__.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073864584" ignored="false" />
+    <file path="/panel_base.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368073954052" ignored="false" />
+    <file path="/crud.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368074511429" ignored="false" />
+    <file path="/entry_list.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368074761064" ignored="false" />
+    <file path="/Brand.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368076683200" ignored="false" />
+    <file path="/brand_list.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368078215264" ignored="false" />
+    <file path="/Commercial.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368076894469" ignored="false" />
+    <file path="/ModelHasCommercial.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368076016854" ignored="false" />
+    <file path="/list.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368080494613" ignored="false" />
+    <file path="/model_has_commercial.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368076050604" ignored="false" />
+    <file path="/Dummy.txt" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368076302346" ignored="false" />
+    <file path="/usr/local/lib/python2.7/dist-packages/django/db/models/manager.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368076321318" ignored="false" />
+    <file path="/a.dummy" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368076858520" ignored="false" />
+    <file path="/entry_brand_commercial.select.js" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368078774530" ignored="false" />
+    <file path="/commercial_list.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368086790574" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,97 +47,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="brand_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/brand/brand_list.html">
+      <file leaf-file-name="commercial_list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/commercial/commercial_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="39" selection-start="1250" selection-end="1255" vertical-scroll-proportion="-0.625">
+            <state line="49" column="45" selection-start="1836" selection-end="1836" vertical-scroll-proportion="-12.333333">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contract_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/contract_list.html">
+      <file leaf-file-name="Commercial.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/sp/models/Commercial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="242" selection-end="242" vertical-scroll-proportion="0.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="panel_base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="50" selection-start="1506" selection-end="1506" vertical-scroll-proportion="-14.375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Contract.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/sp/views/Contract.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="42" selection-start="926" selection-end="926" vertical-scroll-proportion="0.69450104">
+            <state line="20" column="9" selection-start="496" selection-end="496" vertical-scroll-proportion="0.44347826">
               <folding>
-                <element signature="e#24#56#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contract.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/contract.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="16" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#25#67#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Contract.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/Contract.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="31" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="487" selection-end="487" vertical-scroll-proportion="-11.25">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="update.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="26" selection-start="977" selection-end="977" vertical-scroll-proportion="-14.25">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delete.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="64" selection-start="412" selection-end="412" vertical-scroll-proportion="-5.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Contract.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/forms/Contract.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="25" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#0#55#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -149,30 +77,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
-        <option value="$PROJECT_DIR$/apps/sp/views/Brand.py" />
-        <option value="$PROJECT_DIR$/apps/sp/views/Commercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/commercial/commercial_list.html" />
         <option value="$PROJECT_DIR$/apps/sp/forms/Commercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py" />
-        <option value="$PROJECT_DIR$/apps/sp/urls/spiral/contract.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
-        <option value="$PROJECT_DIR$/apps/sp/models/Contract.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html" />
-        <option value="$PROJECT_DIR$/apps/sp/forms/Contract.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html" />
+        <option value="$PROJECT_DIR$/apps/sp/views/Commercial.py" />
+        <option value="$PROJECT_DIR$/apps/sp/test/brand/views.py" />
+        <option value="$PROJECT_DIR$/apps/sp/test/commercial/views.py" />
+        <option value="$PROJECT_DIR$/apps/sp/test/entry/views.py" />
+        <option value="$PROJECT_DIR$/apps/sp/test/modes_has_commercial/views.py" />
+        <option value="$PROJECT_DIR$/static/css/chosen.css" />
+        <option value="$PROJECT_DIR$/static/js/chose.jquery.js" />
+        <option value="$PROJECT_DIR$/apps/sp/views/Brand.py" />
+        <option value="$PROJECT_DIR$/static/panel/js/entry_brand_commercial.select.js" />
+        <option value="$PROJECT_DIR$/apps/sp/templatetags/verbatim.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/brand/brand_list.html" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/contract_list.html" />
-        <option value="$PROJECT_DIR$/apps/sp/views/Contract.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/commercial/commercial_list.html" />
+        <option value="$PROJECT_DIR$/apps/sp/models/Commercial.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="66" />
-    <option name="y" value="80" />
-    <option name="width" value="994" />
-    <option name="height" value="698" />
+    <option name="x" value="64" />
+    <option name="y" value="-4" />
+    <option name="width" value="1537" />
+    <option name="height" value="905" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -228,20 +156,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="apps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -261,76 +175,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="urls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="urls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -379,36 +223,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="contract" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -460,55 +274,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="brand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="forms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -520,26 +286,51 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
-  </component>
-  <component name="PyConsoleOptionsProvider">
-    <option name="myPythonConsoleState">
-      <PyConsoleSettings />
-    </option>
-    <option name="myDjangoConsoleState">
-      <PyConsoleSettings />
-    </option>
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/apps/sp/templates/panel/contract" />
-      <recent name="$PROJECT_DIR$/apps/sp/templates/panel/entry" />
-      <recent name="$PROJECT_DIR$/apps/sp/templates/panel/commercial" />
-      <recent name="$PROJECT_DIR$/apps/sp/templates/panel/brand" />
-      <recent name="$PROJECT_DIR$/spiral" />
-    </key>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../royalpioneers" />
   </component>
   <component name="RunManager" selected="Django server.spiral">
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spiral" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spiral" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -580,29 +371,6 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="spiral" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -625,7 +393,7 @@
     </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
       <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
+        <option name="engineId" />
         <option name="fileUrl" />
       </JSDebuggerConfigurationSettings>
       <method />
@@ -635,7 +403,6 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="spiral.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -652,8 +419,6 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <method />
     </configuration>
     <list size="1">
@@ -663,33 +428,33 @@
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7dc7e2f4-6f66-486d-a233-90f5152bc28b" name="Default" comment="" />
-      <created>1367696957585</created>
-      <updated>1367696957585</updated>
+      <changelist id="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" name="Default" comment="" />
+      <created>1368073033114</created>
+      <updated>1368073033114</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="80" width="994" height="698" extended-state="0" />
+    <frame x="64" y="-4" width="1537" height="905" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19225635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2595339" sideWeight="0.6007005" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39929947" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983165" sideWeight="0.80774367" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -751,130 +516,126 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="1" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/__init__.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="6" selection-start="796" selection-end="796" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/Commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="17" selection-start="1669" selection-end="1669" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/test/brand/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="58" selection-start="268" selection-end="268" vertical-scroll-proportion="0.20348836">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/commercial.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/test/commercial/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="5" selection-start="245" selection-end="660" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/test/entry/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/chosen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="439" column="10" selection-start="15686" selection-end="15686" vertical-scroll-proportion="0.9308756">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/chosen.jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1102" column="14" selection-start="38948" selection-end="38948" vertical-scroll-proportion="0.9308756">
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Commercial.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/test/modes_has_commercial/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="92" selection-start="753" selection-end="753" vertical-scroll-proportion="0.5962343">
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state line="1" column="0" selection-start="23" selection-end="23" vertical-scroll-proportion="0.03177966">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="31" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="64" selection-start="412" selection-end="412" vertical-scroll-proportion="-5.625">
+        <state line="16" column="43" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Brand.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/Entry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="146" selection-end="201" vertical-scroll-proportion="0.12552302">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.38135594">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Contract.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="31" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Contract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="25" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="26" selection-start="977" selection-end="977" vertical-scroll-proportion="-14.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="487" selection-end="487" vertical-scroll-proportion="-11.25">
+        <state line="55" column="15" selection-start="1895" selection-end="1895" vertical-scroll-proportion="3.8732395">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/brand/brand_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="39" selection-start="1250" selection-end="1255" vertical-scroll-proportion="-0.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/contract_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="242" selection-end="242" vertical-scroll-proportion="0.625">
+        <state line="61" column="0" selection-start="2492" selection-end="2537" vertical-scroll-proportion="-32.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="50" selection-start="1506" selection-end="1506" vertical-scroll-proportion="-14.375">
+        <state line="21" column="32" selection-start="692" selection-end="692" vertical-scroll-proportion="1.5159575">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/contract.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/commercial/commercial_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="16" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#25#67#0" expanded="true" />
-          </folding>
+        <state line="49" column="45" selection-start="1836" selection-end="1836" vertical-scroll-proportion="-12.333333">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/Contract.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="42" selection-start="926" selection-end="926" vertical-scroll-proportion="0.69450104">
+        <state line="20" column="9" selection-start="496" selection-end="496" vertical-scroll-proportion="0.44347826">
           <folding>
-            <element signature="e#24#56#0" expanded="true" />
+            <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>

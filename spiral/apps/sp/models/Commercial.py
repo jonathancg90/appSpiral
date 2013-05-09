@@ -14,19 +14,19 @@ class Commercial(models.Model):
 
     name = models.CharField(
         verbose_name=_(u'Nombre'),
-        max_length = 50
-	    )
+        max_length=50
+    )
     realized = models.DateTimeField()
-	
-    brand_id = models.ForeignKey(
-	    Brand
-	    )
+
+    brand = models.ForeignKey(
+        Brand
+    )
     status = models.SmallIntegerField(
-	    choices= CHOICE_STATUS,
-        default = STATUS_ACTIVE
+        choices=CHOICE_STATUS,
+        default=STATUS_ACTIVE
         )
 
-    project_id = models.ForeignKey(
+    project = models.ForeignKey(
         "Project",
         null=True,
         blank=True
