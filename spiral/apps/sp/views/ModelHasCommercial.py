@@ -13,13 +13,6 @@ class ModelHasCommercialListView(ListView):
 
 
     def get(self, request, *args, **kwargs):
-        """
-
-        :param request:
-        :param args:
-        :param kwargs:
-        :return: :raise:
-        """
         model_code = self.kwargs.get('key')
         if len(model_code) == 6:
             try:
