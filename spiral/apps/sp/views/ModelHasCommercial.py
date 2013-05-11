@@ -3,6 +3,7 @@
 from django.views.generic import ListView, RedirectView
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Model import Model
+from django.http import Http404
 
 
 class ModelHasCommercialListView(ListView):
@@ -12,14 +13,24 @@ class ModelHasCommercialListView(ListView):
 
 
     def get(self, request, *args, **kwargs):
+        """
+
+        :param request:
+        :param args:
+        :param kwargs:
+        :return: :raise:
+        """
         model_code = self.kwargs.get('key')
-        try:
-            self.model = Model.objects.get(model_code=model_code)
-        except:
-            self.model = Model(
-                model_code = model_code
-            )
-            self.model.save()
+        if len(model_code) == 6:
+            try:
+                self.model = Model.objects.get(model_code=model_code)
+            except:
+                self.model = Model(
+                    model_code = model_code
+                )
+                self.model.save()
+        else:
+            raise Http404
 
         return super(ModelHasCommercialListView, self).get(request, *args, **kwargs)
 
