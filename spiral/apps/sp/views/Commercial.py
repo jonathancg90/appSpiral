@@ -55,9 +55,38 @@ class CommercialUpdateView(UpdateView):
     template_name = 'panel/commercial/update.html'
     success_url = 'commercial_list'
 
-    def get_context_data(self, **kwargs):
-        context = super(CommercialUpdateView,self).get_context_data(**kwargs)
-        return context
+    def get_form(self, form_class):
+        form = super(CommercialUpdateView, self).get_form(form_class)
+        pk = self.kwargs.get('pk')
+        commercial = Commercial.objects.get(pk=pk)
+        form.fields['project'].initial = commercial.project_id.project_code
+        return form
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        project_code = self.request.POST.get('project')
+        if self.validate_project_code(project_code):
+            project_id = Project.objects.get(project_code=project_code)
+            self.object.project_id = project_id
+            self.object.save()
+            return super(CommercialUpdateView, self).form_valid(form)
+
+        else:
+            project = Project()
+            project.project_code = project_code
+            project.name = project_code
+            project.project_type = Project.TYPE_CASTING
+            project.save()
+            self.object.project_id = project
+            self.object.save()
+            return super(CommercialUpdateView, self).form_valid(form)
+
+    def validate_project_code(self, project_code):
+        try:
+            Project.objects.get(project_code=project_code)
+            return True
+        except:
+            return False
 
 class CommercialDeleteView(DeleteView):
     model = Commercial
