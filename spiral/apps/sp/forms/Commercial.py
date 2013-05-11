@@ -17,11 +17,14 @@ class CommercialForm(forms.ModelForm):
         self.fields['name'].label = 'comercial'
         self.fields['realized'].label = 'realizado'
         self.fields['brand_id'].label = 'marca'
-        self.fields['project_id'].label = 'proyecto'
+        self.fields['project'] = forms.CharField(label='project', max_length=9)
+        self.Meta.fields.append('project')
 
     class Meta:
         model = Commercial
-        exclude = [ 'status']
+        fields = ['name', 'realized', 'brand_id']
+        exclude = [ 'status', 'project_id' ]
+
 
 
 class CommercialFiltersForm(forms.Form):
