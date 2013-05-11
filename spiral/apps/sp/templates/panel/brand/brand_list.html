@@ -1,6 +1,11 @@
 {% extends 'panel/panel_base.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    {% endblock %}
+
 {% block content %}
     <div class="page-header">
         <div class="tools">
@@ -9,7 +14,6 @@
         </div>
         <h2>{%  trans 'Marcas registradas' %}</h2>
     </div>
-
     <form method="get" action="" class="form-horizontal well well-small search-form">
         <div class="row-fluid">
             {% crispy search_form %}
@@ -26,6 +30,7 @@
                     <th>{% trans 'Marca' %}</th>
                     <th>{% trans 'Rubro' %}</th>
                     <th>{% trans 'Modificado' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,11 +39,24 @@
                     <td>{{ brand.name }}</td>
                     <td>{{ brand.entry_id }}</td>
                     <td>{{ brand.modified }}</td>
-                    <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a></td>
-                    <td><a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a></td>
+                    <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a> |
+                        <a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a> |
+                        <a href="">{% trans 'Comerciales' %}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+        $(document).on('ready',function(){
+            $('#id_entry_id').addClass('chzn-select');
+            $('#id_entry_id').chosen({});
+        });
+    </script>
+
 {% endblock %}

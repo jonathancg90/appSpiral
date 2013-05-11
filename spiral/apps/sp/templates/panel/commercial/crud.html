@@ -1,6 +1,11 @@
 {% extends 'panel/panel_base.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
+{% endblock extra_style %}
 {% block content %}
 
     <div class="row-fluid">
@@ -19,3 +24,12 @@
         </table>
     </div>
 {% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
+    <script>
+      $(function() {
+        $( "#id_realized" ).datepicker();
+      });
+    </script>
+{% endblock script_bottom %}
