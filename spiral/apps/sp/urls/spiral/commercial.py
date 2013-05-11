@@ -1,19 +1,20 @@
 from django.conf.urls import url, patterns
 from django.views.generic import TemplateView
+from apps.sp.views.Commercial import CommercialListView, CommercialCreateView, CommercialUpdateView, CommercialDeleteView
 
 urlpatterns = patterns('',
 
-    #Commercial
-    url(r'commercial/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+     #Commercial
+    url(r'list/$',
+        CommercialListView.as_view(),
         name='commercial_list'),
-    url(r'commercial/create/$',
-        TemplateView.as_view(template_name='panel_base.html'),
-        name='main'),
-    url(r'commercial/edit/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'create/$',
+        CommercialCreateView.as_view(),
+        name='commercial_create'),
+    url(r'edit/(?P<pk>\d+)/$',
+        CommercialUpdateView.as_view(),
         name='commercial_edit'),
-    url(r'commercial/delete/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'delete/(?P<pk>\d+)/$',
+        CommercialDeleteView.as_view(),
         name='commercial_delete'),
     )

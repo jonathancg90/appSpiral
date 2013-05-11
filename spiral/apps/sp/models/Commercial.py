@@ -22,11 +22,14 @@ class Commercial(models.Model):
 	    Brand
 	    )
     status = models.SmallIntegerField(
-	    choices= CHOICE_STATUS
+	    choices= CHOICE_STATUS,
+        default = STATUS_ACTIVE
         )
 
     project_id = models.ForeignKey(
-        Project
+        "Project",
+        null=True,
+        blank=True
     )
 
     def __unicode__(self):

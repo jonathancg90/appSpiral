@@ -11,9 +11,6 @@
     {% block extra_style %}
     {% endblock extra_style %}
 
-
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/bootstrap.min.js"></script>
     {% block script_top %}
     {% endblock script_top %}
 
@@ -34,8 +31,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                       <li><a href="{% url 'entry_list' %}">Rubro</a></li>
-                      <li><a href="#">Marca</a></li>
-                      <li><a href="#">Comercial</a></li>
+                      <li><a href="{% url 'brand_list' %}">Marca</a></li>
+                      <li><a href="{% url 'commercial_list' %}">Comercial</a></li>
                 </ul>
               </li>
             </ul>
@@ -56,7 +53,8 @@
     {% endblock content %}
 </section>
 
-
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/bootstrap.min.js"></script>
 {% block script_bottom %}
 {% endblock script_bottom %}
 </body>

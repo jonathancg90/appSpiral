@@ -27,6 +27,11 @@ class ModelHasCommercialListView(ListView):
         qs = ModelHasCommercial.objects.filter(model=self.model)
         return qs
 
+    def get_context_data(self, **kwargs):
+        context = super(ModelHasCommercialListView, self).get_context_data(**kwargs)
+        context['model'] = self.model
+        return context
+
 
 class ModelHasCommercialAddListView(ListView):
     template_name = 'panel/model_has_commercial/add_commercial.html'

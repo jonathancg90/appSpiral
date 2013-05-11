@@ -2,20 +2,22 @@
 
 from django.conf.urls import url, patterns
 from django.views.generic import TemplateView
+from apps.sp.views.Brand import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
+
 
 urlpatterns = patterns('',
 
      #Brand
-    url(r'brand/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'list/$',
+        BrandListView.as_view(),
         name='brand_list'),
-    url(r'brand/create$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'create/$',
+        BrandCreateView.as_view(),
         name='brand_create'),
-    url(r'brand/edit/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'edit/(?P<pk>\d+)/$',
+        BrandUpdateView.as_view(),
         name='brand_edit'),
-    url(r'brand/delete/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'delete/(?P<pk>\d+)/$',
+        BrandDeleteView.as_view(),
         name='brand_delete'),
 )

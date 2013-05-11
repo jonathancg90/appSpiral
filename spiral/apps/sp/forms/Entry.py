@@ -11,6 +11,7 @@ class EntryForm(forms.ModelForm):
         self.helper.form_show_errors = True
         self.helper.form_tag = False
         super(EntryForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = 'nombre'
 
     class Meta:
         model = Entry
