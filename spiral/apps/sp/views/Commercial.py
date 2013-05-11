@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+from django.forms.util import ErrorList
 
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from apps.common.view import SearchFormMixin
 from apps.sp.forms.Commercial import CommercialForm, CommercialFiltersForm
-from django.core.urlresolvers import reverse
+from apps.sp.models.Project import Project
 from apps.sp.models.Commercial import Commercial
 
 
@@ -17,6 +18,35 @@ class CommercialCreateView(CreateView):
         context = super(CommercialCreateView,self).get_context_data(**kwargs)
         context['action'] = 'create'
         return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        project_code = self.request.POST.get('project')
+        if self.validate_project_code(project_code):
+            project_id = Project.objects.get(project_code=project_code)
+            self.object.project_id = project_id
+            self.object.save()
+            return super(CommercialCreateView, self).form_valid(form)
+
+        else:
+            project = Project()
+            project.project_code = project_code
+            project.name = project_code
+            project.project_type = Project.TYPE_CASTING
+            project.save()
+            self.object.project_id = project
+            self.object.save()
+            return super(CommercialCreateView, self).form_valid(form)
+
+    def validate_project_code(self, project_code):
+        try:
+            Project.objects.get(project_code=project_code)
+            return True
+        except:
+            return False
+
+
+
 
 
 class CommercialUpdateView(UpdateView):
