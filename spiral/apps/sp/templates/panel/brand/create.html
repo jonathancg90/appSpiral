@@ -1,0 +1,22 @@
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <h2>
+            {% trans "Nueva Marca:" %}
+            </h2>
+            <hr>
+      <form method="post" action="" class="">{% csrf_token %}
+
+                    {% crispy form %}
+
+                    <a class="btn" href="{% url "brand_list" %}">{% trans 'Cancelar' %}</a>
+                    <input type="submit" class="btn btn-inverse" value="{% trans 'Crear'%}" />
+
+        </form>
+        </table>
+    </div>
+{% endblock %}

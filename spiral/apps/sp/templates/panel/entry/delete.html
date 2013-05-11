@@ -1,0 +1,24 @@
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+
+
+            <h2>
+                 {% trans "Está seguro de eliminar este rubro?" %}
+            </h2>
+            <hr>
+
+
+      <form method="post" action="" class="">{% csrf_token %}
+
+                    <a class="btn" href="{% url "entry_list" %}">{% trans 'Cancel' %}</a>
+                    <input type="submit" class="btn btn-inverse" value="{% trans 'Eliminar' %}" />
+
+        </form>
+        </table>
+    </div>
+{% endblock %}

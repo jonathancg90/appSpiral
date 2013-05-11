@@ -26,35 +26,32 @@ class BrandListView(SearchFormMixin, ListView):
 class BrandCreateView(CreateView):
     model = Brand
     form_class = BrandForm
-    template_name = 'panel/brand/crud.html'
+    template_name = 'panel/brand/create.html'
     success_url = 'brand_list'
 
     def get_context_data(self, **kwargs):
         context = super(BrandCreateView,self).get_context_data(**kwargs)
-        context['action'] = 'create'
         return context
 
 
 class BrandUpdateView(UpdateView):
     model = Brand
     form_class = BrandForm
-    template_name = 'panel/brand/crud.html'
+    template_name = 'panel/brand/update.html'
     success_url = 'brand_list'
 
     def get_context_data(self, **kwargs):
         context = super(BrandUpdateView,self).get_context_data(**kwargs)
-        context['action'] = 'update'
         return context
 
 
 class BrandDeleteView(DeleteView):
     model = Brand
-    template_name = 'panel/brand/crud.html'
+    template_name = 'panel/brand/delete.html'
     success_url = 'brand_list'
 
     def get_context_data(self, **kwargs):
         context = super(BrandDeleteView,self).get_context_data(**kwargs)
-        context['action'] = 'delete'
         return context
 
 
