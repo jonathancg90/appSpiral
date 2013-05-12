@@ -20,18 +20,18 @@ class ContractCreateView(CreateView):
 class ContractUpdateView(UpdateView):
     model = Contract
     form_class = ContractForm
-    template_name = 'panel/brand/update.html'
+    template_name = 'panel/contract/update.html'
     success_url = 'contract_list'
 
 class ContractDeleteView(DeleteView):
     model = Contract
-    template_name = 'panel/brand/update.html'
+    template_name = 'panel/contract/update.html'
     success_url = 'contract_list'
 
 
 class ContractListView(SearchFormMixin,ListView):
     model = Contract
-    template_name = 'panel/brand/brand_list.html'
+    template_name = 'panel/contract/brand_list.html'
     search_form_class = ContractFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
