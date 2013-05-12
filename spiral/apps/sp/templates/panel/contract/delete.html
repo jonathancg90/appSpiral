@@ -11,18 +11,15 @@
     <div class="row-fluid">
         <table class="table table-bordered table-striped">
 
-        <h2>
-            {% trans  'Actualizar comercial:'  %} {{ object.name }}
-        </h2>
-        <hr>
-
+            <h2>
+                 {% trans "Está seguro de eliminar este comercial?" %}
+            </h2>
+            <hr>
 
       <form method="post" action="" class="">{% csrf_token %}
 
-                    {% crispy form %}
-
-                    <a class="btn" href="{% url "commercial_list" %}">{% trans 'Cancel' %}</a>
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Actualizar' %}" />
+                    <a class="btn" href="{% url "contract_list" %}">{% trans 'Cancelar' %}</a>
+                    <input type="submit" class="btn btn-inverse" value="{% trans 'Eliminar' %}" />
 
         </form>
         </table>

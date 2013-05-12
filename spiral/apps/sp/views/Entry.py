@@ -50,6 +50,3 @@ class EntryListView(SearchFormMixin, ListView):
     filtering = {
         'name': SearchFormMixin.ALL,
     }
-
-    def get_context_data(self, **kwargs):
-        return super(EntryListView, self).get_context_data(**kwargs)

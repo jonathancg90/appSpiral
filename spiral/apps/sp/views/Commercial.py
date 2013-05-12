@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.forms.util import ErrorList
+from django.conf import settings
 
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from apps.common.view import SearchFormMixin
@@ -101,12 +101,10 @@ class CommercialListView(SearchFormMixin, ListView):
     model = Commercial
     template_name = 'panel/commercial/commercial_list.html'
     search_form_class = CommercialFiltersForm
+    paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
         'name': SearchFormMixin.ALL,
         'entry_id': SearchFormMixin.ALL,
         'brand_id': SearchFormMixin.ALL,
     }
-
-    def get_context_data(self, **kwargs):
-        return super(CommercialListView, self).get_context_data(**kwargs)
 

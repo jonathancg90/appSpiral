@@ -1,5 +1,6 @@
 {% extends 'panel/panel_base.html' %}
 {% load i18n %}
+{% load common_tags %}
 {% load crispy_forms_tags %}
 
     {% block extra_style %}
@@ -14,14 +15,21 @@
         </div>
         <h2>{%  trans 'Marcas registradas' %}</h2>
     </div>
-    <form method="get" action="" class="form-horizontal well well-small search-form">
-        <div class="row-fluid">
-            {% crispy search_form %}
-            <div class="form-actions">
-            	<input type="submit" class="btn" value="{% trans 'Search' %}">
+    <ul class="nav nav-pills">
+      <li class="active">
+        <a href="#" id="hide-show-search">Mostrar / Ocultar</a>
+      </li>
+    </ul>
+    <div id="search-form">
+        <form method="get" action="" class="form-horizontal well well-small search-form">
+            <div class="row-fluid">
+                {% crispy search_form %}
+                <div class="form-actions">
+                    <input type="submit" class="btn" value="{% trans 'Search' %}">
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <div class="row-fluid">
         <table class="table table-bordered table-striped">
@@ -40,13 +48,14 @@
                     <td>{{ brand.entry_id }}</td>
                     <td>{{ brand.modified }}</td>
                     <td><a href="{% url "brand_edit" brand.pk %}">{% trans 'Update' %}</a> |
-                        <a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a> |
-                        <a href="">{% trans 'Comerciales' %}</a>
+                        <a href="{% url "brand_delete" brand.pk %}">{% trans 'Delete' %}</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+    {% url 'brand_list' as page_url %}
+    {% pagination_ctl page_obj url=page_url %}
     </div>
 {% endblock %}
 
@@ -56,6 +65,9 @@
         $(document).on('ready',function(){
             $('#id_entry_id').addClass('chzn-select');
             $('#id_entry_id').chosen({});
+            $('#hide-show-search').click(function(){
+                $('#search-form').toggle('fade');
+            });
         });
     </script>
 

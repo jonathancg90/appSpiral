@@ -12,7 +12,7 @@
         <table class="table table-bordered table-striped">
 
         <h2>
-            {% trans  'Actualizar comercial:'  %} {{ object.name }}
+            {% trans  'Actualizar contrato:'  %} {{ object.character }}
         </h2>
         <hr>
 
@@ -21,7 +21,7 @@
 
                     {% crispy form %}
 
-                    <a class="btn" href="{% url "commercial_list" %}">{% trans 'Cancel' %}</a>
+                    <a class="btn" href="{% url "contract_list" %}">{% trans 'Cancel' %}</a>
                     <input type="submit" class="btn btn-inverse" value="{% trans 'Actualizar' %}" />
 
         </form>

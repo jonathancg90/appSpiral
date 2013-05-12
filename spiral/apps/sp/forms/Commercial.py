@@ -17,7 +17,7 @@ class CommercialForm(forms.ModelForm):
         self.fields['name'].label = 'comercial'
         self.fields['realized'].label = 'realizado'
         self.fields['brand_id'].label = 'marca'
-        self.fields['project'] = forms.CharField(label='project', max_length=9)
+        self.fields['project'] = forms.CharField(label='project', max_length=9, min_length=9)
         self.Meta.fields.append('project')
 
     class Meta:
