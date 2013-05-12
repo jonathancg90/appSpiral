@@ -16,20 +16,12 @@ class ContractCreateView(CreateView):
     template_name = 'panel/contract/create.html'
     success_url = 'contract_list'
 
-    def get_context_data(self, **kwargs):
-        context = super(ContractCreateView,self).get_context_data(**kwargs)
-        return context
-
 
 class ContractUpdateView(UpdateView):
     model = Contract
     form_class = ContractForm
     template_name = 'panel/brand/update.html'
     success_url = 'contract_list'
-
-    def get_context_data(self, **kwargs):
-        context = super(ContractUpdateView,self).get_context_data(**kwargs)
-        return context
 
 class ContractDeleteView(DeleteView):
     model = Contract

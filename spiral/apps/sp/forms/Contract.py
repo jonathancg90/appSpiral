@@ -1,6 +1,7 @@
 from django import forms
 from apps.sp.models.Contract import Contract
 from crispy_forms.helper import FormHelper
+from django.utils.translation import ugettext_lazy as _
 
 
 
@@ -27,7 +28,7 @@ class ContractFiltersForm(forms.Form):
             required=False,
             label=(u'Name')
         )
-    
+
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_show_errors = True

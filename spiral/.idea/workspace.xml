@@ -19,11 +19,11 @@
     <file path="/Commercial.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368314369899" ignored="false" />
     <file path="/Project.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368302667264" ignored="false" />
     <file path="/create.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318143095" ignored="false" />
-    <file path="/delete.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318116065" ignored="false" />
+    <file path="/delete.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368319222900" ignored="false" />
     <file path="/update.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318153097" ignored="false" />
     <file path="/contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368317953093" ignored="false" />
     <file path="/contract_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318199658" ignored="false" />
-    <file path="/Contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318627065" ignored="false" />
+    <file path="/Contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368319176590" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +46,7 @@
       <file leaf-file-name="Contract.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/Contract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="34" selection-start="1317" selection-end="1317" vertical-scroll-proportion="0.0">
+            <state line="33" column="39" selection-start="988" selection-end="988" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
@@ -54,13 +54,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Contract.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Contract.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/models/Contract.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="31" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="8" selection-start="936" selection-end="1010" vertical-scroll-proportion="-15.375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="update.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="41" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.845815">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="delete.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="64" selection-start="412" selection-end="412" vertical-scroll-proportion="-5.625">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Contract.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/forms/Contract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="4" selection-start="763" selection-end="763" vertical-scroll-proportion="0.4848485">
+            <state line="17" column="46" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Brand.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/forms/Brand.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="0" selection-start="146" selection-end="201" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -75,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/sp/views/Entry.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
         <option value="$PROJECT_DIR$/apps/sp/views/Brand.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/Commercial.py" />
@@ -85,12 +129,13 @@
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/contract.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/contract_list.html" />
         <option value="$PROJECT_DIR$/apps/sp/views/Contract.py" />
         <option value="$PROJECT_DIR$/apps/sp/forms/Contract.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html" />
+        <option value="$PROJECT_DIR$/apps/sp/models/Contract.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html" />
       </list>
     </option>
   </component>
@@ -681,27 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="57" selection-start="575" selection-end="575" vertical-scroll-proportion="0.375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="36" selection-start="383" selection-end="383" vertical-scroll-proportion="0.2275574">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="68" selection-start="412" selection-end="412" vertical-scroll-proportion="0.10714286">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/contract.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="27" selection-start="297" selection-end="310" vertical-scroll-proportion="0.3451883">
@@ -727,26 +751,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Contract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="8" selection-start="886" selection-end="890" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="31" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#24#56#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Brand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="693" selection-end="1417" vertical-scroll-proportion="0.23295455">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -757,21 +767,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Brand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="146" selection-end="201" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Contract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="46" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Contract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="31" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Contract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="34" selection-start="1317" selection-end="1317" vertical-scroll-proportion="0.0">
+        <state line="33" column="39" selection-start="988" selection-end="988" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#24#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Contract.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/create.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="4" selection-start="763" selection-end="763" vertical-scroll-proportion="0.4848485">
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state line="33" column="8" selection-start="936" selection-end="1010" vertical-scroll-proportion="-15.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/delete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="64" selection-start="412" selection-end="412" vertical-scroll-proportion="-5.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/contract/update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="41" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.845815">
+          <folding />
         </state>
       </provider>
     </entry>
