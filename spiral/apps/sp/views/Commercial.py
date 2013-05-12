@@ -11,7 +11,7 @@ from apps.sp.models.Commercial import Commercial
 class CommercialCreateView(CreateView):
     model = Commercial
     form_class = CommercialForm
-    template_name = 'panel/commercial/crud.html'
+    template_name = 'panel/commercial/create.html'
     success_url = 'commercial_list'
 
     def get_context_data(self, **kwargs):
@@ -46,29 +46,25 @@ class CommercialCreateView(CreateView):
             return False
 
 
-
-
-
 class CommercialUpdateView(UpdateView):
     model = Commercial
     form_class = CommercialForm
-    template_name = 'panel/commercial/crud.html'
+    template_name = 'panel/commercial/update.html'
     success_url = 'commercial_list'
 
     def get_context_data(self, **kwargs):
         context = super(CommercialUpdateView,self).get_context_data(**kwargs)
-        context['action'] = 'update'
         return context
 
 class CommercialDeleteView(DeleteView):
     model = Commercial
-    template_name = 'panel/commercial/crud.html'
+    template_name = 'panel/commercial/delete.html'
     success_url = 'commercial_list'
 
     def get_context_data(self, **kwargs):
         context = super(CommercialDeleteView,self).get_context_data(**kwargs)
-        context['action'] = 'delete'
         return context
+
 
 class CommercialListView(SearchFormMixin, ListView):
     model = Commercial
@@ -83,3 +79,9 @@ class CommercialListView(SearchFormMixin, ListView):
     def get_context_data(self, **kwargs):
         return super(CommercialListView, self).get_context_data(**kwargs)
 
+    def get_search_form(self, form_class):
+        entry_id = self.request.GET.get('entry_id', None)
+        form = super(CommercialListView, self).get_search_form(form_class)
+        if entry_id:
+            form.set_entry(entry_id)
+        return form

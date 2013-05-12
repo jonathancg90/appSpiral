@@ -51,13 +51,8 @@
 {% endblock %}
 {% block script_bottom %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
-    <script>
-        $(document).on('ready',function(){
-            $('#id_entry_id').addClass('chzn-select');
-            $('#id_entry_id').chosen({});
-
-            $('#id_brand_id').addClass('chzn-select');
-            $('#id_brand_id').chosen({});
-        });
+    <script type="text/javascript">
+        url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
     </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>
 {% endblock %}

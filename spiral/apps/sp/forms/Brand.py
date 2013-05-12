@@ -38,6 +38,7 @@ class BrandFiltersForm(forms.Form):
         self.helper.form_tag = False
         super(BrandFiltersForm, self).__init__(*args, **kwargs)
         self.set_entry()
+        self.fields['entry_id'].widget.attrs.update({'class' : 'form-entry'})
 
     def set_entry(self):
         self.fields['entry_id'].choices = [('', '--------------')] +\
