@@ -19,15 +19,11 @@ class ContractForm(forms.ModelForm):
 
 
 class ContractFiltersForm(forms.Form):
-    entry_id = forms.ChoiceField(
-        label=_(u'Rubro'),
+    character = forms.ChoiceField(
+        label=_(u'Personaje'),
         choices=[('', '--------------')],
         required=False
     )
-    name__icontains = forms.CharField(max_length=100,
-            required=False,
-            label=(u'Name')
-        )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -37,7 +33,7 @@ class ContractFiltersForm(forms.Form):
         self.set_entry()
 
     def set_entry(self):
-        self.fields['entry_id'].choices = [('', '--------------')] +\
-                                         list(Contract.objects.all().values_list('id', 'name'))
+        self.fields['character'].choices = [('', '--------------')] +\
+                                         list(Contract.objects.all().values_list('id', 'character'))
 
 

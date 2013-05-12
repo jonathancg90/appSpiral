@@ -35,7 +35,5 @@ class ContractListView(SearchFormMixin,ListView):
     search_form_class = ContractFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
-        'entry_id': SearchFormMixin.ALL,
-        'name': SearchFormMixin.ALL,
-
+        'character': SearchFormMixin.ALL,
     }
