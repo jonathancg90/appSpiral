@@ -31,7 +31,7 @@ class ContractDeleteView(DeleteView):
 
 class ContractListView(SearchFormMixin,ListView):
     model = Contract
-    template_name = 'panel/contract/brand_list.html'
+    template_name = 'panel/contract/contract_list.html'
     search_form_class = ContractFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {

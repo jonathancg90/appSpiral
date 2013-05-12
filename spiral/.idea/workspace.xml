@@ -23,7 +23,7 @@
     <file path="/update.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368318153097" ignored="false" />
     <file path="/contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368317953093" ignored="false" />
     <file path="/contract_list.html" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368320371903" ignored="false" />
-    <file path="/Contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368320755894" ignored="false" />
+    <file path="/Contract.py" changelist="7dc7e2f4-6f66-486d-a233-90f5152bc28b" time="1368320849895" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="Contract.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/Contract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="35" selection-start="990" selection-end="990" vertical-scroll-proportion="0.7556008">
+            <state line="31" column="42" selection-start="926" selection-end="926" vertical-scroll-proportion="0.69450104">
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
@@ -872,7 +872,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Contract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="35" selection-start="990" selection-end="990" vertical-scroll-proportion="0.7556008">
+        <state line="31" column="42" selection-start="926" selection-end="926" vertical-scroll-proportion="0.69450104">
           <folding>
             <element signature="e#24#56#0" expanded="true" />
           </folding>
