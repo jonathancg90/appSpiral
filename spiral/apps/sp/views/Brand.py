@@ -6,6 +6,7 @@ from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
 from apps.common.view import SearchFormMixin
+from apps.common.view import JSONResponseMixin
 from apps.sp.forms.Brand import BrandForm, BrandFiltersForm
 from apps.sp.models.Brand import Brand
 
@@ -54,3 +55,16 @@ class BrandDeleteView(DeleteView):
         return context
 
 
+class BrandByEntryIdJson(JSONResponseMixin, ListView):
+    model = Brand
+
+    def get_queryset(self):
+        entry_id = self.kwargs.get('entry', 0)
+        qs = Brand.objects.filter(entry_id=entry_id)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        data = {}
+        brand = self.get_queryset().values('id', 'name')
+        data['brand'] = [item for item in brand]
+        return data

@@ -46,9 +46,6 @@ class CommercialCreateView(CreateView):
             return False
 
 
-
-
-
 class CommercialUpdateView(UpdateView):
     model = Commercial
     form_class = CommercialForm
@@ -97,6 +94,7 @@ class CommercialDeleteView(DeleteView):
         context = super(CommercialDeleteView,self).get_context_data(**kwargs)
         return context
 
+
 class CommercialListView(SearchFormMixin, ListView):
     model = Commercial
     template_name = 'panel/commercial/commercial_list.html'
@@ -104,7 +102,12 @@ class CommercialListView(SearchFormMixin, ListView):
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
         'name': SearchFormMixin.ALL,
-        'entry_id': SearchFormMixin.ALL,
         'brand_id': SearchFormMixin.ALL,
     }
 
+    def get_search_form(self, form_class):
+        entry_id = self.request.GET.get('entry_id', None)
+        form = super(CommercialListView, self).get_search_form(form_class)
+        if entry_id:
+            form.set_brand(entry_id)
+        return form

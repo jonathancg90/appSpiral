@@ -49,11 +49,14 @@ class CommercialFiltersForm(forms.Form):
         self.helper.form_tag = False
         super(CommercialFiltersForm, self).__init__(*args, **kwargs)
         self.set_entry()
+        self.fields['entry_id'].widget.attrs.update({'class' : 'form-entry'})
+        self.fields['brand_id'].widget.attrs.update({'class' : 'form-brand'})
 
     def set_entry(self):
         self.fields['entry_id'].choices = [('', '--------------')] +\
                                          list(Entry.objects.all().values_list('id', 'name'))
 
-    def set_brand(self):
-        self.fields['brand_id'].choices = [('', '--------------')] +\
-                                         list(Brand.objects.all().values_list('id', 'name'))
+    def set_brand(self, entry_id):
+        self.fields['brand_id'].choices = [('', '--------------')] +list(Brand.objects.filter(
+                                            entry_id=entry_id).values_list('id', 'name'))
+

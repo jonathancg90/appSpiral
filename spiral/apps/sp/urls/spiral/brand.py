@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from django.views.generic import TemplateView
-from apps.sp.views.Brand import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
+from apps.sp.views.Brand import BrandListView, BrandCreateView,\
+    BrandUpdateView, BrandDeleteView, BrandByEntryIdJson
 
 
 urlpatterns = patterns('',
@@ -20,4 +20,8 @@ urlpatterns = patterns('',
     url(r'delete/(?P<pk>\d+)/$',
         BrandDeleteView.as_view(),
         name='brand_delete'),
+    url(r'brand-by-entry/(?P<entry>\d+)/$',
+        BrandByEntryIdJson.as_view(),
+        name='brand_by_entry_json'),
+
 )
