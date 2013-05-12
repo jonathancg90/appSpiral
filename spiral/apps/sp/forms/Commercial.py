@@ -58,5 +58,5 @@ class CommercialFiltersForm(forms.Form):
 
     def set_brand(self, entry_id):
         self.fields['brand_id'].choices = [('', '--------------')] +list(Brand.objects.filter(
-                                            entry=entry_id).values_list('id', 'name'))
+                                            entry_id=entry_id).values_list('id', 'name'))
 

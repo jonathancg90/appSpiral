@@ -72,7 +72,6 @@ class CommercialListView(SearchFormMixin, ListView):
     search_form_class = CommercialFiltersForm
     filtering = {
         'name': SearchFormMixin.ALL,
-        'entry_id': SearchFormMixin.ALL,
         'brand_id': SearchFormMixin.ALL,
     }
 
@@ -83,5 +82,5 @@ class CommercialListView(SearchFormMixin, ListView):
         entry_id = self.request.GET.get('entry_id', None)
         form = super(CommercialListView, self).get_search_form(form_class)
         if entry_id:
-            form.set_entry(entry_id)
+            form.set_brand(entry_id)
         return form

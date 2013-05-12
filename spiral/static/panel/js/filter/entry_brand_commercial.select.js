@@ -29,9 +29,10 @@ $(function(){
         } else {
             brand.empty();
             brand.trigger("liszt:updated");
-
-            commercial.empty();
-            commercial.trigger("liszt:updated");
+            if(commercial.length > 0) {
+                commercial.empty();
+                commercial.trigger("liszt:updated");
+            }
         return;
         }
 
@@ -47,7 +48,6 @@ $(function(){
                  }
 
              $.each(data['brand'],function(i, value){
-                console.log(value['id']);
                 brand.append("<option value="+value['id']+">"+value['name']+"</option>");
              });
          },

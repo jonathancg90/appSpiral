@@ -6,7 +6,7 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/commercial_list.html" changelist="dcda3162-0775-4177-91f2-2c848797650e" time="1368316131656" ignored="false" />
     <file path="/entry_brand_commercial.select.js" changelist="dcda3162-0775-4177-91f2-2c848797650e" time="1368317330562" ignored="false" />
-    <file path="/Commercial.py" changelist="dcda3162-0775-4177-91f2-2c848797650e" time="1368314316801" ignored="false" />
+    <file path="/Commercial.py" changelist="dcda3162-0775-4177-91f2-2c848797650e" time="1368318307128" ignored="false" />
     <file path="/Brand.py" changelist="dcda3162-0775-4177-91f2-2c848797650e" time="1368315686139" ignored="false" />
     <file path="/a.dummy" changelist="dcda3162-0775-4177-91f2-2c848797650e" time="1368316464214" ignored="false" />
     <file path="/brand.py" changelist="dcda3162-0775-4177-91f2-2c848797650e" time="1368315794835" ignored="false" />
@@ -38,10 +38,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entry_brand_commercial.select.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="entry_brand_commercial.select.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/panel/js/filter/entry_brand_commercial.select.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="73" selection-start="1523" selection-end="1523" vertical-scroll-proportion="0.2542373">
+            <state line="34" column="13" selection-start="1017" selection-end="1017" vertical-scroll-proportion="-12.580646">
               <folding />
             </state>
           </provider>
@@ -70,7 +70,7 @@
       <file leaf-file-name="Commercial.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/Commercial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="49" selection-start="2842" selection-end="2842" vertical-scroll-proportion="-14.84">
+            <state line="84" column="23" selection-start="2929" selection-end="2929" vertical-scroll-proportion="-14.84">
               <folding />
             </state>
           </provider>
@@ -94,10 +94,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Commercial.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Commercial.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/forms/Commercial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="8" selection-start="1611" selection-end="1758" vertical-scroll-proportion="-11.52">
+            <state line="60" column="52" selection-start="2131" selection-end="2131" vertical-scroll-proportion="0.748954">
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -137,13 +137,13 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/sp/forms/Commercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/forms/Brand.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/spiral/brand.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/commercial/commercial_list.html" />
         <option value="$PROJECT_DIR$/apps/sp/views/Brand.py" />
-        <option value="$PROJECT_DIR$/apps/sp/views/Commercial.py" />
         <option value="$PROJECT_DIR$/static/panel/js/filter/entry_brand_commercial.select.js" />
+        <option value="$PROJECT_DIR$/apps/sp/views/Commercial.py" />
+        <option value="$PROJECT_DIR$/apps/sp/forms/Commercial.py" />
       </list>
     </option>
   </component>
@@ -634,13 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="16" selection-start="522" selection-end="528" vertical-scroll-proportion="-9.6">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/forms/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="21" selection-start="811" selection-end="811" vertical-scroll-proportion="-4.12">
@@ -650,12 +643,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Commercial.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="8" selection-start="1611" selection-end="1758" vertical-scroll-proportion="-11.52">
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state line="23" column="21" selection-start="655" selection-end="655" vertical-scroll-proportion="-12.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/Brand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="6" selection-start="1639" selection-end="1639" vertical-scroll-proportion="-8.84">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/panel/js/filter/entry_brand_commercial.select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="13" selection-start="1017" selection-end="1017" vertical-scroll-proportion="-12.580646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="16" selection-start="522" selection-end="528" vertical-scroll-proportion="-9.6">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -677,29 +689,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="49" selection-start="2842" selection-end="2842" vertical-scroll-proportion="-14.84">
+        <state line="84" column="23" selection-start="2929" selection-end="2929" vertical-scroll-proportion="-14.84">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/brand.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="21" selection-start="655" selection-end="655" vertical-scroll-proportion="-12.6">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/Brand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="6" selection-start="1639" selection-end="1639" vertical-scroll-proportion="-8.84">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/panel/js/filter/entry_brand_commercial.select.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="73" selection-start="1523" selection-end="1523" vertical-scroll-proportion="0.2542373">
-          <folding />
+        <state line="60" column="52" selection-start="2131" selection-end="2131" vertical-scroll-proportion="0.748954">
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
