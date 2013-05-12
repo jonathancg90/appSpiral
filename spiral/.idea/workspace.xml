@@ -28,106 +28,7 @@
     <favorites_list name="spiral" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="commercial_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/commercial/commercial_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="26" selection-start="2043" selection-end="2061" vertical-scroll-proportion="-14.333333">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entry_brand_commercial.select.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/panel/js/filter/entry_brand_commercial.select.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="13" selection-start="1017" selection-end="1017" vertical-scroll-proportion="-12.580646">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entry.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="16" selection-start="522" selection-end="528" vertical-scroll-proportion="-9.6">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="commercial.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/commercial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="20" selection-start="296" selection-end="296" vertical-scroll-proportion="-4.8">
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Commercial.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/views/Commercial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="23" selection-start="2929" selection-end="2929" vertical-scroll-proportion="-14.84">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="brand.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/brand.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="21" selection-start="655" selection-end="655" vertical-scroll-proportion="-12.6">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Brand.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/views/Brand.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="6" selection-start="1639" selection-end="1639" vertical-scroll-proportion="-8.84">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Commercial.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/sp/forms/Commercial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="52" selection-start="2131" selection-end="2131" vertical-scroll-proportion="0.748954">
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entry.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/forms/Entry.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Brand.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/forms/Brand.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="21" selection-start="811" selection-end="811" vertical-scroll-proportion="-4.12">
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -536,13 +437,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="959" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24972497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24972497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -636,7 +537,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/forms/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="21" selection-start="811" selection-end="811" vertical-scroll-proportion="-4.12">
+        <state line="26" column="21" selection-start="811" selection-end="811" vertical-scroll-proportion="0.32188064">
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
@@ -645,28 +546,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="21" selection-start="655" selection-end="655" vertical-scroll-proportion="-12.6">
+        <state line="23" column="21" selection-start="655" selection-end="655" vertical-scroll-proportion="0.58225507">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="6" selection-start="1639" selection-end="1639" vertical-scroll-proportion="-8.84">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/panel/js/filter/entry_brand_commercial.select.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1017" selection-end="1017" vertical-scroll-proportion="-12.580646">
+        <state line="58" column="6" selection-start="1639" selection-end="1639" vertical-scroll-proportion="0.5229682">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/entry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="16" selection-start="522" selection-end="528" vertical-scroll-proportion="-9.6">
+        <state line="18" column="16" selection-start="522" selection-end="528" vertical-scroll-proportion="0.44362292">
           <folding />
         </state>
       </provider>
@@ -680,7 +574,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="20" selection-start="296" selection-end="296" vertical-scroll-proportion="-4.8">
+        <state line="8" column="20" selection-start="296" selection-end="296" vertical-scroll-proportion="0.22727273">
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
@@ -689,17 +583,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="23" selection-start="2929" selection-end="2929" vertical-scroll-proportion="-14.84">
+        <state line="113" column="23" selection-start="4036" selection-end="4036" vertical-scroll-proportion="0.7781885">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/forms/Commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="52" selection-start="2131" selection-end="2131" vertical-scroll-proportion="0.748954">
+        <state line="60" column="52" selection-start="2131" selection-end="2131" vertical-scroll-proportion="0.7830018">
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/panel/js/filter/entry_brand_commercial.select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="5" selection-start="282" selection-end="282" vertical-scroll-proportion="0.30181086">
+          <folding />
         </state>
       </provider>
     </entry>
