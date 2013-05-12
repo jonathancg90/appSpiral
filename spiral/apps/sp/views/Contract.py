@@ -1,45 +1,39 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
-from apps.sp.forms.Contract import ContractForm
+from apps.common.view import SearchFormMixin
+from apps.sp.forms.Contract import ContractForm, ContractFiltersForm
 from apps.sp.models.Contract import Contract
 
 
 class ContractCreateView(CreateView):
+    model = Contract
     form_class = ContractForm
-    template = 'templates/CRUD.html'
-    success_url = ''
-
-    def get_context_data(self, **kwargs):
-        context = super(ContractCreateView,self).get_context_data(**kwargs)
-        context['action'] = 'create'
-        return context
+    template_name = 'panel/contract/create.html'
+    success_url = 'contract_list'
 
 
-class ContractlUpdateView(UpdateView):
+class ContractUpdateView(UpdateView):
+    model = Contract
     form_class = ContractForm
-    template = 'templates/CRUD.html'
-    success_url = ''
-
-    def get_context_data(self, **kwargs):
-        context = super(ContractlUpdateView,self).get_context_data(**kwargs)
-        context['action'] = 'update'
-        return context
+    template_name = 'panel/brand/update.html'
+    success_url = 'contract_list'
 
 class ContractDeleteView(DeleteView):
     model = Contract
-    template = 'templates/CRUD.html'
-    success_url = ''
+    template_name = 'panel/brand/update.html'
+    success_url = 'contract_list'
 
-    def get_context_data(self, **kwargs):
-        context = super(ContractDeleteView,self).get_context_data(**kwargs)
-        context['action'] = 'delete'
-        return context
 
-class ContractListView(ListView):
+class ContractListView(SearchFormMixin,ListView):
     model = Contract
-    template = ''
-
+    template_name = 'panel/brand/brand_list.html'
+    search_form_class = ContractFiltersForm
+    paginate_by = settings.PANEL_PAGE_SIZE
+    filtering = {
+        'character': SearchFormMixin.ALL,
+    }

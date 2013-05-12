@@ -10,10 +10,10 @@
 {% block content %}
     <div class="page-header">
         <div class="tools">
-            <a href="{%   url "contract_create" %}" class="btn btn-success">
-                <i class="icon-plus icon-white"></i> {% trans 'Nueva contracto' %}</a>
+            <a href="{%   url "commercial_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo Comercial' %}</a>
         </div>
-        <h2>{%  trans 'Marcas registradas' %}</h2>
+        <h2>{%  trans 'Contrato registrados' %}</h2>
     </div>
     <ul class="nav nav-pills">
       <li class="active">
@@ -30,44 +30,47 @@
             </div>
         </form>
     </div>
-
     <div class="row-fluid">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>{% trans 'Persoaneje' %}</th>
-                    <th>{% trans 'Fecha de inicio' %}</th>
-                    <th>{% trans 'Fecha final' %}</th>
+                    <th>{% trans 'Comercial' %}</th>
+                    <th>{% trans 'Marca' %}</th>
+                    <th>{% trans 'Rubro' %}</th>
+                    <th>{% trans 'Realizado' %}</th>
                 </tr>
             </thead>
             <tbody>
-                {% for contract in object_list %}
+                {% for commercial in object_list %}
                 <tr>
-                    <td>{{ contract.character }}</td>
-                    <td>{{ contract.start_data }}</td>
-                    <td>{{ contract.ending_date }}</td>
-                    <td><a href="{% url "brand_edit" contract.pk %}">{% trans 'Update' %}</a> |
-                        <a href="{% url "brand_delete" contract.pk %}">{% trans 'Delete' %}</a>
-                    </td>
+                    <td>{{ commercial.name }}</td>
+                    <td>{{ commercial.brand_id }}</td>
+                    <td>{{ commercial.brand_id.entry_id }}</td>
+                    <td>{{ commercial.realized }}</td>
+                    <td><a href="{% url "contract_edit" commercial.pk %}">{% trans 'Update' %}</a></td>
+                    <td><a href="{% url "contract_delete" commercial.pk %}">{% trans 'Delete' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    {% url 'contract_list' as page_url %}
+    {% url 'commercial_list' as page_url %}
     {% pagination_ctl page_obj url=page_url %}
     </div>
-{% endblock %}
 
+
+{% endblock %}
 {% block script_bottom %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
     <script>
         $(document).on('ready',function(){
-            $('#id_contract_id').addClass('chzn-select');
-            $('#id_contract_id').chosen({});
+            $('#id_entry_id').addClass('chzn-select');
+            $('#id_entry_id').chosen({});
+
+            $('#id_brand_id').addClass('chzn-select');
+            $('#id_brand_id').chosen({});
             $('#hide-show-search').click(function(){
                 $('#search-form').toggle('fade');
             });
         });
     </script>
-
 {% endblock %}

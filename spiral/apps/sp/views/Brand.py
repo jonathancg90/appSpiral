@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
@@ -10,19 +11,17 @@ from apps.sp.forms.Brand import BrandForm, BrandFiltersForm
 from apps.sp.models.Brand import Brand
 
 
+
 class BrandListView(SearchFormMixin, ListView):
     model = Brand
     template_name = 'panel/brand/brand_list.html'
     search_form_class = BrandFiltersForm
+    paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
         'entry_id': SearchFormMixin.ALL,
         'name': SearchFormMixin.ALL,
 
     }
-
-    def get_context_data(self, **kwargs):
-        return super(BrandListView, self).get_context_data(**kwargs)
-
 
 class BrandCreateView(CreateView):
     model = Brand

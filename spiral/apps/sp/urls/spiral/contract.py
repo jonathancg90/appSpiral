@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from django.views.generic import TemplateView
+from apps.sp.views.Contract import ContractCreateView, ContractDeleteView, ContractListView, ContractUpdateView
+
 
 urlpatterns = patterns('',
 
     #Contract
     url(r'contract/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+        ContractListView.as_view(),
         name='contract_list'),
-    url(r'contract/create/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'create/$',
+        ContractCreateView.as_view(),
         name='contract_create'),
-    url(r'contract/edit/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'edit/(?P<pk>\d+)/$',
+        ContractUpdateView.as_view(),
         name='contract_edit'),
-    url(r'contract/delete/$',
-        TemplateView.as_view(template_name='panel_base.html'),
+    url(r'delete/(?P<pk>\d+)/$',
+        ContractDeleteView.as_view(),
         name='contract_delete'),
     )
