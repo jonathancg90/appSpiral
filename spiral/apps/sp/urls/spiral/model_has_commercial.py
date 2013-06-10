@@ -3,7 +3,8 @@
 from django.conf.urls import url, patterns
 from apps.sp.views.ModelHasCommercial import ModelHasCommercialListView, \
     ModelHasCommercialAddListView, ModelHasCommercialAddRedirectView, \
-    ModelHasCommercialDelRedirectView, ModelHasCommercialListModelView
+    ModelHasCommercialDelRedirectView, ModelHasCommercialListModelView, \
+    ModelHasCommercialRedirectView
 
 
 
@@ -14,7 +15,7 @@ urlpatterns = patterns('',
         ModelHasCommercialListView.as_view(),
         name='model_commercial_list'),
 
-        #Model has commercial
+    #Model has commercial
     url(r'^list/model/(?P<pk>\d+)/$',
         ModelHasCommercialListModelView.as_view(),
         name='model_has_commercial_model_list'),
@@ -30,5 +31,9 @@ urlpatterns = patterns('',
     url(r'^delete/(?P<pk>\d+)$',
         ModelHasCommercialDelRedirectView.as_view(),
         name='model_has_commercial_delete'),
+
+    url(r'^list-redirect/',
+        ModelHasCommercialRedirectView.as_view(),
+        name='model_commercial_redirect'),
 
 )

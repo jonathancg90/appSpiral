@@ -24,12 +24,13 @@ class Contract(models.Model):
         default=TYPE_VIDEO
         )
 
-    start_date = models.DateTimeField(
-        verbose_name=_(u'Inicio de contrato'),
+    period_date = models.CharField(
+        max_length=50,
+        verbose_name=_(u'periodo de contrato'),
     )
-
-    ending_date = models.DateTimeField(
-        verbose_name=_(u'Fin del contrato'),
+    country = models.CharField(
+        max_length=50,
+        verbose_name=_(u'Pais'),
     )
 
     type = models.SmallIntegerField(

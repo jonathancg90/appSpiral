@@ -23,6 +23,7 @@ class ModelHasCommercialListView(SearchFormMixin, ListView):
         'commercial_id': SearchFormMixin.ALL,
         'commercial__brand': SearchFormMixin.ALL,
         'commercial__brand__entry': SearchFormMixin.ALL,
+        'commercial_realized__icontains': SearchFormMixin.ALL,
     }
 
 
@@ -42,13 +43,13 @@ class ModelHasCommercialListView(SearchFormMixin, ListView):
         return super(ModelHasCommercialListView, self).get(request, *args, **kwargs)
 
     def _set_filter_entry(self, qs):
-        entry_id = str(self.request.GET.get('commercial__brand__entry', ''))
+        entry_id = str(self.request.GET.get('commercial__brand__entry', None))
         if entry_id.isdigit():
             qs = qs.filter(commercial__brand__entry=entry_id)
         return qs
 
     def _set_filter_brand(self, qs):
-        brand_id = str(self.request.GET.get('commercial__brand', ''))
+        brand_id = str(self.request.GET.get('commercial__brand', ))
         if brand_id.isdigit():
             qs = qs.filter(commercial__brand=brand_id)
         return qs
@@ -70,6 +71,7 @@ class ModelHasCommercialListView(SearchFormMixin, ListView):
         return form
 
     def get_context_data(self, **kwargs):
+        self.request.session['model_has_commercial'] = self.model
         context = super(ModelHasCommercialListView, self).get_context_data(**kwargs)
         context['model'] = self.model
         return context
@@ -160,6 +162,18 @@ class ModelHasCommercialAddListView(SearchFormMixin, ListView):
         context['model'] = get_object_or_404(Model, id=self.kwargs.get('pk'))
         return context
 
+
+class ModelHasCommercialRedirectView(RedirectView):
+    permanent = False
+
+    def get(self, request, *args, **kwargs):
+        self.model = self.request.session['model_has_commercial']
+        return super(ModelHasCommercialRedirectView, self).get(request, *args, **kwargs)
+
+    def get_redirect_url(self):
+        return reverse('model_commercial_list', kwargs={
+            'key':self.model.model_code
+        })
 
 class ModelHasCommercialAddRedirectView(RedirectView):
     permanent = False

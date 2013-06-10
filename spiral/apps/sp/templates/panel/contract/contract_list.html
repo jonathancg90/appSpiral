@@ -39,8 +39,8 @@
             <thead>
                 <tr>
                     <th>{% trans 'Personaje' %}</th>
-                    <th>{% trans 'Fecha de inicio' %}</th>
-                    <th>{% trans 'Fecha final' %}</th>
+                    <th>{% trans 'Periodo' %}</th>
+                    <th>{% trans 'Pais' %}</th>
                     <th>{% trans 'Opciones' %}</th>
                 </tr>
             </thead>
@@ -48,8 +48,8 @@
                 {% for contract in object_list %}
                 <tr>
                     <td>{{ contract.character }}</td>
-                    <td>{{ contract.start_date }}</td>
-                    <td>{{ contract.ending_date }}</td>
+                    <td>{{ contract.period_date }}</td>
+                    <td>{{ contract.country }}</td>
                     <td><a href="{% url "contract_edit" model_has_commercial.id contract.pk %}">{% trans 'Update' %}</a> |
                         <a href="{% url "contract_delete" model_has_commercial.id contract.pk %}">{% trans 'Delete' %}</a>
                     </td>

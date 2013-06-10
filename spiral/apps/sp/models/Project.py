@@ -31,7 +31,7 @@ class Project(models.Model):
     )
 
     def __unicode__(self):
-        return self.project_name
+        return self.project_code
 
     class Meta:
         app_label = 'sp'
