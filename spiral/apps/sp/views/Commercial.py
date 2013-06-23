@@ -77,6 +77,16 @@ class CommercialCreateView(CreateView):
         except:
             return False
 
+    def get_form(self, form_class):
+        form = super(CommercialCreateView, self).get_form(form_class)
+        _entry_id = self.request.POST.get('entry_id', None)
+        try:
+            if _entry_id:
+                form.set_brand(_entry_id)
+            return form
+        except AttributeError:
+            return form
+
     def get_success_url(self):
         return reverse('commercial_list')
 

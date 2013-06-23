@@ -34,7 +34,11 @@ class CommercialCreateForm(forms.ModelForm):
 
     def set_entry(self):
         self.fields['entry_id'].choices = [('', '--------------')] +\
-                                         list(Entry.objects.all().values_list('id', 'name'))
+                                           list(Entry.objects.all().values_list('id', 'name'))
+
+    def set_brand(self, entry):
+        self.fields['brand'].choices = [('', '--------------')] +\
+                                         list(Brand.objects.filter(entry=entry).values_list('id', 'name'))
 
     class Meta:
         model = Commercial
@@ -55,6 +59,7 @@ class CommercialUpdateForm(forms.ModelForm):
             min_length=9
         )
         self.Meta.fields.append('project')
+
 
     class Meta:
         model = Commercial
