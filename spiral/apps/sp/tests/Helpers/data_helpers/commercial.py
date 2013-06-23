@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from apps.sp.management.commands_helpers.insert import InsertHelperMixin
 from apps.sp.models.Commercial import Commercial
 from apps.sp.models.Brand import Brand
