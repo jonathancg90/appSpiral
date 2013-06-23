@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+
 class Country(models.Model):
 
     STATUS_ACTIVE = 1
@@ -12,17 +13,17 @@ class Country(models.Model):
 
     name = models.CharField(
         max_length=45
-        )
+    )
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False
-        )
+    )
     modified = models.DateTimeField(
         auto_now_add=True
     )
     status = models.SmallIntegerField(
         choices= CHOICE_STATUS
-        )
+    )
 
     def __unicode__(self):
         return self.name
