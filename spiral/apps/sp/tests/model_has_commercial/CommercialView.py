@@ -15,6 +15,7 @@ class SimpleTest(TestCase):
         """
         Tests data test insert correct
         """
+        self.insert_test_data()
         self.assertTrue(Brand.objects.all().count() > 0)
 
     def test_basic_addition(self):
