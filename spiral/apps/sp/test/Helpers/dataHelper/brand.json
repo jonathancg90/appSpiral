@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Coca Cola",
+        "entry":"Gaseosa"
+    },
+    {
+        "name": "Sprite",
+        "entry":"Gaseosa"
+    },
+    {
+        "name": "Bcp",
+        "entry":"Bancos"
+    },
+    {
+        "name": "Movistar",
+        "entry":"Telefonia"
+    },
+    {
+        "name": "BBVA",
+        "entry":"Bancos"
+    },
+    {
+        "name": "Otto Kunz",
+        "entry":"Embutidos"
+    },
+    {
+        "name": "Cuzqueña",
+        "entry":"Cervezas"
+    },
+    {
+        "name": "Cristal",
+        "entry":"Cervezas"
+    },
+    {
+        "name": "Claro",
+        "entry":"Telefonia"
+    }
+]
