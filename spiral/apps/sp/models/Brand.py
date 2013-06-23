@@ -27,9 +27,9 @@ class Brand(models.Model):
     )
 
     status = models.SmallIntegerField(
-    	choices= CHOICE_STATUS,
+        choices= CHOICE_STATUS,
         default = STATUS_ACTIVE
-    	)
+        )
 
     def __unicode__(self):
         return self.name

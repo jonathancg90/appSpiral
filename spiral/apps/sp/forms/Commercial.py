@@ -56,7 +56,6 @@ class CommercialUpdateForm(forms.ModelForm):
         )
         self.Meta.fields.append('project')
 
-
     class Meta:
         model = Commercial
         fields = ['name', 'realized', 'brand']

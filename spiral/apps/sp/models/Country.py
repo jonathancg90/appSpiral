@@ -6,17 +6,17 @@ class Country(models.Model):
     STATUS_ACTIVE = 1
     STATUS_INACTIVE = 0
     CHOICE_STATUS = (
-    (STATUS_INACTIVE,_(u'inactivo')),
-       (STATUS_ACTIVE, _(u'activo'))
-     )
+        (STATUS_INACTIVE,_(u'inactivo')),
+        (STATUS_ACTIVE, _(u'activo'))
+    )
 
     name = models.CharField(
-        max_length = 45
-	    )
+        max_length=45
+        )
     created = models.DateTimeField(
-		auto_now_add=True,
+        auto_now_add=True,
         editable=False
-	    )
+        )
     modified = models.DateTimeField(
         auto_now_add=True
     )

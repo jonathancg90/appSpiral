@@ -10,6 +10,36 @@ from apps.sp.models.Project import Project
 from apps.sp.models.Commercial import Commercial
 
 
+class CommercialListView(SearchFormMixin, ListView):
+    model = Commercial
+    template_name = 'panel/commercial/commercial_list.html'
+    search_form_class = CommercialFiltersForm
+    paginate_by = settings.PANEL_PAGE_SIZE
+    filtering = {
+        'name': SearchFormMixin.ALL,
+        'brand__entry': SearchFormMixin.ALL,
+        'brand_id': SearchFormMixin.ALL,
+    }
+
+    def _set_filter_entry(self, qs):
+        entry_id = str(self.request.GET.get('brand__entry', ''))
+        if entry_id.isdigit():
+            qs = qs.filter(brand__entry=entry_id)
+        return qs
+
+    def get_queryset(self):
+        qs = super(CommercialListView, self).get_queryset()
+        qs = self._set_filter_entry(qs)
+        return qs
+
+    def get_search_form(self, form_class):
+        entry_id = self.request.GET.get('brand__entry', None)
+        form = super(CommercialListView, self).get_search_form(form_class)
+        if entry_id:
+            form.set_brand(entry_id)
+        return form
+
+
 class CommercialCreateView(CreateView):
     model = Commercial
     form_class = CommercialCreateForm
@@ -105,36 +135,6 @@ class CommercialDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('commercial_list')
-
-
-class CommercialListView(SearchFormMixin, ListView):
-    model = Commercial
-    template_name = 'panel/commercial/commercial_list.html'
-    search_form_class = CommercialFiltersForm
-    paginate_by = settings.PANEL_PAGE_SIZE
-    filtering = {
-        'name': SearchFormMixin.ALL,
-        'brand__entry': SearchFormMixin.ALL,
-        'brand_id': SearchFormMixin.ALL,
-    }
-
-    def _set_filter_entry(self, qs):
-        entry_id = str(self.request.GET.get('brand__entry', ''))
-        if entry_id.isdigit():
-            qs = qs.filter(brand__entry=entry_id)
-        return qs
-
-    def get_queryset(self):
-        qs = super(CommercialListView, self).get_queryset()
-        qs = self._set_filter_entry(qs)
-        return qs
-
-    def get_search_form(self, form_class):
-        entry_id = self.request.GET.get('brand__entry', None)
-        form = super(CommercialListView, self).get_search_form(form_class)
-        if entry_id:
-            form.set_brand(entry_id)
-        return form
 
 
 class CommercialByBrandIdJson(JSONResponseMixin, ListView):
