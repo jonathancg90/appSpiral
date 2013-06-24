@@ -59,7 +59,7 @@ class Migration(SchemaMigration):
 
         # Adding field 'Model.birth'
         db.add_column(u'sp_model', 'birth',
-                      self.gf('django.db.models.fields.DateField')(default=0),
+                      self.gf('django.db.models.fields.DateField')(default='2013-01-01'),
                       keep_default=False)
 
         # Adding field 'Model.birth_place'
