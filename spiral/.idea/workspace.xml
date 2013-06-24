@@ -38,7 +38,7 @@
     <file path="/Contract.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1370796713598" ignored="false" />
     <file path="/delete.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1368126324660" ignored="false" />
     <file path="/create.html" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1372033148947" ignored="false" />
-    <file path="/CommercialView.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1372037697043" ignored="false" />
+    <file path="/CommercialView.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1372041414975" ignored="false" />
     <file path="/usr/lib/python2.7/genericpath.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1372006031553" ignored="false" />
     <file path="/usr/lib/python2.7/ntpath.py" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1372006031553" ignored="false" />
     <file path="/Entry.json" changelist="f188c3ed-c16d-4224-8b4f-f85e0a2860fc" time="1372006308041" ignored="false" />
@@ -87,12 +87,54 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BrandView.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="BrandView.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/BrandView.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="61" column="9" selection-start="2196" selection-end="2196" vertical-scroll-proportion="0.43148687">
+                <state line="55" column="4" selection-start="1950" selection-end="2477" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CommercialView.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/CommercialView.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="73" column="60" selection-start="2853" selection-end="2853" vertical-scroll-proportion="0.8427673">
+                  <folding>
+                    <element signature="e#0#15#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="commercial.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/commercial.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="28" column="30" selection-start="1050" selection-end="1051" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="brand.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/brand.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="16" column="31" selection-start="460" selection-end="466" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#26#98#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="commercial.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/commercial.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="11" column="28" selection-start="362" selection-end="382" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="e#0#42#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -101,7 +143,7 @@
           <file leaf-file-name="Brand.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/sp/models/Brand.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="16" column="9" selection-start="368" selection-end="373" vertical-scroll-proportion="0.0">
+                <state line="28" column="16" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -172,7 +214,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/sp/migrations/0007_auto__add_modelphone__add_field_model_dni__add_field_model_status__add.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/website/__init__.py" />
         <option value="$PROJECT_DIR$/spiral/urls.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/website/panel_base.html" />
@@ -182,12 +223,13 @@
         <option value="$PROJECT_DIR$/apps/sp/views/website/model/model.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/website/register_model.html" />
         <option value="$PROJECT_DIR$/apps/sp/forms/Model.py" />
-        <option value="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/CommercialView.py" />
         <option value="$PROJECT_DIR$/apps/sp/tests/__init__.py" />
         <option value="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/EntryView.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/Brand.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/Commercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/BrandView.py" />
+        <option value="$PROJECT_DIR$/apps/sp/models/Brand.py" />
+        <option value="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/CommercialView.py" />
       </list>
     </option>
   </component>
@@ -307,6 +349,158 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="urls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="urls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model_has_commercial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data_helpers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -552,31 +746,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/project.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/entry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="34" selection-start="421" selection-end="430" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/InsertDataHelper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -589,15 +758,6 @@
         <state line="13" column="40" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/brand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#26#98#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -650,15 +810,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/EntryView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="33" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/Commercial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="34" selection-start="1994" selection-end="1994" vertical-scroll-proportion="0.2662722">
@@ -668,16 +819,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/Brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="9" selection-start="368" selection-end="373" vertical-scroll-proportion="0.0">
+        <state line="28" column="16" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/EntryView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="33" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/BrandView.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="9" selection-start="2196" selection-end="2196" vertical-scroll-proportion="0.43148687">
+        <state line="55" column="4" selection-start="1950" selection-end="2477" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="28" selection-start="362" selection-end="382" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/brand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="31" selection-start="460" selection-end="466" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#26#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="30" selection-start="1050" selection-end="1051" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/CommercialView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="60" selection-start="2853" selection-end="2853" vertical-scroll-proportion="0.8427673">
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

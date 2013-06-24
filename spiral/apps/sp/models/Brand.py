@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-# Create your models here.
 
 class Brand(models.Model):
     STATUS_ACTIVE = 1
@@ -27,8 +26,8 @@ class Brand(models.Model):
     )
 
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS,
-        default = STATUS_ACTIVE
+        choices=CHOICE_STATUS,
+        default=STATUS_ACTIVE
         )
 
     def __unicode__(self):

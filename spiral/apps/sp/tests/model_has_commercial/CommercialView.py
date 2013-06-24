@@ -8,7 +8,7 @@ from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Commercial import Commercial
 from apps.sp.models.Project import Project
-from apps.sp.views.Commercial import CommercialListView
+from apps.sp.views.Commercial import CommercialListView, CommercialCreateView
 
 
 class CommercialViewTest(TestCase):
@@ -56,3 +56,19 @@ class CommercialViewTest(TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(response.context_data['object_list']), 1)
+
+    def test_create_view_commercial(self):
+        self.insert_test_data()
+        self.assertEqual(Commercial.objects.all().count(), 4)
+        data = {
+            'name': 'Brand test',
+            'entry': Entry.objects.filter(name='Bancos')[0].id,
+            'brand': Brand.objects.filter(name='Sprite')[0].id
+        }
+        view = CommercialCreateView.as_view()
+        request = self.request_factory.post(
+            reverse('commercial_create'), data
+        )
+        response = view(request)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Commercial.objects.all().count(), 5)
