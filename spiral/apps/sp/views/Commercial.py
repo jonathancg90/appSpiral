@@ -54,6 +54,7 @@ class CommercialCreateView(CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         project_code = self.request.POST.get('project')
+        import pdb;pdb.set_trace()
         if self.validate_project_code(project_code):
             project = Project.objects.get(project_code=project_code)
             self.object.project = project

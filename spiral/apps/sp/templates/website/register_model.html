@@ -1,0 +1,23 @@
+{% extends 'website/website_base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+
+    <div class="page-header">
+            <h2>{% trans "Nuevo Modelo:" %}</h2>
+    </div>
+
+      <form method="post" action="" class="">
+          {% csrf_token %}
+          {% crispy form %}
+
+          {{ model_phone_form }}
+
+           <a class="btn" href="{% url "entry_list" %}">{% trans 'Cancel' %}</a>
+           <input type="submit" class="btn btn-inverse" value="{% trans 'Crear' %}" />
+       </form>
+    </div>
+{% endblock %}

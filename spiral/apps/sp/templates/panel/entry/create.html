@@ -13,11 +13,10 @@
 
       <form method="post" action="" class="">{% csrf_token %}
                     {% crispy form %}
-
+        <div class="form-actions">
                     <a class="btn" href="{% url "entry_list" %}">{% trans 'Cancel' %}</a>
                     <input type="submit" class="btn btn-inverse" value="{% trans 'Crear' %}" />
-
-        </form>
-        </table>
+        </div>
+      </form>
     </div>
 {% endblock %}

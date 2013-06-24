@@ -8,8 +8,7 @@ from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Commercial import Commercial
 from apps.sp.models.Project import Project
-from apps.sp.views.Commercial import CommercialListView, CommercialCreateView ,\
-    CommercialUpdateView, CommercialDeleteView
+from apps.sp.views.Commercial import CommercialListView
 
 
 class CommercialViewTest(TestCase):
@@ -57,9 +56,3 @@ class CommercialViewTest(TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(response.context_data['object_list']), 1)
-
-
-
-
-
-
