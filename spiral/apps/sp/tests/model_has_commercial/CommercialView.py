@@ -62,8 +62,9 @@ class CommercialViewTest(TestCase):
         self.assertEqual(Commercial.objects.all().count(), 4)
         data = {
             'name': 'Brand test',
-            'entry': Entry.objects.filter(name='Bancos')[0].id,
-            'brand': Brand.objects.filter(name='Sprite')[0].id
+            'brand': Brand.objects.filter(name='Sprite')[0].id,
+            'realized':'2013-08-06',
+            'project': '13-08M120'
         }
         view = CommercialCreateView.as_view()
         request = self.request_factory.post(
