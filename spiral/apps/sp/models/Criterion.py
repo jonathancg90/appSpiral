@@ -14,9 +14,8 @@ class Criterion(models.Model):
     cri_cod = models.CharField(
         max_length=45
     )
-    description = models.DateTimeField(
-        auto_now_add=True,
-        editable=False
+    description = models.CharField(
+        max_length=45
     )
     criterion_category = models.ForeignKey(
         'CriterionCategory',

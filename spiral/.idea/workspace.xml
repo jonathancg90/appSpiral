@@ -4,9 +4,11 @@
     <list default="true" id="8213c907-b530-4ef5-882b-917a501b9491" name="Default" comment="" />
     <ignored path="spiral.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Criterion.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372134683266" ignored="false" />
-    <file path="/CriterionCategory.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372134576869" ignored="false" />
+    <file path="/Criterion.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372137574614" ignored="false" />
+    <file path="/CriterionCategory.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372137555369" ignored="false" />
     <file path="/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372135099690" ignored="false" />
+    <file path="/insert.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372137371259" ignored="false" />
+    <file path="/criterion_category.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372136238181" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,39 +27,7 @@
     <favorites_list name="spiral" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Criterion.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/Criterion.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="15" selection-start="93" selection-end="102" vertical-scroll-proportion="-2.4">
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="42" selection-start="469" selection-end="767" vertical-scroll-proportion="0.1945245">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CriterionCategory.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/models/CriterionCategory.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="5" selection-start="437" selection-end="437" vertical-scroll-proportion="-11.4">
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -68,9 +38,12 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/apps/sp/models/Country.py" />
+        <option value="$PROJECT_DIR$/apps/sp/models/__init__.py" />
+        <option value="$PROJECT_DIR$/apps/common/db_data/criterion_category.json" />
+        <option value="$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/criterion_category.py" />
+        <option value="$PROJECT_DIR$/apps/sp/management/commands/insert.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/CriterionCategory.py" />
         <option value="$PROJECT_DIR$/apps/sp/models/Criterion.py" />
-        <option value="$PROJECT_DIR$/apps/sp/models/__init__.py" />
       </list>
     </option>
   </component>
@@ -174,6 +147,110 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model_has_commercial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data_helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -192,11 +269,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -214,15 +287,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commands" />
+              <option name="myItemId" value="db_data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -421,15 +490,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Country.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="4" selection-start="409" selection-end="409" vertical-scroll-proportion="0.41066283">
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/Contract.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -448,18 +508,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/CriterionCategory.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="5" selection-start="437" selection-end="437" vertical-scroll-proportion="-11.4">
+        <state line="0" column="0" selection-start="0" selection-end="1527" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/common/db_data/criterion_category.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/InsertDataHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="8" selection-start="558" selection-end="626" vertical-scroll-proportion="0.32420748">
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Criterion.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/criterion_category.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="15" selection-start="93" selection-end="102" vertical-scroll-proportion="-2.4">
+        <state line="14" column="26" selection-start="421" selection-end="421" vertical-scroll-proportion="-8.4">
+          <folding>
+            <element signature="e#26#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/model_has_commercial/BrandView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.1945245">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/management/commands_helpers/insert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="8" selection-start="681" selection-end="681" vertical-scroll-proportion="0.3443804">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Country.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="8" selection-start="309" selection-end="322" vertical-scroll-proportion="0.30259365">
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -468,8 +567,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="42" selection-start="469" selection-end="767" vertical-scroll-proportion="0.1945245">
+        <state line="10" column="46" selection-start="516" selection-end="516" vertical-scroll-proportion="0.21613833">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/management/commands/insert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="38" selection-start="970" selection-end="986" vertical-scroll-proportion="0.7348703">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/CriterionCategory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="21" selection-start="338" selection-end="338" vertical-scroll-proportion="0.28097984">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Criterion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="19" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.69164264">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

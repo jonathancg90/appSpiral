@@ -10,16 +10,12 @@ class CriterionCategory(models.Model):
         (STATUS_INACTIVE,_(u'inactivo')),
         (STATUS_ACTIVE, _(u'activo'))
     )
-
-    cri_cat = models.CharField(
+    description = models.CharField(
         max_length=45
     )
-    description = models.DateTimeField(
-        auto_now_add=True,
-        editable=False
-    )
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS
+        choices= CHOICE_STATUS,
+        default=STATUS_ACTIVE
     )
     created = models.DateTimeField(
         auto_now_add=True,
