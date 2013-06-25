@@ -11,6 +11,7 @@ from apps.sp.models.Project import Project
 from apps.sp.models.Criterion import Criterion
 from apps.sp.models.Criterion import CriterionDetail
 from apps.sp.models.CriterionCategory import CriterionCategory
+from apps.sp.models.ModelCriterionDetail import ModelCriterionDetail
 
 __all__ = [
     'Commercial',
@@ -25,5 +26,6 @@ __all__ = [
     'ModelPhone',
     'Criterion',
     'CriterionDetail',
-    'CriterionCategory'
+    'CriterionCategory',
+    'ModelCriterionDetail'
 ]

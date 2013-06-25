@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand
 from optparse import make_option
 from apps.sp.tests.Helpers.data_helpers.criterion_category import CriterionCategoryHelper
+from apps.common.insert_helper import CriterionHelper, CriterionDetailHelper
 from apps.sp.models.CriterionCategory import CriterionCategory
+from apps.sp.models.Criterion import Criterion
 
 
 class Command(BaseCommand):
@@ -38,7 +40,7 @@ class Command(BaseCommand):
     def insert_criterion_category(self):
         if self.data_delete:
             CriterionCategory.objects.all().delete()
-            self.stdout.write('Successfully delete data: criterion category. \n')
+            self.stdout.write('delete data: criterion category. \n')
         else:
             if CriterionCategory.objects.all().count() == 0:
                 criterion_category_helper = CriterionCategoryHelper()
@@ -49,7 +51,19 @@ class Command(BaseCommand):
                 self.stdout.write('can not insert the data: criterion category. \n')
 
     def insert_criterion(self):
-        self.stdout.write('Successfully inserted data criterion. \n')
+        if self.data_delete:
+            Criterion.objects.all().delete()
+            self.stdout.write('delete data: criterion. \n')
+        else:
+            criterion_helper = CriterionHelper()
+            criterion_helper.insert_data()
+            self.stdout.write('Successfully inserted data criterion. \n')
 
     def insert_criterion_detail(self):
-        self.stdout.write('Successfully inserted data criterion detail. \n')
+        if self.data_delete:
+            Criterion.objects.all().delete()
+            self.stdout.write('delete data: criterion. \n')
+        else:
+            criterion_detail_helper = CriterionDetailHelper()
+            criterion_detail_helper.insert_data()
+            self.stdout.write('Successfully inserted data criterion detail. \n')

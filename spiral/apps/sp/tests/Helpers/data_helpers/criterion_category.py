@@ -12,10 +12,10 @@ class CriterionCategoryHelper(InsertHelperMixin):
                 "description": "Descriptivos",
             },
             {
-                "description": "Fotografico",
+                "description": "Fotograficos",
             },
             {
-                "description": "Video",
+                "description": "Videos",
             },
             {
                 "description": "Evaluacion",

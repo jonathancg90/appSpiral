@@ -25,7 +25,8 @@ class Criterion(models.Model):
         default=False
     )
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS
+        choices=CHOICE_STATUS,
+        default=STATUS_ACTIVE
     )
     created = models.DateTimeField(
         auto_now_add=True,
@@ -50,11 +51,20 @@ class CriterionDetail(models.Model):
         (STATUS_INACTIVE,_(u'inactivo')),
         (STATUS_ACTIVE, _(u'activo'))
     )
+    criterion = models.ForeignKey(
+        'Criterion',
+        related_name='criterion_detail_set'
+    )
+    cri_item = models.CharField(
+        max_length=4
+    )
+
     description = models.CharField(
         max_length=45
     )
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS
+        choices=CHOICE_STATUS,
+        default=STATUS_ACTIVE
     )
     created = models.DateTimeField(
         auto_now_add=True,
