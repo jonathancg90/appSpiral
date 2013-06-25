@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
-class Country(models.Model):
+class CriterionCategory(models.Model):
 
     STATUS_ACTIVE = 1
     STATUS_INACTIVE = 0
@@ -11,8 +11,12 @@ class Country(models.Model):
         (STATUS_ACTIVE, _(u'activo'))
     )
 
-    name = models.CharField(
+    cri_cat = models.CharField(
         max_length=45
+    )
+    description = models.DateTimeField(
+        auto_now_add=True,
+        editable=False
     )
     status = models.SmallIntegerField(
         choices= CHOICE_STATUS
@@ -26,7 +30,7 @@ class Country(models.Model):
     )
 
     def __unicode__(self):
-        return self.name
+        return self.description
 
     class Meta:
         app_label = 'sp'

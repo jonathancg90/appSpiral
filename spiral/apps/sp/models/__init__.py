@@ -8,6 +8,9 @@ from apps.sp.models.ContryHasContract import CountryHasContract
 from apps.sp.models.Model import Model
 from apps.sp.models.Model import ModelPhone
 from apps.sp.models.Project import Project
+from apps.sp.models.Criterion import Criterion
+from apps.sp.models.Criterion import CriterionDetail
+from apps.sp.models.CriterionCategory import CriterionCategory
 
 __all__ = [
     'Commercial',
@@ -19,5 +22,8 @@ __all__ = [
     'Country'
     'Model',
     'Project',
-    'ModelPhone'
+    'ModelPhone',
+    'Criterion',
+    'CriterionDetail',
+    'CriterionCategory'
 ]
