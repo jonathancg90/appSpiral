@@ -6,6 +6,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from apps.common.view import  SearchFormMixin
+from apps.common.view import LoginRequiredMixin
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Model import Model
 from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm
@@ -13,7 +14,7 @@ from apps.sp.forms.Commercial import CommercialFiltersForm
 from apps.sp.models.Commercial import Commercial
 
 
-class ModelHasCommercialListView(SearchFormMixin, ListView):
+class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
     template_name = 'panel/model_has_commercial/list.html'
     model = ModelHasCommercial
     context_object_name = 'model_has_commercial'

@@ -2,6 +2,8 @@
 from django import http
 from .util import dict_strip_unicode_keys
 from django.utils import simplejson
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class InvalidFilterError(Exception):
@@ -218,6 +220,7 @@ class SearchFormMixin(SearchMixin):
         })
         return context
 
+
 class JSONResponseMixin(object):
     def render_to_response(self, context):
         "Returns a JSON response containing 'context' as payload"
@@ -237,3 +240,17 @@ class JSONResponseMixin(object):
         # -- can be serialized as JSON.
 
         return simplejson.dumps(context)
+
+
+class LoginRequiredMixin(object):
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.request = request
+
+        if self.request.user.is_authenticated():
+            return super(LoginRequiredMixin, self).dispatch(
+                            self.request, *args, **kwargs)
+        else:
+            return super(LoginRequiredMixin, self).dispatch(
+                request, *args, **kwargs)
