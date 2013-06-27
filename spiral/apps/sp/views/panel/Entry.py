@@ -8,9 +8,10 @@ from django.conf import settings
 from apps.sp.forms.Entry import EntryForm
 from apps.sp.models.Entry import Entry
 from apps.sp.forms.Entry import EntryFiltersForm
+from apps.common.view import LoginRequiredMixin
 
 
-class EntryCreateView(CreateView):
+class EntryCreateView(LoginRequiredMixin, CreateView):
     form_class = EntryForm
     template_name = 'panel/entry/create.html'
     success_url = "entry_list"
@@ -23,7 +24,7 @@ class EntryCreateView(CreateView):
         return reverse('entry_list')
 
 
-class EntryUpdateView(UpdateView):
+class EntryUpdateView(LoginRequiredMixin, UpdateView):
     model = Entry
     form_class = EntryForm
     template_name = 'panel/entry/update.html'
@@ -37,7 +38,7 @@ class EntryUpdateView(UpdateView):
         return reverse('entry_list')
 
 
-class EntryDeleteView(DeleteView):
+class EntryDeleteView(LoginRequiredMixin, DeleteView):
     model = Entry
     template_name = 'panel/entry/delete.html'
     success_url = "entry_list"
@@ -50,7 +51,7 @@ class EntryDeleteView(DeleteView):
         return reverse('entry_list')
 
 
-class EntryListView(SearchFormMixin, ListView):
+class EntryListView(LoginRequiredMixin, SearchFormMixin, ListView):
     model = Entry
     template_name = 'panel/entry/entry_list.html'
     search_form_class = EntryFiltersForm

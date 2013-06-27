@@ -1,10 +1,10 @@
-import datetime
 from django.test import TestCase
 from django.test.client import RequestFactory
-from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from django.core.urlresolvers import reverse
+
+from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Entry import Entry
-from apps.sp.views.Entry import EntryListView, EntryCreateView
+from apps.sp.views.panel.Entry import EntryListView, EntryCreateView
 
 
 class EntryViewTest(TestCase):

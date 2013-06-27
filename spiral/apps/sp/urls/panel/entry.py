@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from django.views.generic import TemplateView
-from apps.sp.views.Entry import EntryListView, EntryCreateView, EntryUpdateView, EntryDeleteView
+from apps.sp.views.panel.Entry import EntryListView, EntryCreateView, EntryUpdateView, EntryDeleteView
 
 urlpatterns = patterns('',
 

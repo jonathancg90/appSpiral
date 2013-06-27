@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from apps.sp.views.Contract import ContractCreateView, ContractDeleteView, ContractListView, ContractUpdateView
+from apps.sp.views.panel.Contract import ContractCreateView, ContractDeleteView, ContractListView, ContractUpdateView
 
 
 urlpatterns = patterns('',

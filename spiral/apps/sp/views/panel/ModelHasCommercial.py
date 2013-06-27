@@ -78,7 +78,7 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         return context
 
 
-class ModelHasCommercialListModelView(SearchFormMixin, ListView):
+class ModelHasCommercialListModelView(LoginRequiredMixin, SearchFormMixin, ListView):
     template_name = 'panel/model_has_commercial/list.html'
     model = ModelHasCommercial
     context_object_name = 'model_has_commercial'
@@ -125,7 +125,7 @@ class ModelHasCommercialListModelView(SearchFormMixin, ListView):
         return context
 
 
-class ModelHasCommercialAddListView(SearchFormMixin, ListView):
+class ModelHasCommercialAddListView(LoginRequiredMixin, SearchFormMixin, ListView):
     model = Commercial
     template_name = 'panel/model_has_commercial/add_commercial.html'
     search_form_class = CommercialFiltersForm
@@ -164,7 +164,7 @@ class ModelHasCommercialAddListView(SearchFormMixin, ListView):
         return context
 
 
-class ModelHasCommercialRedirectView(RedirectView):
+class ModelHasCommercialRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get(self, request, *args, **kwargs):
@@ -176,7 +176,7 @@ class ModelHasCommercialRedirectView(RedirectView):
             'key':self.model.model_code
         })
 
-class ModelHasCommercialAddRedirectView(RedirectView):
+class ModelHasCommercialAddRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get(self, request, *args, **kwargs):
@@ -197,7 +197,7 @@ class ModelHasCommercialAddRedirectView(RedirectView):
         })
 
 
-class ModelHasCommercialDelRedirectView(RedirectView):
+class ModelHasCommercialDelRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
     model_id = None
 

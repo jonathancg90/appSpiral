@@ -8,9 +8,10 @@ from apps.sp.forms.Commercial import CommercialCreateForm, CommercialUpdateForm,
 from apps.common.view import JSONResponseMixin
 from apps.sp.models.Project import Project
 from apps.sp.models.Commercial import Commercial
+from apps.common.view import LoginRequiredMixin
 
 
-class CommercialListView(SearchFormMixin, ListView):
+class CommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
     model = Commercial
     template_name = 'panel/commercial/commercial_list.html'
     search_form_class = CommercialFiltersForm
@@ -40,7 +41,7 @@ class CommercialListView(SearchFormMixin, ListView):
         return form
 
 
-class CommercialCreateView(CreateView):
+class CommercialCreateView(LoginRequiredMixin, CreateView):
     model = Commercial
     form_class = CommercialCreateForm
     template_name = 'panel/commercial/create.html'
@@ -91,7 +92,7 @@ class CommercialCreateView(CreateView):
         return reverse('commercial_list')
 
 
-class CommercialUpdateView(UpdateView):
+class CommercialUpdateView(LoginRequiredMixin, UpdateView):
     model = Commercial
     form_class = CommercialUpdateForm
     template_name = 'panel/commercial/update.html'
@@ -134,7 +135,7 @@ class CommercialUpdateView(UpdateView):
         return reverse('commercial_list')
 
 
-class CommercialDeleteView(DeleteView):
+class CommercialDeleteView(LoginRequiredMixin, DeleteView):
     model = Commercial
     template_name = 'panel/commercial/delete.html'
     success_url = 'commercial_list'
@@ -147,7 +148,7 @@ class CommercialDeleteView(DeleteView):
         return reverse('commercial_list')
 
 
-class CommercialByBrandIdJson(JSONResponseMixin, ListView):
+class CommercialByBrandIdJson(LoginRequiredMixin, JSONResponseMixin, ListView):
     model = Commercial
 
     def get_queryset(self):

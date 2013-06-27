@@ -6,18 +6,32 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Criterion.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372142934514" ignored="false" />
     <file path="/CriterionCategory.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372137555369" ignored="false" />
-    <file path="/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372305575660" ignored="false" />
+    <file path="/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372368270194" ignored="false" />
     <file path="/insert.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372143157942" ignored="false" />
     <file path="/criterion_category.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372142050320" ignored="false" />
     <file path="/Dummy.txt" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372138316093" ignored="false" />
-    <file path="/a.dummy" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372306969839" ignored="false" />
+    <file path="/a.dummy" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372363822847" ignored="false" />
     <file path="/insert_helper.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372143012558" ignored="false" />
     <file path="/0012_auto__add_field_criteriondetail_criterion.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372142985800" ignored="false" />
     <file path="/ModelCriterionDetail.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372144097271" ignored="false" />
     <file path="/Home.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372305618101" ignored="false" />
-    <file path="/home.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372305340375" ignored="false" />
-    <file path="/login.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372304050135" ignored="false" />
+    <file path="/home.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372362411628" ignored="false" />
+    <file path="/login.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372364430393" ignored="false" />
     <file path="/ModelHasCommercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372306202967" ignored="false" />
+    <file path="/register_model.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372366602153" ignored="false" />
+    <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/BrandView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
+    <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/EntryView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
+    <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/CommercialView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
+    <file path="/register_model.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372362146069" ignored="false" />
+    <file path="/Entry.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361491752" ignored="false" />
+    <file path="/Contract.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361521700" ignored="false" />
+    <file path="/Commercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361550800" ignored="false" />
+    <file path="/Brand.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361584111" ignored="false" />
+    <file path="/urls.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372362036636" ignored="false" />
+    <file path="/Model.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372368005739" ignored="false" />
+    <file path="/Register.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372366463859" ignored="false" />
+    <file path="/panel_base.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372367841573" ignored="false" />
+    <file path="/model.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372368026910" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,100 +50,7 @@
     <favorites_list name="spiral" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="55" selection-start="1509" selection-end="1509" vertical-scroll-proportion="-10.541667">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Home.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/views/Home.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="11" selection-start="1201" selection-end="1201" vertical-scroll-proportion="-5.032258">
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="53" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#25#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spiral/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="21" selection-start="934" selection-end="934" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_settings.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spiral/_settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="21" selection-start="918" selection-end="918" vertical-scroll-proportion="0.80536914">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/common/view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="238" column="47" selection-start="8084" selection-end="8084" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#24#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/website/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="11" selection-start="428" selection-end="428" vertical-scroll-proportion="-8.125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/forms/User.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="68" selection-end="124" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="51" selection-start="334" selection-end="343" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -139,22 +60,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/sp/models/Criterion.py" />
-        <option value="$PROJECT_DIR$/apps/sp/migrations/0012_auto__add_field_criteriondetail_criterion.py" />
-        <option value="$PROJECT_DIR$/apps/common/insert_helper.py" />
-        <option value="$PROJECT_DIR$/apps/sp/management/commands/insert.py" />
-        <option value="$PROJECT_DIR$/apps/sp/models/ModelCriterionDetail.py" />
-        <option value="$PROJECT_DIR$/apps/sp/models/__init__.py" />
-        <option value="$PROJECT_DIR$/apps/sp/forms/Country.py" />
-        <option value="$PROJECT_DIR$/apps/sp/forms/User.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/website/login.html" />
-        <option value="$PROJECT_DIR$/apps/common/view.py" />
+        <option value="$PROJECT_DIR$/apps/sp/views/panel/Commercial.py" />
+        <option value="$PROJECT_DIR$/apps/sp/views/panel/Brand.py" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/website/register_model.py" />
+        <option value="$PROJECT_DIR$/spiral/urls.py" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/website/home.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/home.html" />
-        <option value="$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py" />
-        <option value="$PROJECT_DIR$/apps/sp/views/Home.py" />
-        <option value="$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py" />
-        <option value="$PROJECT_DIR$/spiral/settings.py" />
-        <option value="$PROJECT_DIR$/spiral/_settings.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/website/login.html" />
+        <option value="$PROJECT_DIR$/apps/sp/views/website/model/Register.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/website/register_model.html" />
+        <option value="$PROJECT_DIR$/apps/sp/models/Criterion.py" />
+        <option value="$PROJECT_DIR$/apps/sp/forms/Model.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/model/list.html" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/panel/model.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
+        <option value="$PROJECT_DIR$/apps/sp/views/panel/Model.py" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/panel/__init__.py" />
       </list>
     </option>
   </component>
@@ -190,7 +111,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,66 +157,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,6 +167,14 @@
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/sp/views/website" />
+      <recent name="$PROJECT_DIR$/apps/sp/urls/panel" />
+      <recent name="$PROJECT_DIR$/apps/sp/views" />
+      <recent name="$PROJECT_DIR$/apps/sp/views/panel" />
+    </key>
   </component>
   <component name="RunManager" selected="Django server.spiral">
     <configuration default="true" type="tests" factoryName="Nosetests">
@@ -326,6 +197,23 @@
       <option name="USE_PATTERN" value="false" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spiral" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
@@ -409,14 +297,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1537" height="905" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977304" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25387207" sideWeight="0.670227" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25791246" sideWeight="0.670227" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -493,128 +381,131 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/commercial/create.html">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/website/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="20" selection-start="632" selection-end="708" vertical-scroll-proportion="0.47482014">
+        <state line="13" column="11" selection-start="428" selection-end="428" vertical-scroll-proportion="0.43526787">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Entry.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/website/model/Register.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="30" selection-start="94" selection-end="94" vertical-scroll-proportion="0.06355932">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Contract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="113" selection-end="168" vertical-scroll-proportion="0.095338985">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Country.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.095338985">
+        <state line="22" column="31" selection-start="843" selection-end="857" vertical-scroll-proportion="0.738255">
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#24#56#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/website/register_model.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="617" selection-end="631" vertical-scroll-proportion="0.73660713">
-          <folding />
+        <state line="26" column="25" selection-start="676" selection-end="676" vertical-scroll-proportion="-9.375">
+          <folding>
+            <element signature="e#537#562#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/website/website_base.html">
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/ModelCriterionDetail.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="4" selection-start="873" selection-end="919" vertical-scroll-proportion="0.703125">
-          <folding />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.6442953">
+          <folding>
+            <element signature="e#0#28#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Criterion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="31" selection-start="1695" selection-end="1695" vertical-scroll-proportion="0.6308725">
+          <folding>
+            <element signature="e#0#28#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/forms/Model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="26" selection-start="1546" selection-end="1546" vertical-scroll-proportion="-14.4">
+          <folding>
+            <element signature="e#0#24#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spiral/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="39" selection-start="120" selection-end="120" vertical-scroll-proportion="0.12711865">
+        <state line="4" column="44" selection-start="153" selection-end="153" vertical-scroll-proportion="-2.4">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/forms/User.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/brand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="68" selection-end="124" vertical-scroll-proportion="0.0">
+        <state line="11" column="19" selection-start="277" selection-end="277" vertical-scroll-proportion="0.3691275">
+          <folding>
+            <element signature="e#25#67#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/model_has_commercial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/spiral/__init__.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="51" selection-start="334" selection-end="343" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="55" selection-start="1509" selection-end="1509" vertical-scroll-proportion="-10.541667">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/website/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="11" selection-start="428" selection-end="428" vertical-scroll-proportion="-8.125">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/common/view.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="47" selection-start="8084" selection-end="8084" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/Home.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="11" selection-start="1201" selection-end="1201" vertical-scroll-proportion="-5.032258">
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/ModelHasCommercial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="53" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#25#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spiral/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="21" selection-start="934" selection-end="934" vertical-scroll-proportion="0.0">
+        <state line="32" column="67" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-10.625">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiral/_settings.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/Entry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="21" selection-start="918" selection-end="918" vertical-scroll-proportion="0.80536914">
+        <state line="49" column="4" selection-start="1462" selection-end="1525" vertical-scroll-proportion="0.7986577">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/entry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="33" selection-start="508" selection-end="508" vertical-scroll-proportion="0.53691274">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/Model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="33" selection-start="429" selection-end="429" vertical-scroll-proportion="0.4362416">
+          <folding>
+            <element signature="e#25#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="53" selection-start="470" selection-end="470" vertical-scroll-proportion="0.28601694">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="1" selection-start="285" selection-end="285" vertical-scroll-proportion="0.3691275">
+          <folding>
+            <element signature="e#25#67#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

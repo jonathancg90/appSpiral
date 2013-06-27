@@ -8,9 +8,10 @@ from apps.common.view import SearchFormMixin
 from apps.sp.forms.Contract import ContractForm, ContractFiltersForm
 from apps.sp.models.Contract import Contract
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
+from apps.common.view import LoginRequiredMixin
 
 
-class ContractCreateView(CreateView):
+class ContractCreateView(LoginRequiredMixin, CreateView):
     model = Contract
     form_class = ContractForm
     template_name = 'panel/contract/create.html'
@@ -30,7 +31,7 @@ class ContractCreateView(CreateView):
         return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
 
 
-class ContractUpdateView(UpdateView):
+class ContractUpdateView(LoginRequiredMixin, UpdateView):
     model = Contract
     form_class = ContractForm
     template_name = 'panel/contract/update.html'
@@ -45,7 +46,7 @@ class ContractUpdateView(UpdateView):
         return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
 
 
-class ContractDeleteView(DeleteView):
+class ContractDeleteView(LoginRequiredMixin, DeleteView):
     model = Contract
     template_name = 'panel/contract/update.html'
     success_url = 'contract_list'
@@ -59,7 +60,7 @@ class ContractDeleteView(DeleteView):
         return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
 
 
-class ContractListView(SearchFormMixin,ListView):
+class ContractListView(LoginRequiredMixin, SearchFormMixin,ListView):
     model = Contract
     template_name = 'panel/contract/contract_list.html'
     search_form_class = ContractFiltersForm

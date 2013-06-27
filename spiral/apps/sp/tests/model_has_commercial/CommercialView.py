@@ -8,7 +8,7 @@ from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Commercial import Commercial
 from apps.sp.models.Project import Project
-from apps.sp.views.Commercial import CommercialListView, CommercialCreateView
+from apps.sp.views.panel.Commercial import CommercialListView, CommercialCreateView
 
 
 class CommercialViewTest(TestCase):

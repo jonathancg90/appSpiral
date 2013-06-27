@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from apps.sp.views.Brand import BrandListView, BrandCreateView,\
+from apps.sp.views.panel.Brand import BrandListView, BrandCreateView,\
     BrandUpdateView, BrandDeleteView, BrandByEntryIdJson
 
 

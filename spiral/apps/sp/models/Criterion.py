@@ -75,7 +75,7 @@ class CriterionDetail(models.Model):
     )
 
     def __unicode__(self):
-        return self.name
+        return self.description
 
     class Meta:
         app_label = 'sp'

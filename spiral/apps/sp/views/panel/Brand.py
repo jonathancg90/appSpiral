@@ -9,9 +9,10 @@ from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.forms.Brand import BrandForm, BrandFiltersForm
 from apps.sp.models.Brand import Brand
+from apps.common.view import LoginRequiredMixin
 
 
-class BrandListView(SearchFormMixin, ListView):
+class BrandListView(LoginRequiredMixin, SearchFormMixin, ListView):
     model = Brand
     template_name = 'panel/brand/brand_list.html'
     search_form_class = BrandFiltersForm
@@ -23,7 +24,7 @@ class BrandListView(SearchFormMixin, ListView):
     }
 
 
-class BrandCreateView(CreateView):
+class BrandCreateView(LoginRequiredMixin, CreateView):
     model = Brand
     form_class = BrandForm
     template_name = 'panel/brand/create.html'
@@ -37,7 +38,7 @@ class BrandCreateView(CreateView):
         return reverse('brand_list')
 
 
-class BrandUpdateView(UpdateView):
+class BrandUpdateView(LoginRequiredMixin, UpdateView):
     model = Brand
     form_class = BrandForm
     template_name = 'panel/brand/update.html'
@@ -51,7 +52,7 @@ class BrandUpdateView(UpdateView):
         return reverse('brand_list')
 
 
-class BrandDeleteView(DeleteView):
+class BrandDeleteView(LoginRequiredMixin, DeleteView):
     model = Brand
     template_name = 'panel/brand/delete.html'
     success_url = 'brand_list'
@@ -64,7 +65,7 @@ class BrandDeleteView(DeleteView):
         return reverse('brand_list')
 
 
-class BrandByEntryIdJson(JSONResponseMixin, ListView):
+class BrandByEntryIdJson(LoginRequiredMixin, JSONResponseMixin, ListView):
     model = Brand
 
     def get_queryset(self):

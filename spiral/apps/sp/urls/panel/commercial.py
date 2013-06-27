@@ -1,5 +1,5 @@
 from django.conf.urls import url, patterns
-from apps.sp.views.Commercial import CommercialListView, CommercialCreateView,\
+from apps.sp.views.panel.Commercial import CommercialListView, CommercialCreateView,\
     CommercialUpdateView, CommercialDeleteView, CommercialByBrandIdJson
 
 urlpatterns = patterns('',

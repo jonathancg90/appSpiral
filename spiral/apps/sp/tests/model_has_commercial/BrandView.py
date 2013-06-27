@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
-from apps.sp.views.Brand import BrandListView, BrandCreateView
+from apps.sp.views.panel.Brand import BrandListView, BrandCreateView
 
 
 class BrandViewTest(TestCase):

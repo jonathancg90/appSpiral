@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from apps.sp.views.ModelHasCommercial import ModelHasCommercialListView, \
+from apps.sp.views.panel.ModelHasCommercial import ModelHasCommercialListView, \
     ModelHasCommercialAddListView, ModelHasCommercialAddRedirectView, \
     ModelHasCommercialDelRedirectView, ModelHasCommercialListModelView, \
     ModelHasCommercialRedirectView
