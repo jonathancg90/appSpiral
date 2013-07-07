@@ -17,7 +17,7 @@ from apps.sp.models.Commercial import Commercial
 class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
     template_name = 'panel/model_has_commercial/list.html'
     model = ModelHasCommercial
-    context_object_name = 'model_has_commercial'
+    context_object_name = 'model_has_commercial_list'
     search_form_class = ModelHasCommercialFilterForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
@@ -80,7 +80,7 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
 class ModelHasCommercialListModelView(LoginRequiredMixin, SearchFormMixin, ListView):
     template_name = 'panel/model_has_commercial/list.html'
     model = ModelHasCommercial
-    context_object_name = 'model_has_commercial'
+    context_object_name = 'model_has_commercial_list'
     search_form_class = ModelHasCommercialFilterForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
@@ -129,6 +129,7 @@ class ModelHasCommercialAddListView(LoginRequiredMixin, SearchFormMixin, ListVie
     template_name = 'panel/model_has_commercial/add_commercial.html'
     search_form_class = CommercialFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
+    context_object_name = 'model_has_commercial_add'
     filtering = {
         'name': SearchFormMixin.ALL,
         'brand__entry': SearchFormMixin.ALL,
