@@ -27,7 +27,6 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         'commercial_realized__icontains': SearchFormMixin.ALL,
     }
 
-
     def get(self, request, *args, **kwargs):
         model_code = self.kwargs.get('key')
         if len(model_code) == 6:

@@ -4,12 +4,17 @@
 <div class="pagination pagination-right">
     <ul>
     {% if page_obj.has_previous %}
-        <li><a href="{{ url }}?page={{ page_obj.previous_page_number }}&amp;{{ url_params }}"
+        <li><a href="{{ url }}?page=1&amp;{{ url_params }}"
                 title="{% trans 'Previous' %}"> « </a></li>
     {% else %}
         <li class="disabled"><a href="#"> « </a></li>
     {% endif %}
-
+    {% if page_obj.has_previous %}
+        <li><a href="{{ url }}?page={{ page_obj.previous_page_number }}&amp;{{ url_params }}"
+                title="{% trans 'Previous' %}"> Previous </a></li>
+    {% else %}
+        <li class="disabled"><a href="#"> Previous </a></li>
+    {% endif %}
     {% for page_num in page_range %}
         <li class="{% if page_obj.number == page_num %}active{% endif %}">
             <a href="{{ url }}?page={{ page_num }}&amp;{{ url_params|safe }}">{{ page_num }}</a>
@@ -18,7 +23,13 @@
 
     {% if page_obj.has_next %}
         <li><a href="{{ url }}?page={{ page_obj.next_page_number }}&amp;{{ url_params }}"
-                title="{% trans 'Next' %}"> » </a></li>
+                title="{% trans 'Next' %}"> Next </a></li>
+    {% else %}
+        <li class="disabled"><a href="#"> Next </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+        <li><a href="{{ url }}?page={{ page_obj.paginator.num_pages }}&amp;{{ url_params }}"
+                    title="{% trans 'last' %}"> » </a></li>
     {% else %}
         <li class="disabled"><a href="#"> » </a></li>
     {% endif %}
