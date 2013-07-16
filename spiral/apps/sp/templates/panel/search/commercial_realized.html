@@ -44,7 +44,7 @@
                     <td>{{ model_commercial.model.model_code }}</td>
                     <td>{{ model_commercial.commercial }}</td>
                     <td>{{ model_commercial.commercial.realized |date:"d / M / Y" }}</td>
-                    <td><a href="">{% trans 'Mas detalles' %}</a></td>
+                    <td><a target="_blank" href="http://192.168.1.3/sistemas/proyspiral/produccion/index.php?G_OpcS=3&cod={{ model_commercial.model.model_code }}">{% trans 'Mas detalles' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
