@@ -33,6 +33,8 @@
             <thead>
                 <tr>
                     <th>{% trans 'Modelo' %}</th>
+                    <th>{% trans 'rubro' %}</th>
+                    <th>{% trans 'marca' %}</th>
                     <th>{% trans 'comercial' %}</th>
                     <th>{% trans 'Realizado' %}</th>
                     <th>{% trans 'Opciones' %}</th>
@@ -42,6 +44,8 @@
                 {% for model_commercial in search_commercial_realized %}
                 <tr>
                     <td>{{ model_commercial.model.model_code }}</td>
+                    <td>{{ model_commercial.commercial.brand.entry }}</td>
+                    <td>{{ model_commercial.commercial.brand }}</td>
                     <td>{{ model_commercial.commercial }}</td>
                     <td>{{ model_commercial.commercial.realized |date:"d / M / Y" }}</td>
                     <td><a target="_blank" href="http://192.168.1.3/sistemas/proyspiral/produccion/index.php?G_OpcS=3&cod={{ model_commercial.model.model_code }}">{% trans 'Mas detalles' %}</a></td>
