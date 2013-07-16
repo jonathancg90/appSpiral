@@ -23,10 +23,11 @@ class ModelHasCommercialFilterForm(forms.Form):
         choices=[('', '--------------')],
         required=False
     )
-    commercial_realized__icontains = forms.CharField(
-        max_length=100, required=False,
-        label=_(u'Realizado')
-    )
+    # commercial_realized__iexact = forms.CharField(
+    #     max_length=100,
+    #     required=False,
+    #     label=_(u'Realizado')
+    # )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()

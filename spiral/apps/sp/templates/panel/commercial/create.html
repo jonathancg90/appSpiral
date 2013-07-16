@@ -10,21 +10,17 @@
 {% block content %}
 
     <div class="row-fluid">
-        <table class="table table-bordered table-striped">
-            <h2>
+        <h2>
             {% trans "Nuevo Comercial:" %}
-            </h2>
-            <hr>
-
-      <form method="post" action="" class="">{% csrf_token %}
-
-                    {% crispy form %}
-
-                    <a class="btn" href="{% url "commercial_list" %}">{% trans 'Cancelar' %}</a>
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Crear' %}" />
-
-        </form>
-        </table>
+        </h2>
+    <form method="post" action="" class="form-horizontal">
+          {% csrf_token %}
+              {% crispy form %}
+          <div class="form-actions">
+              <a class="btn" href="{% url "commercial_list" %}">{% trans 'Cancelar' %}</a>
+              <input type="submit" class="btn btn-success" value="{% trans 'Crear' %}" />
+          </div>
+    </form>
     </div>
 {% endblock %}
 
@@ -34,7 +30,11 @@
     <script>
       url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
       $(function() {
-        $( "#id_realized" ).datepicker();
+        $( "#id_realized" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
       });
     </script>
     <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>

@@ -5,14 +5,11 @@
 
     {% block extra_style %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
     {% endblock %}
 
 {% block content %}
     <div class="page-header">
-        <div class="tools">
-            <a href="{% url 'model_commercial_create' model.id %}" class="btn btn-success">
-                <i class="icon-plus icon-white"></i> {% trans 'Nuevo comercial realizado' %}</a>
-        </div>
         <h2>{%  trans 'Comerciales realizados' %}</h2>
     </div>
     <ul class="nav nav-pills">
@@ -35,33 +32,30 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>{% trans 'Rubro' %}</th>
-                    <th>{% trans 'Marca' %}</th>
-                    <th>{% trans 'Comercial' %}</th>
+                    <th>{% trans 'Modelo' %}</th>
+                    <th>{% trans 'comercial' %}</th>
                     <th>{% trans 'Realizado' %}</th>
                     <th>{% trans 'Opciones' %}</th>
                 </tr>
             </thead>
             <tbody>
-                {% for model_commercial in model_has_commercial_list %}
+                {% for model_commercial in search_commercial_realized %}
                 <tr>
-                    <td>{{ model_commercial.commercial.brand.entry }}</td>
-                    <td>{{ model_commercial.commercial.brand }}</td>
+                    <td>{{ model_commercial.model.model_code }}</td>
                     <td>{{ model_commercial.commercial }}</td>
-                    <td>{{ model_commercial.commercial.realized |date:"d/M/Y - h:m" }}</td>
-                    <td><a href="{% url 'model_has_commercial_delete' model_commercial.pk %}">{% trans 'Delete' %}</a> |
-                        <a href="{% url 'contract_list' model_commercial.pk %}">{% trans 'Contrato' %}</a>
-                    </td>
+                    <td>{{ model_commercial.commercial.realized |date:"d / M / Y" }}</td>
+                    <td><a href="">{% trans 'Mas detalles' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        {% url 'model_has_commercial_list' as page_url %}
+        {% url 'search_commercial_realized' as page_url %}
         {% pagination_ctl page_obj url=page_url %}
     </div>
 {% endblock %}
 {% block script_bottom %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
     <script>
         url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
         url_commercial_by_brand = '{% url 'commercial_by_brand_json' brand=0 %}'
@@ -69,6 +63,11 @@
         $(document).on('ready',function(){
             $('#hide-show-search').click(function(){
                 $('#search-form').toggle('fade');
+            });
+            $( "#id_commercial_realized__icontains" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy'
             });
         });
     </script>

@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^model-has-commercial/', include('apps.sp.urls.panel.model_has_commercial')),
     url(r'^entry/', include('apps.sp.urls.panel.entry')),
     url(r'^model/', include('apps.sp.urls.panel.model')),
+    url(r'^search/', include('apps.sp.urls.panel.search')),
 )
