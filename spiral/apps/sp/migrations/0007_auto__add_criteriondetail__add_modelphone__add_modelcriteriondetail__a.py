@@ -8,6 +8,18 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'CriterionDetail'
+        db.create_table(u'sp_criteriondetail', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('criterion', self.gf('django.db.models.fields.related.ForeignKey')(related_name='criterion_detail_set', to=orm['sp.Criterion'])),
+            ('cri_item', self.gf('django.db.models.fields.CharField')(max_length=4)),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=45)),
+            ('status', self.gf('django.db.models.fields.SmallIntegerField')(default=1)),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('modified', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+        ))
+        db.send_create_signal('sp', ['CriterionDetail'])
+
         # Adding model 'ModelPhone'
         db.create_table(u'sp_modelphone', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -16,6 +28,41 @@ class Migration(SchemaMigration):
             ('number', self.gf('django.db.models.fields.CharField')(max_length=10)),
         ))
         db.send_create_signal('sp', ['ModelPhone'])
+
+        # Adding model 'ModelCriterionDetail'
+        db.create_table(u'sp_modelcriteriondetail', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('model', self.gf('django.db.models.fields.related.ForeignKey')(related_name='model_criterion_detail_set', to=orm['sp.Model'])),
+            ('criterion_detail', self.gf('django.db.models.fields.related.ForeignKey')(related_name='model_criterion_detail_set', to=orm['sp.CriterionDetail'])),
+            ('observations', self.gf('django.db.models.fields.CharField')(max_length=300)),
+            ('level', self.gf('django.db.models.fields.SmallIntegerField')(default=None, null=True)),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('modified', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+        ))
+        db.send_create_signal('sp', ['ModelCriterionDetail'])
+
+        # Adding model 'Criterion'
+        db.create_table(u'sp_criterion', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('cri_cod', self.gf('django.db.models.fields.CharField')(max_length=45)),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=45)),
+            ('criterion_category', self.gf('django.db.models.fields.related.ForeignKey')(related_name='criterion_set', to=orm['sp.CriterionCategory'])),
+            ('multi', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('status', self.gf('django.db.models.fields.SmallIntegerField')(default=1)),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('modified', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+        ))
+        db.send_create_signal('sp', ['Criterion'])
+
+        # Adding model 'CriterionCategory'
+        db.create_table(u'sp_criterioncategory', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=45)),
+            ('status', self.gf('django.db.models.fields.SmallIntegerField')(default=1)),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('modified', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+        ))
+        db.send_create_signal('sp', ['CriterionCategory'])
 
         # Adding field 'Model.dni'
         db.add_column(u'sp_model', 'dni',
@@ -59,7 +106,7 @@ class Migration(SchemaMigration):
 
         # Adding field 'Model.birth'
         db.add_column(u'sp_model', 'birth',
-                      self.gf('django.db.models.fields.DateField')(default='2013-01-01'),
+                      self.gf('django.db.models.fields.DateField')(default=datetime.datetime(2013, 7, 16, 0, 0)),
                       keep_default=False)
 
         # Adding field 'Model.birth_place'
@@ -100,8 +147,20 @@ class Migration(SchemaMigration):
         # Removing unique constraint on 'Model', fields ['model_code']
         db.delete_unique(u'sp_model', ['model_code'])
 
+        # Deleting model 'CriterionDetail'
+        db.delete_table(u'sp_criteriondetail')
+
         # Deleting model 'ModelPhone'
         db.delete_table(u'sp_modelphone')
+
+        # Deleting model 'ModelCriterionDetail'
+        db.delete_table(u'sp_modelcriteriondetail')
+
+        # Deleting model 'Criterion'
+        db.delete_table(u'sp_criterion')
+
+        # Deleting model 'CriterionCategory'
+        db.delete_table(u'sp_criterioncategory')
 
         # Deleting field 'Model.dni'
         db.delete_column(u'sp_model', 'dni')
@@ -194,6 +253,35 @@ class Migration(SchemaMigration):
             'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sp.Country']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
+        'sp.criterion': {
+            'Meta': {'object_name': 'Criterion'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'cri_cod': ('django.db.models.fields.CharField', [], {'max_length': '45'}),
+            'criterion_category': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'criterion_set'", 'to': "orm['sp.CriterionCategory']"}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '45'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'multi': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'})
+        },
+        'sp.criterioncategory': {
+            'Meta': {'object_name': 'CriterionCategory'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '45'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'})
+        },
+        'sp.criteriondetail': {
+            'Meta': {'object_name': 'CriterionDetail'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'cri_item': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
+            'criterion': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'criterion_detail_set'", 'to': "orm['sp.Criterion']"}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '45'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'})
+        },
         'sp.entry': {
             'Meta': {'object_name': 'Entry'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -223,6 +311,16 @@ class Migration(SchemaMigration):
             'size_shoe': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '4', 'decimal_places': '2', 'blank': 'True'}),
             'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'}),
             'weight': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '5', 'decimal_places': '2', 'blank': 'True'})
+        },
+        'sp.modelcriteriondetail': {
+            'Meta': {'object_name': 'ModelCriterionDetail'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'criterion_detail': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'model_criterion_detail_set'", 'to': "orm['sp.CriterionDetail']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'level': ('django.db.models.fields.SmallIntegerField', [], {'default': 'None', 'null': 'True'}),
+            'model': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'model_criterion_detail_set'", 'to': "orm['sp.Model']"}),
+            'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'observations': ('django.db.models.fields.CharField', [], {'max_length': '300'})
         },
         'sp.modelhascommercial': {
             'Meta': {'object_name': 'ModelHasCommercial'},

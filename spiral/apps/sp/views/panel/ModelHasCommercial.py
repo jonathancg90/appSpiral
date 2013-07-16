@@ -12,6 +12,7 @@ from apps.sp.models.Model import Model
 from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm
 from apps.sp.forms.Commercial import CommercialFiltersForm
 from apps.sp.models.Commercial import Commercial
+import datetime
 
 
 class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
@@ -33,9 +34,12 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
             try:
                 self.model = Model.objects.get(model_code=model_code)
             except:
-                self.model = Model(
-                    model_code = model_code
-                )
+                self.model = Model()
+                self.model.model_code = model_code
+                self.model.name = ''
+                self.model.last_name = ''
+                self.model.birth = datetime.datetime.now()
+                self.model.last_visit = datetime.datetime.now()
                 self.model.save()
         else:
             raise Http404
