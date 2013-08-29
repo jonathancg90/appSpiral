@@ -43,7 +43,7 @@
             <tbody>
                 {% for model_commercial in search_commercial_realized %}
                 <tr>
-                    <td>{{ model_commercial.model.model_code }}</td>
+                    <td>{{ model_commercial.model.get_name_json }}</td>
                     <td>{{ model_commercial.commercial.brand.entry }}</td>
                     <td>{{ model_commercial.commercial.brand }}</td>
                     <td>{{ model_commercial.commercial }}</td>
@@ -54,7 +54,7 @@
             </tbody>
         </table>
         {% url 'search_commercial_realized' as page_url %}
-        {% pagination_ctl page_obj url=page_url %}
+        {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
     </div>
 {% endblock %}
 {% block script_bottom %}
@@ -73,6 +73,7 @@
                 changeYear: true,
                 dateFormat: 'dd/mm/yy'
             });
+            window.clipboardData.setData('Text','hola mundosss');
         });
     </script>
     <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>

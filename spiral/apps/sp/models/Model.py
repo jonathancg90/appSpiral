@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-
+import urllib2
+import simplejson
 
 class Model(models.Model):
 
@@ -128,6 +129,20 @@ class Model(models.Model):
 
     class Meta:
         app_label = 'sp'
+
+    def get_name_json(self):
+        if self.model_code is not None:
+            try:
+                url = 'http://192.168.1.3/sistemas/proyspiral/api/model.php?codigo='+self.model_code
+                req = urllib2.Request(url, None, {'user-agent':'syncstream/vimeo'})
+                opener = urllib2.build_opener()
+                f = opener.open(req,timeout=1)
+                api = simplejson.load(f)
+                return api.get('modelo')
+            except:
+                return self.model_code
+        else:
+            return self.model_code
 
 
 class ModelPhone(models.Model):

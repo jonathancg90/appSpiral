@@ -7,6 +7,7 @@ from apps.common.view import LoginRequiredMixin
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm
 
+
 class CommercialRealizedListView(LoginRequiredMixin, SearchFormMixin, ListView):
     template_name = 'panel/search/commercial_realized.html'
     model = ModelHasCommercial
@@ -19,7 +20,7 @@ class CommercialRealizedListView(LoginRequiredMixin, SearchFormMixin, ListView):
         'commercial__brand__entry': SearchFormMixin.ALL,
         'commercial_realized__iexact': SearchFormMixin.ALL,
     }
-    
+
     def get_queryset(self):
         qs = super(CommercialRealizedListView, self).get_queryset()
         qs = self._set_filter_brand(qs)

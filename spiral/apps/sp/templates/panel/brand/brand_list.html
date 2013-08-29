@@ -55,7 +55,7 @@
             </tbody>
         </table>
     {% url 'brand_list' as page_url %}
-    {% pagination_ctl page_obj url=page_url %}
+    {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
     </div>
 {% endblock %}
 
