@@ -4,7 +4,7 @@ from django.conf.urls import url, patterns
 from apps.sp.views.panel.ModelHasCommercial import ModelHasCommercialListView, \
     ModelHasCommercialAddListView, ModelHasCommercialAddRedirectView, \
     ModelHasCommercialDelRedirectView, ModelHasCommercialListModelView, \
-    ModelHasCommercialRedirectView
+    ModelHasCommercialRedirectView, ExportModelHasCommercialRedirectView
 
 
 
@@ -14,6 +14,10 @@ urlpatterns = patterns('',
     url(r'^list/(?P<key>\w+)/$',
         ModelHasCommercialListView.as_view(),
         name='model_commercial_list'),
+
+    url(r'^list/(?P<pk>\w+)/export$',
+        ExportModelHasCommercialRedirectView.as_view(),
+        name='export_model_commercial_list'),
 
     #Model has commercial
     url(r'^list/model/(?P<pk>\d+)/$',

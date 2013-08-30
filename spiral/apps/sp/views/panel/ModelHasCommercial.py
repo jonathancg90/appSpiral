@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
-from django.views.generic import ListView, RedirectView
-from django.http import Http404
+from django.views.generic import ListView, RedirectView, View
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from apps.common.view import  SearchFormMixin
@@ -13,6 +13,7 @@ from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm
 from apps.sp.forms.Commercial import CommercialFiltersForm
 from apps.sp.models.Commercial import Commercial
 import datetime
+import xlwt
 
 
 class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
@@ -62,6 +63,7 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         qs = ModelHasCommercial.objects.filter(model=self.model)
         qs = self._set_filter_brand(qs)
         qs = self._set_filter_entry(qs)
+        qs = qs.order_by('-commercial__realized')
         return qs
 
     def get_search_form(self, form_class):
@@ -78,6 +80,9 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         self.request.session['model_has_commercial'] = self.model
         context = super(ModelHasCommercialListView, self).get_context_data(**kwargs)
         context['model'] = self.model
+        context['model_name'] = self.model.get_name_json()
+        if context['model_name'] is None:
+            context['model_name'] = self.model_code
         return context
 
 
@@ -180,6 +185,7 @@ class ModelHasCommercialRedirectView(LoginRequiredMixin, RedirectView):
             'key':self.model.model_code
         })
 
+
 class ModelHasCommercialAddRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
@@ -215,3 +221,51 @@ class ModelHasCommercialDelRedirectView(LoginRequiredMixin, RedirectView):
         return reverse('model_has_commercial_model_list', kwargs={
             'pk':self.model_id
         })
+
+
+class ExportModelHasCommercialRedirectView(LoginRequiredMixin, View):
+
+    def get_model(self):
+        pk = self.kwargs.get('pk')
+        model = Model.objects.get(pk=pk)
+        return model
+
+    def export_excel(self, model):
+        commercial = ''
+        column = 4
+        response = HttpResponse(mimetype="application/ms-excel")
+        response['Content-Disposition'] = 'attachment; filename=comercial.xls'
+
+        wb = xlwt.Workbook()
+        ws = wb.add_sheet('Sheetname')
+
+        personal_data = model.get_name_json()
+        try:
+            ws.write(0, 0, personal_data.name)
+            ws.write(0, 1, personal_data.years)
+            ws.write(0, 2, personal_data.height)
+        except:
+            pass
+
+        ws.write(0, 3, '')
+        commercial_realized = ModelHasCommercial.objects.filter(model=model)
+        all = ''
+        for commercial in commercial_realized:
+            name_commercial = commercial.commercial.name
+            date_commercial = commercial.commercial.realized
+            date_commercial = date_commercial.strftime('%m/%Y')
+            commercial = name_commercial + ' ' +date_commercial
+            # ws.write(0, column, commercial)
+            all = all + ' ' + commercial + ' - '
+            column +=1
+
+        ws.write(2, 0, 'Todo: ')
+        ws.write(2, 1, all)
+
+        wb.save(response)
+        return response
+
+    def dispatch(self, request, *args, **kwargs):
+        model = self.get_model()
+        response = self.export_excel(model)
+        return response

@@ -43,7 +43,7 @@
             <tbody>
                 {% for model_commercial in search_commercial_realized %}
                 <tr>
-                    <td>{{ model_commercial.model.get_name_json }}</td>
+                    <td>{{ model_commercial.model.get_name_json.modelo }}</td>
                     <td>{{ model_commercial.commercial.brand.entry }}</td>
                     <td>{{ model_commercial.commercial.brand }}</td>
                     <td>{{ model_commercial.commercial }}</td>

@@ -138,11 +138,16 @@ class Model(models.Model):
                 opener = urllib2.build_opener()
                 f = opener.open(req,timeout=1)
                 api = simplejson.load(f)
-                return api.get('modelo')
+                data = {
+                    'modelo':api.get('modelo'),
+                    'estatura':api.get('estatura'),
+                    'edad':api.get('edad')
+                }
+                return data
             except:
                 return self.model_code
         else:
-            return self.model_code
+            return None
 
 
 class ModelPhone(models.Model):

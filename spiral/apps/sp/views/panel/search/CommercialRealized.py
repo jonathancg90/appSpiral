@@ -25,6 +25,7 @@ class CommercialRealizedListView(LoginRequiredMixin, SearchFormMixin, ListView):
         qs = super(CommercialRealizedListView, self).get_queryset()
         qs = self._set_filter_brand(qs)
         qs = self._set_filter_entry(qs)
+        qs = qs.order_by('-commercial__realized')
         return qs
 
     def _set_filter_entry(self, qs):
