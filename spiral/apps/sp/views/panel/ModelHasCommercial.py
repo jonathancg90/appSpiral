@@ -83,6 +83,8 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         context['model_name'] = self.model.get_name_json()
         if context['model_name'] is None:
             context['model_name'] = self.model_code
+        else:
+            context['model_name'] = context['model_name'].get('modelo', None)
         return context
 
 

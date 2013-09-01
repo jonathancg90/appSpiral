@@ -20,7 +20,7 @@
     <file path="/Home.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372305618101" ignored="false" />
     <file path="/home.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372362411628" ignored="false" />
     <file path="/login.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372364430393" ignored="false" />
-    <file path="/ModelHasCommercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1377843252983" ignored="false" />
+    <file path="/ModelHasCommercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1378057948209" ignored="false" />
     <file path="/register_model.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372366602153" ignored="false" />
     <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/BrandView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
     <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/EntryView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
@@ -70,7 +70,7 @@
       <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="38" selection-start="4648" selection-end="4648" vertical-scroll-proportion="-6.5454545">
+            <state line="20" column="64" selection-start="936" selection-end="946" vertical-scroll-proportion="-12.5">
               <folding />
             </state>
           </provider>
@@ -79,28 +79,10 @@
       <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="255" column="63" selection-start="9724" selection-end="9724" vertical-scroll-proportion="0.30232558">
+            <state line="85" column="13" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.42976356">
               <folding>
                 <element signature="e#25#57#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="panel_base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="60" selection-start="469" selection-end="469" vertical-scroll-proportion="-6.25">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -344,6 +326,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="panel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model_has_commercial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -495,10 +507,9 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843792" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2821549" sideWeight="0.6715621" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2868687" sideWeight="0.6715621" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -507,6 +518,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843792" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -584,25 +596,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/website/home.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py">
@@ -625,42 +629,39 @@
     </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/django/views/generic/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="4" selection-start="2619" selection-end="2664" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="77" column="4" selection-start="2619" selection-end="2664" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/model_has_commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="22" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="17" column="22" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="14" selection-start="451" selection-end="461" vertical-scroll-proportion="0.410148">
-          <folding />
-        </state>
+        <state line="18" column="14" selection-start="451" selection-end="461" vertical-scroll-proportion="0.410148" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="23" selection-start="267" selection-end="267" vertical-scroll-proportion="0.28541225">
-          <folding />
-        </state>
+        <state line="10" column="23" selection-start="267" selection-end="267" vertical-scroll-proportion="0.28541225" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="51" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="11" column="51" selection-start="467" selection-end="467" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/commercial_realized.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="70" selection-start="1599" selection-end="1605" vertical-scroll-proportion="0.3325688">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="60" selection-start="469" selection-end="469" vertical-scroll-proportion="0.021582734">
           <folding />
         </state>
       </provider>
@@ -672,23 +673,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="60" selection-start="469" selection-end="469" vertical-scroll-proportion="-6.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="38" selection-start="4648" selection-end="4648" vertical-scroll-proportion="-6.5454545">
+        <state line="20" column="64" selection-start="936" selection-end="946" vertical-scroll-proportion="-12.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="255" column="63" selection-start="9724" selection-end="9724" vertical-scroll-proportion="0.30232558">
+        <state line="85" column="13" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.42976356">
           <folding>
             <element signature="e#25#57#0" expanded="true" />
           </folding>
