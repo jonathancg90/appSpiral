@@ -7,3 +7,4 @@ django-classy-tags==0.3.4.1
 django-crispy-forms==1.2.5
 mysql-connector-python==1.0.9
 wsgiref==0.1.2
+django-debug-toolbar==0.9.4
