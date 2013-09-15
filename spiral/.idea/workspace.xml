@@ -31,7 +31,7 @@
     <file path="/Commercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379263246869" ignored="false" />
     <file path="/Brand.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361584111" ignored="false" />
     <file path="/urls.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373225970383" ignored="false" />
-    <file path="/Model.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379263451412" ignored="false" />
+    <file path="/Model.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379280770763" ignored="false" />
     <file path="/Register.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372366463859" ignored="false" />
     <file path="/panel_base.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379188725644" ignored="false" />
     <file path="/model.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372368026910" ignored="false" />
@@ -43,12 +43,12 @@
     <file path="/view.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373973332941" ignored="false" />
     <file path="$PROJECT_DIR$/../../../../royal/royalpioneers/royal/settings/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373985062061" ignored="false" />
     <file path="/search.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379274305728" ignored="false" />
-    <file path="/CommercialRealized.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379279015675" ignored="false" />
+    <file path="/CommercialRealized.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379280971486" ignored="false" />
     <file path="/commercial_realized.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379188562077" ignored="false" />
     <file path="/create.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373993000788" ignored="false" />
     <file path="/tmp.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1377747480518" ignored="false" />
     <file path="/model_has_commercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1377829026142" ignored="false" />
-    <file path="/models_per_commercial.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379277481911" ignored="false" />
+    <file path="/models_per_commercial.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379279646936" ignored="false" />
     <file path="$PROJECT_DIR$/../../royalpioneers/apps/rp/forms/manufacturers.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379193088612" ignored="false" />
     <file path="/manufacturers.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379193032076" ignored="false" />
     <file path="/requirements.txt" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379224735514" ignored="false" />
@@ -86,7 +86,7 @@
       <file leaf-file-name="Model.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="14" selection-start="452" selection-end="462" vertical-scroll-proportion="0.0">
+            <state line="146" column="42" selection-start="3374" selection-end="3374" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -95,7 +95,7 @@
       <file leaf-file-name="CommercialRealized.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="81" selection-start="4552" selection-end="4552" vertical-scroll-proportion="0.36830357">
+            <state line="74" column="50" selection-start="2933" selection-end="2933" vertical-scroll-proportion="0.6339286">
               <folding>
                 <element signature="e#25#57#0" expanded="true" />
               </folding>
@@ -126,7 +126,7 @@
       <file leaf-file-name="models_per_commercial.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="75" selection-start="1083" selection-end="1093" vertical-scroll-proportion="-4.0833335">
+            <state line="48" column="77" selection-start="1746" selection-end="1746" vertical-scroll-proportion="-10.333333">
               <folding />
             </state>
           </provider>
@@ -159,13 +159,13 @@
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/apps/sp/models/Commercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/models/Model.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
         <option value="$PROJECT_DIR$/apps/sp/urls/panel/model_has_commercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/panel/search.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html" />
+        <option value="$PROJECT_DIR$/apps/sp/models/Model.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py" />
       </list>
     </option>
@@ -629,20 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="75" selection-start="1083" selection-end="1093" vertical-scroll-proportion="-4.0833335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="14" selection-start="452" selection-end="462" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="253" column="30" selection-start="9627" selection-end="9660" vertical-scroll-proportion="-8.612904">
@@ -652,9 +638,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="146" column="42" selection-start="3374" selection-end="3374" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="77" selection-start="1746" selection-end="1746" vertical-scroll-proportion="-10.333333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="81" selection-start="4552" selection-end="4552" vertical-scroll-proportion="0.36830357">
+        <state line="74" column="50" selection-start="2933" selection-end="2933" vertical-scroll-proportion="0.6339286">
           <folding>
             <element signature="e#25#57#0" expanded="true" />
           </folding>

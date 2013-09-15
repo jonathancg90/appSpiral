@@ -65,10 +65,14 @@ class ModelsPerCommercial(LoginRequiredMixin, SearchFormMixin, ListView):
 
     def get_data_project(self, project_code):
         data_project = {}
-        commercial = Commercial.objects.get(project__project_code=project_code)
-        data_project = commercial.get_data_api_json()
-        data_project.update({'realized': commercial.realized})
-        data_project.update({'code': project_code})
+        try:
+            commercial = Commercial.objects.get(project__project_code=project_code)
+            data_project = commercial.get_data_api_json()
+            data_project.update({'realized': commercial.realized})
+            data_project.update({'code': project_code})
+            data_project.update({'response': True})
+        except:
+            data_project.update({'response': False})
         return data_project
 
     def get_queryset(self):
