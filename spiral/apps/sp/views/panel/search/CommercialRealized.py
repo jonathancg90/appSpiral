@@ -8,6 +8,7 @@ from apps.sp.models.Commercial import Commercial
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm, \
     ProjectCodeFilterForm
+from django.http import HttpResponseRedirect, Http404
 
 
 class CommercialRealizedListView(LoginRequiredMixin, SearchFormMixin, ListView):
@@ -88,8 +89,7 @@ class ModelsPerCommercial(LoginRequiredMixin, SearchFormMixin, ListView):
 
                     data.append(tmp)
             except:
-                #Project code not valid
-                pass
+                raise Http404
         return data
 
     def get_context_data(self, **kwargs):

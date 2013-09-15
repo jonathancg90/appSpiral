@@ -51,7 +51,7 @@ class Commercial(models.Model):
                 if op == "M":
                     url = 'http://192.168.1.3/sistemas/sisadmini/api/proyecto.php?codigo='+self.model_code
                 else:
-                    url = 'http://192.168.1.3/sistemas/sisadmini/api/proyecto.php?codigo='+self.model_code+'&'+'op='+op
+                    url = 'http://192.168.1.3/sistemas/barranco/api/proyecto.php?codigo='+self.model_code+'&'+'op='+op
 
                 req = urllib2.Request(url, None, {'user-agent':'syncstream/vimeo'})
                 opener = urllib2.build_opener()
