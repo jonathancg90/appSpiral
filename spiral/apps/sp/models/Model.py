@@ -3,6 +3,7 @@ from django.db import models
 import urllib2
 import simplejson
 
+
 class Model(models.Model):
 
     STATUS_DISAPPROVE = 3
@@ -130,7 +131,7 @@ class Model(models.Model):
     class Meta:
         app_label = 'sp'
 
-    def get_name_json(self):
+    def get_data_api_json(self):
         if self.model_code is not None:
             try:
                 url = 'http://192.168.1.3/sistemas/proyspiral/api/model.php?codigo='+self.model_code
@@ -141,13 +142,18 @@ class Model(models.Model):
                 data = {
                     'modelo':api.get('modelo'),
                     'estatura':api.get('estatura'),
-                    'edad':api.get('edad')
+                    'edad':api.get('edad'),
+                    'response': True
                 }
                 return data
             except:
-                return self.model_code
-        else:
-            return None
+                pass
+
+        data = {
+            'modelo':self.model_code,
+            'response': False
+        }
+        return data
 
 
 class ModelPhone(models.Model):

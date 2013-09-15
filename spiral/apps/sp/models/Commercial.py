@@ -1,5 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+import urllib2
+import simplejson
 
 
 class Commercial(models.Model):
@@ -41,3 +43,27 @@ class Commercial(models.Model):
 
     class Meta:
         app_label = 'sp'
+
+    def get_data_api_json(self):
+        if self.project is not None:
+            try:
+                url = 'http://192.168.1.3/sistemas/proyspiral/api/model.php?codigo='+self.model_code
+                req = urllib2.Request(url, None, {'user-agent':'syncstream/vimeo'})
+                opener = urllib2.build_opener()
+                f = opener.open(req,timeout=1)
+                api = simplejson.load(f)
+                data = {
+                    'name':api.get('name'),
+                    'productora':api.get('productora'),
+                    'agencia':api.get('agencia'),
+                    'realizadora': api.get('realizadora'),
+                    'response': True
+                }
+                return data
+            except:
+                pass
+
+        data = {
+            'response': False
+        }
+        return data

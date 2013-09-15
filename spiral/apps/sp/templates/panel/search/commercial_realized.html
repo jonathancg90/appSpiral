@@ -43,12 +43,12 @@
             <tbody>
                 {% for model_commercial in search_commercial_realized %}
                 <tr>
-                    <td>{{ model_commercial.model.get_name_json.modelo }}</td>
+                    <td>{{ model_commercial.model.get_data_api_json.modelo }}</td>
                     <td>{{ model_commercial.commercial.brand.entry }}</td>
                     <td>{{ model_commercial.commercial.brand }}</td>
                     <td>{{ model_commercial.commercial }}</td>
                     <td>{{ model_commercial.commercial.realized |date:"d / M / Y" }}</td>
-                    <td><a target="_blank" href="http://192.168.1.3/sistemas/proyspiral/produccion/index.php?G_OpcS=3&cod={{ model_commercial.model.model_code }}">{% trans 'Mas detalles' %}</a></td>
+                    <td><a target="_blank" href="http://192.168.1.3/sistemas/proyspiral/produccion/index.php?G_OpcS=3&cod={{ model_commercial.model.model_code }}">{% trans 'Detalles' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

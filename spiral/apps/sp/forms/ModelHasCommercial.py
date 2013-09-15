@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from django.utils.translation import ugettext_lazy as _
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Commercial import Commercial
+from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 
 
 class ModelHasCommercialFilterForm(forms.Form):
@@ -23,11 +24,6 @@ class ModelHasCommercialFilterForm(forms.Form):
         choices=[('', '--------------')],
         required=False
     )
-    # commercial_realized__iexact = forms.CharField(
-    #     max_length=100,
-    #     required=False,
-    #     label=_(u'Realizado')
-    # )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -50,3 +46,11 @@ class ModelHasCommercialFilterForm(forms.Form):
     def set_commercial(self, brand_id):
         self.fields['commercial_id'].choices = [('', '--------------')] +list(Commercial.objects.filter(
                                             brand=brand_id).values_list('id', 'name'))
+
+
+class ProjectCodeFilterForm(forms.Form):
+
+    code = forms.CharField(
+        required=False,
+        label=_(u'Codigo'),
+    )

@@ -80,7 +80,7 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         self.request.session['model_has_commercial'] = self.model
         context = super(ModelHasCommercialListView, self).get_context_data(**kwargs)
         context['model'] = self.model
-        context['model_name'] = self.model.get_name_json()
+        context['model_name'] = self.model.get_data_api_json()
         return context
 
 
@@ -237,7 +237,7 @@ class ExportModelHasCommercialRedirectView(LoginRequiredMixin, View):
         wb = xlwt.Workbook()
         ws = wb.add_sheet('Sheetname')
 
-        personal_data = model.get_name_json()
+        personal_data = model.get_data_api_json()
         try:
             ws.write(0, 0, personal_data.name)
             ws.write(0, 1, personal_data.years)
