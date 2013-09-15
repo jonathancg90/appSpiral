@@ -78,14 +78,14 @@ class ModelsPerCommercial(LoginRequiredMixin, SearchFormMixin, ListView):
                 qs = super(ModelsPerCommercial, self).get_queryset()
                 qs = qs.filter(commercial__project__project_code=project_code)
                 for model in qs:
-                    appi_data = model.model.get_data_api_json()
+                    api_data = model.model.get_data_api_json()
                     tmp = {}
                     tmp['code'] = model.model.model_code
-                    if appi_data.get('response') is True:
-                        tmp['name'] = appi_data.modelo
-                        tmp['edad'] = appi_data.edad
-                        tmp['dni'] = None
-                        tmp['telefonos'] = None
+                    if api_data.get('response') is True:
+                        tmp['name'] = api_data.get('modelo')
+                        tmp['edad'] = api_data.get('edad')
+                        tmp['dni'] = api_data.get('dni')
+                        tmp['telefonos'] = api_data.get('telefonos')
 
                     data.append(tmp)
             except:
@@ -97,7 +97,7 @@ class ModelsPerCommercial(LoginRequiredMixin, SearchFormMixin, ListView):
         if self.data_project is not None:
             if self.data_project.get('response')==True:
                 context['project_data'] = {
-                    'name': self.date_project.realized,
+                    'name': self.date_project.get('realized'),
                     'date': self.date_project,
                     'productora': self.date_project,
                     'realizadora': self.date_project,
