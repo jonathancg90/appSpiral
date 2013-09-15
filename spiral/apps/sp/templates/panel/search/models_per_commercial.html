@@ -47,7 +47,7 @@
                 <ul>
                     <li>
                         <div class="report-option">{% trans 'Nombre' %}</div>
-                        <div class="report-info">: {{ project_data.name }}</div>
+                        <div class="report-info">: {{ project_data.nombre }}</div>
                     </li>
                     <li>
                         <div class="report-option">{% trans 'Fecha de realizacion' %} </div>
@@ -83,9 +83,9 @@
                     <tr>
                         <td>{{ model_commercial.code }}</td>
                         <td>{{ model_commercial.name }}</td>
-                        <td>{{ model_commercial.years }}</td>
+                        <td>{{ model_commercial.edad }}</td>
                         <td>{{ model_commercial.dni }}</td>
-                        <td>{{ model_commercial.phone }}</td>
+                        <td>{{ model_commercial.telefonos }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -94,7 +94,10 @@
             {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
         </div>
     {% else %}
-        No se encontro
+        <div class="hero-unit">
+            <h2>No se encontraron resultados</h2>
+            <p>Ingrese un codigo de proyecto valido</p>
+      </div>
     {% endif %}
 {% endblock %}
 {% block script_bottom %}

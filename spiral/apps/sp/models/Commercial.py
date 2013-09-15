@@ -45,15 +45,20 @@ class Commercial(models.Model):
         app_label = 'sp'
 
     def get_data_api_json(self):
-        if self.project is not None:
+        if self.project.project_code is not None:
             try:
-                url = 'http://192.168.1.3/sistemas/proyspiral/api/model.php?codigo='+self.model_code
+                op = self.project.project_code[5:6]
+                if op == "M":
+                    url = 'http://192.168.1.3/sistemas/sisadmini/api/proyecto.php?codigo='+self.model_code
+                else:
+                    url = 'http://192.168.1.3/sistemas/sisadmini/api/proyecto.php?codigo='+self.model_code+'&'+'op='+op
+
                 req = urllib2.Request(url, None, {'user-agent':'syncstream/vimeo'})
                 opener = urllib2.build_opener()
                 f = opener.open(req,timeout=1)
                 api = simplejson.load(f)
                 data = {
-                    'name':api.get('name'),
+                    'nombre':api.get('name'),
                     'productora':api.get('productora'),
                     'agencia':api.get('agencia'),
                     'realizadora': api.get('realizadora'),
