@@ -6,7 +6,7 @@
 {% block content %}
     <div class="page-header">
         <div class="tools">
-            <a href="{%   url "entry_create" %}" class="btn btn-success">
+            <a href="{% url "entry_create" %}" class="btn btn-success">
                 <i class="icon-plus icon-white"></i> {% trans 'Nuevo rubro' %}</a>
         </div>
         <h2>{%  trans 'Rubros registrados' %}</h2>

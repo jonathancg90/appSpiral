@@ -58,10 +58,10 @@ class Commercial(models.Model):
                 f = opener.open(req,timeout=1)
                 api = simplejson.load(f)
                 data = {
-                    'nombre':api.get('name'),
-                    'productora':api.get('productora'),
-                    'agencia':api.get('agencia'),
-                    'realizadora': api.get('realizadora'),
+                    'nombre':api.get('nombre', None),
+                    'productora':api.get('productora', None),
+                    'agencia':api.get('agencia', None),
+                    'realizadora': api.get('realizadora', None),
                     'response': True
                 }
                 return data

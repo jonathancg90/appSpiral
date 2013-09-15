@@ -7,7 +7,6 @@ from apps.sp.views.panel.ModelHasCommercial import ModelHasCommercialListView, \
     ModelHasCommercialRedirectView, ExportModelHasCommercialRedirectView
 
 
-
 urlpatterns = patterns('',
 
     #Model has commercial

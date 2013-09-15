@@ -18,7 +18,7 @@
             }
             .report-option{
                 font-size: 2em;
-                width: 30%;
+                width: 35%;
                 float: left;
             }
         </style>
@@ -28,9 +28,9 @@
     <div class="page-header">
         <h2>{%  trans 'Modelos por comercial' %}</h2>
         <div class="tools">
-            <a href="" class="btn btn-success">
+            <a class="btn btn-success btnPrint" href="">
                 <i class="icon-print icon-white"></i> {% trans 'Imprimir' %}</a>
-            <a href="" class="btn btn-info" >
+            <a href="{% url "search_export_models_per_comercial" project_id %}" class="btn btn-info" >
                 <i class=" icon-file icon-white"></i> {% trans 'Exportar' %}</a>
         </div>
     </div>
@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <div class="report-option">{% trans 'Fecha de realizacion' %} </div>
-                        <div class="report-info">: {{ project_data.date }}</div>
+                        <div class="report-info">: {{ project_data.realized }}</div>
                     </li>
                     <li>
                         <div class="report-option">{% trans 'Productora' %} </div>
@@ -82,7 +82,7 @@
                     {% for model_commercial in search_model_per_commercial %}
                     <tr>
                         <td>{{ model_commercial.code }}</td>
-                        <td>{{ model_commercial.name }}</td>
+                        <td>{{ model_commercial.nombre }}</td>
                         <td>{{ model_commercial.edad }}</td>
                         <td>{{ model_commercial.dni }}</td>
                         <td>{{ model_commercial.telefonos }}</td>
@@ -101,9 +101,32 @@
     {% endif %}
 {% endblock %}
 {% block script_bottom %}
+    <script>
+        var url_print = window.location.href;
+    </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.printPage.js"></script>
+
     <script type="text/javascript">
     $(document).on('ready',function(){
         $('.controls').append($('#search'));
+        if(window.location.search.length>0){
+            url_print = url_print + '&print=true'
+        }else {
+            url_print = url_print + '?print=true'
+        }
+        if (window.location.href.toLowerCase().indexOf("print") >= 0){
+            $('.navbar').css( "display", "none");
+            $('.page-header').css( "display", "none");
+            $('.search-form').css( "display", "none");
+            $('.report-option').css( "width", "50%");
+        }
+
+        $(".btnPrint").printPage({
+          url: url_print,
+          attr: "href",
+          message:"Espere un momento"
+        })
+
     });
 
     </script>

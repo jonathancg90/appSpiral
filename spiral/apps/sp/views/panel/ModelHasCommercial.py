@@ -239,9 +239,9 @@ class ExportModelHasCommercialRedirectView(LoginRequiredMixin, View):
 
         personal_data = model.get_data_api_json()
         try:
-            ws.write(0, 0, personal_data.name)
-            ws.write(0, 1, personal_data.years)
-            ws.write(0, 2, personal_data.height)
+            ws.write(0, 0, personal_data.get('name'))
+            ws.write(0, 1, personal_data.get('edad'))
+            ws.write(0, 2, personal_data.get('estatura'))
         except:
             pass
 

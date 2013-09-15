@@ -143,6 +143,8 @@ class Model(models.Model):
                     'modelo':api.get('modelo'),
                     'estatura':api.get('estatura'),
                     'edad':api.get('edad'),
+                    'dni':api.get('dni'),
+                    'telefonos':api.get('relefonos'),
                     'response': True
                 }
                 return data
