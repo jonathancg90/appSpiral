@@ -48,7 +48,7 @@
     <file path="/create.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373993000788" ignored="false" />
     <file path="/tmp.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1377747480518" ignored="false" />
     <file path="/model_has_commercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1377829026142" ignored="false" />
-    <file path="/models_per_commercial.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379279646936" ignored="false" />
+    <file path="/models_per_commercial.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1380175000759" ignored="false" />
     <file path="$PROJECT_DIR$/../../royalpioneers/apps/rp/forms/manufacturers.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379193088612" ignored="false" />
     <file path="/manufacturers.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379193032076" ignored="false" />
     <file path="/requirements.txt" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379224735514" ignored="false" />
@@ -72,10 +72,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="247" column="26" selection-start="9337" selection-end="9337" vertical-scroll-proportion="4.3575583">
+            <state line="247" column="26" selection-start="9337" selection-end="9337" vertical-scroll-proportion="-96.70968">
               <folding />
             </state>
           </provider>
@@ -101,10 +101,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models_per_commercial.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models_per_commercial.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="92" selection-start="2066" selection-end="2066" vertical-scroll-proportion="1.8333334">
+            <state line="53" column="87" selection-start="2061" selection-end="2061" vertical-scroll-proportion="0.19568345">
               <folding />
             </state>
           </provider>
@@ -134,8 +134,8 @@
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
         <option value="$PROJECT_DIR$/apps/sp/models/Model.py" />
         <option value="$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html" />
         <option value="$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html" />
       </list>
     </option>
   </component>
@@ -589,7 +589,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="23" selection-start="208" selection-end="208" vertical-scroll-proportion="0.28301886" />
+        <state line="8" column="23" selection-start="208" selection-end="208" vertical-scroll-proportion="0.28301886">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/search.py">
@@ -627,9 +629,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
+    <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="92" selection-start="2066" selection-end="2066" vertical-scroll-proportion="1.8333334">
+        <state line="247" column="26" selection-start="9337" selection-end="9337" vertical-scroll-proportion="-96.70968">
           <folding />
         </state>
       </provider>
@@ -643,9 +645,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="247" column="26" selection-start="9337" selection-end="9337" vertical-scroll-proportion="4.3575583">
+        <state line="53" column="87" selection-start="2061" selection-end="2061" vertical-scroll-proportion="0.19568345">
           <folding />
         </state>
       </provider>
