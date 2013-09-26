@@ -247,6 +247,8 @@ class ExportModelHasCommercialRedirectView(LoginRequiredMixin, View):
 
         ws.write(0, 3, '')
         commercial_realized = ModelHasCommercial.objects.filter(model=model)
+        commercial_realized = commercial_realized.order_by('-commercial__realized')
+
         all = ''
         for commercial in commercial_realized:
             name_commercial = commercial.commercial.name
