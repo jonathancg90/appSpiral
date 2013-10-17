@@ -1,0 +1,36 @@
+{% extends 'panel/panel_base.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
+    {% endblock %}
+
+{% block content %}
+    <div ng-app="searchApp">
+        <div animated-view></div>
+    </div>
+{% endblock %}
+{% block script_bottom %}
+
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/app.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/directives/animatedView.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/controllers/controller.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/factories/model.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/filters/filter.js"></script>
+<script>
+    var searchUrls = {};
+
+    // view templates
+    searchUrls.basic = '{% url "search_basic_model" %}';
+    searchUrls.advance = '{% url "search_advance_model" %}';
+
+    angular.module('searchApp').value('csrfToken', {
+        csrfToken: '{{ csrf_token }}'
+    });
+</script>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, TemplateView
 from apps.common.view import SearchFormMixin
 from apps.common.view import LoginRequiredMixin
 from apps.sp.models.Commercial import Commercial
@@ -163,3 +163,15 @@ class ExportCommercialRealizedView(LoginRequiredMixin, View):
         project_code = Project.objects.get(pk=self.kwargs.get('pk')).project_code
         response = self.export_excel(project_code)
         return response
+
+
+class ModelSearchView(LoginRequiredMixin, TemplateView):
+    template_name = 'panel/search/model/base.html'
+
+
+class ModelBasicSearchView(LoginRequiredMixin, TemplateView):
+    template_name = 'panel/search/model/basic_search.html'
+
+
+class ModelAdvanceSearchView(LoginRequiredMixin, TemplateView):
+    template_name = 'panel/search/model/advance_search.html'

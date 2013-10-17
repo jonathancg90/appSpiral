@@ -9,11 +9,11 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Criterion.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372142934514" ignored="false" />
     <file path="/CriterionCategory.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372137555369" ignored="false" />
-    <file path="/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373989863661" ignored="false" />
+    <file path="/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316525227" ignored="false" />
     <file path="/insert.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372143157942" ignored="false" />
     <file path="/criterion_category.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372142050320" ignored="false" />
     <file path="/Dummy.txt" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373225004519" ignored="false" />
-    <file path="/a.dummy" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379264449998" ignored="false" />
+    <file path="/a.dummy" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381984477969" ignored="false" />
     <file path="/insert_helper.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372143012558" ignored="false" />
     <file path="/0012_auto__add_field_criteriondetail_criterion.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372142985800" ignored="false" />
     <file path="/ModelCriterionDetail.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372144097271" ignored="false" />
@@ -22,9 +22,6 @@
     <file path="/login.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372364430393" ignored="false" />
     <file path="/ModelHasCommercial.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379270587249" ignored="false" />
     <file path="/register_model.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372366602153" ignored="false" />
-    <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/BrandView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
-    <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/EntryView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
-    <file path="$PROJECT_DIR$/apps/sp/tests/model_has_commercial/CommercialView.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361216612" ignored="false" />
     <file path="/register_model.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372362146069" ignored="false" />
     <file path="/Entry.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361491752" ignored="false" />
     <file path="/Contract.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1372361521700" ignored="false" />
@@ -42,8 +39,8 @@
     <file path="/list.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379207493240" ignored="false" />
     <file path="/view.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373973332941" ignored="false" />
     <file path="$PROJECT_DIR$/../../../../royal/royalpioneers/royal/settings/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373985062061" ignored="false" />
-    <file path="/search.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379274305728" ignored="false" />
-    <file path="/CommercialRealized.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379280971486" ignored="false" />
+    <file path="/search.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381987995652" ignored="false" />
+    <file path="/CommercialRealized.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381988014000" ignored="false" />
     <file path="/commercial_realized.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379188562077" ignored="false" />
     <file path="/create.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1373993000788" ignored="false" />
     <file path="/tmp.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1377747480518" ignored="false" />
@@ -52,7 +49,159 @@
     <file path="$PROJECT_DIR$/../../royalpioneers/apps/rp/forms/manufacturers.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379193088612" ignored="false" />
     <file path="/manufacturers.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379193032076" ignored="false" />
     <file path="/requirements.txt" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379224735514" ignored="false" />
-    <file path="$PROJECT_DIR$/apps/sp/templates/panel/search/commercial_realized.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1379262293322" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/apps/HistoryPlay/test/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316536442" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/apps/HistoryPlay/test/player/Game.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316116671" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/core/management/commands/loaddata.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/warnings.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316681816" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/pip/download.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/formtools/tests/wizard/forms.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/gis/tests/distapp/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/auth/tests/tokens.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/test_upload_docs.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/flatpages/tests/middleware.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/test_test.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/template/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/utils/unittest/main.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/sitemaps/tests/base.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/flatpages/tests/views.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/utils/unittest/result.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/pip/vendor/distlib/compat.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/test_resources.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/test/_doctest.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/_backport/hashlib/_sha.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/auth/tests/custom_user.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/psycopg2/tests/test_module.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/db/backends/sqlite3/creation.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/psycopg2/tests/testconfig.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/apps/HistoryPlay/tests/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/utils/feedgenerator.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/pip/vendor/distlib/metadata.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/depends.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/psycopg2/tests/test_extras_dictcursor.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/south/management/commands/migrate.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/core/mail/backends/locmem.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/psycopg2/tests/test_dates.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/templatetags/i18n.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/utils/text.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/south/tests/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/auth/urls.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/command/easy_install.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/admin/static/admin/js/jquery.min.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/psycopg2/tests/testutils.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/gis/tests/relatedapp/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/command/sdist.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/core/management/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/auth/decorators.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/core/management/commands/test.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/dist.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/tests/handlers.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/db/models/options.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/psycopg2/tests/test_quote.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/tests/forms.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/psycopg2/tests/test_green.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/tests/remote_user.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/tests/views.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/gis/tests/geogapp/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/command/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/utils/unittest/suite.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679077" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/utils/unittest/result.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/tests/auth_backends.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/tests/server.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/south/tests/db_mysql.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/core/management/commands/loaddata.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_bugX000.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/south/tests/brokenapp/models.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/gis/tests/distapp/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_extras_dictcursor.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/tests/doctest.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/flatpages/tests/forms.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/test/utils.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/gis/gdal/tests/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/pip/vendor/distlib/metadata.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_dates.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/db/backends/oracle/creation.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/template/response.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/tests/test_test.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/template/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/tests/test_dist_info.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/south/tests/fakeapp/models.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/tests/test_resources.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/utils/feedgenerator.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/command/sdist.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/tests/test_packageindex.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_psycopg2_dbapi20.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/dbapi20.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/gis/geos/tests/test_geos.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/gis/tests/geo3d/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/utils/text.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_types_basic.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/depends.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/views/debug.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/setuptools/package_index.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/webdesign/templatetags/webdesign.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/localflavor/mk/forms.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/abc.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316681816" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/south/management/commands/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/command/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/xlrd/sheet.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/stat.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316681816" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/gis/db/backends/spatialite/creation.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/test_sdist.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679078" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/auth/tests/remote_user.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/local/lib/python2.7/site-packages/django/contrib/formtools/tests/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316679079" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/command/easy_install.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_module.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/test_packageindex.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/formtools/tests/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/testconfig.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/urls.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/south/tests/db_mysql.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/package_index.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/gis/tests/relatedapp/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/admin/static/admin/js/jquery.min.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/testutils.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/decorators.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/utils/unittest/main.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/flatpages/tests/forms.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/pip/download.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/tests/tokens.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/core/management/commands/test.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/gis/tests/geo3d/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/_backport/hashlib/_sha.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710550" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/server.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/db/models/options.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/south/management/commands/migrate.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/template/response.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_quote.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/xlrd/sheet.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/templatetags/i18n.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/psycopg2/tests/test_green.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/auth/tests/custom_user.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/doctest.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/south/tests/fakeapp/models.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/db/backends/oracle/creation.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/core/mail/backends/locmem.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/views/debug.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/gis/tests/geogapp/tests.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/contrib/gis/geos/tests/test_geos.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/setuptools/tests/test_dist_info.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/env/lib/python2.7/site-packages/django/test/_doctest.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316710552" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/apps/HistoryPlay/tests/player/Game.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316812599" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/apps/HistoryPlay/tests/helpers/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316829659" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/apps/HistoryPlay/tests/helpers/data_helpers/__init__.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381316838509" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../../heroku/lima/apps/HistoryPlay/tests/helpers/data_helpers/place.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381317066254" ignored="false" />
+    <file path="/place.py" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381317045831" ignored="false" />
+    <file path="/app.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381987956592" ignored="false" />
+    <file path="/model.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381984369774" ignored="false" />
+    <file path="/base.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381989838607" ignored="false" />
+    <file path="/basic_search.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381986988870" ignored="false" />
+    <file path="/controller.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381988705448" ignored="false" />
+    <file path="/model.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381986777614" ignored="false" />
+    <file path="/advance_search.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381989340654" ignored="false" />
+    <file path="/advance.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381989277398" ignored="false" />
+    <file path="/filter.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381991818418" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,39 +221,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ModelHasCommercial.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
+      <file leaf-file-name="search.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/search.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="247" column="26" selection-start="9337" selection-end="9337" vertical-scroll-proportion="-96.70968">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="63" selection-start="2312" selection-end="2327" vertical-scroll-proportion="-22.583334">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommercialRealized.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="38" selection-start="3372" selection-end="3372" vertical-scroll-proportion="0.0">
+            <state line="32" column="34" selection-start="1006" selection-end="1026" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#25#57#0" expanded="true" />
+                <element signature="e#25#67#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models_per_commercial.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
+      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/model/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="87" selection-start="2061" selection-end="2061" vertical-scroll-proportion="0.19568345">
+            <state line="22" column="0" selection-start="842" selection-end="918" vertical-scroll-proportion="-11.708333">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/apps/search/factories/model.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="225" column="24" selection-start="7091" selection-end="7244" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/apps/search/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="1" selection-start="88" selection-end="88" vertical-scroll-proportion="-0.48387095">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/apps/search/controllers/controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="69" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basic_search.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/model/basic_search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="38" selection-start="494" selection-end="494" vertical-scroll-proportion="-9.375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="advance_search.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/model/advance_search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="51" selection-start="523" selection-end="523" vertical-scroll-proportion="-9.375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filter.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/js/apps/search/filters/filter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="49" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.63414633">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="animatedView.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/apps/search/directives/animatedView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="19" selection-start="620" selection-end="621" vertical-scroll-proportion="39.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commercial_realized.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/commercial_realized.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="3306" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -120,30 +325,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/contract/contract_list.html" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/add_commercial.html" />
-        <option value="$PROJECT_DIR$/spiral/settings.py" />
-        <option value="$PROJECT_DIR$/apps/sp/forms/ModelHasCommercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/commercial_realized.html" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/apps/sp/models/Commercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html" />
-        <option value="$PROJECT_DIR$/apps/sp/urls/panel/model_has_commercial.py" />
-        <option value="$PROJECT_DIR$/apps/sp/urls/panel/search.py" />
-        <option value="$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html" />
-        <option value="$PROJECT_DIR$/apps/sp/models/Model.py" />
-        <option value="$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py" />
-        <option value="$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html" />
+        <option value="$PROJECT_DIR$/static/js/apps/basicSearch/app.js" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/model.html" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/directives/animatedView.js" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/model/advance.html" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/model/basic_search.html" />
+        <option value="$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py" />
+        <option value="$PROJECT_DIR$/apps/sp/urls/panel/search.py" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/factories/model.js" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/controllers/advanceController.js" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/controllers/controller.js" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/filters/advance.js" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/model/base.html" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/app.js" />
+        <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/model/advance_search.html" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/filters/filter.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1537" />
-    <option name="height" value="905" />
+    <option name="x" value="66" />
+    <option name="y" value="52" />
+    <option name="width" value="1533" />
+    <option name="height" value="847" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -199,6 +404,124 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factories" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="spiral" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -253,7 +576,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="urls" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -275,7 +598,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="urls" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -301,7 +624,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="panel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -310,6 +681,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spiral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="panel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -326,6 +731,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/sp/templates/panel/search/model" />
       <recent name="$PROJECT_DIR$/apps/sp/views/website" />
       <recent name="$PROJECT_DIR$/apps/sp/urls/panel" />
       <recent name="$PROJECT_DIR$/apps/sp/views" />
@@ -459,14 +865,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1537" height="905" extended-state="6" />
+    <frame x="66" y="52" width="1533" height="847" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32706222" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17710438" sideWeight="0.6715621" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17893316" sideWeight="0.67293775" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -475,7 +882,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843792" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -544,110 +950,122 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/commercial_realized.html">
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/commercial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="51" selection-start="1377" selection-end="1377" vertical-scroll-proportion="0.75342464">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/criterion_category.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="11" selection-start="221" selection-end="221" vertical-scroll-proportion="0.21613833">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/jquery.printPage.js">
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/entry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/panel_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="2625" selection-end="2635" vertical-scroll-proportion="-9.541667">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/ModelHasCommercial.py">
+    <entry file="file://$PROJECT_DIR$/apps/sp/tests/Helpers/data_helpers/project.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="4" selection-start="132" selection-end="132" vertical-scroll-proportion="0.16741072">
-          <folding />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#72#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/model_has_commercial.py">
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/views/generic/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="22" selection-start="732" selection-end="743" vertical-scroll-proportion="0.47767857" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/brand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/entry/entry_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="23" selection-start="208" selection-end="208" vertical-scroll-proportion="0.28301886">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/search.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="23" selection-start="552" selection-end="580" vertical-scroll-proportion="0.37552157">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/commercial/commercial_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="54" selection-start="1997" selection-end="1997" vertical-scroll-proportion="0.352518">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Commercial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="29" selection-start="1885" selection-end="1893" vertical-scroll-proportion="0.68706536">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/models/Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="42" selection-start="3374" selection-end="3374" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/model_has_commercial/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="63" selection-start="2312" selection-end="2327" vertical-scroll-proportion="-22.583334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/ModelHasCommercial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="247" column="26" selection-start="9337" selection-end="9337" vertical-scroll-proportion="-96.70968">
+        <state line="113" column="0" selection-start="3997" selection-end="4083" vertical-scroll-proportion="0.1446541">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="38" selection-start="3372" selection-end="3372" vertical-scroll-proportion="0.0">
+        <state line="175" column="28" selection-start="6884" selection-end="6906" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#25#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/models_per_commercial.html">
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/model/basic_search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="87" selection-start="2061" selection-end="2061" vertical-scroll-proportion="0.19568345">
+        <state line="15" column="38" selection-start="494" selection-end="494" vertical-scroll-proportion="-9.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/commercial_realized.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="3306" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/urls/panel/search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="34" selection-start="1006" selection-end="1026" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#25#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/directives/animatedView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="19" selection-start="620" selection-end="621" vertical-scroll-proportion="39.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/model/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="842" selection-end="918" vertical-scroll-proportion="-11.708333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="1" selection-start="88" selection-end="88" vertical-scroll-proportion="-0.48387095">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/model/advance_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="51" selection-start="523" selection-end="523" vertical-scroll-proportion="-9.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/controllers/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="69" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/factories/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="225" column="24" selection-start="7091" selection-end="7244" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/filters/filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="49" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.63414633">
           <folding />
         </state>
       </provider>
