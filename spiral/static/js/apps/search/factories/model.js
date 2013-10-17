@@ -149,7 +149,7 @@ angular.module('searchApp').factory('ModelFactory', function () {
                 'Telefonos': '965748125 - 4478122',
                 'carracteristicas':
                     {
-                        'genero':'femenino',
+                        'genero':'mujer',
                         'profesion': 'Anfitriona',
                         'cabello':'negro',
                         'estatura':'alta'

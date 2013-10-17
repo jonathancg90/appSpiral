@@ -198,7 +198,7 @@
     <file path="/base.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381989838607" ignored="false" />
     <file path="/basic_search.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381986988870" ignored="false" />
     <file path="/controller.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381988705448" ignored="false" />
-    <file path="/model.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381986777614" ignored="false" />
+    <file path="/model.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381991959843" ignored="false" />
     <file path="/advance_search.html" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381989340654" ignored="false" />
     <file path="/advance.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381989277398" ignored="false" />
     <file path="/filter.js" changelist="8213c907-b530-4ef5-882b-917a501b9491" time="1381991818418" ignored="false" />
@@ -241,10 +241,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="model.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/apps/search/factories/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="225" column="24" selection-start="7091" selection-end="7244" vertical-scroll-proportion="0.0">
+            <state line="150" column="21" selection-start="4665" selection-end="4665" vertical-scroll-proportion="0.49076518">
               <folding />
             </state>
           </provider>
@@ -253,7 +253,7 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/apps/search/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="1" selection-start="88" selection-end="88" vertical-scroll-proportion="-0.48387095">
+            <state line="4" column="0" selection-start="244" selection-end="244" vertical-scroll-proportion="-1.9354838">
               <folding />
             </state>
           </provider>
@@ -262,7 +262,7 @@
       <file leaf-file-name="controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/apps/search/controllers/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="69" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+            <state line="5" column="0" selection-start="143" selection-end="143" vertical-scroll-proportion="-2.419355">
               <folding />
             </state>
           </provider>
@@ -286,10 +286,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filter.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="filter.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/apps/search/filters/filter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="49" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.63414633">
+            <state line="34" column="24" selection-start="1523" selection-end="1523" vertical-scroll-proportion="-3.516129">
               <folding />
             </state>
           </provider>
@@ -298,7 +298,7 @@
       <file leaf-file-name="animatedView.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/apps/search/directives/animatedView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="19" selection-start="620" selection-end="621" vertical-scroll-proportion="39.0">
+            <state line="91" column="31" selection-start="3508" selection-end="3508" vertical-scroll-proportion="-0.19354838">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -333,7 +333,6 @@
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/model/basic_search.html" />
         <option value="$PROJECT_DIR$/apps/sp/views/panel/search/CommercialRealized.py" />
         <option value="$PROJECT_DIR$/apps/sp/urls/panel/search.py" />
-        <option value="$PROJECT_DIR$/static/js/apps/search/factories/model.js" />
         <option value="$PROJECT_DIR$/static/js/apps/search/controllers/advanceController.js" />
         <option value="$PROJECT_DIR$/static/js/apps/search/controllers/controller.js" />
         <option value="$PROJECT_DIR$/static/js/apps/search/filters/advance.js" />
@@ -341,6 +340,7 @@
         <option value="$PROJECT_DIR$/static/js/apps/search/app.js" />
         <option value="$PROJECT_DIR$/apps/sp/templates/panel/search/model/advance_search.html" />
         <option value="$PROJECT_DIR$/static/js/apps/search/filters/filter.js" />
+        <option value="$PROJECT_DIR$/static/js/apps/search/factories/model.js" />
       </list>
     </option>
   </component>
@@ -1019,25 +1019,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/apps/search/directives/animatedView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="620" selection-end="621" vertical-scroll-proportion="39.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/sp/templates/panel/search/model/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="0" selection-start="842" selection-end="918" vertical-scroll-proportion="-11.708333">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/apps/search/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="1" selection-start="88" selection-end="88" vertical-scroll-proportion="-0.48387095">
           <folding />
         </state>
       </provider>
@@ -1049,23 +1033,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/filters/filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="24" selection-start="1523" selection-end="1523" vertical-scroll-proportion="-3.516129">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/directives/animatedView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="31" selection-start="3508" selection-end="3508" vertical-scroll-proportion="-0.19354838">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/apps/search/controllers/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="69" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="143" selection-end="143" vertical-scroll-proportion="-2.419355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/apps/search/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="244" selection-end="244" vertical-scroll-proportion="-1.9354838">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/apps/search/factories/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="24" selection-start="7091" selection-end="7244" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/apps/search/filters/filter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="49" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.63414633">
+        <state line="150" column="21" selection-start="4665" selection-end="4665" vertical-scroll-proportion="0.49076518">
           <folding />
         </state>
       </provider>
