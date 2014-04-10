@@ -1,6 +1,5 @@
 from django import forms
 from apps.sp.models.Model import Model, ModelPhone
-from apps.sp.models.ModelCriterionDetail import ModelCriterionDetail
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Div
 
@@ -43,16 +42,3 @@ class RegisterModelPhoneForm(forms.Form):
         required=False,
         label=(u'Numero celular')
     )
-
-
-class RegisterCriterionModelForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_show_errors = True
-        self.helper.form_tag = False
-        super(RegisterCriterionModelForm, self).__init__(*args, **kwargs)
-
-    class Meta:
-        model = ModelCriterionDetail
-        exclude = ['model']

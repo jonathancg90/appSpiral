@@ -19,7 +19,7 @@ class CommercialViewTest(TestCase):
         self.date = datetime.datetime.now().utcnow().replace(tzinfo=utc)
 
     def insert_test_data(self):
-        self.insert_data_helper.insert_data_helper()
+        self.insert_data_helper.run()
 
     def test_basic_data(self):
         """

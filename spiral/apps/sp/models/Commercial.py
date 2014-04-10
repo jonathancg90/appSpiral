@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 import urllib2
-import simplejson
+from django.utils import simplejson
 
 
 class Commercial(models.Model):

@@ -1,20 +1,39 @@
 from django.utils.translation import ugettext_lazy as _
+from django.utils import simplejson
 from django.db import models
 import urllib2
-import simplejson
+import random
 
 
 class Model(models.Model):
 
-    STATUS_DISAPPROVE = 3
-    STATUS_EXCLUSIVE = 2
-    STATUS_ACTIVE = 1
+    STATUS_WEBSITE = 3 #Registrado a traves de la web
+    STATUS_DISAPPROVE = 2 #Modelo betado
+    STATUS_ACTIVE = 1 #Modelo registrado en spiral(acepto las condiciones)
     STATUS_INACTIVE = 0
+
     CHOICE_STATUS = (
         (STATUS_INACTIVE, _(u'Inactivo')),
         (STATUS_ACTIVE, _(u'Activo')),
-        (STATUS_EXCLUSIVE, _(u'Exclusivo')),
         (STATUS_DISAPPROVE, _(u'Sin aprobar'))
+    )
+
+    GENDER_MASC = 1
+    GENDER_FEM = 2
+
+    GENDER_CHOICES = (
+        (GENDER_MASC, _(u'Masculino')),
+        (GENDER_FEM, _(u'Femenino'))
+    )
+
+    TYPE_DNI = 1
+    TYPE_CARNET = 2
+    TYPE_PASSPORT = 3
+
+    TYPE_DOCUMENTS = (
+        (TYPE_CARNET, 'Carnet de extrangeria'),
+        (TYPE_DNI, 'DNI'),
+        (TYPE_PASSPORT, 'Pasaport')
     )
 
     model_code = models.CharField(
@@ -23,11 +42,15 @@ class Model(models.Model):
         unique=True
     )
 
-    dni = models.CharField(
-        verbose_name=_('DNI'),
+    type_doc = models.SmallIntegerField(
+        choices=TYPE_DOCUMENTS,
+        default=TYPE_DNI
+    )
+
+    number_doc = models.CharField(
+        verbose_name=_('Numero de documento'),
         max_length=15,
-        null=True,
-        unique=True
+        null=True
     )
 
     status = models.SmallIntegerField(
@@ -45,10 +68,14 @@ class Model(models.Model):
         max_length=45
     )
 
-    alias = models.CharField(
-        max_length=45,
-        null=True,
-        blank=True,
+    birth = models.DateField(
+        verbose_name=_(u'Fecha Nacimiento'),
+        null=False
+    )
+
+    gender = models.SmallIntegerField(
+        choices=GENDER_CHOICES,
+        default=GENDER_MASC
     )
 
     address = models.CharField(
@@ -57,26 +84,28 @@ class Model(models.Model):
         null=True,
     )
 
-    reference = models.CharField(
-        verbose_name=_('Referencia'),
-        max_length=100,
-        null=True,
-        blank=True
-    )
-
     email = models.EmailField(
         max_length=100,
         null=True
     )
 
-    birth = models.DateField(
-        verbose_name=_(u'Fecha Nacimiento'),
-        null=False
+    nationality = models.ForeignKey(
+        'country',
+        verbose_name=_(u'Nacionalidad'),
+        related_name='model_set',
+        null=True,
     )
 
-    birth_place = models.CharField(
-        verbose_name=_(u'Lugar de nacimiento'),
-        max_length=100,
+    phone_fixed = models.CharField(
+        verbose_name=_(u'Telefono fijo'),
+        max_length=20,
+        null=True,
+        blank=True,
+    )
+
+    phone_mobil = models.CharField(
+        verbose_name=_(u'Telefono mobil'),
+        max_length=20,
         null=True,
         blank=True,
     )
@@ -95,20 +124,6 @@ class Model(models.Model):
         decimal_places=2,
         null=True,
         blank=True,
-    )
-
-    size_shoe = models.DecimalField(
-        verbose_name=_(u'Talla Zapato'),
-        max_digits=4,
-        decimal_places=2,
-        null=True,
-        blank=True,
-    )
-
-    experience = models.CharField(
-        verbose_name=_(u'Experiencia'),
-        max_length=300,
-        default=_(u'Ninguna')
     )
 
     last_visit = models.DateField(
@@ -130,6 +145,20 @@ class Model(models.Model):
 
     class Meta:
         app_label = 'sp'
+
+    @classmethod
+    def get_types(self):
+        choices = []
+        for type in Model.TYPE_DOCUMENTS:
+            choices.append({
+                'id': type[0],
+                'name': type[1]
+            })
+        return choices
+
+    @classmethod
+    def get_code(self):
+        return random.randint(200, 500)
 
     def get_data_api_json(self):
         if self.model_code is not None:
@@ -158,33 +187,22 @@ class Model(models.Model):
         return data
 
 
-class ModelPhone(models.Model):
-
-    LANDLINE = 4
-    OPERATOR_CLARO = 3
-    OPERATOR_MOVISTAR = 2
-    OPERATOR_NEXTEL = 1
-    CHOICE_OPERATOR = (
-        (LANDLINE, _(u'Telefono fijo')),
-        (OPERATOR_CLARO, _(u'Claro')),
-        (OPERATOR_MOVISTAR, _(u'Movistar')),
-        (OPERATOR_NEXTEL, _(u'Nextel'))
-    )
-
+class ModelFeatureDetail(models.Model):
     model = models.ForeignKey(
         'Model',
-        verbose_name=_(u'Modelo'),
-        related_name='model_phone_set',
+        related_name='model_feature_detail_set',
     )
 
-    type = models.SmallIntegerField(
-        choices=CHOICE_OPERATOR,
-        default=LANDLINE
+    feature_value = models.ForeignKey(
+        'FeatureValue',
+        related_name='model_feature_detail_set',
     )
 
-    number = models.CharField(
-        verbose_name=_(u'Numero telefonico'),
-        max_length=10,
+    description = models.CharField(
+        verbose_name=_(u'Descripcion'),
+        max_length=100,
+        null=True,
+        blank=True
     )
 
     class Meta:

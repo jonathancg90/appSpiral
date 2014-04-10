@@ -4,28 +4,26 @@ from apps.sp.models.Brand import Brand
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Country import Country
+from apps.sp.models.City import City
 from apps.sp.models.ContryHasContract import CountryHasContract
 from apps.sp.models.Model import Model
-from apps.sp.models.Model import ModelPhone
 from apps.sp.models.Project import Project
-from apps.sp.models.Criterion import Criterion
-from apps.sp.models.Criterion import CriterionDetail
-from apps.sp.models.CriterionCategory import CriterionCategory
-from apps.sp.models.ModelCriterionDetail import ModelCriterionDetail
+from apps.sp.models.Feature import Feature
+from apps.sp.models.Feature import FeatureValue
+from apps.sp.models.Model import ModelFeatureDetail
 
 __all__ = [
     'Commercial',
     'Contract.py',
     'Brand',
     'Entry.py',
+    'City',
     'Model_has_commercial',
     'Country_has_contract',
     'Country'
     'Model',
     'Project',
-    'ModelPhone',
-    'Criterion',
-    'CriterionDetail',
-    'CriterionCategory',
-    'ModelCriterionDetail'
+    'ModelFeatureDetail',
+    'Feature',
+    'FeatureValue'
 ]

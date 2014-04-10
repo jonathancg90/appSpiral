@@ -1,0 +1,9 @@
+{% extends 'home.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    {% for email in emails %}
+        <p>{{ email }}</p>
+    {% endfor %}
+{% endblock %}

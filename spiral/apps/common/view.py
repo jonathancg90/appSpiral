@@ -2,6 +2,10 @@
 from django import http
 from .util import dict_strip_unicode_keys
 from django.utils import simplejson
+from django.http import HttpResponseBadRequest
+from django.core.exceptions import ImproperlyConfigured
+from django.core import serializers
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -241,6 +245,43 @@ class JSONResponseMixin(object):
 
         return simplejson.dumps(context)
 
+
+class NewJSONResponseMixin(object):
+    """
+    A mixin that allows you to easily serialize simple data such as a dict or
+    Django models.
+    """
+    content_type = "application/json"
+
+    def get_response_content_type(self):
+        if self.content_type is None:
+            raise ImproperlyConfigured("%(cls)s is missing a content type. "
+                                       "Define %(cls)s.content_type, or override "
+                                       "%(cls)s.get_content_type()." % {
+                                           "cls": self.__class__.__name__
+                                       })
+        return self.content_type
+
+    def render_json_response(self, context_dict, status_code=None):
+        """
+        Limited serialization for shipping plain data. Do not use for models
+        or other complex or custom objects.
+        """
+        json_context = json.dumps(context_dict, cls=DjangoJSONEncoder, ensure_ascii=False)
+        response = HttpResponse(json_context, content_type=self.get_response_content_type())
+
+        if status_code == 400:
+            return HttpResponseBadRequest(response)
+        else:
+            return response
+
+    def render_json_object_response(self, objects, **kwargs):
+        """
+        Serializes objects using Django's builtin JSON serializer. Additional
+        kwargs can be used the same way for django.core.serializers.serialize.
+        """
+        json_data = serializers.serialize("json", objects, **kwargs)
+        return HttpResponse(json_data, content_type=self.get_response_content_type())
 
 class LoginRequiredMixin(object):
     pass

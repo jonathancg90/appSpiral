@@ -1,0 +1,73 @@
+<div class="tab-pane active" id="profile" ng-controller="ProfileController">
+    <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputName">Codigo</label>
+            <div class="controls">
+                <input type="text" id="inputName" placeholder="Codigo" ng-model="model.code">
+                <span class="label label-info"><i class="icon-search"></i> Buscar</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputName">Modelo</label>
+            <div class="controls">
+                <input type="text" id="inputName" placeholder="Nombres" ng-model="model.name">
+                <input type="text" id="inputLastName" placeholder="Apellidos" ng-model="model.last_name">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputDoc" >Documento</label>
+            <div class="controls">
+                <select ng-model="model.type_doc" ng-options="type.name for type in docTypes">
+                    <option value="">-- choose type --</option>
+                </select>
+                <input type="text" id="inputLastName" placeholder="Numero de documento" ng-model="model.num_doc">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">Direccion</label>
+            <div class="controls">
+                <input type="text" id="inputAddress" placeholder="Av. Ejemplo 376" ng-model="model.address">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Email</label>
+            <div class="controls">
+                <input type="email" id="inputEmail" placeholder="ejemplo@dominio.com" ng-model="model.email">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputNac">Fecha de Nac.</label>
+            <div class="controls">
+                <input type="date" id="inputNac" placeholder="dd/mm/yyy" ng-model="model.birth" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputNationality">Nacionalidad</label>
+            <div class="controls">
+                <select ng-model="model.nationality" ng-options="country.nationality for country in countries">
+                    <option value="">-- choose country --</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="actionButton"></label>
+            <div class="controls">
+                <a href="#" id="hide-show-search" class="btn btn-success" ng-click="saveProfile()">Grabar</a>
+                <a href="#" id="hide-show-search" class="btn btn-info">Campos opcionales</a>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputHeight">Altura</label>
+            <div class="controls">
+                <input type="number" id="inputHeight" placeholder="0.00">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputWeight">Peso</label>
+            <div class="controls">
+                <input type="number" id="inputWeight" placeholder="0.00">
+            </div>
+        </div>
+    </form>
+    {[{ model }]}
+</div>

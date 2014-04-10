@@ -1,0 +1,104 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+{% block script_top %}
+    <style>
+
+        .fileupload-buttonbar{
+            margin-left: 0px !important;
+        }
+    </style>
+
+    {% include 'panel/model/section_create/fileupload/head.html' %}
+{% endblock %}
+
+{% block script_menu %}
+
+    <ul class="breadcrumb" id="menuModel">
+        <li class="active">
+            <i class="icon-home home-icon active"></i>
+            <a href="#profile">Perfil</a>
+                <span class="divider">
+                	<i class="icon-angle-right arrow-icon"></i>
+                </span>
+        </li>
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#feature">Carracteristicas</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#photo">Fotos</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#video">Videos</a>
+            <span class="divider">
+                <i class="icon-angle-right arrow-icon"></i>
+            </span>
+        </li>
+
+    </ul><!--.breadcrumb-->
+{% endblock %}
+
+{% block content %}
+    <div ng-app="modelApp">
+        <div class="content-tab" id="profile">
+            {% include 'panel/model/section_create/profile.html' %}
+        </div>
+        <div class="content-tab" id="feature">
+            {% include 'panel/model/section_create/features.html' %}
+        </div>
+        <div class="content-tab" id="photo">
+            {% include 'panel/model/section_create/photos.html' %}
+        </div>
+        <div class="content-tab" id="video">
+            {% include 'panel/model/section_create/photos.html' %}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script_bottom %}
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+    {% include 'panel/model/section_create/fileupload/scripts.html' %}
+    <script src="{{ STATIC_URL }}js/apps/model_profile/app.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/model_profile/controllers/controller.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/model_profile/factories/factory.js"></script>
+    <script>
+    // search urls
+    angular.module('modelApp').value("modelUrls", {
+        save_model: '{% url "panel_model_save_profile" %}',
+        urlCountries: '{% url "country_list_json" %}'
+    });
+    // search urls
+    angular.module('modelApp').value("modelData", {
+        docTypes: '{{ doc_types|safe }}'
+    });
+    angular.module('modelApp').constant("DjangoConstants", {
+        csrfToken: "{{ csrf_token }}"
+    });
+    </script>
+
+    <script>
+        $(document).on('ready', function(){
+            $('.content-tab').hide();
+            $('#profile').show();
+
+            $('#menuModel li a').on('click', function(e){
+                e.preventDefault();
+                $('.content-tab').hide(500);
+                var content = $(this).attr('href');
+                $(content).show(500);
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from apps.sp.views.panel.Model import ModelControlListView
+from apps.sp.views.panel.Model import ModelControlListView, \
+    ModelCreateView, ModelDataView, PictureModelCreateView, \
+    ModelDataJsonView
 
 urlpatterns = patterns('',
 
@@ -9,4 +11,20 @@ urlpatterns = patterns('',
     url(r'^model-control/list/$',
         ModelControlListView.as_view(),
         name='panel_model_control_list'),
+
+    url(r'^model-control/save/$',
+        ModelCreateView.as_view(),
+        name='panel_model_save_profile'),
+
+    url(r'^model-control/information/(?P<pk>\d+)/$',
+        ModelDataJsonView.as_view(),
+        name='panel_information_model'),
+
+    url(r'^model-control/data/$',
+        ModelDataView.as_view(),
+        name='panel_model_data'),
+
+    url(r'^model-control/save-picture/$',
+        PictureModelCreateView.as_view(),
+        name='panel_model_save_picture'),
 )

@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
 
 class ModelHasCommercial(models.Model):
@@ -17,7 +16,8 @@ class ModelHasCommercial(models.Model):
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False
-        )
+    )
+
     modified = models.DateTimeField(
         auto_now_add=True
     )

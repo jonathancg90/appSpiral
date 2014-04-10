@@ -24,8 +24,8 @@ class Entry(models.Model):
         auto_now_add=True
         )
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS,
-        default= STATUS_ACTIVE
+        choices=CHOICE_STATUS,
+        default=STATUS_ACTIVE
         )
 
     def __unicode__(self):

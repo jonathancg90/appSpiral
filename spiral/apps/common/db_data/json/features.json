@@ -1,0 +1,201 @@
+[
+    {
+        "name": "Tipo de cabello",
+        "values" : [
+            {
+                "name": "Lacio"
+            },
+            {
+                "name": "Ondulado"
+            },
+            {
+                "name": "Rizado"
+            },
+            {
+                "name": "Afro"
+            },
+            {
+                "name": "Sin cabello"
+            }
+        ]
+    },
+    {
+        "name": "Tamaño de cabello",
+        "values" : [
+            {
+                "name": "Corto"
+            },
+            {
+                "name": "Mediano"
+            },
+            {
+                "name": "Largo"
+            }
+        ]
+    },
+    {
+        "name": "Color de ojos",
+        "values" : [
+            {
+                "name": "Castaño"
+            },
+            {
+                "name": "Ambar"
+            },
+            {
+                "name": "Avellar"
+            },
+            {
+                "name": "Verde"
+            },
+            {
+                "name": "Azul"
+            },
+            {
+                "name": "Gris"
+            },
+            {
+                "name": "Marron"
+            },
+            {
+                "name": "Negro"
+            }
+        ]
+    },
+    {
+        "name": "Talla de ropa",
+        "values" : [
+            {
+                "name": "XXS"
+            },
+            {
+                "name": "XS"
+            },
+            {
+                "name": "S"
+            },
+            {
+                "name": "M"
+            },
+            {
+                "name": "L"
+            },
+            {
+                "name": "XL"
+            },
+            {
+                "name": "XXL"
+            },
+            {
+                "name": "XXXL"
+            }
+        ]
+    },
+    {
+        "name": "Talla de pantalon",
+        "values" : [
+            {
+                "name": "26"
+            },
+            {
+                "name": "27"
+            },
+            {
+                "name": "28"
+            },
+            {
+                "name": "29"
+            },
+            {
+                "name": "30"
+            },
+            {
+                "name": "32"
+            },
+            {
+                "name": "34"
+            },
+            {
+                "name": "36"
+            },
+            {
+                "name": "38"
+            },
+            {
+                "name": "40"
+            }
+        ]
+    },
+    {
+        "name": "Talla de zapatos",
+        "values" : [
+            {
+                "name": "35"
+            },
+            {
+                "name": "36"
+            },
+            {
+                "name": "37"
+            },
+            {
+                "name": "38"
+            },
+            {
+                "name": "39"
+            },
+            {
+                "name": "40"
+            },
+            {
+                "name": "41"
+            },
+            {
+                "name": "42"
+            },
+            {
+                "name": "43"
+            },
+            {
+                "name": "44"
+            },
+            {
+                "name": "45"
+            },
+            {
+                "name": "46"
+            },
+            {
+                "name": "47"
+            }
+        ]
+    },
+    {
+        "name": "Hobbies",
+        "values" : []
+    },
+    {
+        "name": "Ocupacion",
+        "values" : []
+    },
+    {
+        "name": "Redes sociales",
+        "values" : [
+            {
+                "name": "Facebook"
+            },
+            {
+                "name": "Twitter"
+            },
+            {
+                "name": "Youtube"
+            },
+            {
+                "name": "Linkedin"
+            },
+            {
+                "name": "Google Plus"
+            }
+        ]
+    }
+]
