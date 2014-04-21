@@ -3,7 +3,7 @@
 from django.conf.urls import url, patterns
 from apps.sp.views.panel.Model import ModelControlListView, \
     ModelCreateView, ModelDataView, PictureModelCreateView, \
-    ModelDataJsonView
+    ModelDataJsonView, ModelFeatureCreateView
 
 urlpatterns = patterns('',
 
@@ -12,11 +12,15 @@ urlpatterns = patterns('',
         ModelControlListView.as_view(),
         name='panel_model_control_list'),
 
-    url(r'^model-control/save/$',
+    url(r'^model-control/save-profile/$',
         ModelCreateView.as_view(),
         name='panel_model_save_profile'),
 
-    url(r'^model-control/information/(?P<pk>\d+)/$',
+    url(r'^model-control/save-feature/(?P<pk>[^/]+)/$',
+        ModelFeatureCreateView.as_view(),
+        name='panel_model_save_feature'),
+
+    url(r'^model-control/information/(?P<pk>[^/]+)/$',
         ModelDataJsonView.as_view(),
         name='panel_information_model'),
 

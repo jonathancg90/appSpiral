@@ -1,44 +1,23 @@
-<div class="tab-pane" id="features">
+<div class="tab-pane" id="features" ng-controller="FeatureController">
+
+    <h2>{[{ model.code }]}</h2>
+
     <div class="accordion" id="accordion2">
-        <div class="accordion-group">
+
+        <div class="accordion-group" ng-repeat="feature in features">
             <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                    Contextura :  Delgada
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{[{ feature.feature_id }]}">
+                    {[{ feature.feature_name }]} :
                 </a>
             </div>
-            <div id="collapseOne" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                    <form class="form-horizontal">
-                        <div class="control-group">
-                            <label class="control-label" for="inputName">Contextura</label>
-                            <div class="controls">
-                                <select name="" id="">
-                                    <option value="">Seleccione</option>
-                                    <option value="">Delgada</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                    Color cabello:  Rubio
-                </a>
-            </div>
-            <div id="collapseTwo" class="accordion-body collapse">
+            <div id="collapse{[{ feature.feature_id }]}" class="accordion-body collapse">
                 <div class="accordion-inner">
                     <form class="form-horizontal">
                         <div class="control-group">
                             <label class="control-label" for="inputName">Color de cabello</label>
                             <div class="controls">
-                                <select name="" id="">
-                                    <option value="">Seleccione</option>
-                                    <option value="">Rubio</option>
+                                <select ng-model="feature_value" ng-options="value.value_name for value in feature.feature_values" ng-change="save_model_feature(feature_value)">
+                                    <option value="">-- choose value --</option>
                                 </select>
                             </div>
                         </div>
@@ -46,5 +25,7 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>

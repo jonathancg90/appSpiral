@@ -48,6 +48,7 @@ class FeatureHelper(ReaderJsonHelper):
         for feature in features:
             _feature = Feature()
             _feature.name = feature.get('name')
+            _feature.type = feature.get('type')
             _feature.save()
             for value in feature.get('values'):
                 _feature_value = FeatureValue()

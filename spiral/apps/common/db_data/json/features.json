@@ -1,6 +1,7 @@
 [
     {
         "name": "Tipo de cabello",
+        "type": "1",
         "values" : [
             {
                 "name": "Lacio"
@@ -21,6 +22,7 @@
     },
     {
         "name": "Tamaño de cabello",
+        "type": "1",
         "values" : [
             {
                 "name": "Corto"
@@ -35,6 +37,7 @@
     },
     {
         "name": "Color de ojos",
+        "type": "1",
         "values" : [
             {
                 "name": "Castaño"
@@ -64,6 +67,7 @@
     },
     {
         "name": "Talla de ropa",
+        "type": "1",
         "values" : [
             {
                 "name": "XXS"
@@ -93,6 +97,7 @@
     },
     {
         "name": "Talla de pantalon",
+        "type": "1",
         "values" : [
             {
                 "name": "26"
@@ -128,6 +133,7 @@
     },
     {
         "name": "Talla de zapatos",
+        "type": "1",
         "values" : [
             {
                 "name": "35"
@@ -172,14 +178,287 @@
     },
     {
         "name": "Hobbies",
+        "type": "0",
         "values" : []
     },
     {
         "name": "Ocupacion",
-        "values" : []
+        "type": "0",
+        "values" : [
+            {
+                "name": "Actor / Actriz"
+            },
+            {
+                "name": "Administrador"
+            },
+            {
+                "name": "Agronomo"
+            },
+            {
+                "name": "Albañil"
+            },
+            {
+                "name": "Almacenero"
+            },
+            {
+                "name": "Ama De Casa"
+            },
+            {
+                "name": "Anfitriona"
+            },
+            {
+                "name": "Animador"
+            },
+            {
+                "name": "Antropologia"
+            },
+            {
+                "name": "Archivero"
+            },
+            {
+                "name": "Arqueologia"
+            },
+            {
+                "name": "Arquitecto"
+            },
+            {
+                "name": "Artesano"
+            },
+            {
+                "name": "Artista"
+            },
+            {
+                "name": "Asesor"
+            },
+            {
+                "name": "Asistente"
+            },
+            {
+                "name": "Astronomia"
+            },
+            {
+                "name": "Autor Literario,Escritor y Critico"
+            },
+            {
+                "name": "Aviacion Comercial"
+            },
+            {
+                "name": "Azafata"
+            },
+            {
+                "name": "Bailarin"
+            },
+            {
+                "name": "Bartender"
+            },
+            {
+                "name": "Bibliotecaria"
+            },
+            {
+                "name": "Biologia"
+            },
+            {
+                "name": "Bombero"
+            },
+            {
+                "name": "Botanico"
+            },
+            {
+                "name": "Cajero"
+            },
+            {
+                "name": "Cantante"
+            },
+            {
+                "name": "Carpintero y/o Ebanista"
+            },
+            {
+                "name": "Cheff"
+            },
+            {
+                "name": "Chofer"
+            },
+            {
+                "name": "Ciencias de la Comunicacion"
+            },
+            {
+                "name": "Coleccionista"
+            },
+            {
+                "name": "Cantante"
+            },
+            {
+                "name": "Comerciante"
+            },
+            {
+                "name": "Computacion Informatica"
+            },
+            {
+                "name": "Contabilidad"
+            },
+            {
+                "name": "Coreografo"
+            },
+            {
+                "name": "Derecho"
+            },
+            {
+                "name": "Digitador"
+            },
+            {
+                "name": "Diseño Grafico Digital"
+            },
+            {
+                "name": "Diseño Publicitario"
+            },
+            {
+                "name": "Economia"
+            },
+            {
+                "name": "Edicion de Video"
+            },
+            {
+                "name": "Electricista"
+            },
+            {
+                "name": "Empresario"
+            },
+            {
+                "name": "Enfermeria"
+            },
+            {
+                "name": "Entrenador Deportivo"
+            },
+            {
+                "name": "Estadistica"
+            },
+            {
+                "name": "Estilista"
+            },
+            {
+                "name": "Estudiante"
+            },
+            {
+                "name": "Fotografo"
+            },
+            {
+                "name": "Gasfitero"
+            },
+            {
+                "name": "Independiente"
+            },
+            {
+                "name": "Ingenieria Industrial"
+            },
+            {
+                "name": "Ingeniero"
+            },
+            {
+                "name": "Jardineria"
+            },
+            {
+                "name": "Kinesiologo"
+            },
+            {
+                "name": "Locutor"
+            },
+            {
+                "name": "Maestro de Ceremonias"
+            },
+            {
+                "name": "Mantenimiento de Limpieza"
+            },
+            {
+                "name": "Marketing Empresarial"
+            },
+            {
+                "name": "Mecanico"
+            },
+            {
+                "name": "Medicina Veterinaria"
+            },
+            {
+                "name": "Medico"
+            },
+            {
+                "name": "Militar"
+            },
+            {
+                "name": "Modelo"
+            },
+            {
+                "name": "Motociclista"
+            },
+            {
+                "name": "Musico"
+            },
+            {
+                "name": "Nutricionista"
+            },
+            {
+                "name": "Obrero"
+            },
+            {
+                "name": "Odontologia"
+            },{
+                "name": "Orfebre"
+            },
+            {
+                "name": "Panadero"
+            },
+            {
+                "name": "Pensionista"
+            },
+            {
+                "name": "Periodismo"
+            },
+            {
+                "name": "Pintor"
+            },
+            {
+                "name": "Profesor"
+            },
+            {
+                "name": "Psicologia"
+            },
+            {
+                "name": "Publisista"
+            },
+            {
+                "name": "Recepcionista"
+            },
+            {
+                "name": "Secretariado"
+            },
+            {
+                "name": "Seguridad"
+            },
+            {
+                "name": "Topografia"
+            },
+            {
+                "name": "Traductor"
+            },
+            {
+                "name": "Turismo y Hoteleria"
+            },
+            {
+                "name": "Ventas"
+            },
+            {
+                "name": "Veterinario"
+            },
+            {
+                "name": "Visitador MEdico"
+            },
+            {
+                "name": "Zootecnista"
+            }
+        ]
     },
     {
         "name": "Redes sociales",
+        "type": "0",
         "values" : [
             {
                 "name": "Facebook"

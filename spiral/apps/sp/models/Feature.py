@@ -13,6 +13,18 @@ class Feature(models.Model):
         (STATUS_ACTIVE, _(u'activo'))
     )
 
+    TYPE_UNIQUE = 1
+    TYPE_MULTIPLE = 0
+    CHOICE_TYPES = (
+        (TYPE_UNIQUE, _(u'Valor Unico')),
+        (TYPE_MULTIPLE, _(u'Valor multiple'))
+    )
+
+    type = models.SmallIntegerField(
+        choices=CHOICE_TYPES,
+        default=TYPE_UNIQUE
+    )
+
     name = models.CharField(
         max_length=45
     )
@@ -33,6 +45,29 @@ class Feature(models.Model):
 
     class Meta:
         app_label = 'sp'
+
+    @staticmethod
+    def get_data_features():
+        data = []
+        features = Feature.objects.filter(status=Feature.STATUS_ACTIVE)
+        features = features.select_related('feature_value')
+        for feature in features:
+            tmp = []
+            values = feature.feature_value_set.filter(status=FeatureValue.STATUS_ACTIVE)
+            for value in values:
+                tmp.append(
+                        {
+                            'value_id': value.id,
+                            'value_name': value.name
+                        }
+                )
+            data.append({
+                'feature_id': feature.id,
+                'feature_name': feature.name,
+                'feature_values':tmp
+            })
+
+        return data
 
 
 class FeatureValue(models.Model):

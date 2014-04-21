@@ -1,11 +1,11 @@
+# -*- coding: utf-8 -*-
 from django.contrib import auth, messages
 from django.core.urlresolvers import reverse
-from django.contrib.auth.models import User
-from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView, FormView, RedirectView
-from apps.sp.forms.User import LoginForm
 from django.utils.translation import ugettext_lazy as _
+
+from apps.sp.forms.User import LoginForm
 
 
 class HomeTemplateView(TemplateView):

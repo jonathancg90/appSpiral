@@ -60,11 +60,10 @@ class CommercialUpdateForm(forms.ModelForm):
         )
         self.Meta.fields.append('project')
 
-
     class Meta:
         model = Commercial
         fields = ['name', 'realized', 'brand']
-        exclude = [ 'status', 'project' ]
+        exclude = [ 'status', 'project']
 
 
 class CommercialFiltersForm(forms.Form):

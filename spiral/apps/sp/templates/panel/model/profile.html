@@ -71,17 +71,21 @@
     <script src="{{ STATIC_URL }}js/angular.js"></script>
     {% include 'panel/model/section_create/fileupload/scripts.html' %}
     <script src="{{ STATIC_URL }}js/apps/model_profile/app.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/model_profile/services/model.js"></script>
     <script src="{{ STATIC_URL }}js/apps/model_profile/controllers/controller.js"></script>
     <script src="{{ STATIC_URL }}js/apps/model_profile/factories/factory.js"></script>
     <script>
     // search urls
     angular.module('modelApp').value("modelUrls", {
         save_model: '{% url "panel_model_save_profile" %}',
-        urlCountries: '{% url "country_list_json" %}'
+        save_feature: '{% url "panel_model_save_feature" pk=':pk' %}',
+        urlCountries: '{% url "country_list_json" %}',
+        urlSearch: '{% url "panel_information_model" pk=':pk' %}'
     });
     // search urls
     angular.module('modelApp').value("modelData", {
-        docTypes: '{{ doc_types|safe }}'
+        docTypes: '{{ doc_types|safe }}',
+        features: '{{ features|safe }}'
     });
     angular.module('modelApp').constant("DjangoConstants", {
         csrfToken: "{{ csrf_token }}"

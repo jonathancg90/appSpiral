@@ -24,7 +24,16 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
             });
     };
 
-    factory.saveProfileData = function(urlSave){
+    factory.saveProfileData = function(urlSave, data){
+        return $http.post(urlSave, angular.toJson(data))
+            .then(function(response) {
+                if(response.data.status == 200) {
+                    return response.data.message;
+                }
+            });
+    };
+
+    factory.saveFeatureData = function(urlSave){
         return $http.post(urlSave, angular.toJson(self.profile))
             .then(function(response) {
                 if(response.data.status == 200) {
@@ -32,5 +41,15 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
                 }
             });
     };
+
+    factory.searchModel = function(urlSearch){
+        return $http.get(urlSearch, { cache: true })
+            .then(function(response) {
+                if(response.status == 200) {
+                    return response.data.profile;
+                }
+            });
+    };
+
     return factory;
 }]);

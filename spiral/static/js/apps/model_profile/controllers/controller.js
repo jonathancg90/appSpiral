@@ -1,12 +1,11 @@
 var controllers = {};
 
-controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelData){
-    $scope.model = {};
+controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelData, modelStorage){
+    $scope.model = modelStorage;
     var urlSave = modelUrls.save_model,
-        urlCountries = modelUrls.urlCountries;
+        urlCountries = modelUrls.urlCountries,
+        urlSearch = modelUrls.urlSearch;
     $scope.docTypes = jQuery.parseJSON(modelData.docTypes);
-
-
 
     $scope.saveProfile = function(){
         if(required()){
@@ -19,6 +18,11 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     };
 
     $scope.countries = ModelFactory.getCountries(urlCountries);
+
+    $scope.getModel = function(){
+        $scope.model.id = $scope.model.code;
+        $scope.model = ModelFactory.searchModel(urlSearch.replace(':pk', $scope.model.id));
+    };
 
     function required(){
         if( $scope.model.name != undefined &&
@@ -41,6 +45,24 @@ controllers.DemoFileUploadController = function($scope,
         url: '/panel/model/model-control/save-picture/'
     };
 
+};
+
+
+controllers.FeatureController = function($scope, ModelFactory, modelUrls, modelData, modelStorage){
+    var urlSave = modelUrls.save_feature;
+
+    $scope.model = modelStorage;
+    $scope.features = jQuery.parseJSON(modelData.features);
+
+    $scope.save_model_feature = function(feature){
+        $scope.model.id = $scope.model.code;
+        if( $scope.model.id != undefined){
+            var message = ModelFactory.saveProfileData(urlSave.replace(':pk', $scope.model.id), feature);
+            console.log(message);
+        } else {
+            console.log("selecionar un modelo");
+        }
+    }
 };
 
 controllers.FileDestroyController = function($scope, $http){

@@ -69,7 +69,6 @@ class Command(BaseCommand):
             else:
                 self.stdout.write('can not insert the data: country. \n')
 
-
     # def insert_criterion_category(self):
     #     if self.data_delete:
     #         CriterionCategory.objects.all().delete()

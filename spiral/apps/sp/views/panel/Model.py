@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+from django.db import transaction
 from django.views.generic import View, TemplateView, CreateView
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
@@ -10,8 +11,9 @@ from apps.fileupload.models import Picture, PictureThumbnail
 from apps.fileupload.serialize import serialize
 from apps.fileupload.response import JSONResponse, response_mimetype
 
-from apps.sp.models.Model import Model
+from apps.sp.models.Model import Model, ModelFeatureDetail
 from apps.sp.models.Country import Country
+from apps.sp.models.Feature import Feature, FeatureValue
 from apps.common.view import JSONResponseMixin
 from apps.common.view import LoginRequiredMixin
 
@@ -22,6 +24,7 @@ class ModelControlListView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ModelControlListView, self).get_context_data(**kwargs)
         context['doc_types'] = json.dumps(Model.get_types())
+        context['features'] = json.dumps(Feature.get_data_features())
         return context
 
 
@@ -44,12 +47,13 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
         data = []
         features = model.model_feature_detail_set.all()
         features = features.select_related('feature_value')
-        for feature in features:
+        for feature_detail in features:
+            value = feature_detail.feature_value
             data.append({
-                'feature_id': feature.id,
-                'feature': feature.name,
-                'value_id': feature.feature_value.name,
-                'value': feature.feature_value.id
+                'feature_id': value.feature.id,
+                'feature': value.feature.name,
+                'value_id': value.id,
+                'value': value.name
             })
         return data
 
@@ -174,6 +178,54 @@ class PictureModelCreateView(CreateView):
     def form_invalid(self, form):
         data = json.dumps(form.errors)
         return HttpResponse(content=data, status=400, content_type='application/json')
+
+
+class ModelFeatureCreateView(LoginRequiredMixin, JSONResponseMixin, View):
+    SAVE_SUCCESSFUL = 'Datos descriptivos grabados'
+    ERROR_MODEL_SAVE = 'ocurrio un error al tratar de grabar la informacion del modelo'
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ModelFeatureCreateView, self).dispatch(request, *args, **kwargs)
+
+    def save_feature_mode(self, data):
+        feature_value = FeatureValue.objects.get(pk=data.get('value_id'))
+        feature = feature_value.feature
+        model = Model.objects.get(pk=self.kwargs.get('pk'))
+
+        if model.model_feature_detail_set.filter(feature_value__feature=feature).exists():
+            if feature.type == Feature.TYPE_UNIQUE:
+                detail = model.model_feature_detail_set.get(feature_value__feature=feature)
+                detail.feature_value = feature_value
+                detail.save()
+                return detail
+            return None
+
+        model_feature_detail = ModelFeatureDetail()
+        model_feature_detail.feature_value = feature_value
+        model_feature_detail.model = model
+        model_feature_detail.save()
+
+        return model_feature_detail
+
+    @transaction.commit_manually
+    def post(self, request, *args, **kwargs):
+        context = {}
+        feature = json.loads(request.body)
+        context['message'] = self.SAVE_SUCCESSFUL
+        try:
+            result = self.save_feature_mode(feature)
+            if result is None:
+                transaction.rollback()
+                context['message'] = self.ERROR_MODEL_SAVE
+            else:
+                transaction.commit()
+        except Exception, e:
+            context['message'] = self.ERROR_MODEL_SAVE
+            transaction.rollback()
+
+        context['status'] = 200
+        return self.render_to_response(context)
 
 
 class ModelDataView(LoginRequiredMixin, JSONResponseMixin, View):

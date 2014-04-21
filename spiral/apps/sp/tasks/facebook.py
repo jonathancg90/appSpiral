@@ -15,7 +15,6 @@ from apps.sp.models.Country import Country
 
 import urllib2
 import requests
-import tempfile
 import json
 
 
@@ -71,8 +70,14 @@ class TabFacebookTask(PeriodicTask):
             model.save()
             self.save_image(model_data.get('image'), model)
 
+    def get_data(self):
+        try:
+            result = urllib2.urlopen(self.url)
+            return json.loads(result.read())
+        except Exception,e:
+            return []
+
     def run(self, **kwargs):
-        result = urllib2.urlopen(self.url)
-        data = json.loads(result.read())
+        data = self.get_data()
         self.save_model(data)
 

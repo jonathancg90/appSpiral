@@ -62,14 +62,14 @@ searchApp.config(function ($routeProvider, $interpolateProvider) {
         {
             controller: 'SearchBasicController',
 //            templateUrl: searchUrls.basic
-            templateUrl: '/panel/search/models/basic-search.html'
+            templateUrl: '/panel/search/model/basic_search.html'
         })
         .when(
         '/advance-search',
         {
             controller: 'SearchAdvanceController',
 //            templateUrl: searchUrls.advance
-            templateUrl: '/panel/search/models/basic-search.html'
+            templateUrl: '/panel/search/model/basic_search.html'
         })
         .otherwise({redirectTo: '/basic-search/'});
 
