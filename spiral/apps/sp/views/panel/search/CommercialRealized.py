@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
+import xlwt
 
 from django.conf import settings
+from django.http import HttpResponse, Http404
 from django.views.generic import ListView, View, TemplateView
+
 from apps.common.view import SearchFormMixin
 from apps.common.view import LoginRequiredMixin
+from apps.common.view import JSONResponseMixin
 from apps.sp.models.Commercial import Commercial
 from apps.sp.models.Project import Project
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
-from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm, \
-    ProjectCodeFilterForm
-from django.http import HttpResponse, Http404
-import xlwt
+from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm
+from apps.sp.forms.ModelHasCommercial import ProjectCodeFilterForm
 
 
 class CommercialRealizedListView(LoginRequiredMixin, SearchFormMixin, ListView):
@@ -166,11 +168,15 @@ class ExportCommercialRealizedView(LoginRequiredMixin, View):
 
 
 class ModelSearchView(LoginRequiredMixin, TemplateView):
-    template_name = 'panel/search/model/base.html'
+    template_name = 'panel/search/model/search.html'
 
 
-class ModelBasicSearchView(LoginRequiredMixin, TemplateView):
-    template_name = 'panel/search/model/basic_search.html'
+class ModelBasicSearchView(LoginRequiredMixin, JSONResponseMixin, View):
+
+    def post(self ,request, *args, **kwargs):
+        data = []
+        data = self.searchModel()
+        return self.render_to_response(data)
 
 
 class ModelAdvanceSearchView(LoginRequiredMixin, TemplateView):

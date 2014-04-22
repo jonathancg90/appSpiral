@@ -1,16 +1,36 @@
 var controllers = {};
 
-controllers.SearchBasicController = function($scope, ModelFactory, $rootScope, detailService){
-    $scope.models = ModelFactory.getBasicData();
-    $scope.getDetail = function(model){
-        $('#detailModal').modal('toggle');
-        $scope.detail = detailService.getDetail(model);
-    };
-    $scope.prueba = 'hola';
-};
+controllers.searchController = function($scope, ModelFactory, detailService, searchUrls){
+    var basic = searchUrls.basic,
+        advance = searchUrls.advance;
 
-controllers.SearchAdvanceController = function($scope, ModelFactory, detailService){
-    $scope.models = ModelFactory.getAdvanceData();
+
+    $scope.typeSearch = {
+        'simple': true,
+        'advance': false
+    };
+
+    $scope.changeType = function(){
+        $scope.typeSearch.simple = !$scope.typeSearch.simple;
+        $scope.typeSearch.advance = !$scope.typeSearch.advance;
+    };
+
+    $scope.searchModel = function(event){
+        if(event.keyCode == 13){
+
+            var data = {
+                'text': $scope.model
+            };
+
+            if($scope.typeSearch.simple){
+                $scope.models = ModelFactory.basicSearch(basic, data);
+            }
+
+            if($scope.typeSearch.advance){
+                $scope.models = ModelFactory.advanceSearch(advance, data);
+            }
+        }
+    };
 
     $scope.getModelGroups = function(){
         $scope.modelGroups = [];
@@ -31,6 +51,6 @@ controllers.SearchAdvanceController = function($scope, ModelFactory, detailServi
         $('#detailModal').modal('toggle');
         $scope.detail = detailService.getDetail(model);
     }
-}
+};
 
 searchApp.controller(controllers);

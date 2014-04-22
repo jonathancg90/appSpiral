@@ -1,0 +1,97 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+
+{% block content %}
+<div ng-app="searchApp" ng-controller="searchController">
+    <div class="page-header position-relative">
+            <h1>
+                <button class="btn btn-info" ng-show="typeSearch.advance" ng-click="changeType()">
+                    Simple
+                    <i class="icon-group bigger-125 icon-on-right"></i>
+                </button>
+
+                <button class="btn btn-info" ng-show="typeSearch.simple" ng-click="changeType()">
+                    Avanzado
+                    <i class="icon-eye-open bigger-125 icon-on-right"></i>
+                </button>
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    <input type="text" class="span6 search-query" placeholder="Buscar"
+                           ng-model="search"
+                           ng-keydown="searchModel($event)"
+                           autocomplete="off">
+                </small>
+            </h1>
+        </div><!--/.page-header-->
+
+    <div class="row-fluid">
+
+        <div class="span12">
+                <!--PAGE CONTENT BEGINS-->
+
+                <div class="row-fluid">
+                    <ul class="ace-thumbnails">
+                        <li ng-repeat="model in models | filter:search">
+                            <a href="{{ STATIC_URL }}img/000001.jpg" data-rel="colorbox">
+                                <img alt="150x150" src="{{ STATIC_URL }}img/000001.jpg" />
+                                <div class="text">
+                                    <div class="inner">Sample Caption on Hover</div>
+                                </div>
+                                <div class="tags">
+                                    <span class="label label-info">breakfast</span>
+                                    <span class="label label-important">fruits</span>
+                                    <span class="label label-success">toast</span>
+                                    <span class="label label-warning arrowed-in">diet</span>
+                                </div>
+                            </a>
+
+                            <div class="tools tools-bottom">
+                                <a href="#">
+                                    <i class="icon-link"></i>
+                                </a>
+
+                                <a href="#">
+                                    <i class="icon-paper-clip"></i>
+                                </a>
+
+                                <a href="#">
+                                    <i class="icon-pencil"></i>
+                                </a>
+
+                                <a href="#">
+                                    <i class="icon-remove red"></i>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div><!--PAGE CONTENT ENDS-->
+            </div><!--/.span-->
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/app.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/controllers/controller.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/factories/model.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/filters/filter.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/search/services/detailService.js"></script>
+    <script>
+        // search urls
+        angular.module('searchApp').value("searchUrls", {
+            basic: '{% url "search_basic_model" %}',
+            advance: '{% url "search_advance_model" %}'
+        });
+        var searchUrls = {};
+        // view templates
+        searchUrls.basic = '{% url "search_basic_model" %}';
+        searchUrls.advance = '{% url "search_advance_model" %}';
+
+        angular.module('searchApp').value('csrfToken', {
+            csrfToken: '{{ csrf_token }}'
+        });
+    </script>
+{% endblock %}

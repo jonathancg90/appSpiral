@@ -1,5 +1,21 @@
-angular.module('searchApp').factory('ModelFactory', function () {
+angular.module('searchApp').factory('ModelFactory',['$http', function($http) {
     var factory = {};
+
+
+    factory.basicSearch = function(urlBasic, data){
+        return $http.post(urlBasic, data)
+            .then(function(response) {
+                if(response.status == 200) {
+                    debugger;
+                    return response.data;
+                }
+            });
+    };
+
+    factory.advanceSearch = function(urlAdvance){
+
+    };
+
 
     factory.getBasicData = function() {
         var data =  [
@@ -237,4 +253,4 @@ angular.module('searchApp').factory('ModelFactory', function () {
     };
 
     return factory;
-});
+}]);

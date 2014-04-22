@@ -55,30 +55,12 @@ var searchApp = angular.module('searchApp', ['AdvanceFilter'], function($httpPro
     }];
 });
 
-searchApp.config(function ($routeProvider, $interpolateProvider) {
-    $routeProvider
-        .when(
-        '/basic-search/',
-        {
-            controller: 'SearchBasicController',
-//            templateUrl: searchUrls.basic
-            templateUrl: '/panel/search/model/basic_search.html'
-        })
-        .when(
-        '/advance-search',
-        {
-            controller: 'SearchAdvanceController',
-//            templateUrl: searchUrls.advance
-            templateUrl: '/panel/search/model/basic_search.html'
-        })
-        .otherwise({redirectTo: '/basic-search/'});
-
+searchApp.config(function ($interpolateProvider) {
     // So '{{ }}' not overlaps with django syntax template
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
 
 });
-
 
 searchApp.run(function(csrfToken, $http) {
     $http.defaults.headers.post['X-CSRFToken'] = csrfToken.csrfToken;
