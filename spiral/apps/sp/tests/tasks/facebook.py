@@ -15,6 +15,7 @@ class FacebookTaskTest(TestCase):
 
     @patch("apps.sp.tasks.facebook.TabFacebookTask.get_data")
     def test_task_save_model(self, mock_get_data):
+        self.assertEqual(Model.objects.all().count(), 4)
         mock_get_data.return_value = [
             {
                 "name":"jonathan",
@@ -29,10 +30,11 @@ class FacebookTaskTest(TestCase):
             }
         ]
         self.tab_facebook_task.apply()
-        self.assertEqual(Model.objects.all().count(), 1)
+        self.assertEqual(Model.objects.all().count(), 5)
 
     @patch("apps.sp.tasks.facebook.TabFacebookTask.get_data")
     def test_method_save_data(self, mock_get_data):
+        self.assertEqual(Model.objects.all().count(), 4)
         mock_get_data.return_value = [
             {
                 "name":"jonathan",
@@ -47,4 +49,4 @@ class FacebookTaskTest(TestCase):
             }
         ]
         self.tab_facebook_task.run()
-        self.assertEqual(Model.objects.all().count(), 1)
+        self.assertEqual(Model.objects.all().count(), 5)

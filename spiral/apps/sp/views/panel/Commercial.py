@@ -103,11 +103,9 @@ class CommercialUpdateView(LoginRequiredMixin, UpdateView):
         pk = self.kwargs.get('pk')
         commercial = Commercial.objects.get(pk=pk)
         form.fields['project'].initial = commercial.project.project_code
-        import pdb;pdb.set_trace()
         return form
 
     def form_valid(self, form):
-        import pdb;pdb.set_trace()
         self.object = form.save(commit=False)
         project_code = self.request.POST.get('project')
         if self.validate_project_code(project_code):

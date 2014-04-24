@@ -2,8 +2,8 @@
 
 from django.conf.urls import url, patterns
 from apps.sp.views.panel.search.CommercialRealized import CommercialRealizedListView, \
-    ModelsPerCommercial, ExportCommercialRealizedView, ModelSearchView, ModelBasicSearchView,\
-    ModelAdvanceSearchView
+    ModelsPerCommercial, ExportCommercialRealizedView
+from apps.sp.views.panel.search.Search import ModelSearchView, ModelSearchTemplateView
 
 
 urlpatterns = patterns('',
@@ -21,16 +21,12 @@ urlpatterns = patterns('',
         name='search_export_models_per_comercial'),
 
     url(r'^models/$',
-        ModelSearchView.as_view(),
+        ModelSearchTemplateView.as_view(),
         name='search_model'),
 
-    url(r'^models/basic-search/$',
-        ModelBasicSearchView.as_view(),
+    url(r'^models/search/$',
+        ModelSearchView.as_view(),
         name='search_basic_model'),
-
-    url(r'^models/advance-search/$',
-        ModelAdvanceSearchView.as_view(),
-        name='search_advance_model'),
 
 
 )

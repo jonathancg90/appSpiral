@@ -1,6 +1,4 @@
-import datetime
 from django.test import TestCase
-from django.utils.timezone import utc
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
@@ -15,7 +13,6 @@ class BrandViewTest(TestCase):
     def setUp(self):
         self.request_factory = RequestFactory()
         self.insert_data_helper = InsertDataHelper()
-        self.date = datetime.datetime.now().utcnow().replace(tzinfo=utc)
 
     def insert_test_data(self):
         self.insert_data_helper.run()
@@ -123,5 +120,5 @@ class BrandViewTest(TestCase):
         url = reverse('brand_delete', kwargs=kwargs)
         request = self.request_factory.post(url, kwargs)
         response = BrandDeleteView.as_view()(request, **kwargs)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         self.assertEqual(Brand.objects.all().count(), 8)

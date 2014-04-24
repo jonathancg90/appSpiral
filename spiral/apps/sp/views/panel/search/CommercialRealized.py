@@ -7,7 +7,6 @@ from django.views.generic import ListView, View, TemplateView
 
 from apps.common.view import SearchFormMixin
 from apps.common.view import LoginRequiredMixin
-from apps.common.view import JSONResponseMixin
 from apps.sp.models.Commercial import Commercial
 from apps.sp.models.Project import Project
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
@@ -165,19 +164,3 @@ class ExportCommercialRealizedView(LoginRequiredMixin, View):
         project_code = Project.objects.get(pk=self.kwargs.get('pk')).project_code
         response = self.export_excel(project_code)
         return response
-
-
-class ModelSearchView(LoginRequiredMixin, TemplateView):
-    template_name = 'panel/search/model/search.html'
-
-
-class ModelBasicSearchView(LoginRequiredMixin, JSONResponseMixin, View):
-
-    def post(self ,request, *args, **kwargs):
-        data = []
-        data = self.searchModel()
-        return self.render_to_response(data)
-
-
-class ModelAdvanceSearchView(LoginRequiredMixin, TemplateView):
-    template_name = 'panel/search/model/advance_search.html'

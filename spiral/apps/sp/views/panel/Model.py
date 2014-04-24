@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import json
+
+from django.http import Http404
 from django.db import transaction
 from django.views.generic import View, TemplateView, CreateView
 from django.contrib.contenttypes.models import ContentType
@@ -29,11 +31,13 @@ class ModelControlListView(LoginRequiredMixin, TemplateView):
 
 
 class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
+    MESSAGE_SUCCESSFUL = 'El modelo encontrado'
+    MESSAGE_ERR_NOT_FOUND = 'El modelo no ha sido encontrado'
+
 
     def get_model_profile(self, model):
         data = {
-            "name": model.name,
-            "last_name": model.last_name,
+            "name": model.name_complete,
             "type_doc": model.get_type_doc_display(),
             "num_doc": model.number_doc,
             "address": model.address,
@@ -85,21 +89,27 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
 
     def get(self ,request, *args, **kwargs):
         model_id = kwargs.get('pk')
-        model = Model.objects.select_related('country',
-                                             'model_has_commercial_set',
-                                             'model_feature_detail_set'
-        ).get(pk=model_id)
-        profile = self.get_model_profile(model)
-        features = self.get_model_features(model)
-        commercial = self.get_model_commercial(model)
-        images = self.get_model_images(model)
+        try:
+            model = Model.objects.select_related('country',
+                                                 'model_has_commercial_set',
+                                                 'model_feature_detail_set'
+            ).get(pk=model_id)
+            profile = self.get_model_profile(model)
+            features = self.get_model_features(model)
+            commercial = self.get_model_commercial(model)
+            images = self.get_model_images(model)
 
-        data = {
-            "profile": profile,
-            "features": features,
-            "commercial": commercial,
-            "images": images,
-        }
+            data = {
+                "profile": profile,
+                "features": features,
+                "commercial": commercial,
+                "images": images,
+                "message": self.MESSAGE_SUCCESSFUL
+            }
+        except Model.DoesNotExist:
+            data = {
+                "message": self.MESSAGE_ERR_NOT_FOUND
+            }
         return self.render_to_response(data)
 
 
@@ -114,8 +124,7 @@ class ModelCreateView(LoginRequiredMixin, JSONResponseMixin, View):
     def save_model(self, data):
         try:
             model = Model()
-            model.name = data.get('name')
-            model.last_name = data.get('last_name')
+            model.name_complete = data.get('name') + ' ' + data.get('last_name')
             model.type_doc = data.get('type_doc').get('id')
             model.number_doc = data.get('num_doc')
             model.address = data.get('address')

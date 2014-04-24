@@ -23,10 +23,55 @@ class SearchLogicTest(TestCase):
         self.assertTrue(_count_model_feature > 0)
 
     def test_basic_search(self):
-        data = {
-            'text': 'Jonathan'
-        }
+        data = {'text': 'Jonathan'}
         self.search.set_type(Search.TYPE_BASIC)
+
+        #Name
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 2)
+
+        #Not found
+        self.search = Search()
+        data = {'text': 'cualquiera'}
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 0)
+
+        #Lastname
+        self.search = Search()
+        data = {'text': 'de la cruz'}
         self.search.set_params(data)
         result = self.search.run()
         self.assertEquals(len(result), 1)
+
+        #Number
+        self.search = Search()
+        data = {'text': '96372543756'}
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 1)
+
+        #Name and LastName
+        self.search = Search()
+        data = {'text': 'Jonathan perez'}
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 2)
+
+        #ExactName and LastName
+        self.search = Search()
+        data = {'text': 'Jonathan perez'}
+        self.search.set_mode(Search.MODE_SENSITIVE)
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 1)
+
+        #ExactName and LastName
+        self.search = Search()
+        data = {'text': '96372543756 perez'}
+        self.search.set_mode(Search.MODE_SENSITIVE)
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 0)
+

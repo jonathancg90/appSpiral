@@ -51,6 +51,23 @@
 
 {% block content %}
     <div ng-app="modelApp">
+        <div class="alert alert-block alert-success" ng-show="success">
+        <div class="alert alert-block alert-success" ng-show="warning">
+        <div class="alert alert-block alert-success" ng-show="error">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="icon-remove"></i>
+            </button>
+
+            <i class="icon-ok green" ng-show="success"></i>
+
+            <i class="icon-bullhorn yellow" ng-show="warning"></i>
+
+            <i class=" icon-ban-circle red" ng-show="error"></i>
+
+            Modelo registrado
+        </div>
+
+
         <div class="content-tab" id="profile">
             {% include 'panel/model/section_create/profile.html' %}
         </div>

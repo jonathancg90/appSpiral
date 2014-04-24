@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+import json
 from django import http
 from .util import dict_strip_unicode_keys
 from django.utils import simplejson
 from django.http import HttpResponseBadRequest
 from django.core.exceptions import ImproperlyConfigured
+from django.core.serializers.json import DjangoJSONEncoder
 from django.core import serializers
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+
 
 
 class InvalidFilterError(Exception):
@@ -244,6 +245,7 @@ class JSONResponseMixin(object):
         # -- can be serialized as JSON.
 
         return simplejson.dumps(context)
+
 
 
 class NewJSONResponseMixin(object):

@@ -45,7 +45,7 @@ class BrandUpdateView(LoginRequiredMixin, UpdateView):
     success_url = 'brand_list'
 
     def get_context_data(self, **kwargs):
-        context = super(BrandUpdateView,self).get_context_data(**kwargs)
+        context = super(BrandUpdateView, self).get_context_data(**kwargs)
         return context
 
     def get_success_url(self):
@@ -58,7 +58,6 @@ class BrandDeleteView(LoginRequiredMixin, DeleteView):
     success_url = 'brand_list'
 
     def get_context_data(self, **kwargs):
-        import pdb;pdb.set_trace()
         context = super(BrandDeleteView,self).get_context_data(**kwargs)
         return context
 

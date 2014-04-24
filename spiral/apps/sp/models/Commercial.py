@@ -29,7 +29,7 @@ class Commercial(models.Model):
     status = models.SmallIntegerField(
         choices=CHOICE_STATUS,
         default=STATUS_ACTIVE
-        )
+    )
 
     project = models.ForeignKey(
         'Project',

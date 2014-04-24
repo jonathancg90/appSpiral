@@ -4,7 +4,6 @@ from django.test import TestCase
 from django.utils.timezone import utc
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
-from dateutil.relativedelta import relativedelta
 
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Brand import Brand
@@ -105,15 +104,13 @@ class CommercialViewTest(TestCase):
         self.assertEqual(Commercial.objects.all().count(), 4)
         self.assertEqual(commercial.name, 'Coca Cola Navidad')
 
-        date = datetime.today().utcnow().replace(tzinfo=utc)
-        date = date + relativedelta(days=1)
         #Post
         data = {
             'pk':  commercial.id,
             'name': "actualizado",
             'brand': Brand.objects.get(id=1).id,
-            'realized': date.strftime("%Y/%m/%d"),
-            'project': ''
+            'realized': '2014-08-08',
+            'project': commercial.project.project_code
         }
 
         url_kwargs = {'pk': commercial.id}

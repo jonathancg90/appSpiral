@@ -1,8 +1,10 @@
-from django.utils.translation import ugettext_lazy as _
-from django.utils import simplejson
-from django.db import models
 import urllib2
 import random
+
+from django.utils.translation import ugettext_lazy as _
+from django.db.models.signals import post_save
+from django.utils import simplejson
+from django.db import models
 
 
 class Model(models.Model):
@@ -58,13 +60,8 @@ class Model(models.Model):
         default=STATUS_ACTIVE
     )
 
-    name = models.CharField(
-        verbose_name=_('Nombres'),
-        max_length=45
-    )
-
-    last_name = models.CharField(
-        verbose_name=_('Apellidos'),
+    name_complete = models.CharField(
+        verbose_name=_('Nombre completo'),
         max_length=45
     )
 
@@ -131,6 +128,19 @@ class Model(models.Model):
         null=True,
     )
 
+    main_image = models.CharField(
+        verbose_name=_(u'Imagen Principal'),
+        max_length=100,
+        null=True,
+        blank=True,
+    )
+
+    summary = models.TextField(
+        verbose_name=_(u'Resumen'),
+        null=True,
+        blank=True,
+    )
+
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False
@@ -141,7 +151,7 @@ class Model(models.Model):
     )
 
     def __unicode__(self):
-        return '%s %s' % (self.name, self.last_name)
+        return self.name_complete
 
     class Meta:
         app_label = 'sp'
@@ -185,6 +195,16 @@ class Model(models.Model):
             'response': False
         }
         return data
+
+
+def create_additional_data(sender, instance, created, **kwargs):
+    instance.main_image = None
+    instance.summary = None
+    post_save.disconnect(create_additional_data, sender=Model) #for not causing recursion
+    instance.save()
+    post_save.connect(create_additional_data, sender=Model)
+
+post_save.connect(create_additional_data, sender=Model)
 
 
 class ModelFeatureDetail(models.Model):

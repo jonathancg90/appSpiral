@@ -58,9 +58,8 @@ class TabFacebookTask(PeriodicTask):
     def save_model(self, data):
         for model_data in data:
             model = Model()
-            model.name = model_data.get('name')
+            model.name = model_data.get('name') + ' ' + model_data.get('last_name')
             model.model_code = Model.get_code()
-            model.last_name = model_data.get('last_name')
             model.type_doc = self.type_document(model_data.get('type_doc'))
             model.number_doc = model_data.get('num_doc')
             model.address = model_data.get('address')
