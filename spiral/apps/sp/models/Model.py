@@ -24,8 +24,8 @@ class Model(models.Model):
     GENDER_FEM = 2
 
     GENDER_CHOICES = (
-        (GENDER_MASC, _(u'Masculino')),
-        (GENDER_FEM, _(u'Femenino'))
+        (GENDER_MASC, 'Masculino'),
+        (GENDER_FEM, 'Femenino')
     )
 
     TYPE_DNI = 1
@@ -33,11 +33,10 @@ class Model(models.Model):
     TYPE_PASSPORT = 3
 
     TYPE_DOCUMENTS = (
-        (TYPE_CARNET, 'Carnet de extrangeria'),
+        (TYPE_CARNET, 'Carnet de extranjeria'),
         (TYPE_DNI, 'DNI'),
-        (TYPE_PASSPORT, 'Pasaport')
+        (TYPE_PASSPORT, 'Pasaporte')
     )
-
     model_code = models.CharField(
         verbose_name=_('Codigo'),
         max_length=45,
@@ -52,7 +51,8 @@ class Model(models.Model):
     number_doc = models.CharField(
         verbose_name=_('Numero de documento'),
         max_length=15,
-        null=True
+        null=True,
+        unique=True
     )
 
     status = models.SmallIntegerField(
@@ -89,6 +89,13 @@ class Model(models.Model):
     nationality = models.ForeignKey(
         'country',
         verbose_name=_(u'Nacionalidad'),
+        related_name='model_set',
+        null=True,
+    )
+
+    city = models.ForeignKey(
+        'city',
+        verbose_name=_(u'ciudad'),
         related_name='model_set',
         null=True,
     )
@@ -141,6 +148,11 @@ class Model(models.Model):
         blank=True,
     )
 
+    terms = models.BooleanField(
+        verbose_name=_(u'Terminos y condiciones'),
+        default=False,
+    )
+
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False
@@ -163,6 +175,16 @@ class Model(models.Model):
             choices.append({
                 'id': type[0],
                 'name': type[1]
+            })
+        return choices
+
+    @classmethod
+    def get_genders(self):
+        choices = []
+        for gender in Model.GENDER_CHOICES:
+            choices.append({
+                'id': gender[0],
+                'name': gender[1]
             })
         return choices
 
@@ -200,6 +222,7 @@ class Model(models.Model):
 def create_additional_data(sender, instance, created, **kwargs):
     instance.main_image = None
     instance.summary = None
+    instance.model_code = Model.get_code()
     post_save.disconnect(create_additional_data, sender=Model) #for not causing recursion
     instance.save()
     post_save.connect(create_additional_data, sender=Model)

@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-<div ng-app="searchApp" ng-controller="searchController">
+<div ng-app="searchApp" ng-controller="searchController" ng-cloak class="ng-cloak">
     <div class="page-header position-relative">
             <h1>
                 <button class="btn btn-info" ng-show="typeSearch.advance" ng-click="changeType()">

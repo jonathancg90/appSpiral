@@ -1,50 +1,84 @@
 <div class="tab-pane active" id="profile" ng-controller="ProfileController">
+    <message-flash message="{[{ flashMessage }]}" type="{[{ flashType }]}"></message-flash>
     <form class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="inputName">Codigo</label>
             <div class="controls">
-                <input type="text" id="inputName" placeholder="Codigo" ng-model="model.code">
-                <span class="label label-info" ng-click="getModel()"><i class="icon-search"></i> Buscar</span>
+                <input type="text" readonly id="inputName" placeholder="Codigo" ng-model="model.profile.code" ng-show="created">
+                <input type="text" id="inputName" placeholder="Codigo" ng-model="model.profile.code" ng-hide="created">
+                <span class="label label-info" ng-click="changeModel()" ng-show="created"><i class="icon-edit"></i></span>
+                <span class="label label-info" ng-click="getModel()" ng-hide="created"><i class="icon-search"></i> Buscar</span>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputName">Modelo</label>
             <div class="controls">
-                <input type="text" id="inputName" placeholder="Nombres" ng-model="model.name">
-                <input type="text" id="inputLastName" placeholder="Apellidos" ng-model="model.last_name">
+                <input type="text" id="inputName" placeholder="Nombres y apellidos" ng-model="model.profile.name_complete" required="true">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputDoc" >Documento</label>
             <div class="controls">
-                <select ng-model="model.type_doc" ng-options="type.name for type in docTypes">
+                <select ng-model="model.profile.type_doc" ng-options="type.name for type in docTypes">
                     <option value="">-- choose type --</option>
                 </select>
-                <input type="text" id="inputLastName" placeholder="Numero de documento" ng-model="model.num_doc">
+                <input type="text" id="inputLastName" placeholder="Numero de documento" ng-model="model.profile.num_doc">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputDoc" >Genero</label>
+            <div class="controls">
+                <select ng-model="model.profile.gender" ng-options="gender.name for gender in genders">
+                    <option value="">-- choose type --</option>
+                </select>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputAddress">Direccion</label>
+                <div class="controls">
+                    <select ng-model="model.profile.dir_country" ng-options="dir_country.name for dir_country in countries">
+                        <option value="">-- choose type --</option>
+                    </select>
+
+                    <select ng-model="model.profile.city" ng-options="city.name for city in cities">
+                        <option value="">-- choose type --</option>
+                    </select>
+                </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress"></label>
             <div class="controls">
-                <input type="text" id="inputAddress" placeholder="Av. Ejemplo 376" ng-model="model.address">
+                <input type="text" id="inputAddress" placeholder="Av. Ejemplo 376" ng-model="model.profile.address">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">Telefono Fijo</label>
+            <div class="controls">
+                <input type="text" id="inputAddress" placeholder="123-4567" ng-model="model.profile.phone_fixed">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">Telefono Mobil</label>
+            <div class="controls">
+                <input type="text" id="inputAddress" placeholder="123456789" ng-model="model.profile.phone_mobil">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputEmail">Email</label>
             <div class="controls">
-                <input type="email" id="inputEmail" placeholder="ejemplo@dominio.com" ng-model="model.email">
+                <input type="email" id="inputEmail" placeholder="ejemplo@dominio.com" ng-model="model.profile.email">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputNac">Fecha de Nac.</label>
             <div class="controls">
-                <input type="date" id="inputNac" placeholder="dd/mm/yyy" ng-model="model.birth" required>
+                <input type="date" id="inputNac" placeholder="dd/mm/yyy" ng-model="model.profile.birth" required>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputNationality">Nacionalidad</label>
             <div class="controls">
-                <select ng-model="model.nationality" ng-options="country.nationality for country in countries">
+                <select ng-model="model.profile.nationality" ng-options="country.nationality for country in countries">
                     <option value="">-- choose country --</option>
                 </select>
             </div>
@@ -52,22 +86,27 @@
         <div class="control-group">
             <label class="control-label" for="actionButton"></label>
             <div class="controls">
-                <a href="#" id="hide-show-search" class="btn btn-success" ng-click="saveProfile()">Grabar</a>
-                <a href="#" id="hide-show-search" class="btn btn-info">Campos opcionales</a>
+                <a href="#" id="hide-show-search" class="btn btn-success" ng-click="saveProfile()" ng-hide="optionalInput">Grabar</a>
+                <a href="#" id="hide-show-search" class="btn btn-info" ng-click="showOptional()">Campos opcionales</a>
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" ng-show="optionalInput">
             <label class="control-label" for="inputHeight">Altura</label>
             <div class="controls">
                 <input type="number" id="inputHeight" placeholder="0.00">
             </div>
         </div>
-        <div class="control-group">
+        <div class="control-group" ng-show="optionalInput">
             <label class="control-label" for="inputWeight">Peso</label>
             <div class="controls">
                 <input type="number" id="inputWeight" placeholder="0.00">
             </div>
         </div>
+        <div class="control-group" ng-show="optionalInput">
+            <label class="control-label" for="actionButton"></label>
+            <div class="controls">
+                <a href="#" id="hide-show-search" class="btn btn-success" ng-click="saveProfile()" ng-hide="created">Grabar</a>
+            </div>
+        </div>
     </form>
-    {[{ model }]}
 </div>

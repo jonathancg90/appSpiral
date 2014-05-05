@@ -1,5 +1,5 @@
 'use strict';
-var modelApp = angular.module('modelApp', ['blueimp.fileupload']);
+var modelApp = angular.module('modelApp', ['blueimp.fileupload', 'msgApp']);
 
 modelApp.config(['$interpolateProvider', '$httpProvider', 'fileUploadProvider',function ($interpolateProvider, $httpProvider, fileUploadProvider) {
     // So '{{ }}' not overlaps with django syntax template

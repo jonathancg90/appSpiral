@@ -2,6 +2,7 @@
     {
         "name": "Perú",
         "nationality": "Peruana",
-        "currency": "S/."
+        "currency": "S/.",
+        "city": []
     }
 ]

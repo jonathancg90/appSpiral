@@ -40,5 +40,4 @@ class ModelCreateTest(TestCase):
             reverse('panel_information_model', kwargs={'pk': 876})
         )
         response = view(request, pk=876)
-        import pdb;pdb.set_trace()
         self.assertEqual(response.status_code, 200)

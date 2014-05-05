@@ -26,6 +26,7 @@ class ModelControlListView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ModelControlListView, self).get_context_data(**kwargs)
         context['doc_types'] = json.dumps(Model.get_types())
+        context['genders'] = json.dumps(Model.get_genders())
         context['features'] = json.dumps(Feature.get_data_features())
         return context
 
@@ -33,18 +34,22 @@ class ModelControlListView(LoginRequiredMixin, TemplateView):
 class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
     MESSAGE_SUCCESSFUL = 'El modelo encontrado'
     MESSAGE_ERR_NOT_FOUND = 'El modelo no ha sido encontrado'
-
+    MESSAGE_ERR = 'Ocurrio un error al buscar al modelo'
 
     def get_model_profile(self, model):
         data = {
-            "name": model.name_complete,
+            "code": model.model_code,
+            "name_complete": model.name_complete,
             "type_doc": model.get_type_doc_display(),
             "num_doc": model.number_doc,
             "address": model.address,
             "email": model.email,
-            "birth": str(model.birth),
-            "nationality": model.nationality.nationality,
+            "birth": str(model.birth)
         }
+        if model.nationality is not None:
+            data.update({
+                "nationality": model.nationality.nationality
+            })
         return data
 
     def get_model_features(self, model):
@@ -104,17 +109,25 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
                 "features": features,
                 "commercial": commercial,
                 "images": images,
-                "message": self.MESSAGE_SUCCESSFUL
+                "message": self.MESSAGE_SUCCESSFUL,
+                "status": "success"
             }
         except Model.DoesNotExist:
             data = {
+                "status": "warning",
                 "message": self.MESSAGE_ERR_NOT_FOUND
+            }
+        except Exception, e:
+            data = {
+                "status": "error",
+                "message": self.MESSAGE_ERR
             }
         return self.render_to_response(data)
 
 
 class ModelCreateView(LoginRequiredMixin, JSONResponseMixin, View):
     SAVE_SUCCESSFUL = 'Modelo registrado'
+    ERROR_MODEL_DNI = "Numero de DNI duplicado"
     ERROR_MODEL_SAVE = 'ocurrio un error al tratar de grabar la informacion del modelo'
 
     @csrf_exempt
@@ -122,29 +135,34 @@ class ModelCreateView(LoginRequiredMixin, JSONResponseMixin, View):
         return super(ModelCreateView, self).dispatch(request, *args, **kwargs)
 
     def save_model(self, data):
+        if Model.objects.filter(number_doc=data.get('num_doc')).exists():
+            return None, self.ERROR_MODEL_DNI
         try:
             model = Model()
-            model.name_complete = data.get('name') + ' ' + data.get('last_name')
+            model.name_complete = data.get('name_complete')
             model.type_doc = data.get('type_doc').get('id')
             model.number_doc = data.get('num_doc')
             model.address = data.get('address')
             model.email = data.get('email')
+            model.phone_fixed = data.get('phone_fixed')
+            model.phone_mobil = data.get('phone_mobil')
             model.birth = data.get('birth')
             model.nationality = Country.objects.get(pk=data.get('nationality').get('id'))
             model.save()
-            return model
+            return model, self.SAVE_SUCCESSFUL
         except Exception, e:
-            return None
+            return None, self.ERROR_MODEL_SAVE
 
     def post(self, request, *args, **kwargs):
         context = {}
         data = json.loads(request.body)
-        model = self.save_model(data)
-
-        context['message'] = self.SAVE_SUCCESSFUL
+        model, msg = self.save_model(data)
+        context['status'] = 'success'
+        context['message'] = msg
         if model is None:
-            context['message'] = self.ERROR_MODEL_SAVE
-        context['status'] = 200
+            context['status'] = 'warning'
+        else:
+            context['code'] = model.model_code
         return self.render_to_response(context)
 
 
@@ -215,41 +233,28 @@ class ModelFeatureCreateView(LoginRequiredMixin, JSONResponseMixin, View):
         model_feature_detail.model = model
         model_feature_detail.save()
 
-        return model_feature_detail
+        feature = model_feature_detail.feature_value.feature
+
+        return feature
 
     @transaction.commit_manually
     def post(self, request, *args, **kwargs):
         context = {}
         feature = json.loads(request.body)
+        context['status'] = 'success'
         context['message'] = self.SAVE_SUCCESSFUL
         try:
             result = self.save_feature_mode(feature)
             if result is None:
                 transaction.rollback()
+                context['status'] = 'error'
                 context['message'] = self.ERROR_MODEL_SAVE
             else:
                 transaction.commit()
+                context['feature'] = result.id
         except Exception, e:
+            context['status'] = 'error'
             context['message'] = self.ERROR_MODEL_SAVE
             transaction.rollback()
 
-        context['status'] = 200
         return self.render_to_response(context)
-
-
-class ModelDataView(LoginRequiredMixin, JSONResponseMixin, View):
-
-    def get(self ,request, *args, **kwargs):
-        data = []
-        data.append({
-            "name":"jonathan",
-            "last_name":"Carrasco",
-            "type_doc":"DNI",
-            "num_doc":"46443224",
-            "address":"av. catalino miranda 356 Barranco",
-            "email":"jonathancg90@gmail.com",
-            "birth":"1990-08-12",
-            "nationality":"Peruana",
-            "image":"http://spiral.com.pe/facebook/slide/imgs/1.jpg"
-        })
-        return self.render_to_response(data)

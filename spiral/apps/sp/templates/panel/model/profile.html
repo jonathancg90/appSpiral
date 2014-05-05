@@ -19,67 +19,95 @@
     <ul class="breadcrumb" id="menuModel">
         <li class="active">
             <i class="icon-home home-icon active"></i>
-            <a href="#profile">Perfil</a>
+            <a href="#profile">Modelo</a>
                 <span class="divider">
                 	<i class="icon-angle-right arrow-icon"></i>
                 </span>
         </li>
-        <li>
-            <i class="icon-home home-icon"></i>
-            <a href="#feature">Carracteristicas</a>
-            <span class="divider">
-                <i class="icon-angle-right arrow-icon"></i>
-            </span>
-        </li>
-        <li>
-            <i class="icon-home home-icon"></i>
-            <a href="#photo">Fotos</a>
-            <span class="divider">
-                <i class="icon-angle-right arrow-icon"></i>
-            </span>
-        </li>
-        <li>
-            <i class="icon-home home-icon"></i>
-            <a href="#video">Videos</a>
-            <span class="divider">
-                <i class="icon-angle-right arrow-icon"></i>
-            </span>
-        </li>
-
+        <li class="active" id="modelActive"></li>
     </ul><!--.breadcrumb-->
 {% endblock %}
 
 {% block content %}
-    <div ng-app="modelApp">
-        <div class="alert alert-block alert-success" ng-show="success">
-        <div class="alert alert-block alert-success" ng-show="warning">
-        <div class="alert alert-block alert-success" ng-show="error">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="icon-remove"></i>
-            </button>
+<div ng-app="modelApp" ng-cloak class="ng-cloak">
 
-            <i class="icon-ok green" ng-show="success"></i>
+    <div >
+        <div id="user-profile-2" class="user-profile row-fluid">
+        <div class="tabbable">
+        <ul class="nav nav-tabs padding-18">
+            <li class="active">
+                <a data-toggle="tab" href="#home">
+                    <i class="green icon-user bigger-120"></i>
+                    Profile
+                </a>
+            </li>
 
-            <i class="icon-bullhorn yellow" ng-show="warning"></i>
+            <li>
+                <a data-toggle="tab" href="#feed">
+                    <i class="orange icon-edit bigger-120"></i>
+                    Carracteristicas
+                </a>
+            </li>
 
-            <i class=" icon-ban-circle red" ng-show="error"></i>
+            <li>
+                <a data-toggle="tab" href="#friends">
+                    <i class="blue icon-picture bigger-120"></i>
+                    Fotos
+                </a>
+            </li>
 
-            Modelo registrado
-        </div>
+            <li>
+                <a data-toggle="tab" href="#pictures">
+                    <i class="pink icon-camera bigger-120"></i>
+                    Videos
+                </a>
+            </li>
 
+            <li>
+                <a data-toggle="tab" href="#pictures">
+                    <i class="red icon-group bigger-120"></i>
+                    Comerciales
+                </a>
+            </li>
 
-        <div class="content-tab" id="profile">
-            {% include 'panel/model/section_create/profile.html' %}
-        </div>
-        <div class="content-tab" id="feature">
-            {% include 'panel/model/section_create/features.html' %}
-        </div>
-        <div class="content-tab" id="photo">
+        </ul>
+
+        <div class="tab-content no-border padding-24">
+        <div id="home" class="tab-pane in active">
+            <div class="row-fluid">
+                {% include 'panel/model/section_create/profile.html' %}
+            </div><!--/row-fluid-->
+        </div><!--#home-->
+
+        <div id="feed" class="tab-pane">
+            <div class="profile-feed row-fluid">
+                {% include 'panel/model/section_create/features.html' %}
+            </div><!--/row-->
+        </div><!--/#feed-->
+
+        <div id="friends" class="tab-pane">
+            <div class="profile-users clearfix">
+                {% include 'panel/model/section_create/photos.html' %}
+            </div>
+        </div><!--/#friends-->
+
+        <div id="pictures" class="tab-pane">
             {% include 'panel/model/section_create/photos.html' %}
+        </div><!--/#pictures-->
+
+
+
         </div>
-        <div class="content-tab" id="video">
-            {% include 'panel/model/section_create/photos.html' %}
         </div>
+    </div>
+</div>
+
+
+
+
+
+
+
     </div>
 {% endblock %}
 
@@ -87,6 +115,7 @@
 {% block script_bottom %}
     <script src="{{ STATIC_URL }}js/angular.js"></script>
     {% include 'panel/model/section_create/fileupload/scripts.html' %}
+    <script src="{{ STATIC_URL }}js/apps/commons/directives/messages.js"></script>
     <script src="{{ STATIC_URL }}js/apps/model_profile/app.js"></script>
     <script src="{{ STATIC_URL }}js/apps/model_profile/services/model.js"></script>
     <script src="{{ STATIC_URL }}js/apps/model_profile/controllers/controller.js"></script>
@@ -102,6 +131,7 @@
     // search urls
     angular.module('modelApp').value("modelData", {
         docTypes: '{{ doc_types|safe }}',
+        genders: '{{ genders|safe }}',
         features: '{{ features|safe }}'
     });
     angular.module('modelApp').constant("DjangoConstants", {
