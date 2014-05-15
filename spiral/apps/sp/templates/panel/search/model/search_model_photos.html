@@ -1,0 +1,11 @@
+<ul class="ace-thumbnails">
+
+<li ng-repeat="image in detail.images">
+    <a href="#" data-rel="colorbox" ng-show="image.show">
+        <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[0].url }]}" ng-click="showLarge(image)"/>
+    </a>
+    <a href="#" data-rel="colorbox" ng-hide="image.show">
+        <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[2].url }]}" ng-click="showLarge(image)"/>
+    </a>
+</li>
+</ul>

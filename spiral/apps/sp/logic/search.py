@@ -8,6 +8,7 @@ from apps.sp.models.Feature import Feature, FeatureValue
 
 
 log = logging.getLogger(__name__)
+from datetime import date
 
 
 class Search(object):
@@ -178,6 +179,9 @@ class Search(object):
                 items, desc = self._get_cursor_result()
                 for row in items:
                     row = dict(zip([col[0] for col in desc], row))
+                    row['age'] = date.today().year - row['birth'].year
+                    row['birth'] = row['birth'].strftime("%d/%m/%Y")
+                    row['web'] = True if row['last_visit'] is None else False
                     models.append(row)
 
         except ValueError, e:

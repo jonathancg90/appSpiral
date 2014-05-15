@@ -69,7 +69,6 @@
                     Comerciales
                 </a>
             </li>
-
         </ul>
 
         <div class="tab-content no-border padding-24">
@@ -125,6 +124,8 @@
     angular.module('modelApp').value("modelUrls", {
         save_model: '{% url "panel_model_save_profile" %}',
         save_feature: '{% url "panel_model_save_feature" pk=':pk' %}',
+        update_feature: '{% url "panel_model_update_feature" pk=':pk' %}',
+        delete_feature: '{% url "panel_model_delete_feature"  %}',
         urlCountries: '{% url "country_list_json" %}',
         urlSearch: '{% url "panel_information_model" pk=':pk' %}'
     });
@@ -132,7 +133,8 @@
     angular.module('modelApp').value("modelData", {
         docTypes: '{{ doc_types|safe }}',
         genders: '{{ genders|safe }}',
-        features: '{{ features|safe }}'
+        features: '{{ features|safe }}',
+        pk: '{{ pk|safe }}'
     });
     angular.module('modelApp').constant("DjangoConstants", {
         csrfToken: "{{ csrf_token }}"

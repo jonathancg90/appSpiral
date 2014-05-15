@@ -1,6 +1,32 @@
 {% extends 'panel/panel_basev3.html' %}
 {% load i18n %}
 
+
+{% block extra_style %}
+    <style>
+        .dropdown-menu.pull-right.dropdown-caret:after {
+            right: 190px;
+        }
+        .dropdown-navbar {
+            width: 400px;
+        }
+        .dropdown-menu.dropdown-closer.pull-right {
+            right: -100px;
+        }
+        .text-list{
+            overflow: hidden;
+        }
+        .featue-title {
+            font-weight: bold;
+            color: #9585bf;
+        }
+        .text-feature {
+            font-weight: bold;
+            color: #3a87ad;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
 <div ng-app="searchApp" ng-controller="searchController" ng-cloak class="ng-cloak">
     <div class="page-header position-relative">
@@ -21,13 +47,6 @@
                            ng-keydown="searchModel($event)"
                            autocomplete="off">
                 </small>
-                <div style="display: inline;" ng-show="typeSearch.simple" ng-click="changeMode()">
-                    <label class="inline">
-                        <small class="muted">Exacto:</small>
-                        <input id="id-button-borders" type="checkbox" class="ace-switch ace-switch-5">
-                        <span class="lbl"></span>
-                    </label>
-                </div>
                 <div style="display: inline;" ng-show="typeSearch.advance">
                     <button class="btn btn-info">
                         <i class="icon-edit icon-only bigger-150"></i>
@@ -45,45 +64,194 @@
                         <img src="{{ STATIC_URL }}admin/img/gif-load.gif" alt=""/>
                     </div>
                     <ul class="ace-thumbnails">
-                        <li ng-repeat="model in models | textFilter:search">
-                            <a href="{{ STATIC_URL }}img/000001.jpg" data-rel="colorbox">
-                                <img alt="150x150" src="{{ STATIC_URL }}img/000001.jpg" />
-                                <div class="text">
-                                    <div class="inner">{[{ model.name_complete }]}</div>
+                        <li ng-repeat="model in models | textFilter:search" class="list-models">
+                                <a data-rel="colorbox" data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <img alt="150x150" src="{{ STATIC_URL }}{[{ model.main_image }]}" style="width: 150px; height: 150px"/>
+                                    <div class="text">
+                                        <div class="inner">{[{ model.name_complete }]}</div>
+                                    </div>
+                                    <div class="tags">
+                                        <span class="label label-success" ng-show="model.web">Web</span>
+{#                                        <span class="label label-info">breakfast</span>#}
+{#                                        <span class="label label-important">Desactualizado</span>#}
+{#                                        <span class="label label-success">Web</span>#}
+{#                                        <span class="label label-warning arrowed-in">diet</span>#}
+                                    </div>
+                                </a>
+                                <div class="tools tools-bottom" style="display:none">
+                                    <a href="#" ng-click="getDetail(model.id)">
+                                        <i class="icon-eye-open" data-toggle="modal" data-target="#myProfile"></i>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="icon-paper-clip"></i>
+                                    </a>
+
+                                    <a href="{[{ urlCrud }]}?pk={[{ model.id }]}">
+                                        <i class="icon-pencil"></i>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="icon-remove red"></i>
+                                    </a>
                                 </div>
-                                <div class="tags">
-                                    <span class="label label-info">breakfast</span>
-                                    <span class="label label-important">fruits</span>
-                                    <span class="label label-success">toast</span>
-                                    <span class="label label-warning arrowed-in">diet</span>
-                                </div>
-                            </a>
 
-                            <div class="tools tools-bottom">
-                                <a href="#">
-                                    <i class="icon-link"></i>
-                                </a>
+                                <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+                                    <li class="nav-header">
+                                        <i class="icon-check"></i>
+                                        Detalles
+                                    </li>
 
-                                <a href="#">
-                                    <i class="icon-paper-clip"></i>
-                                </a>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-mini no-hover btn-pink icon-comment"></i>
+                                                    Telefonos: {[{ model.phone_mobil }]} | {[{ model.phone_fixed }]}
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
 
-                                <a href="#">
-                                    <i class="icon-pencil"></i>
-                                </a>
+                                    <li>
+                                        <a href="#">
+                                            <i class="btn btn-mini btn-primary  icon-envelope"></i>
+                                            Email: {[{ model.email }]}
+                                        </a>
+                                    </li>
 
-                                <a href="#">
-                                    <i class="icon-remove red"></i>
-                                </a>
-                            </div>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-mini no-hover btn-success icon-calendar"></i>
+                                                    Edad: {[{ model.age }]} | {[{ model.birth }]}
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix text-list">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-mini no-hover btn-info icon-home"></i>
+                                                    Direccion: {[{ model.address }]}
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                    </a>
+                                    </li>
+                                </ul>
+
                         </li>
 
                     </ul>
                 </div><!--PAGE CONTENT ENDS-->
             </div><!--/.span-->
+        <!-- Modal -->
+        <div class="modal fade" id="myProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div >
+                            <div id="user-profile-2" class="user-profile row-fluid">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs padding-4">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="green icon-user bigger-120"></i>
+                                                Profile
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#feed">
+                                                <i class="orange icon-edit bigger-120"></i>
+                                                Carracteristicas
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#friends">
+                                                <i class="blue icon-picture bigger-120"></i>
+                                                Fotos
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#pictures">
+                                                <i class="pink icon-camera bigger-120"></i>
+                                                Videos
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#pictures">
+                                                <i class="red icon-group bigger-120"></i>
+                                                Comerciales
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content no-border padding-24">
+                                        <div id="home" class="tab-pane in active">
+                                            <div class="row-fluid">
+
+                                                {% include 'panel/search/model/search_model_profile.html' %}
+
+                                            </div><!--/row-fluid-->
+                                        </div><!--#Perfil-->
+
+                                        <div id="feed" class="tab-pane">
+                                            <div class="profile-feed row-fluid">
+                                                {% include 'panel/search/model/search_model_feature.html' %}
+                                            </div><!--/row-->
+                                        </div><!--/#Carracteristicas-->
+
+                                        <div id="friends" class="tab-pane">
+                                            <div class="profile-users clearfix">
+                                                {% include 'panel/search/model/search_model_photos.html' %}
+                                            </div>
+                                        </div><!--/#Fotos-->
+
+                                        <div id="pictures" class="tab-pane">
+                                            asdsa
+                                        </div><!--/#Videos-->
+
+                                        <div id="pictures" class="tab-pane">
+                                            asdsa
+                                        </div><!--/#Comerciales-->
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
+
 {% endblock %}
 
 {% block script_bottom %}
@@ -97,6 +265,8 @@
         // search urls
         angular.module('searchApp').value("searchUrls", {
             search: '{% url "search_basic_model" %}',
+            profile: '{% url "panel_model_control_list" %}',
+            detail: '{% url "panel_information_model"  pk=':pk' %}'
         });
         angular.module('searchApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'

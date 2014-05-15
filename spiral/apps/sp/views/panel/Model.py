@@ -2,7 +2,7 @@
 
 import json
 
-from django.http import Http404
+from datetime import date
 from django.db import transaction
 from django.views.generic import View, TemplateView, CreateView
 from django.contrib.contenttypes.models import ContentType
@@ -28,6 +28,8 @@ class ModelControlListView(LoginRequiredMixin, TemplateView):
         context['doc_types'] = json.dumps(Model.get_types())
         context['genders'] = json.dumps(Model.get_genders())
         context['features'] = json.dumps(Feature.get_data_features())
+        if self.request.GET.get('pk') is not None:
+            context['pk'] = self.request.GET.get('pk')
         return context
 
 
@@ -37,20 +39,49 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
     MESSAGE_ERR = 'Ocurrio un error al buscar al modelo'
 
     def get_model_profile(self, model):
+        self.parse_data(model)
         data = {
+            "id": model.id,
             "code": model.model_code,
             "name_complete": model.name_complete,
             "type_doc": model.get_type_doc_display(),
             "num_doc": model.number_doc,
             "address": model.address,
+            "gender": model.gender,
             "email": model.email,
-            "birth": str(model.birth)
+            "main_image": model.main_image,
+            "web": True,
+            "city_id": '' if model.city is None else model.city.id,
+            "city_name": '' if model.city is None else model.city.name,
+            "age": date.today().year - model.birth.year,
+            "birth": model.birth.strftime("%d/%m/%Y"),
+            "last_visit": model.last_visit,
+            "phones": '%s | %s ' %(str(model.phone_mobil), str(model.phone_fixed)),
+            "measures": '%s %s | %s %s' %(str(model.weight), 'Kg',  str(model.height), 'mts')
         }
-        if model.nationality is not None:
+        if model.nationality is None:
             data.update({
-                "nationality": model.nationality.nationality
+                "nationality": 'No ingresado',
             })
+        else:
+            data.update({
+                "nationality": model.nationality.nationality,
+                "nationality_id": model.nationality.id,
+                })
         return data
+
+    def parse_data(self, model):
+
+        if model.last_visit is not None:
+            model.last_visit = model.last_visit.strftime("%d/%m/%Y")
+        else:
+            model.last_visit = 'Ahun no ha sido citado'
+
+        if model.weight is None:
+            model.weight = 0
+
+        if model.height is None:
+            model.height = 0
 
     def get_model_features(self, model):
         data = []
@@ -61,8 +92,12 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
             data.append({
                 'feature_id': value.feature.id,
                 'feature': value.feature.name,
+                'description': feature_detail.description,
                 'value_id': value.id,
-                'value': value.name
+                'value': value.name,
+                'updated': feature_detail.modified.strftime("%d/%m/%Y"),
+                "type": value.feature.get_type_display(),
+                "model_feature": feature_detail.id
             })
         return data
 
@@ -76,6 +111,7 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
         for picture in pictures:
             data.append({
                 'main_id': picture.id,
+                'show': True,
                 'main_picture': picture.file.name,
                 'thumbs': picture.get_all_thumbnail()
             })
@@ -181,7 +217,7 @@ class PictureModelCreateView(CreateView):
         return form
 
     def form_valid(self, form):
-        model = Model.objects.get(pk=7)
+        model = Model.objects.get(pk=self.request.POST.get('flag'))
         self.object = form.save(commit=False)
         self.object.content_type = ContentType.objects.get_for_model(model)
         self.object.object_id = model.id
@@ -191,6 +227,7 @@ class PictureModelCreateView(CreateView):
         if thumbnails is not None:
             for file in files:
                 file.update({'thumbnailUrl': thumbnails.get('file')})
+            self.save_main_image(model)
         else:
             #No se grabo los thumbs
             pass
@@ -202,59 +239,174 @@ class PictureModelCreateView(CreateView):
     def after_form_valid(self):
         return PictureThumbnail.save_all_thumbnails(self.object)
 
+    def save_main_image(self, model):
+        main_image = None
+        picture = Picture.objects.filter(
+            content_type = self.object.content_type,
+            object_id =self.object.object_id
+
+        ).latest('created')
+
+        thumbnails = picture.get_all_thumbnail()
+
+        for thumbnail in thumbnails:
+            if thumbnail.get('type') == 'Small':
+                main_image = thumbnail.get('url')
+
+        model.main_image = main_image
+        model.save()
+
     def form_invalid(self, form):
         data = json.dumps(form.errors)
         return HttpResponse(content=data, status=400, content_type='application/json')
 
 
-class ModelFeatureCreateView(LoginRequiredMixin, JSONResponseMixin, View):
-    SAVE_SUCCESSFUL = 'Datos descriptivos grabados'
+class ModelFeatureUpdateView(LoginRequiredMixin, JSONResponseMixin, View):
+    UPDATE_SUCCESSFUL = 'Datos descriptivos grabados'
     ERROR_MODEL_SAVE = 'ocurrio un error al tratar de grabar la informacion del modelo'
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
-        return super(ModelFeatureCreateView, self).dispatch(request, *args, **kwargs)
+        return super(ModelFeatureUpdateView, self).dispatch(request, *args, **kwargs)
 
-    def save_feature_mode(self, data):
-        feature_value = FeatureValue.objects.get(pk=data.get('value_id'))
-        feature = feature_value.feature
+    def update_feature_model(self, data):
         model = Model.objects.get(pk=self.kwargs.get('pk'))
+        description = data.get('description', None)
+        feature_value = data.get('feature')
 
-        if model.model_feature_detail_set.filter(feature_value__feature=feature).exists():
-            if feature.type == Feature.TYPE_UNIQUE:
-                detail = model.model_feature_detail_set.get(feature_value__feature=feature)
-                detail.feature_value = feature_value
-                detail.save()
-                return detail
-            return None
-
-        model_feature_detail = ModelFeatureDetail()
-        model_feature_detail.feature_value = feature_value
+        model_feature_detail = ModelFeatureDetail.objects.get(pk=data.get('model_feature_id'))
+        model_feature_detail.feature_value = FeatureValue.objects.get(pk=feature_value.get('value_id'))
         model_feature_detail.model = model
+        model_feature_detail.description = description
         model_feature_detail.save()
 
-        feature = model_feature_detail.feature_value.feature
+        return self.result_json(model_feature_detail)
 
-        return feature
+    def result_json(self, model_feature_detail):
+        return {
+            "feature_id": model_feature_detail.feature_value.feature.id,
+            "feature": model_feature_detail.feature_value.feature.name,
+            "value_id": model_feature_detail.feature_value.id,
+            "value": model_feature_detail.feature_value.name,
+            "description": model_feature_detail.description,
+            "updated": model_feature_detail.modified.strftime("%d/%m/%Y"),
+            "type": model_feature_detail.feature_value.feature.get_type_display(),
+            "model_feature": model_feature_detail.id
+        }
 
     @transaction.commit_manually
     def post(self, request, *args, **kwargs):
         context = {}
-        feature = json.loads(request.body)
+        data = json.loads(request.body)
         context['status'] = 'success'
-        context['message'] = self.SAVE_SUCCESSFUL
+        context['message'] = self.UPDATE_SUCCESSFUL
         try:
-            result = self.save_feature_mode(feature)
+            result = self.update_feature_model(data)
             if result is None:
                 transaction.rollback()
                 context['status'] = 'error'
                 context['message'] = self.ERROR_MODEL_SAVE
             else:
                 transaction.commit()
-                context['feature'] = result.id
+                context['feature'] = result
         except Exception, e:
             context['status'] = 'error'
             context['message'] = self.ERROR_MODEL_SAVE
             transaction.rollback()
 
+        return self.render_to_response(context)
+
+
+class ModelFeatureCreateView(LoginRequiredMixin, JSONResponseMixin, View):
+    SAVE_SUCCESSFUL = 'Datos descriptivos grabados'
+    ERROR_MODEL_SAVE = 'La carracteristica ya existe registrada'
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ModelFeatureCreateView, self).dispatch(request, *args, **kwargs)
+
+    def save_feature_model(self, data):
+        feature_value = data.get('feature_value')
+
+        feature_value = FeatureValue.objects.get(pk=feature_value.get('value_id'))
+        feature = feature_value.feature
+        model = Model.objects.get(pk=self.kwargs.get('pk'))
+        description = data.get('description', None)
+
+        if model.model_feature_detail_set.filter(feature_value__feature=feature).exists():
+            if feature.type == Feature.TYPE_UNIQUE:
+                return None
+            elif feature.type == Feature.TYPE_MULTIPLE:
+                if model.model_feature_detail_set.filter(feature_value=feature_value).exists():
+                    return None
+
+
+        model_feature_detail = ModelFeatureDetail()
+        model_feature_detail.feature_value = feature_value
+        model_feature_detail.model = model
+        model_feature_detail.description = description
+        model_feature_detail.save()
+
+        return self.result_json(model_feature_detail)
+
+    def result_json(self, model_feature_detail):
+        return {
+            "feature_id": model_feature_detail.feature_value.feature.id,
+            "feature": model_feature_detail.feature_value.feature.name,
+            "value_id": model_feature_detail.feature_value.id,
+            "value": model_feature_detail.feature_value.name,
+            "description": model_feature_detail.description,
+            "updated": model_feature_detail.modified.strftime("%d/%m/%Y"),
+            "type": model_feature_detail.feature_value.feature.get_type_display(),
+            "model_feature": model_feature_detail.id
+        }
+
+    @transaction.commit_manually
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        context['status'] = 'success'
+        context['message'] = self.SAVE_SUCCESSFUL
+        try:
+            result = self.save_feature_model(data)
+            if result is None:
+                transaction.rollback()
+                context['status'] = 'warning'
+                context['message'] = self.ERROR_MODEL_SAVE
+            else:
+                transaction.commit()
+                context['feature'] = result
+        except Exception, e:
+            context['status'] = 'error'
+            context['message'] = self.ERROR_MODEL_SAVE
+            transaction.rollback()
+
+        return self.render_to_response(context)
+
+
+class ModelFeatureDeleteView(LoginRequiredMixin, JSONResponseMixin, View):
+    DELETE_SUCCESSFUL = 'Carracteristica eliminada'
+    ERROR_MODEL_FEATURE_DELETE = 'ocurrio un error al tratar de eliminar la informacion del modelo'
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ModelFeatureDeleteView, self).dispatch(request, *args, **kwargs)
+
+    def delete_feature_mode(self, id):
+        try:
+            model_feature_detail = ModelFeatureDetail.objects.get(pk=id)
+            model_feature_detail.delete()
+            return True
+        except:
+            return False
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        feature_model_id = json.loads(request.body)
+        result = self.delete_feature_mode(feature_model_id)
+        context["status"] = "error"
+        context["message"] = self.ERROR_MODEL_FEATURE_DELETE
+        if result:
+            context["status"] = "success"
+            context["message"] = self.DELETE_SUCCESSFUL
         return self.render_to_response(context)

@@ -46,6 +46,24 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
             });
     };
 
+    factory.updateFeatureData = function(urlUpdate, data){
+        return $http.post(urlUpdate, angular.toJson(data))
+            .then(function(response) {
+                if(response.status == 200) {
+                    return response.data;
+                }
+            });
+    };
+
+    factory.deleteFeatureData = function(urlDelete, data){
+        return $http.post(urlDelete, angular.toJson(data))
+            .then(function(response) {
+                if(response.status == 200) {
+                    return response.data;
+                }
+            });
+    };
+
     factory.searchModel = function(urlSearch){
         return $http.get(urlSearch, { cache: true })
             .then(function(response) {

@@ -1,10 +1,14 @@
 var controllers = {};
 
 controllers.searchController = function($scope, ModelFactory, detailService, searchUrls, $rootScope){
-    var basic = searchUrls.search;
+    var basic = searchUrls.search,
+        detail = searchUrls.detail,
+        profile = searchUrls.profile;
     $scope.loader = false;
     $scope.find = undefined;
     $scope.mode = false;
+    $scope.detail = {};
+    $scope.urlCrud = profile;
 
     $scope.typeSearch = {
         'simple': true,
@@ -40,6 +44,12 @@ controllers.searchController = function($scope, ModelFactory, detailService, sea
             if($scope.typeSearch.simple)
                 type = 2;
 
+            $scope.mode = $scope.search.indexOf('"') != -1?true:false;
+            if($scope.mode){
+                var b = /"/g;
+                $scope.search = $scope.search.replace(b,"");
+            }
+
             var data = {
                 'text': $scope.search,
                 'type': type,
@@ -64,9 +74,16 @@ controllers.searchController = function($scope, ModelFactory, detailService, sea
         }
     };
 
-    $scope.getDetail = function(model){
-        $('#detailModal').modal('toggle');
-        $scope.detail = detailService.getDetail(model);
+    $scope.getDetail = function(model_id){
+        var response = detailService.getDetail(detail, model_id);
+        response.then(function(data){
+            $scope.detail =  data;
+        });
+    };
+
+    $scope.showLarge = function(image){
+        debugger
+        image.show = !image.show;
     }
 };
 

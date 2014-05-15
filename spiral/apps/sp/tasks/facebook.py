@@ -107,7 +107,26 @@ class TabFacebookTask(PeriodicTask):
             ids = ids + model_data.get('id_adulto') + ','
             self.save_model_photo(model, model_data)
             self.save_model_feature(model, model_data)
+            self.update_main_image(model)
         return ids
+
+    def update_main_image(self, model):
+        main_image = None
+        picture = Picture.objects.filter(
+            content_type=ContentType.objects.get_for_model(model),
+            object_id=model.id
+
+        ).latest('created')
+
+        thumbnails = picture.get_all_thumbnail()
+
+        for thumbnail in thumbnails:
+            if thumbnail.get('type') == 'Small':
+                main_image = thumbnail.get('url')
+
+        model.main_image = main_image
+        model.save()
+
 
     def save_model_photo(self, model, data):
         if data.get('fot1') != '':
@@ -154,12 +173,19 @@ class TabFacebookTask(PeriodicTask):
 
     def parse_data(self, data):
         for model_data in data:
-
-            if len(model_data.get('estatura')) == 0:
+            terms = False
+            if len(model_data.get('estatura')) == 0 \
+                    or float(model_data.get('estatura')) > 3:
                 estatura = 0
                 model_data.update({
                     'estatura': estatura
                 })
+
+            if model_data.get('terminos') == 'aceptar':
+                terms = True
+            model_data.update({
+                'terminos': terms
+            })
         return data
 
     def run(self, **kwargs):

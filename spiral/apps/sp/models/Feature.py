@@ -62,6 +62,7 @@ class Feature(models.Model):
                         }
                 )
             data.append({
+                'type': feature.get_type_display(),
                 'feature_id': feature.id,
                 'feature_name': feature.name,
                 'feature_values':tmp

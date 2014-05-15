@@ -77,9 +77,9 @@ class Picture(models.Model):
 
 class PictureThumbnail(models.Model):
     # Thumbnail sizes.
-    SMALL = {'key': 1, 'size': (200, 170), 'quality': 100, 'text': 'small', 'crop': True}
-    MEDIUM = {'key': 2, 'size': (270, 230), 'quality': 100, 'text': 'medium', 'crop': True}
-    LARGE = {'key': 3, 'size': (400, 400), 'quality': 100, 'text': 'large', 'crop': True}
+    SMALL = {'key': 1, 'size': (160, 160), 'quality': 100, 'text': 'small', 'crop': False}
+    MEDIUM = {'key': 2, 'size': (300, 300), 'quality': 100, 'text': 'medium', 'crop': False}
+    LARGE = {'key': 3, 'size': (450, 450), 'quality': 100, 'text': 'large', 'crop': False}
     THUMBS = [SMALL, MEDIUM, LARGE]
     CHOICE_THUMBNAIL = (
         (SMALL.get('key'), 'Small'),

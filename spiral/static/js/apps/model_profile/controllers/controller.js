@@ -1,25 +1,34 @@
 var controllers = {};
 
 controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelData, modelStorage) {
-    $scope.model = modelStorage;
+    $scope.model = modelStorage.model;
     var urlSave = modelUrls.save_model,
         urlCountries = modelUrls.urlCountries,
         urlSearch = modelUrls.urlSearch;
+
     $scope.docTypes = jQuery.parseJSON(modelData.docTypes);
     $scope.genders = jQuery.parseJSON(modelData.genders);
+    $scope.pk = modelData.pk;
 
     $scope.flashType = '';
     $scope.flashMessage = '';
     $scope.optionalInput = false;
     $scope.created = false;
 
+    $scope.$watch('pk', function(newValue) {
+        if (newValue) {
+            $scope.model.profile = {};
+            $scope.model.profile['code']  = newValue;
+            $scope.getModel();
+        }
+    });
+
+    ModelFactory.getCountries(urlCountries).then(function(counries) {
+        $scope.countries = counries;
+    });
+
     $scope.showOptional = function(){
         $scope.optionalInput = ! $scope.optionalInput;
-    };
-
-    $scope.changeModel = function(){
-        $scope.model = {};
-        $scope.created = false;
     };
 
     $scope.saveProfile = function(){
@@ -39,19 +48,19 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         }
     };
 
-    ModelFactory.getCountries(urlCountries).then(function(counries) {
-        $scope.countries = counries;
-    });
-
-    $scope.getModel = function(){
+    $scope.getModel = function() {
         $scope.model.profile.id = $scope.model.profile.code;
         ModelFactory.searchModel(urlSearch.replace(':pk', $scope.model.profile.id)).then(function(model) {
             if(model.status == 'success'){
                 $scope.created = true;
                 $scope.$emit("Remove_Message");
                 $scope.model.profile = model.profile;
+                modelStorage.model.profile = $scope.model.profile;
+                modelStorage.model.images = model.images;
+                modelStorage.model.commercial = model.commercial;
+                modelStorage.model.feature = model.features;
                 updateChoicesProfile();
-                updateFeature(model.features);
+                //updateFeature(model.features);
                 $('#modelActive').html(model.profile.name_complete);
             } else {
                 $scope.flashType = model.status;
@@ -83,22 +92,53 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
 
     function updateChoicesProfile(){
 
+        //Año de nacimiento
+        var array = [];
+        array =  $scope.model.profile.birth.split("/");
+        $scope.model.profile.birth = array[2]+'-'+array[1]+'-'+array[0];
+
+        //Documentos
         angular.forEach($scope.docTypes, function(value, key) {
             if($scope.model.profile.type_doc == value.name) {
                 $scope.model.profile.type_doc =  value;
             }
         });
 
+        //Paises
         angular.forEach($scope.countries, function(value, key) {
             if($scope.model.profile.nationality == value.nationality){
                 $scope.model.profile.nationality = value;
             }
         });
+
+        //Genero
+        angular.forEach($scope.genders, function(value, key) {
+            if($scope.model.profile.gender == value.id){
+                $scope.model.profile.gender = value;
+            }
+        });
+
+        //Direccion - Pais
+        angular.forEach($scope.countries, function(value, key) {
+        });
+
+        //Direccion - Ciudad
+        angular.forEach($scope.countries, function(value, key) {
+        });
+
+        //Nacionalidad
+        if($scope.model.profile.nationality != 'No ingresado') {
+            angular.forEach($scope.countries, function(value, key) {
+                if($scope.model.profile.nationality_id == value.id){
+                    $scope.model.profile.nationality = value;
+                }
+            });
+        }
     }
 
     function updateFeature(features){
         angular.forEach(features, function(value, key) {
-            $scope.model.feature[value.id] = value.value;
+            $scope.model.feature[value.feature_id] = value;
         });
 
     }
@@ -107,38 +147,71 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
 controllers.DemoFileUploadController = function($scope,
                                                 $http,
                                                 $filter,
-                                                $window){
+                                                $window,
+                                                modelStorage){
+
+    $scope.model = modelStorage.model;
+    $scope.size = 0;
+
+    var url = '/panel/model/model-control/save-picture/';
 
     $scope.options = {
-        url: '/panel/model/model-control/save-picture/'
+        url: url
     };
 
 };
 
+controllers.AlbumController = function($scope, modelStorage){
+    $scope.model = modelStorage.model;
+};
 
 controllers.FeatureController = function($scope, ModelFactory, modelUrls, modelData, modelStorage){
-    var urlSave = modelUrls.save_feature;
+    var urlSave = modelUrls.save_feature,
+        urlUpdate = modelUrls.update_feature,
+        urlDelete = modelUrls.delete_feature;
 
-    $scope.model = modelStorage;
+    $scope.model = modelStorage.model;
     $scope.model.feature = {};
     $scope.features = jQuery.parseJSON(modelData.features);
+    $scope.new_feature_description = [];
 
-    $scope.$watch('features', function(newValue, oldValue) {
-        if (newValue) {
-            angular.forEach(newValue, function(value, key) {
-                $scope.model.feature[value.feature_id] = '';
+
+    $scope.get_feature =  function(feature_id){
+        values = [];
+        angular.forEach($scope.features, function(value, key) {
+            if(value.feature_id == feature_id){
+                values = value.feature_values;
+            }
+        });
+        return values;
+    };
+
+    $scope.addFeature = function(feature, feature_value){
+        valid = true;
+        if(feature.type == "Valor Unico"){
+            angular.forEach(modelStorage.model.feature, function(value, key) {
+                if(value.feature_id == feature.feature_id){
+                    valid = false;
+                }
             });
         }
-    });
+        if(valid){
+            $scope.save_model_feature(feature_value);
+        } else {
+            $scope.flashType = 'warning';
+            $scope.flashMessage = 'Esta carracteristica ya ha sido ingresado';
+        }
+    };
 
-    $scope.save_model_feature = function(feature){
+
+    $scope.save_model_feature = function(feature_value){
         if($scope.model.profile != undefined){
-            $scope.model.profile.id = $scope.model.profile.code;
-            var response = ModelFactory.saveFeatureData(urlSave.replace(':pk', $scope.model.profile.id), feature);
-            response.then(function(data) {
+            var data = {
+                'feature_value': feature_value
+            };
+            ModelFactory.saveFeatureData(urlSave.replace(':pk', $scope.model.profile.id), data).then(function(data) {
                 if(data.status == 'success'){
-                    debugger
-                    $scope.model.feature[data.feature]= feature.value_name;
+                    modelStorage.model.feature.push(data.feature);
                 } else {
                     $scope.flashType =data.status;
                     $scope.flashMessage = data.message;
@@ -148,7 +221,44 @@ controllers.FeatureController = function($scope, ModelFactory, modelUrls, modelD
             $scope.flashType = 'warning';
             $scope.flashMessage = 'Antes debe de seleccionar un modelo';
         }
-    }
+    };
+    $scope.update_model_feature = function(model_feature_id, feature, description, index){
+        if($scope.model.profile != undefined) {
+            debugger
+            var data = {
+                'model_feature_id': model_feature_id,
+                'feature': feature,
+                'description': description
+            };
+            ModelFactory.updateFeatureData(urlUpdate.replace(':pk', $scope.model.profile.id), data).then(function(data) {
+                if(data.status == 'success') {
+                    modelStorage.model.feature[index] = data.feature;
+                } else {
+                    $scope.flashType =data.status;
+                    $scope.flashMessage = data.message;
+                }
+            });
+        } else{
+            $scope.flashType = 'warning';
+            $scope.flashMessage = 'Antes debe de seleccionar un modelo';
+        }
+    };
+
+    $scope.delete_model_feature = function(idx, model_feature_id){
+        if($scope.model.profile != undefined){
+            ModelFactory.deleteFeatureData(urlDelete, model_feature_id).then(function(data) {
+                if(data.status == 'success'){
+                    modelStorage.model.feature.splice(idx, 1);
+                } else {
+                    $scope.flashType =data.status;
+                    $scope.flashMessage = data.message;
+                }
+            });
+        } else{
+            $scope.flashType = 'warning';
+            $scope.flashMessage = 'Antes debe de seleccionar un modelo';
+        }
+    };
 };
 
 controllers.FileDestroyController = function($scope, $http){

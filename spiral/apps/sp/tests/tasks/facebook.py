@@ -66,3 +66,9 @@ class FacebookTaskTest(TestCase):
         result = self.tab_facebook_task.run()
         self.assertEqual(Model.objects.all().count(), 5)
         self.assertEquals(result.get('status'), 200)
+
+    # def _test_method_test_real(self):
+    #     self.assertEqual(Model.objects.all().count(), 4)
+    #     result = self.tab_facebook_task.run()
+    #     self.assertEqual(Model.objects.all().count(), 5)
+    #     self.assertEquals(result.get('status'), 200)

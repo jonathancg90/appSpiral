@@ -37,9 +37,7 @@ class Model(models.Model):
         (TYPE_DNI, 'DNI'),
         (TYPE_PASSPORT, 'Pasaporte')
     )
-    model_code = models.CharField(
-        verbose_name=_('Codigo'),
-        max_length=45,
+    model_code = models.PositiveIntegerField(
         unique=True
     )
 
@@ -138,6 +136,7 @@ class Model(models.Model):
     main_image = models.CharField(
         verbose_name=_(u'Imagen Principal'),
         max_length=100,
+        default='static/img/default.png',
         null=True,
         blank=True,
     )
@@ -190,7 +189,15 @@ class Model(models.Model):
 
     @classmethod
     def get_code(self):
-        return random.randint(200, 500)
+        initial = 100000
+        try:
+            model = Model.objects.latest('created')
+            if model:
+                return model.model_code + 1
+            else:
+                return initial
+        except Model.DoesNotExist:
+            return initial
 
     def get_data_api_json(self):
         if self.model_code is not None:
@@ -220,9 +227,9 @@ class Model(models.Model):
 
 
 def create_additional_data(sender, instance, created, **kwargs):
-    instance.main_image = None
     instance.summary = None
-    instance.model_code = Model.get_code()
+    if instance.model_code is None:
+        instance.model_code = Model.get_code()
     post_save.disconnect(create_additional_data, sender=Model) #for not causing recursion
     instance.save()
     post_save.connect(create_additional_data, sender=Model)
@@ -246,6 +253,15 @@ class ModelFeatureDetail(models.Model):
         max_length=100,
         null=True,
         blank=True
+    )
+
+    created = models.DateTimeField(
+        auto_now_add=True,
+        editable=False
+    )
+
+    modified = models.DateTimeField(
+        auto_now_add=True
     )
 
     class Meta:

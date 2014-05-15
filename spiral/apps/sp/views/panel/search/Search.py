@@ -34,7 +34,6 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
 
         data = {'text': self._text}
         search.set_params(data)
-        search.set_debug(True)
         result = search.run()
         result = list(result)
         return self.render_json_response(result)
