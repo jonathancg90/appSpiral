@@ -123,6 +123,7 @@
     // search urls
     angular.module('modelApp').value("modelUrls", {
         save_model: '{% url "panel_model_save_profile" %}',
+        update_model: '{% url "panel_model_update_profile" pk=':pk' %}',
         save_feature: '{% url "panel_model_save_feature" pk=':pk' %}',
         update_feature: '{% url "panel_model_update_feature" pk=':pk' %}',
         delete_feature: '{% url "panel_model_delete_feature"  %}',

@@ -22,7 +22,7 @@
                 <select ng-model="model.profile.type_doc" ng-options="type.name for type in docTypes">
                     <option value="">-- choose type --</option>
                 </select>
-                <input type="text" id="inputLastName" placeholder="Numero de documento" ng-model="model.profile.num_doc">
+                <input type="text" maxlength="8" id="inputLastName" placeholder="Numero de documento" ng-model="model.profile.num_doc">
             </div>
         </div>
         <div class="control-group">
@@ -39,8 +39,7 @@
                     <select ng-model="model.profile.dir_country" ng-options="dir_country.name for dir_country in countries">
                         <option value="">-- choose type --</option>
                     </select>
-
-                    <select ng-model="model.profile.city" ng-options="city.name for city in cities">
+                    <select ng-model="model.profile.city" ng-options="city.city_name for city in model.profile.dir_country.cities">
                         <option value="">-- choose type --</option>
                     </select>
                 </div>
@@ -93,13 +92,13 @@
         <div class="control-group" ng-show="optionalInput">
             <label class="control-label" for="inputHeight">Altura</label>
             <div class="controls">
-                <input type="number" id="inputHeight" placeholder="0.00">
+                <input type="number" id="inputHeight" placeholder="0.00" ng-model="model.profile.height">
             </div>
         </div>
         <div class="control-group" ng-show="optionalInput">
             <label class="control-label" for="inputWeight">Peso</label>
             <div class="controls">
-                <input type="number" id="inputWeight" placeholder="0.00">
+                <input type="number" id="inputWeight" placeholder="0.00" ng-model="model.profile.weight">
             </div>
         </div>
         <div class="control-group" ng-show="optionalInput">

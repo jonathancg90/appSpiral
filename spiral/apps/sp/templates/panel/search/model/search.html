@@ -24,11 +24,34 @@
             font-weight: bold;
             color: #3a87ad;
         }
+        .tags input{
+            width: 40% !important;
+        }
+        .tags{
+            width: 50%;
+            padding-left: 25px;
+        }
+        .input-icon {
+            width: 50% !important;
+        }
+        input::-webkit-calendar-picker-indicator {
+            display: none;
+        }
+        .tooltip {
+            width: 150px;
+        }
+        .bootstrap .tags .tag-item {
+            background: #428bca;
+            border: 1px solid #357ebd;
+            border-radius: 4px;
+            color: #fff;
+        }
     </style>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/ng-tags-input.css">
 {% endblock %}
 
 {% block content %}
-<div ng-app="searchApp" ng-controller="searchController" ng-cloak class="ng-cloak">
+<div ng-app="searchApp" ng-controller="searchController" ng-cloak class="ng-cloak" ng-init="getFeatures()">
     <div class="page-header position-relative">
             <h1>
                 <button class="btn btn-info" ng-show="typeSearch.advance" ng-click="changeType()">
@@ -40,15 +63,21 @@
                     Avanzado
                     <i class="icon-eye-open bigger-125 icon-on-right"></i>
                 </button>
-                <small>
+                <small ng-show="typeSearch.simple">
                     <i class="icon-double-angle-right"></i>
                     <input type="text" class="span6 search-query" placeholder="Buscar"
                            ng-model="search"
                            ng-keydown="searchModel($event)"
                            autocomplete="off">
                 </small>
+                <small  ng-show="typeSearch.advance">
+
+                    <tags-input ng-model="tags">
+                        <auto-complete source="loadTags($query)"></auto-complete>
+                    </tags-input>
+                </small>
                 <div style="display: inline;" ng-show="typeSearch.advance">
-                    <button class="btn btn-info">
+                    <button class="btn btn-info margin-advance" ng-click="searchAdvance()" title="{[{ tooltip }]}">
                         <i class="icon-edit icon-only bigger-150"></i>
                     </button>
                 </div>
@@ -238,9 +267,6 @@
                             </div>
                         </div>
 
-
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -256,6 +282,7 @@
 
 {% block script_bottom %}
     <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/libs/ng-tags-input.js"></script>
     <script src="{{ STATIC_URL }}js/apps/search/app.js"></script>
     <script src="{{ STATIC_URL }}js/apps/search/controllers/controller.js"></script>
     <script src="{{ STATIC_URL }}js/apps/search/factories/model.js"></script>
@@ -266,10 +293,31 @@
         angular.module('searchApp').value("searchUrls", {
             search: '{% url "search_basic_model" %}',
             profile: '{% url "panel_model_control_list" %}',
-            detail: '{% url "panel_information_model"  pk=':pk' %}'
+            detail: '{% url "panel_information_model"  pk=':pk' %}',
+            features: '{% url "search_data_feature" %}'
         });
         angular.module('searchApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'
         });
     </script>
+
+    <script src="{{ STATIC_URL }}admin/js/bootstrap-tag.min.js"></script>
+
+    <script>
+        //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
+        $(document).on('ready', function(){
+            var tag_input = $('#form-field-tags');
+            if(! ( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())) )
+                tag_input.tag({placeholder:tag_input.attr('placeholder')});
+            else {
+                tag_input.after('<input id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" value="'+tag_input.val()+ '" type="text"/>').remove();
+{#                tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="1">'+tag_input.val()+'</textarea>').remove();#}
+            }
+
+            $('.tags input[type="text"]').attr('id', 'input-feature');
+            $('#input-feature').attr('list', 'features');
+{#            $('[data-rel=tooltip]').tooltip({container:'body'});#}
+        })
+    </script>
+
 {% endblock %}

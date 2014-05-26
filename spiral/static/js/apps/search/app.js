@@ -1,4 +1,4 @@
-var searchApp = angular.module('searchApp', [], function($httpProvider)
+var searchApp = angular.module('searchApp', ['ngTagsInput'], function($httpProvider)
 {
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

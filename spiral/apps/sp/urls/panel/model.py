@@ -4,7 +4,8 @@ from django.conf.urls import url, patterns
 from apps.sp.views.panel.Model import ModelControlListView, \
     ModelCreateView, PictureModelCreateView, \
     ModelDataJsonView, ModelFeatureCreateView, \
-    ModelFeatureDeleteView, ModelFeatureUpdateView
+    ModelFeatureDeleteView, ModelFeatureUpdateView, \
+    ModelUpdateView
 
 urlpatterns = patterns('',
 
@@ -16,6 +17,10 @@ urlpatterns = patterns('',
     url(r'^model-control/save-profile/$',
         ModelCreateView.as_view(),
         name='panel_model_save_profile'),
+
+    url(r'^model-control/update-profile/(?P<pk>[^/]+)/$',
+        ModelUpdateView.as_view(),
+        name='panel_model_update_profile'),
 
     url(r'^model-control/save-feature/(?P<pk>[^/]+)/$',
         ModelFeatureCreateView.as_view(),

@@ -4,9 +4,6 @@ from apps.sp.models.Feature import Feature
 from apps.sp.models.Country import Country
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import FeatureHelper
-# from apps.sp.tests.Helpers.data_helpers.criterion_category import CriterionCategoryHelper
-# from apps.common.insert_helper import CriterionHelper, CriterionDetailHelper
-
 
 class Command(BaseCommand):
     data_delete = False
@@ -35,16 +32,6 @@ class Command(BaseCommand):
         if entity == 'feature':
             self.insert_features()
 
-        # if entity == 'criterion_category':
-        #     self.insert_criterion_category()
-        #
-        # if entity == 'criterion':
-        #     self.insert_criterion()
-        #
-        # if entity == 'criterion_detail':
-        #     self.insert_criterion_detail()
-
-
     def insert_features(self):
         if self.data_delete:
             Feature.objects.all().delete()
@@ -68,34 +55,3 @@ class Command(BaseCommand):
                 self.stdout.write('Successfully inserted data: country. \n')
             else:
                 self.stdout.write('can not insert the data: country. \n')
-
-    # def insert_criterion_category(self):
-    #     if self.data_delete:
-    #         CriterionCategory.objects.all().delete()
-    #         self.stdout.write('delete data: criterion category. \n')
-    #     else:
-    #         if CriterionCategory.objects.all().count() == 0:
-    #             criterion_category_helper = CriterionCategoryHelper()
-    #             criterion_category_helper.set_data()
-    #             criterion_category_helper.insert_data()
-    #             self.stdout.write('Successfully inserted data: criterion category. \n')
-    #         else:
-    #             self.stdout.write('can not insert the data: criterion category. \n')
-    #
-    # def insert_criterion(self):
-    #     if self.data_delete:
-    #         Criterion.objects.all().delete()
-    #         self.stdout.write('delete data: criterion. \n')
-    #     else:
-    #         criterion_helper = CriterionHelper()
-    #         criterion_helper.insert_data()
-    #         self.stdout.write('Successfully inserted data criterion. \n')
-    #
-    # def insert_criterion_detail(self):
-    #     if self.data_delete:
-    #         Criterion.objects.all().delete()
-    #         self.stdout.write('delete data: criterion. \n')
-    #     else:
-    #         criterion_detail_helper = CriterionDetailHelper()
-    #         criterion_detail_helper.insert_data()
-    #         self.stdout.write('Successfully inserted data criterion detail. \n')

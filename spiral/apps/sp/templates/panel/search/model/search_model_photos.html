@@ -1,11 +1,15 @@
+<button class="btn btn-mini" ng-click="size = 0">Small </button>
+<button class="btn btn-mini btn-info" ng-click="size = 2">Large</button>
+<hr style="margin: 3px 0 !important; "/>
 <ul class="ace-thumbnails">
-
-<li ng-repeat="image in detail.images">
-    <a href="#" data-rel="colorbox" ng-show="image.show">
-        <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[0].url }]}" ng-click="showLarge(image)"/>
-    </a>
-    <a href="#" data-rel="colorbox" ng-hide="image.show">
-        <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[2].url }]}" ng-click="showLarge(image)"/>
-    </a>
-</li>
+    <li ng-repeat="image in detail.images">
+        {#small#}
+        <a href="{{ STATIC_URL }}{[{ image.main_picture }]}"  target="_blank" data-rel="colorbox" ng-if="size == 0">
+            <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[0].url }]}"/>
+        </a>
+        {#large#}
+        <a href="{{ STATIC_URL }}{[{ image.main_picture }]}" target="_blank" data-rel="colorbox" ng-if="size == 2" >
+            <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[2].url }]}"/>
+        </a>
+    </li>
 </ul>

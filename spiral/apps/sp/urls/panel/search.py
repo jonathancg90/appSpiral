@@ -3,7 +3,8 @@
 from django.conf.urls import url, patterns
 from apps.sp.views.panel.search.CommercialRealized import CommercialRealizedListView, \
     ModelsPerCommercial, ExportCommercialRealizedView
-from apps.sp.views.panel.search.Search import ModelSearchView, ModelSearchTemplateView
+from apps.sp.views.panel.search.Search import ModelSearchView, ModelSearchTemplateView, \
+    ModelFeatureDataJsonView
 
 
 urlpatterns = patterns('',
@@ -27,6 +28,10 @@ urlpatterns = patterns('',
     url(r'^models/search/$',
         ModelSearchView.as_view(),
         name='search_basic_model'),
+
+    url(r'^models/search/data-feature/$',
+        ModelFeatureDataJsonView.as_view(),
+        name='search_data_feature'),
 
 
 )

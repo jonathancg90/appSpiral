@@ -3,6 +3,7 @@ import urllib
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.contrib.contenttypes.models import ContentType
+from django.db import transaction
 from PIL import Image
 from StringIO import StringIO
 from celery.task import PeriodicTask
@@ -86,28 +87,33 @@ class TabFacebookTask(PeriodicTask):
         self.feature['larg_cab'] = Feature.objects.get(name='Tamaño de cabello')
         self.feature['tip_cab'] = Feature.objects.get(name='Tipo de cabello')
 
+    @transaction.commit_manually
     def save_model(self, data):
         ids = ''
         for model_data in data:
-            model = Model()
-            model.name_complete = model_data.get('nom_datos') + ' ' + model_data.get('app_datos') + ' ' + model_data.get('apm_datos')
-            model.model_code = Model.get_code()
-            model.type_doc = self.type_document(model_data.get('tipdoc_datos'))
-            model.number_doc = model_data.get('num_doc_datos')
-            model.address = model_data.get('dir_datos')
-            model.email = model_data.get('mail_datos')
-            model.birth = model_data.get('fec_datos')
-            model.city = self.get_city(model_data.get('dep_datos'))
-            model.nationality = self.get_country(model_data.get('naci_datos'))
-            model.phone_fixed = model_data.get('fijo_datos')
-            model.phone_mobil = model_data.get('movil_datos')
-            model.height = model_data.get('estatura')
-            model.terms = model_data.get('terminos')
-            model.save()
-            ids = ids + model_data.get('id_adulto') + ','
-            self.save_model_photo(model, model_data)
-            self.save_model_feature(model, model_data)
-            self.update_main_image(model)
+            try:
+                model = Model()
+                model.name_complete = model_data.get('nom_datos') + ' ' + model_data.get('app_datos') + ' ' + model_data.get('apm_datos')
+                model.model_code = Model.get_code()
+                model.type_doc = self.type_document(model_data.get('tipdoc_datos'))
+                model.number_doc = model_data.get('num_doc_datos')
+                model.address = model_data.get('dir_datos')
+                model.email = model_data.get('mail_datos')
+                model.birth = model_data.get('fec_datos')
+                model.city = self.get_city(model_data.get('dep_datos'))
+                model.nationality = self.get_country(model_data.get('naci_datos'))
+                model.phone_fixed = model_data.get('fijo_datos')
+                model.phone_mobil = model_data.get('movil_datos')
+                model.height = model_data.get('estatura')
+                model.terms = model_data.get('terminos')
+                model.save()
+                ids = ids + model_data.get('id_adulto') + ','
+                self.save_model_feature(model, model_data)
+                self.save_model_photo(model, model_data)
+                self.update_main_image(model)
+                transaction.commit()
+            except:
+                transaction.rollback()
         return ids
 
     def update_main_image(self, model):
@@ -126,7 +132,6 @@ class TabFacebookTask(PeriodicTask):
 
         model.main_image = main_image
         model.save()
-
 
     def save_model_photo(self, model, data):
         if data.get('fot1') != '':

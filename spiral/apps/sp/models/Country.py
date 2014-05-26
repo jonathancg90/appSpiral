@@ -10,7 +10,6 @@ class Country(models.Model):
         (STATUS_INACTIVE,_(u'inactivo')),
         (STATUS_ACTIVE, _(u'activo'))
     )
-
     name = models.CharField(
         max_length=45
     )

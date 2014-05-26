@@ -3,6 +3,7 @@ var controllers = {};
 controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelData, modelStorage) {
     $scope.model = modelStorage.model;
     var urlSave = modelUrls.save_model,
+        urlUpdate = modelUrls.update_model,
         urlCountries = modelUrls.urlCountries,
         urlSearch = modelUrls.urlSearch;
 
@@ -34,7 +35,12 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     $scope.saveProfile = function(){
         if(required()){
             ModelFactory.setProfile($scope.model.profile);
-            var response = ModelFactory.saveProfileData(urlSave);
+            if($scope.pk == undefined){
+                url = urlSave;
+            } else {
+                url = urlUpdate.replace(':pk', $scope.pk);
+            }
+            var response = ModelFactory.saveProfileData(url);
             response.then(function(data){
                 if(data.status == 'success'){
                     $scope.model.profile.code= data.code;
@@ -117,13 +123,18 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
                 $scope.model.profile.gender = value;
             }
         });
-
         //Direccion - Pais
         angular.forEach($scope.countries, function(value, key) {
+            if($scope.model.profile.country == value.id){
+                $scope.model.profile.dir_country = value;
+            }
         });
 
         //Direccion - Ciudad
-        angular.forEach($scope.countries, function(value, key) {
+        angular.forEach($scope.model.profile.dir_country.cities, function(value, key) {
+            if($scope.model.profile.city_id == value.city_id){
+                $scope.model.profile.city = value;
+            }
         });
 
         //Nacionalidad
@@ -136,12 +147,6 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         }
     }
 
-    function updateFeature(features){
-        angular.forEach(features, function(value, key) {
-            $scope.model.feature[value.feature_id] = value;
-        });
-
-    }
 };
 
 controllers.DemoFileUploadController = function($scope,
@@ -175,7 +180,6 @@ controllers.FeatureController = function($scope, ModelFactory, modelUrls, modelD
     $scope.features = jQuery.parseJSON(modelData.features);
     $scope.new_feature_description = [];
 
-
     $scope.get_feature =  function(feature_id){
         values = [];
         angular.forEach($scope.features, function(value, key) {
@@ -203,7 +207,6 @@ controllers.FeatureController = function($scope, ModelFactory, modelUrls, modelD
         }
     };
 
-
     $scope.save_model_feature = function(feature_value){
         if($scope.model.profile != undefined){
             var data = {
@@ -222,9 +225,9 @@ controllers.FeatureController = function($scope, ModelFactory, modelUrls, modelD
             $scope.flashMessage = 'Antes debe de seleccionar un modelo';
         }
     };
+
     $scope.update_model_feature = function(model_feature_id, feature, description, index){
         if($scope.model.profile != undefined) {
-            debugger
             var data = {
                 'model_feature_id': model_feature_id,
                 'feature': feature,

@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.utils import simplejson
 from django.db import models
+from apps.sp.models.Feature import FeatureValue
 
 
 class Model(models.Model):
@@ -136,7 +137,7 @@ class Model(models.Model):
     main_image = models.CharField(
         verbose_name=_(u'Imagen Principal'),
         max_length=100,
-        default='static/img/default.png',
+        default='img/default.png',
         null=True,
         blank=True,
     )
@@ -150,6 +151,11 @@ class Model(models.Model):
     terms = models.BooleanField(
         verbose_name=_(u'Terminos y condiciones'),
         default=False,
+    )
+
+    feature_detail = models.ManyToManyField(
+        FeatureValue,
+        through='ModelFeatureDetail'
     )
 
     created = models.DateTimeField(
@@ -191,7 +197,7 @@ class Model(models.Model):
     def get_code(self):
         initial = 100000
         try:
-            model = Model.objects.latest('created')
+            model = Model.objects.latest('model_code')
             if model:
                 return model.model_code + 1
             else:

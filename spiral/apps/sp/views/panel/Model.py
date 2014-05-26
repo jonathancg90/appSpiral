@@ -14,7 +14,6 @@ from apps.fileupload.serialize import serialize
 from apps.fileupload.response import JSONResponse, response_mimetype
 
 from apps.sp.models.Model import Model, ModelFeatureDetail
-from apps.sp.models.Country import Country
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.common.view import JSONResponseMixin
 from apps.common.view import LoginRequiredMixin
@@ -51,6 +50,7 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
             "email": model.email,
             "main_image": model.main_image,
             "web": True,
+            "country": '' if model.city is None else model.city.country.id,
             "city_id": '' if model.city is None else model.city.id,
             "city_name": '' if model.city is None else model.city.name,
             "age": date.today().year - model.birth.year,
@@ -170,20 +170,33 @@ class ModelCreateView(LoginRequiredMixin, JSONResponseMixin, View):
     def dispatch(self, request, *args, **kwargs):
         return super(ModelCreateView, self).dispatch(request, *args, **kwargs)
 
+    def get_model(self):
+        return Model()
+
     def save_model(self, data):
-        if Model.objects.filter(number_doc=data.get('num_doc')).exists():
-            return None, self.ERROR_MODEL_DNI
+        if self.kwargs.get('pk', None) is None:
+            if Model.objects.filter(number_doc=data.get('num_doc')).exists():
+                return None, self.ERROR_MODEL_DNI
+        else:
+            if Model.objects.filter(number_doc=data.get('num_doc')).\
+                    exclude(pk=self.kwargs.get('pk', None)).exists():
+                return None, self.ERROR_MODEL_DNI
         try:
-            model = Model()
+            model = self.get_model()
+            model.model_code = Model.get_code()
             model.name_complete = data.get('name_complete')
             model.type_doc = data.get('type_doc').get('id')
             model.number_doc = data.get('num_doc')
             model.address = data.get('address')
             model.email = data.get('email')
+            model.city_id = data.get('city')
             model.phone_fixed = data.get('phone_fixed')
             model.phone_mobil = data.get('phone_mobil')
             model.birth = data.get('birth')
-            model.nationality = Country.objects.get(pk=data.get('nationality').get('id'))
+            model.gender = data.get('gender')
+            model.weight = data.get('weight', None)
+            model.height = data.get('height', None)
+            model.nationality_id = data.get('nationality')
             model.save()
             return model, self.SAVE_SUCCESSFUL
         except Exception, e:
@@ -202,7 +215,16 @@ class ModelCreateView(LoginRequiredMixin, JSONResponseMixin, View):
         return self.render_to_response(context)
 
 
-class PictureModelCreateView(CreateView):
+class ModelUpdateView(ModelCreateView):
+    SAVE_SUCCESSFUL = 'Modelo actualizado'
+    ERROR_MODEL_DNI = "Numero de DNI duplicado"
+    ERROR_MODEL_SAVE = 'ocurrio un error al tratar de grabar la informacion del modelo'
+
+    def get_model(self):
+        return Model.objects.get(pk=self.kwargs.get('pk'))
+
+
+class PictureModelCreateView(LoginRequiredMixin, CreateView):
     model = Picture
     thumb_options = PictureThumbnail.THUMBS
 
@@ -410,3 +432,4 @@ class ModelFeatureDeleteView(LoginRequiredMixin, JSONResponseMixin, View):
             context["status"] = "success"
             context["message"] = self.DELETE_SUCCESSFUL
         return self.render_to_response(context)
+

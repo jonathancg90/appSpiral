@@ -3,8 +3,8 @@ import json
 from django.conf import settings
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.models.Country import Country
-# from apps.sp.models.Criterion import Criterion, CriterionDetail
-# from apps.sp.models.CriterionCategory import CriterionCategory
+from apps.sp.models.City import City
+
 
 
 class ReaderJsonHelper(object):
@@ -69,42 +69,9 @@ class CountryHelper(ReaderJsonHelper):
             _country.name = country.get('name')
             _country.nationality = country.get('nationality')
             _country.save()
-
-# class CriterionHelper(ReaderTxtHelper):
-#
-#     def insert_data(self):
-#         for data in self.data_parse('criterion'):
-#             try:
-#                 criterion = Criterion()
-#                 criterion.cri_cod = data[0]
-#                 criterion.description = data[1]
-#                 criterion.criterion_category = CriterionCategory.objects.get(
-#                     description=data[2]
-#                 )
-#                 criterion.multi = self.get_multi_value(data[3])
-#                 criterion.save()
-#             except:
-#                 print('can not exist '+data[2])
-#
-#     def get_multi_value(self, value):
-#         if value == 'V':
-#             return True
-#         else:
-#             return False
-#
-#
-# class CriterionDetailHelper(ReaderTxtHelper):
-#
-#     def insert_data(self):
-#         for data in self.data_parse('criterion_detail'):
-#             try:
-#                 criterion_detail = CriterionDetail()
-#                 criterion_detail.criterion = Criterion.objects.get(
-#                     cri_cod=data[0]
-#                 )
-#                 criterion_detail.cri_item = data[1]
-#                 criterion_detail.description = data[2]
-#                 criterion_detail.save()
-#             except:
-#                 print('can not exist '+data[0])
+            for city in country.get('cities'):
+                _city = City()
+                _city.name = city.get('name')
+                _city.country = _country
+                _city.save()
 
