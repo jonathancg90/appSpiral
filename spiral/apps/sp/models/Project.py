@@ -9,7 +9,7 @@ class Project(models.Model):
     CHOICE_TYPE = (
         (TYPE_EXTRA, _(u'extra')),
         (TYPE_CASTING, _(u'casting'))
-        )
+    )
 
     project_code = models.CharField(
         max_length=9,

@@ -10,12 +10,15 @@ class Country(models.Model):
         (STATUS_INACTIVE,_(u'inactivo')),
         (STATUS_ACTIVE, _(u'activo'))
     )
-
     name = models.CharField(
         max_length=45
     )
+    nationality = models.CharField(
+        max_length=45
+    )
     status = models.SmallIntegerField(
-        choices= CHOICE_STATUS
+        choices=CHOICE_STATUS,
+        default=STATUS_ACTIVE
     )
     created = models.DateTimeField(
         auto_now_add=True,

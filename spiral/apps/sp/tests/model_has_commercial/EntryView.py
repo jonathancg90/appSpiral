@@ -14,7 +14,7 @@ class EntryViewTest(TestCase):
         self.insert_data_helper = InsertDataHelper()
 
     def test_list_view_entry(self):
-        self.insert_data_helper.insert_data_helper()
+        self.insert_data_helper.run()
         view = EntryListView.as_view()
         request = self.request_factory.get(
             reverse('entry_list')
@@ -29,7 +29,7 @@ class EntryViewTest(TestCase):
         self.assertEqual(response.context_data['object_list'].count(), 6)
 
     def test_list_view_entry_filter(self):
-        self.insert_data_helper.insert_data_helper()
+        self.insert_data_helper.run()
         request = self.request_factory.get(reverse('entry_list'),
                                    data={'name__icontains': 'Telefonia'})
         view = EntryListView.as_view()

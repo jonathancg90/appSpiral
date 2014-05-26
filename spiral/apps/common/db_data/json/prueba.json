@@ -1,0 +1,82 @@
+[
+    {
+        'id': 1,
+        'dedcription': 'bla bla bla'
+    },
+    {
+        'id': 2,
+        'dedcription': 'bla bla bla'
+    },
+    {
+        'id': 3,
+        'dedcription': 'bla bla bla'
+    }
+]
+
+// a={"1":"one","2":"two", "3": "three"}
+// all (k in a for k in ("3","2"))
+
+[
+    {
+    'id': 2,
+    'dedcription': 'bla bla bla'
+    },
+    {
+    'id': 3,
+    'dedcription': 'bla bla bla'
+    },
+    {
+    'id': 6,
+    'dedcription': 'bla bla bla'
+    }
+]
+
+
+    {
+        "edad": [
+            "años",
+            "edad",
+            "niños",
+            "niñas",
+            "jovenes",
+            "adultos",
+            "bebes",
+            "ancianos",
+            "abuelos"
+        ],
+        "piel": [
+            "piel",
+            "raza",
+            "tez"
+        ],
+        "estatura": [
+            "estatura",
+            "mida",
+            "chato",
+            "alto",
+            "metros",
+            "m."
+        ],
+        "color cabello": [
+            "color de cabello"
+        ],
+        "genero": [
+            "hombre",
+            "chico",
+            "chica",
+            "mujer",
+            "femenino",
+            "masculino"
+        ],
+        "proyecto": [
+            "proyecto",
+            "comercial"
+        ],
+        "profesion":[
+            "profesion"
+        ]
+
+
+    }
+
+]

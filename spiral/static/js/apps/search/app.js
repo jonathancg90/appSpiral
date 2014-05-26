@@ -1,4 +1,4 @@
-var searchApp = angular.module('searchApp', ['AdvanceFilter'], function($httpProvider)
+var searchApp = angular.module('searchApp', ['ngTagsInput'], function($httpProvider)
 {
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -55,28 +55,12 @@ var searchApp = angular.module('searchApp', ['AdvanceFilter'], function($httpPro
     }];
 });
 
-searchApp.config(function ($routeProvider, $interpolateProvider) {
-    $routeProvider
-        .when(
-        '/basic-search/',
-        {
-            controller: 'SearchBasicController',
-            templateUrl: searchUrls.basic
-        })
-        .when(
-        '/advance-search',
-        {
-            controller: 'SearchAdvanceController',
-            templateUrl: searchUrls.advance
-        })
-        .otherwise({redirectTo: '/basic-search/'});
-
+searchApp.config(function ($interpolateProvider) {
     // So '{{ }}' not overlaps with django syntax template
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
 
 });
-
 
 searchApp.run(function(csrfToken, $http) {
     $http.defaults.headers.post['X-CSRFToken'] = csrfToken.csrfToken;

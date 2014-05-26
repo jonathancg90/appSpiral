@@ -4,9 +4,9 @@
 <head>
     <title>ProySpiral</title>
     <meta charset="utf-8" />
-
-    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap-responsive.min.css" type="text/css" />
+
     <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/main.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/introjs.css" type="text/css" />
     {% block extra_style %}
@@ -35,6 +35,7 @@
                       <li><a href="{% url 'entry_list' %}">Rubro</a></li>
                       <li><a href="{% url 'brand_list' %}">Marca</a></li>
                       <li><a href="{% url 'commercial_list' %}">Comercial</a></li>
+                      <li><a href="{% url 'email_list' %}">Correo</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -42,6 +43,7 @@
                 <ul class="dropdown-menu">
                       <li><a href="{% url 'search_commercial_realized' %}">Comerciales realizados</a></li>
                       <li><a href="{% url 'search_models_per_comercial' %}">Modelos por comercial</a></li>
+                      <li><a href="{% url 'search_model' %}">Modelos</a></li>
                 </ul>
               </li>
             </ul>
@@ -49,22 +51,24 @@
         </div>
       </div>
 </div>
-<div class="container" style='margin-top: 100px;'>
-    {% for message in messages %}
-    <div class="alert  alert-{{ message.tags }}">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
-    </div>
-    {% endfor %}
-</div>
-<section class="container">
+<section class="container" style='margin-top: 50px;'>
     {% block content %}
     {% endblock content %}
 </section>
+
+<div class="container" style='margin-top: 100px;'>
+    {% for message in messages %}
+        <div class="alert  alert-{{ message.tags }}">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+        </div>
+    {% endfor %}
+</div>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/intro.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/bootstrap.js"></script>
 {% block script_bottom %}
+
 {% endblock script_bottom %}
 </body>
 </html>

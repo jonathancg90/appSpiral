@@ -1,0 +1,68 @@
+<div class="tab-pane" id="features" ng-controller="FeatureController">
+    <message-flash message="{[{ flashMessage }]}" type="{[{ flashType }]}"></message-flash>
+
+    <form class="form-inline" role="form">
+
+        <div class="control-group">
+            <div class="controls">
+                <select ng-model="selectFeature" ng-options="feature.feature_name for feature in features">
+                    <option value="">-- choose value --</option>
+                </select>
+                <select ng-model="selectValue" ng-options="value.value_name for value in get_feature(selectFeature.feature_id)">
+                    <option value="">-- choose value --</option>
+                </select>
+                <button class="btn btn-info btn-small" type="button" ng-click="addFeature(selectFeature, selectValue)">
+                    <i class="icon-ok bigger-110"></i>
+                    Agregar
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="accordion" id="accordion2">
+
+        <div class="accordion-group" ng-repeat="feature in model.feature">
+{#            {[{ feature }]}#}
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{[{ feature.model_feature }]}">
+                    {[{ feature.feature }]} : {[{ feature.value}]}. {[{ feature.description }]}
+                </a>
+            </div>
+            <div id="collapse{[{ feature.model_feature }]}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputName">Valor</label>
+                            <div class="controls">
+                                <select ng-model="new_feature_value" ng-options="value.value_name for value in get_feature(feature.feature_id)">
+                                    <option value="">-- choose value --</option>
+                                </select>
+                                <span ng-if="feature.type=='Valor multiple'">
+                                    <input type="text" ng-model="new_feature_description[feature.model_feature]" placeholder="Descripcion u observaciones"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputName"></label>
+                            <div class="controls">
+                                <button class="btn btn-danger btn-small" type="button" ng-click="delete_model_feature($index, feature.model_feature)">
+                                    <i class="icon-bolt bigger-110"></i>
+                                    Eliminar
+                                </button>
+                                <button class="btn btn-primary btn-small" type="button" ng-click="update_model_feature(feature.model_feature, new_feature_value, new_feature_description[feature.model_feature], $index)">
+                                    <i class="icon-pencil bigger-110"></i>
+                                    Actualizar
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

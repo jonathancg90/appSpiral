@@ -1,0 +1,379 @@
+[
+    {
+        "name": "Perú",
+        "nationality": "Peruana",
+        "currency": "S/.",
+        "cities": [
+                    {
+                        "name": "Abancay"
+                    },
+                    {
+                        "name": "Andahuaylas"
+                    },
+                    {
+                        "name": "Andoas"
+                    },
+                    {
+                        "name": "Anta"
+                    },
+                    {
+                        "name": "Arequipa"
+                    },
+                    {
+                        "name": "Atalaya"
+                    },
+                    {
+                        "name": "Ayacucho"
+                    },
+                    {
+                        "name": "Ayaviri"
+                    },
+                    {
+                        "name": "Bagua Grande"
+                    },
+                    {
+                        "name": "Barranca"
+                    },
+                    {
+                        "name": "Bellavista"
+                    },
+                    {
+                        "name": "Caballococha"
+                    },
+                    {
+                        "name": "Cajamarca"
+                    },
+                    {
+                        "name": "Callao"
+                    },
+                    {
+                        "name": "Camaná"
+                    },
+                    {
+                        "name": "Catacaos"
+                    },
+                    {
+                        "name": "Cerro de Pasco"
+                    },
+                    {
+                        "name": "Chachapoyas"
+                    },
+                    {
+                        "name": "Chancay"
+                    },
+                    {
+                        "name": "Chaupimarca"
+                    },
+                    {
+                        "name": "Chepén"
+                    },
+                    {
+                        "name": "Chiclayo"
+                    },
+                    {
+                        "name": "Chimbote"
+                    },
+                    {
+                        "name": "Chincha Alta"
+                    },
+                    {
+                        "name": "Chocope"
+                    },
+                    {
+                        "name": "Chongoyape"
+                    },
+                    {
+                        "name": "Chosica"
+                    },
+                    {
+                        "name": "Chulucanas"
+                    },
+                    {
+                        "name": "Coishco"
+                    },
+                    {
+                        "name": "Collique"
+                    },
+                    {
+                        "name": "Cusco"
+                    },
+                    {
+                        "name": "Cuzco"
+                    },
+                    {
+                        "name": "Ferreñafe"
+                    },
+                    {
+                        "name": "Guadalupe"
+                    },
+                    {
+                        "name": "Huacho"
+                    },
+                    {
+                        "name": "Hualmay"
+                    },
+                    {
+                        "name": "Huamachuco"
+                    },
+                    {
+                        "name": "Huancabamba"
+                    },
+                    {
+                        "name": "Huancavelica"
+                    },
+                    {
+                        "name": "Huancayo"
+                    },
+                    {
+                        "name": "Huanta"
+                    },
+                    {
+                        "name": "Huánuco"
+                    },
+                    {
+                        "name": "Huaral"
+                    },
+                    {
+                        "name": "Huaraz"
+                    },
+                    {
+                        "name": "Huarmey"
+                    },
+                    {
+                        "name": "Huaura"
+                    },
+                    {
+                        "name": "Iberia"
+                    },
+                    {
+                        "name": "Ica"
+                    },
+                    {
+                        "name": "Ilave"
+                    },
+                    {
+                        "name": "Ilo"
+                    },
+                    {
+                        "name": "Imperial"
+                    },
+                    {
+                        "name": "Iquitos"
+                    },
+                    {
+                        "name": "Jaén"
+                    },
+                    {
+                        "name": "Jauja"
+                    },
+                    {
+                        "name": "Juanjuí"
+                    },
+                    {
+                        "name": "Juliaca"
+                    },
+                    {
+                        "name": "Junín"
+                    },
+                    {
+                        "name": "La Breita"
+                    },
+                    {
+                        "name": "La Oroya"
+                    },
+                    {
+                        "name": "La Peca"
+                    },
+                    {
+                        "name": "La Rinconada"
+                    },
+                    {
+                        "name": "La Unión"
+                    },
+                    {
+                        "name": "Lambayeque"
+                    },
+                    {
+                        "name": "Laredo"
+                    },
+                    {
+                        "name": "Las Palmas"
+                    },
+                    {
+                        "name": "Lima"
+                    },
+                    {
+                        "name": "Machu Pichu"
+                    },
+                    {
+                        "name": "Mala"
+                    },
+                    {
+                        "name": "Marcavelica"
+                    },
+                    {
+                        "name": "Matarani"
+                    },
+                    {
+                        "name": "Minas de Marcona"
+                    },
+                    {
+                        "name": "Moche"
+                    },
+                    {
+                        "name": "Mollendo"
+                    },
+                    {
+                        "name": "Monsefú"
+                    },
+                    {
+                        "name": "Moquegua"
+                    },
+                    {
+                        "name": "Moyobamba"
+                    },
+                    {
+                        "name": "Nazca"
+                    },
+                    {
+                        "name": "Nuevo Imperial"
+                    },
+                    {
+                        "name": "Pacasmayo"
+                    },
+                    {
+                        "name": "Paiján"
+                    },
+                    {
+                        "name": "Paita"
+                    },
+                    {
+                        "name": "Paramonga"
+                    },
+                    {
+                        "name": "Picsi"
+                    },
+                    {
+                        "name": "Pimentel"
+                    },
+                    {
+                        "name": "Pisco"
+                    },
+                    {
+                        "name": "Piura"
+                    },
+                    {
+                        "name": "Pucallpa"
+                    },
+                    {
+                        "name": "Puerto Esperanza"
+                    },
+                    {
+                        "name": "Puerto Maldonado"
+                    },
+                    {
+                        "name": "Puno"
+                    },
+                    {
+                        "name": "Querecotillo"
+                    },
+                    {
+                        "name": "Rioja"
+                    },
+                    {
+                        "name": "San Clemente"
+                    },
+                    {
+                        "name": "San Isidro"
+                    },
+                    {
+                        "name": "San Pedro de Lloc"
+                    },
+                    {
+                        "name": "San Ramon"
+                    },
+                    {
+                        "name": "San Vicente de Cañete"
+                    },
+                    {
+                        "name": "Santa Ana"
+                    },
+                    {
+                        "name": "Santa Lucia"
+                    },
+                    {
+                        "name": "Santiago de Cao"
+                    },
+                    {
+                        "name": "Satipo"
+                    },
+                    {
+                        "name": "Sechura"
+                    },
+                    {
+                        "name": "Sicuani"
+                    },
+                    {
+                        "name": "Sullana"
+                    },
+                    {
+                        "name": "Surco"
+                    },
+                    {
+                        "name": "Tacna"
+                    },
+                    {
+                        "name": "Talara"
+                    },
+                    {
+                        "name": "Tambo Grande"
+                    },
+                    {
+                        "name": "Tambopata"
+                    },
+                    {
+                        "name": "Tarapoto"
+                    },
+                    {
+                        "name": "Tarma"
+                    },
+                    {
+                        "name": "Tingo María"
+                    },
+                    {
+                        "name": "Tocache"
+                    },
+                    {
+                        "name": "Tocache Nuevo"
+                    },
+                    {
+                        "name": "Trujillo"
+                    },
+                    {
+                        "name": "Tumbes"
+                    },
+                    {
+                        "name": "Uchiza"
+                    },
+                    {
+                        "name": "Virú"
+                    },
+                    {
+                        "name": "Yanacancha"
+                    },
+                    {
+                        "name": "Yunguyo"
+                    },
+                    {
+                        "name": "Yurimaguas"
+                    },
+                    {
+                        "name": "Zaña"
+                    },
+                    {
+                        "name": "Zarumilla"
+                    }
+
+                ]
+    }
+]

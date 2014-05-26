@@ -1,0 +1,480 @@
+[
+    {
+        "name": "Tipo de cabello",
+        "type": "1",
+        "values" : [
+            {
+                "name": "Lacio"
+            },
+            {
+                "name": "Ondulado"
+            },
+            {
+                "name": "Rizado"
+            },
+            {
+                "name": "Afro"
+            },
+            {
+                "name": "Sin cabello"
+            }
+        ]
+    },
+    {
+        "name": "Tamaño de cabello",
+        "type": "1",
+        "values" : [
+            {
+                "name": "Corto"
+            },
+            {
+                "name": "Mediano"
+            },
+            {
+                "name": "Largo"
+            }
+        ]
+    },
+    {
+        "name": "Color de ojos",
+        "type": "1",
+        "values" : [
+            {
+                "name": "Castaño"
+            },
+            {
+                "name": "Ambar"
+            },
+            {
+                "name": "Avellana"
+            },
+            {
+                "name": "Verde"
+            },
+            {
+                "name": "Azul"
+            },
+            {
+                "name": "Gris"
+            },
+            {
+                "name": "Marron"
+            },
+            {
+                "name": "Negro"
+            }
+        ]
+    },
+    {
+        "name": "Talla de ropa",
+        "type": "1",
+        "values" : [
+            {
+                "name": "XXS"
+            },
+            {
+                "name": "XS"
+            },
+            {
+                "name": "S"
+            },
+            {
+                "name": "M"
+            },
+            {
+                "name": "L"
+            },
+            {
+                "name": "XL"
+            },
+            {
+                "name": "XXL"
+            },
+            {
+                "name": "XXXL"
+            }
+        ]
+    },
+    {
+        "name": "Talla de pantalon",
+        "type": "1",
+        "values" : [
+            {
+                "name": "26"
+            },
+            {
+                "name": "27"
+            },
+            {
+                "name": "28"
+            },
+            {
+                "name": "29"
+            },
+            {
+                "name": "30"
+            },
+            {
+                "name": "32"
+            },
+            {
+                "name": "34"
+            },
+            {
+                "name": "36"
+            },
+            {
+                "name": "38"
+            },
+            {
+                "name": "40"
+            }
+        ]
+    },
+    {
+        "name": "Talla de zapatos",
+        "type": "1",
+        "values" : [
+            {
+                "name": "35"
+            },
+            {
+                "name": "36"
+            },
+            {
+                "name": "37"
+            },
+            {
+                "name": "38"
+            },
+            {
+                "name": "39"
+            },
+            {
+                "name": "40"
+            },
+            {
+                "name": "41"
+            },
+            {
+                "name": "42"
+            },
+            {
+                "name": "43"
+            },
+            {
+                "name": "44"
+            },
+            {
+                "name": "45"
+            },
+            {
+                "name": "46"
+            },
+            {
+                "name": "47"
+            }
+        ]
+    },
+    {
+        "name": "Hobbies",
+        "type": "0",
+        "values" : []
+    },
+    {
+        "name": "Ocupacion",
+        "type": "0",
+        "values" : [
+            {
+                "name": "Actor / Actriz"
+            },
+            {
+                "name": "Administrador"
+            },
+            {
+                "name": "Agronomo"
+            },
+            {
+                "name": "Albañil"
+            },
+            {
+                "name": "Almacenero"
+            },
+            {
+                "name": "Ama De Casa"
+            },
+            {
+                "name": "Anfitriona"
+            },
+            {
+                "name": "Animador"
+            },
+            {
+                "name": "Antropologia"
+            },
+            {
+                "name": "Archivero"
+            },
+            {
+                "name": "Arqueologia"
+            },
+            {
+                "name": "Arquitecto"
+            },
+            {
+                "name": "Artesano"
+            },
+            {
+                "name": "Artista"
+            },
+            {
+                "name": "Asesor"
+            },
+            {
+                "name": "Asistente"
+            },
+            {
+                "name": "Astronomia"
+            },
+            {
+                "name": "Autor Literario,Escritor y Critico"
+            },
+            {
+                "name": "Aviacion Comercial"
+            },
+            {
+                "name": "Azafata"
+            },
+            {
+                "name": "Bailarin"
+            },
+            {
+                "name": "Bartender"
+            },
+            {
+                "name": "Bibliotecaria"
+            },
+            {
+                "name": "Biologia"
+            },
+            {
+                "name": "Bombero"
+            },
+            {
+                "name": "Botanico"
+            },
+            {
+                "name": "Cajero"
+            },
+            {
+                "name": "Cantante"
+            },
+            {
+                "name": "Carpintero y/o Ebanista"
+            },
+            {
+                "name": "Cheff"
+            },
+            {
+                "name": "Chofer"
+            },
+            {
+                "name": "Ciencias de la Comunicacion"
+            },
+            {
+                "name": "Coleccionista"
+            },
+            {
+                "name": "Cantante"
+            },
+            {
+                "name": "Comerciante"
+            },
+            {
+                "name": "Computacion Informatica"
+            },
+            {
+                "name": "Contabilidad"
+            },
+            {
+                "name": "Coreografo"
+            },
+            {
+                "name": "Derecho"
+            },
+            {
+                "name": "Digitador"
+            },
+            {
+                "name": "Diseño Grafico Digital"
+            },
+            {
+                "name": "Diseño Publicitario"
+            },
+            {
+                "name": "Economia"
+            },
+            {
+                "name": "Edicion de Video"
+            },
+            {
+                "name": "Electricista"
+            },
+            {
+                "name": "Empresario"
+            },
+            {
+                "name": "Enfermeria"
+            },
+            {
+                "name": "Entrenador Deportivo"
+            },
+            {
+                "name": "Estadistica"
+            },
+            {
+                "name": "Estilista"
+            },
+            {
+                "name": "Estudiante"
+            },
+            {
+                "name": "Fotografo"
+            },
+            {
+                "name": "Gasfitero"
+            },
+            {
+                "name": "Independiente"
+            },
+            {
+                "name": "Ingenieria Industrial"
+            },
+            {
+                "name": "Ingeniero"
+            },
+            {
+                "name": "Jardineria"
+            },
+            {
+                "name": "Kinesiologo"
+            },
+            {
+                "name": "Locutor"
+            },
+            {
+                "name": "Maestro de Ceremonias"
+            },
+            {
+                "name": "Mantenimiento de Limpieza"
+            },
+            {
+                "name": "Marketing Empresarial"
+            },
+            {
+                "name": "Mecanico"
+            },
+            {
+                "name": "Medicina Veterinaria"
+            },
+            {
+                "name": "Medico"
+            },
+            {
+                "name": "Militar"
+            },
+            {
+                "name": "Modelo"
+            },
+            {
+                "name": "Motociclista"
+            },
+            {
+                "name": "Musico"
+            },
+            {
+                "name": "Nutricionista"
+            },
+            {
+                "name": "Obrero"
+            },
+            {
+                "name": "Odontologia"
+            },{
+                "name": "Orfebre"
+            },
+            {
+                "name": "Panadero"
+            },
+            {
+                "name": "Pensionista"
+            },
+            {
+                "name": "Periodismo"
+            },
+            {
+                "name": "Pintor"
+            },
+            {
+                "name": "Profesor"
+            },
+            {
+                "name": "Psicologia"
+            },
+            {
+                "name": "Publisista"
+            },
+            {
+                "name": "Recepcionista"
+            },
+            {
+                "name": "Secretariado"
+            },
+            {
+                "name": "Seguridad"
+            },
+            {
+                "name": "Topografia"
+            },
+            {
+                "name": "Traductor"
+            },
+            {
+                "name": "Turismo y Hoteleria"
+            },
+            {
+                "name": "Ventas"
+            },
+            {
+                "name": "Veterinario"
+            },
+            {
+                "name": "Visitador MEdico"
+            },
+            {
+                "name": "Zootecnista"
+            }
+        ]
+    },
+    {
+        "name": "Redes sociales",
+        "type": "0",
+        "values" : [
+            {
+                "name": "Facebook"
+            },
+            {
+                "name": "Twitter"
+            },
+            {
+                "name": "Youtube"
+            },
+            {
+                "name": "Linkedin"
+            },
+            {
+                "name": "Google Plus"
+            }
+        ]
+    }
+]

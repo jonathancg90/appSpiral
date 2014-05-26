@@ -1,0 +1,29 @@
+{
+  "name": "apps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathancg90/appSpiral.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+      "karma": ">= 0.12.1",
+      "karma-jasmine": ">= 0.1.5",
+      "karma-chrome-launcher": ">= 0.1.2"
+  },
+  "optionalDependencies": {
+      "fsevents": ">= 0.2.0",
+      "recursive-readdir": ">= 1.0.0"
+  },
+  "author": "Jonathan Carrasco Garcia",
+  "license": "ISC"
+}
+//  Execute karma
+// /usr/local/lib/node_modules/karma/bin/karma

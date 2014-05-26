@@ -1,2 +1,4 @@
 .idea
 spiral/settings.py
+static/js/apps/node_modules
+media/pictures
