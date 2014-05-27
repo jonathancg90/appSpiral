@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = patterns('',
@@ -12,6 +13,8 @@ urlpatterns = patterns('',
     # url(r'^$', lambda x: HttpResponseRedirect('/upload/new/')),
     url(r'^upload/', include('apps.fileupload.urls')),
 )
+
+urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG:
     # static files (images, css, javascript, etc.)
