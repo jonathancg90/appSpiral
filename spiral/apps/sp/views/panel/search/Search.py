@@ -52,7 +52,7 @@ class ModelFeatureDataJsonView(LoginRequiredMixin, NewJSONResponseMixin, View):
         # details = ModelFeatureDetail.objects.filter(feature_value_id__in = [7,38])
         model = Model.objects.all().prefetch_related('feature_detail')
         Model.objects.all().prefetch_related()
-        details = model.fe
+        details = []
         # details = ModelFeatureDetail.objects.filter(Q(feature_value_id=7) & Q(feature_value_id=38))
         for detail in details:
             data.append({
