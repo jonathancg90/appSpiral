@@ -95,7 +95,7 @@
                     <ul class="ace-thumbnails">
                         <li ng-repeat="model in models | textFilter:search" class="list-models">
                                 <a data-rel="colorbox" data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <img alt="150x150" src="{{ STATIC_URL }}{[{ model.main_image }]}" style="width: 150px; height: 150px"/>
+                                    <img alt="150x150" src="{{ MEDIA_URL }}{[{ model.main_image }]}" style="width: 150px; height: 150px"/>
                                     <div class="text">
                                         <div class="inner">{[{ model.name_complete }]}</div>
                                     </div>
