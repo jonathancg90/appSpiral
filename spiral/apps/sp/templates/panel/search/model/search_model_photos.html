@@ -4,11 +4,11 @@
 <ul class="ace-thumbnails">
     <li ng-repeat="image in detail.images">
         {#small#}
-        <a href="{{ STATIC_URL }}{[{ image.main_picture }]}"  target="_blank" data-rel="colorbox" ng-if="size == 0">
+        <a href="{{ MEDIA_URL }}{[{ image.main_picture }]}"  target="_blank" data-rel="colorbox" ng-if="size == 0">
             <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[0].url }]}"/>
         </a>
         {#large#}
-        <a href="{{ STATIC_URL }}{[{ image.main_picture }]}" target="_blank" data-rel="colorbox" ng-if="size == 2" >
+        <a href="{{ MEDIA_URL }}{[{ image.main_picture }]}" target="_blank" data-rel="colorbox" ng-if="size == 2" >
             <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[2].url }]}"/>
         </a>
     </li>
