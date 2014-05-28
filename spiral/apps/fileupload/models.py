@@ -13,7 +13,7 @@ class Picture(models.Model):
         upload_to="pictures"
     )
     slug = models.SlugField(
-        max_length=50,
+        max_length=80,
         blank=True,
         null=True
     )
