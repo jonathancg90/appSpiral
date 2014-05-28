@@ -23,8 +23,8 @@ class ModelHelper(InsertHelperMixin):
                 "nationality": Country.objects.latest('created'),
                 "phone_fixed": "4774571",
                 "phone_mobil": "96372612756",
-                "height": 1.65,
-                "weight": 40,
+                "height": "1.65",
+                "weight": "40",
                 "last_visit": "2014-08-12",
             },
             {
@@ -40,8 +40,8 @@ class ModelHelper(InsertHelperMixin):
                 "nationality": Country.objects.latest('created'),
                 "phone_fixed": "4771071",
                 "phone_mobil": "96372678756",
-                "height": 1.60,
-                "weight": 56,
+                "height": "1.60",
+                "weight": "56",
                 "last_visit": "2013-08-12",
             },
             {
@@ -57,8 +57,8 @@ class ModelHelper(InsertHelperMixin):
                 "nationality": Country.objects.latest('created'),
                 "phone_fixed": "4772371",
                 "phone_mobil": "96372543756",
-                "height": 1.67,
-                "weight": 79,
+                "height": "1.67",
+                "weight": "79",
                 "last_visit": "2013-09-12",
             },
             {
@@ -74,8 +74,8 @@ class ModelHelper(InsertHelperMixin):
                 "nationality": Country.objects.latest('created'),
                 "phone_fixed": "4772371",
                 "phone_mobil": "96372513756",
-                "height": 1.67,
-                "weight": 79,
+                "height": "1.67",
+                "weight": "79",
                 "last_visit": "2014-01-04",
             },
         ]
