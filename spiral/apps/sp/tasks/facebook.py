@@ -61,7 +61,7 @@ class TabFacebookTask(PeriodicTask):
             picture.file = self.get_image_url(image_url)
             picture.save()
             PictureThumbnail.save_all_thumbnails(picture)
-        except:
+        except Exception, e:
             pass
 
     def get_image_url(self, image_url):
