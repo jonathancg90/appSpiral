@@ -28,19 +28,19 @@
                 <li ng-repeat="image in model.images">
                     {#small#}
                     <a href="#" data-rel="colorbox" ng-if="size == 0">
-                        <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[0].url }]}"/>
+                        <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[0].url }]}"/>
                     </a>
                     {#medium#}
                     <a href="#" data-rel="colorbox" ng-if="size == 1">
-                        <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[1].url }]}"/>
+                        <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[1].url }]}"/>
                     </a>
                     {#large#}
                     <a href="#" data-rel="colorbox" ng-if="size == 2" >
-                        <img alt="" src="{{ STATIC_URL }}{[{ image.thumbs[2].url }]}"/>
+                        <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[2].url }]}"/>
                     </a>
                     {#original#}
                     <a href="#" data-rel="colorbox" ng-if="size == 3" >
-                        <img alt="" src="{{ STATIC_URL }}{[{ image.main_picture }]}"/>
+                        <img alt="" src="{{ MEDIA_URL }}{[{ image.main_picture }]}"/>
                     </a>
                 </li>
             </ul>
