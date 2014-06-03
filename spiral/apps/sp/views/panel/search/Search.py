@@ -6,6 +6,7 @@ from django.views.generic import View, TemplateView
 
 from apps.common.view import LoginRequiredMixin
 from apps.common.view import NewJSONResponseMixin
+from apps.sp.models.Country import Country
 from apps.sp.models.Model import ModelFeatureDetail, Model
 from apps.sp.models.Feature import Feature
 from apps.sp.logic.search import Search
@@ -22,6 +23,11 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
         self._text = self.request.POST.get('text', None)
         self._mode = self.request.POST.get('mode')
         self._features = self.request.POST.get('features', None)
+        self._advance = self.request.POST.get('advance', None)
+        if self._advance is not None:
+            self._advance = json.loads(self._advance)
+        if self._features is not None:
+            self._features = json.loads(self._features)
 
     def post(self ,request, *args, **kwargs):
         data = {}
@@ -34,9 +40,10 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
             search.set_mode(Search.MODE_SENSITIVE)
 
         #Default Simple
-        if self._type == Search.TYPE_ADVANCE:
+        if self._type == str(Search.TYPE_ADVANCE):
             search.set_type(Search.TYPE_ADVANCE)
             data.update({'features': self._features})
+            data.update({'advance': self._advance})
         else:
             data.update({'text': self._text})
         search.set_params(data)
@@ -47,18 +54,31 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
 
 class ModelFeatureDataJsonView(LoginRequiredMixin, NewJSONResponseMixin, View):
 
-    def get(self ,request, *args, **kwargs):
+    def get_nationalities(self):
         data = []
-        # details = ModelFeatureDetail.objects.filter(feature_value_id__in = [7,38])
-        model = Model.objects.all().prefetch_related('feature_detail')
-        Model.objects.all().prefetch_related()
-        details = []
-        # details = ModelFeatureDetail.objects.filter(Q(feature_value_id=7) & Q(feature_value_id=38))
-        for detail in details:
+        countries = Country.objects.filter(status=Country.STATUS_ACTIVE)
+        for country in countries:
             data.append({
-                'model': detail.model.name_complete,
+                'id': country.id,
+                'nationality':  country.nationality
             })
-        return self.render_json_response(data)
+        return data
 
-        result = Feature.get_data_features()
-        return self.render_json_response(result)
+    def get_genders(self):
+        data = []
+        data.append({
+            'id': Model.GENDER_FEM,
+            'text': 'Femenino'
+        })
+        data.append({
+            'id': Model.GENDER_MASC,
+            'text': 'Masculino'
+        })
+        return data
+
+    def get(self, request, *args, **kwargs):
+        data = {}
+        data.update({"features": Feature.get_data_features()})
+        data.update({"nationalities": self.get_nationalities()})
+        data.update({"genders": self.get_genders()})
+        return self.render_json_response(data)

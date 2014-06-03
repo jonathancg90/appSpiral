@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import json
+import datetime
 from django.db import connection
+from dateutil.relativedelta import relativedelta
 
 from apps.sp.models.Model import Model, ModelFeatureDetail
 from apps.sp.models.Feature import Feature, FeatureValue
@@ -47,12 +50,22 @@ class Search(object):
         self._table_model_status = self._table_model + "." + getattr(Model, '_meta').get_field('status').column
         self._table_model_phone_fixed = self._table_model + "." + getattr(Model, '_meta').get_field('phone_fixed').column
         self._table_model_phone_mobil = self._table_model + "." + getattr(Model, '_meta').get_field('phone_mobil').column
+        self._table_model_nationality = self._table_model + "." + getattr(Model, '_meta').get_field('nationality').column
+        self._table_model_gender = self._table_model + "." + getattr(Model, '_meta').get_field('gender').column
+        self._table_model_birth = self._table_model + "." + getattr(Model, '_meta').get_field('birth').column
 
         self._table_model_column['text'] = [
             self._table_model_name_complete,
             self._table_model_phone_fixed,
             self._table_model_phone_mobil
-            ]
+        ]
+        self._table_model_column['between'] = [
+            self._table_model_birth
+        ]
+        self._table_model_column['exact'] = [
+            self._table_model_nationality,
+            self._table_model_gender
+        ]
 
         self._table_feature = getattr(Feature, '_meta').db_table
         self._table_feature_value = getattr(FeatureValue, '_meta').db_table
@@ -92,7 +105,7 @@ class Search(object):
 
     def get_default_filter(self):
         return self._table_model_status + '!=' + str(Model.STATUS_DISAPPROVE) + ' AND ' \
-               + self._table_model_status + '!=' + str(Model.STATUS_INACTIVE) + ' AND '
+               + self._table_model_status + '!=' + str(Model.STATUS_INACTIVE)
 
     def set_sql_base(self):
         self._sql = 'SELECT %s FROM %s WHERE %s' % (self.get_columns(), self.get_tables(), self.get_default_filter())
@@ -111,9 +124,32 @@ class Search(object):
             print '============='
             print 'Filter Query: '+self._sql
 
+    def set_filter_advance(self):
+        columns = self._table_model_column.get('between')
+        for column in columns:
+            advances = self._params.get('advance')
+            for advance in advances:
+                if advance.get('camp') == column:
+                    search = advance.get('id')
+                    if search is not None:
+                        now = datetime.datetime.now()
+                        end = now - relativedelta(years=int(search[0]))
+                        start = now - relativedelta(years=int(search[1]))
+                        self._sql = self._sql + ' AND ' + column + " between '" + start.strftime('%Y-%m-%d') + "' and '" + end.strftime('%Y-%m-%d') + "' "
+
+        columns = self._table_model_column.get('exact')
+        for column in columns:
+            advances = self._params.get('advance')
+            for advance in advances:
+                if advance.get('camp') == column:
+                    search = str(advance.get('id'))
+                    if search is not None:
+                        self._sql = self._sql + ' AND '+ column + " = " + search
+
     def search_insensitive(self, param):
         columns = self._table_model_column.get(param)
         ind_column = 0
+        self._sql = self._sql + ' AND '
         for column in columns:
             ind_column += 1
             words = self._params.get(param).split(' ')
@@ -130,6 +166,7 @@ class Search(object):
     def search_sensitive(self, param):
         columns = self._table_model_column.get(param)
         ind_column = 0
+        self._sql = self._sql + ' AND '
         for column in columns:
             ind_column +=1
             search = self._params.get(param)
@@ -192,6 +229,33 @@ class Search(object):
             log.exception(e.message)
         return models
 
+    def get_items(self):
+        ids = []
+        features = self._params.get('features')
+        for feature in features:
+            ids.append(str(feature.get('id')))
+        return tuple(ids)
+
+    def advance_search(self):
+        models = []
+        try:
+            self.set_filter_advance()
+            items, desc = self._get_cursor_result()
+            ids = self.get_items()
+            for row in items:
+                row = dict(zip([col[0] for col in desc], row))
+                summary = {}
+                if row['summary'] is not None:
+                    summary = json.loads(row['summary'])
+                result = all(k in summary for k in ids)
+                if result:
+                    models.append(row)
+        except ValueError, e:
+            self._message.update({'error': self.MESSAGE_ERR_PARAM})
+            log.exception(e.message)
+        return models
+
+
     def run(self):
         self.set_tables_names()
         try:
@@ -199,7 +263,7 @@ class Search(object):
             if self._type_search == self.TYPE_BASIC:
                 self.result = self.basic_search()
             if self._type_search == self.TYPE_ADVANCE:
-                pass
+                self.result = self.advance_search()
             return self.result
         except Exception, e:
             log.exception(e.message)
