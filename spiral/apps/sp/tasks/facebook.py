@@ -37,6 +37,12 @@ class TabFacebookTask(PeriodicTask):
         except ObjectDoesNotExist:
             return None
 
+    def get_gender(self, sex):
+        if sex == "F":
+            return Model.GENDER_FEM
+        else:
+            return Model.GENDER_MASC
+
     def get_city(self, city):
         try:
             city = City.objects.get(name=city)
@@ -100,6 +106,7 @@ class TabFacebookTask(PeriodicTask):
                 model.address = model_data.get('dir_datos')
                 model.email = model_data.get('mail_datos')
                 model.birth = model_data.get('fec_datos')
+                model.gender = self.get_gender(model_data.get('sexo'))
                 model.city = self.get_city(model_data.get('dep_datos'))
                 model.nationality = self.get_country(model_data.get('naci_datos'))
                 model.phone_fixed = model_data.get('fijo_datos')

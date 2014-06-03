@@ -1,5 +1,5 @@
 import urllib2
-import random
+import json
 
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
@@ -233,7 +233,6 @@ class Model(models.Model):
 
 
 def create_additional_data(sender, instance, created, **kwargs):
-    instance.summary = None
     if instance.model_code is None:
         instance.model_code = Model.get_code()
     post_save.disconnect(create_additional_data, sender=Model) #for not causing recursion
@@ -272,3 +271,22 @@ class ModelFeatureDetail(models.Model):
 
     class Meta:
         app_label = 'sp'
+
+    def __unicode__(self):
+        return self.feature_value.name
+
+
+def update_model_summary(sender, instance, created, **kwargs):
+    data = {}
+    model = instance.model
+    features = model.model_feature_detail_set.all()
+    features = features.select_related('feature_value')
+    for feature_detail in features:
+        data.update({
+            feature_detail.feature_value_id : feature_detail.description
+        })
+    model.summary = json.dumps(data)
+    model.save()
+    post_save.connect(create_additional_data, sender=Model)
+
+post_save.connect(update_model_summary, sender=ModelFeatureDetail)

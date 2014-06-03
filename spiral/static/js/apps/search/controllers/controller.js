@@ -35,6 +35,8 @@ controllers.searchController = function($scope, ModelFactory,
     };
 
     $scope.changeType = function(){
+        $scope.models = [];
+        $rootScope.countInitial = '';
         $scope.typeSearch.simple = !$scope.typeSearch.simple;
         $scope.typeSearch.advance = !$scope.typeSearch.advance;
     };
@@ -85,19 +87,60 @@ controllers.searchController = function($scope, ModelFactory,
         }
     };
 
+    function get_advance_params(){
+        var data = [];
+        angular.forEach($scope.tags, function(tag, key) {
+            if(tag.feature == false || tag.feature == undefined){
+                if(tag.camp == 'sp_model.nationality_id'){
+                    data.push(tag);
+                }
+                if(tag.camp == 'sp_model.gender'){
+                    data.push(tag);
+                }
+                if(tag.text.indexOf("edad") > -1){
+                    var values= tag.text.split("-"),
+                        edades = [];
+                    for(var i=0; i<values.length; i++){
+                        if(isNaN(parseInt(values[i])) == false){
+                            edades.push(values[i]);
+                        }
+                    }
+                    debugger
+                    data.push({
+                        'id': edades,
+                        'feature': false,
+                        'camp': 'sp_model.birth'
+                    });
+                }
+            }
+        });
+        return data;
+    }
+
+    function get_feature_params(){
+        result = [];
+        angular.forEach($scope.tags, function(feature, fkey) {
+            if(feature.feature) {
+                result.push(feature);
+            }
+        });
+        return result;
+    }
+
     $scope.searchAdvance =  function(){
         if($scope.typeSearch.advance &&  $scope.tags.length > 0){
             $scope.loader = true;
             var data = {
                 'text': '',
+                'advance': angular.toJson(get_advance_params()),
                 'type': 2,
                 'mode': $scope.mode,
-                'features':  $scope.tags
+                'features': angular.toJson(get_feature_params())
             };
-
             var response = ModelFactory.Search(searchUrl, data);
             response.then(function(models) {
-
+                $scope.models = models;
+                $scope.loader = false;
             });
         } else {
             $scope.flashType = 'warning';
@@ -113,19 +156,39 @@ controllers.searchController = function($scope, ModelFactory,
     };
 
     function getTags(data){
-        //Documentos
         result = [];
-        angular.forEach(data, function(feature, fkey) {
+        //Features
+        angular.forEach(data.features, function(feature, fkey) {
             text = feature.feature_name;
             $scope.tooltip = $scope.tooltip + ' "' + text+ '" ';
             angular.forEach(feature.feature_values, function(value, vkey) {
                 result.push({
                     'id': value.value_id,
                     'text': text + ' ' + value.value_name,
-                    'feature': text
+                    'feature': true
                 });
             });
         });
+        //Nacionalidad
+        angular.forEach(data.nationalities, function(value, fkey) {
+            result.push({
+                'id': value.id,
+                'text': 'nacionalidad ' + value.nationality,
+                'feature': false,
+                'camp': 'sp_model.nationality_id'
+            });
+        });
+        //Genero
+        angular.forEach(data.genders, function(value, fkey) {
+            result.push({
+                'id': value.id,
+                'text': 'genero ' + value.text,
+                'feature': false,
+                'camp': 'sp_model.gender'
+            });
+        });
+
+
         return result;
     }
 };
