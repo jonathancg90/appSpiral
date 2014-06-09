@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from django.db.models import Q
 
 from django.views.generic import View, TemplateView
 
@@ -8,7 +7,7 @@ from apps.common.view import LoginRequiredMixin
 from apps.common.view import NewJSONResponseMixin
 from apps.sp.models.Country import Country
 from apps.sp.models.Model import ModelFeatureDetail, Model
-from apps.sp.models.Feature import Feature
+from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.logic.search import Search
 
 
@@ -64,6 +63,17 @@ class ModelFeatureDataJsonView(LoginRequiredMixin, NewJSONResponseMixin, View):
             })
         return data
 
+    def get_occupations(self):
+        data = []
+        feature=Feature.objects.get(name='Ocupacion')
+        feature_values = FeatureValue.objects.filter(feature=feature)
+        for value in feature_values:
+            data.append({
+                'id': value.id,
+                'name': value.name
+            })
+        return data
+
     def get_genders(self):
         data = []
         data.append({
@@ -78,7 +88,9 @@ class ModelFeatureDataJsonView(LoginRequiredMixin, NewJSONResponseMixin, View):
 
     def get(self, request, *args, **kwargs):
         data = {}
-        data.update({"features": Feature.get_data_features()})
+        features = Feature.get_data_features()
+        data.update({"features": features})
+        data.update({"occupations": self.get_occupations()})
         data.update({"nationalities": self.get_nationalities()})
         data.update({"genders": self.get_genders()})
         return self.render_json_response(data)

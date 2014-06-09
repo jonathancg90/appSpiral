@@ -1,4 +1,4 @@
-<div class="span3 center">
+<div class="span3 center" ng-hide="detailLoader">
 	<span class="profile-picture">
 	    <img class="editable" alt="{[{ detail.profile.name_complete }]}" id="avatar2" src="{{ MEDIA_URL }}{[{ detail.profile.main_image }]}" />
 	</span>
@@ -15,22 +15,23 @@
         Enviar mensaje
     </a>
 </div><!--/span-->
-
-<div class="span9">
+<div class="loader" ng-show="detailLoader">
+    <img src="{{ STATIC_URL }}admin/img/gif-load.gif" alt=""/>
+</div>
+<div class="span9" ng-hide="detailLoader">
     <h4 class="blue">
         <span class="middle">{[{ detail.profile.name_complete }]}</span>
         <span class="label label-purple arrowed-in-right">
-		<i class="icon-circle smaller-80"></i>online</span>
+		<i class="icon-circle smaller-80"></i>{[{ detail.profile.occupation }]}</span>
     </h4>
-
     <div class="profile-user-info">
-
         <div class="profile-info-row">
             <div class="profile-info-name"> Direccion </div>
 
             <div class="profile-info-value">
                 {[{ detail.profile.address }]}
-                <i class="icon-map-marker light-orange bigger-110"></i>
+                <a href="https://www.google.com.pe/maps/preview" target="_blank">
+                <i class="icon-map-marker light-orange bigger-110"></i></a>
             </div>
         </div>
 
@@ -94,7 +95,7 @@
             <div class="profile-info-name"> Email </div>
 
             <div class="profile-info-value">
-                <a href="#" target="_blank">www.alexdoe.com</a>
+                <a href="#" target="_blank">{[{ detail.profile.email }]}</a>
             </div>
         </div>
 
@@ -104,7 +105,7 @@
             </div>
 
             <div class="profile-info-value">
-                <a href="#">Ver perfil Facebook</a>
+                <a href="{[{ detail.profile.facebook }]}" target="_BLANK">Ver perfil Facebook</a>
             </div>
         </div>
 

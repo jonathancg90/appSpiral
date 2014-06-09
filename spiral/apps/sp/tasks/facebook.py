@@ -187,7 +187,7 @@ class TabFacebookTask(PeriodicTask):
         for model_data in data:
             terms = False
             if len(model_data.get('estatura')) == 0 \
-                    or float(model_data.get('estatura')) > 3:
+                    or float(model_data.get('estatura').replace(',','.')) > 3:
                 estatura = 0
                 model_data.update({
                     'estatura': estatura

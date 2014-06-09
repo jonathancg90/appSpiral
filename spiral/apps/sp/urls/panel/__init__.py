@@ -1,7 +1,11 @@
 from django.conf.urls import patterns, include, url
 
+from apps.sp.views.panel.Dashboard import DashboardTemplateView
 
 urlpatterns = patterns('',
+    url(r'^$',
+        DashboardTemplateView.as_view(),
+        name='dashboard_view'),
     url(r'^brand/', include('apps.sp.urls.panel.brand')),
     url(r'^country/', include('apps.sp.urls.panel.country')),
     url(r'^commercial/', include('apps.sp.urls.panel.commercial')),

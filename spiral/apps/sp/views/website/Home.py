@@ -12,6 +12,10 @@ class HomeTemplateView(TemplateView):
     template_name = 'home.html'
 
 
+class Home2TemplateView(TemplateView):
+    template_name = 'home2.html'
+
+
 class LoginAuthView(FormView):
     template_name = 'website/login.html'
     form_class = LoginForm
