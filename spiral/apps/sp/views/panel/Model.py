@@ -19,11 +19,11 @@ from apps.common.view import JSONResponseMixin
 from apps.common.view import LoginRequiredMixin
 
 
-class ModelControlListView(LoginRequiredMixin, TemplateView):
+class ModelControlTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'panel/model/profile.html'
 
     def get_context_data(self, **kwargs):
-        context = super(ModelControlListView, self).get_context_data(**kwargs)
+        context = super(ModelControlTemplateView, self).get_context_data(**kwargs)
         context['doc_types'] = json.dumps(Model.get_types())
         context['genders'] = json.dumps(Model.get_genders())
         context['features'] = json.dumps(Feature.get_data_features())
@@ -38,6 +38,7 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
     MESSAGE_ERR = 'Ocurrio un error al buscar al modelo'
 
     def get_model_profile(self, model):
+        web = True if model.last_visit is None else False
         self.parse_data(model)
         data = {
             "id": model.id,
@@ -49,7 +50,7 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
             "gender": model.gender,
             "email": model.email,
             "main_image": model.main_image,
-            "web": True,
+            "web": web,
             "country": '' if model.city is None else model.city.country.id,
             "city_id": '' if model.city is None else model.city.id,
             "city_name": '' if model.city is None else model.city.name,

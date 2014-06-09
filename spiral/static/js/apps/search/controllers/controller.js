@@ -19,32 +19,10 @@ controllers.searchController = function($scope, ModelFactory,
         'advance': false
     };
 
-    $scope.getFeatures = function(){
-        $http.get(features)
-            .then(function(response) {
-                if(response.status == 200) {
-                    $scope.listTags = getTags(response.data);
-                }else {
-                    $scope.listTags = [];
-                }
-            });
-    };
-
-    $scope.loadTags = function(query){
-        return $filter("filter")($scope.listTags, query);
-    };
-
-    $scope.changeType = function(){
-        $scope.models = [];
-        $rootScope.countInitial = '';
-        $scope.typeSearch.simple = !$scope.typeSearch.simple;
-        $scope.typeSearch.advance = !$scope.typeSearch.advance;
-    };
-
-    $scope.$watch('search', function(newValue, oldValue){
+    $scope.$watch('search', function(newValue, oldValue) {
         if(newValue != oldValue) {
             if($scope.find != undefined) {
-                if(newValue.length < $scope.find.length ){
+                if(newValue.length < $scope.find.length ) {
                     $scope.models = [];
                     $scope.find = undefined;
                 }
@@ -52,9 +30,42 @@ controllers.searchController = function($scope, ModelFactory,
         }
     });
 
-    $scope.searchModel = function(event){
+    $scope.getFeatures = function() {
+        $http.get(features)
+            .then(function(response) {
+                if(response.status == 200) {
+                    $scope.listTags = getTags(response.data);
+                    $scope.occupations = response.data.occupations
+                }else {
+                    $scope.listTags = [];
+                }
+            });
+    };
+
+    $scope.loadTags = function(query) {
+        return $filter("filter")($scope.listTags, query);
+    };
+
+    $scope.changeType = function() {
+        $scope.models = [];
+        $rootScope.countInitial = '';
+        $scope.typeSearch.simple = !$scope.typeSearch.simple;
+        $scope.typeSearch.advance = !$scope.typeSearch.advance;
+    };
+
+    $scope.getOccupation = function(summary) {
+        var value = '';
+        angular.forEach($scope.occupations, function(occupation, fkey) {
+            if(summary.indexOf(''+occupation.id) > -1){
+                value = occupation.name;
+            }
+        });
+        return value;
+    };
+
+    $scope.searchModel = function(event) {
         if(event.keyCode == 13){
-            if($scope.search != undefined){
+            if($scope.search != undefined) {
                 var type = undefined;
 
                 if($scope.typeSearch.simple)
@@ -87,46 +98,6 @@ controllers.searchController = function($scope, ModelFactory,
         }
     };
 
-    function get_advance_params(){
-        var data = [];
-        angular.forEach($scope.tags, function(tag, key) {
-            if(tag.feature == false || tag.feature == undefined){
-                if(tag.camp == 'sp_model.nationality_id'){
-                    data.push(tag);
-                }
-                if(tag.camp == 'sp_model.gender'){
-                    data.push(tag);
-                }
-                if(tag.text.indexOf("edad") > -1){
-                    var values= tag.text.split("-"),
-                        edades = [];
-                    for(var i=0; i<values.length; i++){
-                        if(isNaN(parseInt(values[i])) == false){
-                            edades.push(values[i]);
-                        }
-                    }
-                    debugger
-                    data.push({
-                        'id': edades,
-                        'feature': false,
-                        'camp': 'sp_model.birth'
-                    });
-                }
-            }
-        });
-        return data;
-    }
-
-    function get_feature_params(){
-        result = [];
-        angular.forEach($scope.tags, function(feature, fkey) {
-            if(feature.feature) {
-                result.push(feature);
-            }
-        });
-        return result;
-    }
-
     $scope.searchAdvance =  function(){
         if($scope.typeSearch.advance &&  $scope.tags.length > 0){
             $scope.loader = true;
@@ -150,11 +121,31 @@ controllers.searchController = function($scope, ModelFactory,
 
     $scope.getDetail = function(model_id){
         var response = detailService.getDetail(detail, model_id);
+        $scope.detailLoader = true;
         response.then(function(data){
+            $scope.detailLoader = false;
             $scope.detail =  data;
+            $scope.detail.profile.facebook = '#';
+            $scope.detail.profile.occupation = 'Sin ocupacion';
+            angular.forEach($scope.detail.features, function(feature, fkey) {
+                if(feature.feature.indexOf("Ocupacion") > -1){
+                    $scope.detail.profile.occupation = feature.value
+                }
+                if(feature.value.indexOf("Facebook") > -1){
+                    $scope.detail.profile.facebook = feature.description
+                }
+            });
         });
     };
 
+    //Support functions
+    //-----------------
+
+    /*
+    Return []
+    Function for build tag help in
+    the input advanced search, and set tooltip
+     */
     function getTags(data){
         result = [];
         //Features
@@ -170,6 +161,7 @@ controllers.searchController = function($scope, ModelFactory,
             });
         });
         //Nacionalidad
+        $scope.tooltip = $scope.tooltip + ' "nacionalidad" ';
         angular.forEach(data.nationalities, function(value, fkey) {
             result.push({
                 'id': value.id,
@@ -179,6 +171,7 @@ controllers.searchController = function($scope, ModelFactory,
             });
         });
         //Genero
+        $scope.tooltip = $scope.tooltip + ' "genero"';
         angular.forEach(data.genders, function(value, fkey) {
             result.push({
                 'id': value.id,
@@ -188,9 +181,91 @@ controllers.searchController = function($scope, ModelFactory,
             });
         });
 
+        $scope.tooltip = $scope.tooltip + ' "edad"';
+        $scope.tooltip = $scope.tooltip + ' "estatura"';
+        $scope.tooltip = $scope.tooltip + ' "web / casting"';
+
+
 
         return result;
     }
+
+    /*
+        Return []
+        parse data for post in advance search (not feature)
+     */
+    function get_advance_params(){
+        var data = [];
+        angular.forEach($scope.tags, function(tag, key) {
+            if(tag.feature == false || tag.feature == undefined){
+                if(tag.camp == 'sp_model.nationality_id'){
+                    data.push(tag);
+                }
+                if(tag.camp == 'sp_model.gender'){
+                    data.push(tag);
+                }
+                if(tag.text.indexOf("edad") > -1){
+                    var values= tag.text.split("-"),
+                        edades = [];
+                    for(var i=0; i<values.length; i++){
+                        if(isNaN(parseInt(values[i])) == false){
+                            edades.push(values[i]);
+                        }
+                    }
+                    data.push({
+                        'id': edades,
+                        'feature': false,
+                        'camp': 'sp_model.birth'
+                    });
+                }
+                if(tag.text.indexOf("estatura") > -1){
+                    var values= tag.text.split("-"),
+                        estaturas = [];
+                    for(var i=0; i<values.length; i++){
+                        if(isNaN(parseInt(values[i])) == false){
+                            estaturas.push(values[i]);
+                        }
+                    }
+                    data.push({
+                        'id': estaturas,
+                        'feature': false,
+                        'camp': 'sp_model.height'
+                    });
+                }
+                if(tag.text.indexOf("web") > -1){
+                    data.push({
+                        'id': false,
+                        'feature': false,
+                        'camp': 'sp_model.last_visit'
+                    });
+                }
+                if(tag.text.indexOf("casting") > -1){
+                    data.push({
+                        'id': true,
+                        'feature': false,
+                        'camp': 'sp_model.last_visit'
+                    });
+                }
+            }
+        });
+        debugger
+        return data;
+    }
+
+    /*
+        Return []
+        parse feature data for post in advance search
+     */
+    function get_feature_params(){
+        result = [];
+        angular.forEach($scope.tags, function(feature, fkey) {
+            if(feature.feature) {
+                result.push(feature);
+            }
+        });
+        return result;
+    }
+
 };
 
 searchApp.controller(controllers);

@@ -1,5 +1,8 @@
 <div class="span12">
-    <div class="profile-activity clearfix" ng-repeat="feature in detail.features">
+    <div class="loader" ng-show="detailLoader">
+        <img src="{{ STATIC_URL }}admin/img/gif-load.gif" alt=""/>
+    </div>
+    <div class="profile-activity clearfix" ng-repeat="feature in detail.features" ng-hide="detailLoader">
         <div>
             <span class="text-feature ">{[{ feature.feature }]}: </span>
             <span>{[{ feature.value }]}. {[{ feature.description }]}</span>

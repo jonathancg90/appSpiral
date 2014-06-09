@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from apps.sp.views.website.Home import HomeTemplateView
+from apps.sp.views.website.Home import HomeTemplateView, Home2TemplateView
 from apps.sp.views.website.Home import LoginAuthView
 from apps.sp.views.website.Home import LogoutView
 from apps.sp.views.panel.Email import EmailListView
@@ -20,4 +20,8 @@ urlpatterns = patterns('',
     url(r'^email/$',
         EmailListView.as_view(),
         name='email_list'),
+
+    url(r'^home/$',
+        Home2TemplateView.as_view(),
+        name='home'),
 )

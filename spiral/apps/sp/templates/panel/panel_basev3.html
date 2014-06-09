@@ -32,7 +32,7 @@
 <div class="navbar">
 <div class="navbar-inner">
 <div class="container-fluid">
-<a href="#" class="brand">
+<a href="{% url "dashboard_view" %}" class="brand">
     <small>
         <i class="icon-leaf"></i>
         Spiral
@@ -278,7 +278,7 @@
         <li class="divider"></li>
 
         <li>
-            <a href="#">
+            <a href="{% url "logout" %}">
                 <i class="icon-off"></i>
                 Logout
             </a>

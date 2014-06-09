@@ -53,6 +53,8 @@ class Search(object):
         self._table_model_nationality = self._table_model + "." + getattr(Model, '_meta').get_field('nationality').column
         self._table_model_gender = self._table_model + "." + getattr(Model, '_meta').get_field('gender').column
         self._table_model_birth = self._table_model + "." + getattr(Model, '_meta').get_field('birth').column
+        self._table_model_height = self._table_model + "." + getattr(Model, '_meta').get_field('height').column
+        self._table_model_last_visit = self._table_model + "." + getattr(Model, '_meta').get_field('last_visit').column
 
         self._table_model_column['text'] = [
             self._table_model_name_complete,
@@ -60,11 +62,16 @@ class Search(object):
             self._table_model_phone_mobil
         ]
         self._table_model_column['between'] = [
-            self._table_model_birth
+            self._table_model_birth,
+            self._table_model_height
         ]
         self._table_model_column['exact'] = [
             self._table_model_nationality,
-            self._table_model_gender
+            self._table_model_gender,
+        ]
+
+        self._table_model_column['null'] = [
+            self._table_model_last_visit
         ]
 
         self._table_feature = getattr(Feature, '_meta').db_table
@@ -132,10 +139,15 @@ class Search(object):
                 if advance.get('camp') == column:
                     search = advance.get('id')
                     if search is not None:
-                        now = datetime.datetime.now()
-                        end = now - relativedelta(years=int(search[0]))
-                        start = now - relativedelta(years=int(search[1]))
-                        self._sql = self._sql + ' AND ' + column + " between '" + start.strftime('%Y-%m-%d') + "' and '" + end.strftime('%Y-%m-%d') + "' "
+                        if column == 'sp_model.birth':
+                            now = datetime.datetime.now()
+                            end = now - relativedelta(years=int(search[0])).strftime('%Y-%m-%d')
+                            start = now - relativedelta(years=int(search[1])).strftime('%Y-%m-%d')
+                        else:
+                            end = search[1]
+                            start = search[0]
+
+                        self._sql = self._sql + ' AND ' + column + " between '" + start + "' and '" + end + "' "
 
         columns = self._table_model_column.get('exact')
         for column in columns:
@@ -145,6 +157,17 @@ class Search(object):
                     search = str(advance.get('id'))
                     if search is not None:
                         self._sql = self._sql + ' AND '+ column + " = " + search
+
+        columns = self._table_model_column.get('null')
+        for column in columns:
+            advances = self._params.get('advance')
+            for advance in advances:
+                if advance.get('camp') == column:
+                    search = str(advance.get('id'))
+                    if search in ['True']:
+                        self._sql = self._sql + ' AND '+ column + " is not null "
+                    if search in ['False']:
+                        self._sql = self._sql + ' AND '+ column + " is null "
 
     def search_insensitive(self, param):
         columns = self._table_model_column.get(param)
@@ -245,6 +268,7 @@ class Search(object):
             for row in items:
                 row = dict(zip([col[0] for col in desc], row))
                 summary = {}
+                row['web'] = True if row['last_visit'] is None else False
                 if row['summary'] is not None:
                     summary = json.loads(row['summary'])
                 result = all(k in summary for k in ids)
