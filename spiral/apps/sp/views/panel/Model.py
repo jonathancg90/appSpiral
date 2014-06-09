@@ -296,7 +296,6 @@ class ModelFeatureUpdateView(LoginRequiredMixin, JSONResponseMixin, View):
         model = Model.objects.get(pk=self.kwargs.get('pk'))
         description = data.get('description', None)
         feature_value = data.get('feature')
-
         model_feature_detail = ModelFeatureDetail.objects.get(pk=data.get('model_feature_id'))
         model_feature_detail.feature_value = FeatureValue.objects.get(pk=feature_value.get('value_id'))
         model_feature_detail.model = model

@@ -31,7 +31,6 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
     };
 
     factory.saveProfileData = function(urlSave){
-        debugger;
         return $http.post(urlSave, angular.toJson(self.profile))
             .then(function(response) {
                 if(response.status == 200) {
