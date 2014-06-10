@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Model import Model, ModelFeatureDetail
+from apps.sp.models.Model import ModelFeatureDetail
 from apps.sp.logic.search import Search
 
 
@@ -75,3 +76,82 @@ class SearchLogicTest(TestCase):
         result = self.search.run()
         self.assertEquals(len(result), 0)
 
+    def test_advance_search_features(self):
+        model = Model.objects.latest('created')
+        model_features = model.model_feature_detail_set.all()
+        data = {
+            'advance': [],
+            'features': [
+                {
+                    'id': model_features[0].feature_value.id,
+                    'text': 'Tipo-de-cabello-Lacio',
+                    'feature': True
+                }
+            ]
+        }
+        self.search.set_type(Search.TYPE_ADVANCE)
+        #Features
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 2)
+
+    def test_advance_search_age(self):
+        data = {
+            'advance': [
+                {
+                    'camp': 'sp_model.birth',
+                    'id': ['15', '25'],
+                    'feature': False
+                }
+            ],
+            'features': []
+        }
+        self.search.set_type(Search.TYPE_ADVANCE)
+        #Age
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 2)
+
+    def test_advance_search_feature_params(self):
+        model = Model.objects.latest('created')
+        model_features = model.model_feature_detail_set.all()
+        data = {
+            'advance': [
+                {
+                    'camp': 'sp_model.birth',
+                    'id': ['15', '25'],
+                    'feature': False
+                }
+            ],
+            'features': [
+                {
+                    'id': model_features[0].feature_value.id,
+                    'text': 'Tipo-de-cabello-Lacio',
+                    'feature': True
+                }
+            ]
+        }
+        self.search.set_type(Search.TYPE_ADVANCE)
+        #Features and Age
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 1)
+
+    def test_advance_search_web_casting(self):
+        model = Model.objects.latest('created')
+        model_features = model.model_feature_detail_set.all()
+        data = {
+            'advance': [
+                {
+                    'camp': 'sp_model.last_visit',
+                    'id': False,
+                    'feature': False
+                }
+            ],
+            'features': []
+        }
+        self.search.set_type(Search.TYPE_ADVANCE)
+        #Features and Age
+        self.search.set_params(data)
+        result = self.search.run()
+        self.assertEquals(len(result), 3)
