@@ -1,12 +1,14 @@
 from django.conf.urls import patterns, include, url
-from apps.sp.views.website.Home import HomeTemplateView, Home2TemplateView
+from apps.sp.views.website.Home import HomeFormView
 from apps.sp.views.website.Home import LoginAuthView
 from apps.sp.views.website.Home import LogoutView
+from apps.sp.views.website.Home import RecoverPasswordFormView
+from apps.sp.views.website.Home import RegisterUser
 from apps.sp.views.panel.Email import EmailListView
 
 urlpatterns = patterns('',
     url(r'^$',
-        HomeTemplateView.as_view(),
+        HomeFormView.as_view(),
         name='home'),
 
     url(r'^login/$',
@@ -17,11 +19,15 @@ urlpatterns = patterns('',
         LogoutView.as_view(),
         name='logout'),
 
+    url(r'^register/$',
+        RegisterUser.as_view(),
+        name='register_user'),
+
     url(r'^email/$',
         EmailListView.as_view(),
         name='email_list'),
 
-    url(r'^home/$',
-        Home2TemplateView.as_view(),
-        name='home'),
+    url(r'^recover/$',
+        RecoverPasswordFormView.as_view(),
+        name='recover_password')
 )

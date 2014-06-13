@@ -2,12 +2,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>ProySpiral</title>
     <meta charset="utf-8" />
+    <title>Proyspiral</title>
 
-    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap-responsive.min.css" type="text/css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/main.css" type="text/css" />
+    <meta name="description" content="User login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--basic styles-->
+
+    <link href="{{ STATIC_URL }}admin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ STATIC_URL }}admin/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+		  <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+    <!--page specific plugin styles-->
+
+    <!--fonts-->
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <!--ace styles-->
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/ace.min.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/ace-responsive.min.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/ace-ie.min.css" />
+		<![endif]-->
+
+    <!--inline styles related to this page-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
     {% block extra_style %}
     {% endblock extra_style %}
 
@@ -15,23 +44,44 @@
     {% endblock script_top %}
 
 </head>
-<body>
-<div class="container" style='margin-top: 100px;'>
-    {% for message in messages %}
-    <div class="alert  alert-{{ message.tags }}">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+<body class="login-layout">
+<div class="main-container container-fluid">
+    <div class="main-content">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="login-container">
+                    <div class="row-fluid">
+                        <div class="center">
+                            <h1>
+                                <i class="icon-leaf green"></i>
+                                <span class="red">Proy</span>
+                                <span class="white">Spiral</span>
+                            </h1>
+                            <h4 class="blue">&copy; Spiral Producciones</h4>
+                        </div>
+                    </div>
+
+                    <div class="space-6"></div>
+                        {% block content %}
+                        {% endblock content %}
+                </div>
+            </div><!--/.span-->
+        </div><!--/.row-fluid-->
     </div>
+</div><!--/.main-container-->
+
+<div class="container" >
+    {% for message in messages %}
+        <div class="alert  alert-{{ message.tags }}" style="float: right;">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+        </div>
     {% endfor %}
 </div>
-<section class="container">
-    {% block content %}
-    {% endblock content %}
-</section>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/bootstrap.min.js"></script>
 {% block script_bottom %}
+
 {% endblock script_bottom %}
+
 </body>
 </html>

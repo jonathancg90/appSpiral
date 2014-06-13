@@ -1,0 +1,44 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>ProySpiral</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap-responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/main.css" type="text/css" />
+
+</head>
+<body>
+<div class="navbar navbar-inverse" style="position: static;">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="{% url "home" %}">Spiral</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+                <ul class="nav">
+                    {% if not user.is_authenticated %}
+                        <li class="active"><a href={% url "login" %}>Login</a></li>
+                    {% else %}
+                        <li ><a href={% url "logout" %}>Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div>
+    </div><!-- /navbar-inner -->
+</div>
+
+<section class="container">
+    {% block content %}
+    {% endblock content %}
+</section>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/bootstrap.min.js"></script>
+</body>
+</html>

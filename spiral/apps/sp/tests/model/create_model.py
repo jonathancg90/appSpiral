@@ -110,7 +110,7 @@ class ModelCreateTest(TestCase):
 
     def test_save_features(self):
         model = Model.objects.latest('created')
-        self.assertEqual(model.model_feature_detail_set.all().count(), 0)
+        self.assertEqual(model.model_feature_detail_set.all().count(), 1)
         url = reverse('panel_model_save_feature',  kwargs={'pk': model.id})
         data = {
             "feature_value": {
@@ -121,11 +121,11 @@ class ModelCreateTest(TestCase):
         response = self.client.post(url, dumps(data), content_type='application/json')
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), 'success')
-        self.assertEqual(model.model_feature_detail_set.all().count(), 1)
+        self.assertEqual(model.model_feature_detail_set.all().count(), 2)
 
     def test_update_features(self):
         model = Model.objects.latest('created')
-        self.assertEqual(model.model_feature_detail_set.all().count(), 0)
+        self.assertEqual(model.model_feature_detail_set.all().count(), 1)
         model_feature_detail = ModelFeatureDetail()
         model_feature_detail.model = model
         model_feature_detail.feature_value = FeatureValue.objects.get(pk=139)
@@ -144,7 +144,7 @@ class ModelCreateTest(TestCase):
         response = self.client.post(url, dumps(data), content_type='application/json')
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), 'success')
-        self.assertEqual(model.model_feature_detail_set.all().count(), 1)
+        self.assertEqual(model.model_feature_detail_set.all().count(), 2)
 
     def test_delete_features(self):
         model = Model.objects.latest('created')
@@ -153,11 +153,11 @@ class ModelCreateTest(TestCase):
         model_feature_detail.feature_value = FeatureValue.objects.get(pk=139)
         model_feature_detail.description = 'Facebook'
         model_feature_detail.save()
-        self.assertEqual(model.model_feature_detail_set.all().count(), 1)
+        self.assertEqual(model.model_feature_detail_set.all().count(), 2)
 
         url = reverse('panel_model_delete_feature')
         data = str(model_feature_detail.id)
         response = self.client.post(url, dumps(data), content_type='application/json')
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), 'success')
-        self.assertEqual(model.model_feature_detail_set.all().count(), 0)
+        self.assertEqual(model.model_feature_detail_set.all().count(), 1)

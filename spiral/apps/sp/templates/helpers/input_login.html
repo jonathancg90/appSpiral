@@ -1,0 +1,16 @@
+{% load crispy_forms_field %}
+
+<div id="div_{{ field.auto_id }}" class="control-group{% if field.errors %} error{% endif %}">
+    {% if field.label %}
+        <label for="id_{{ field.id_for_label }}" class="control-label {% if field.field.required %}requiredField{% endif %}">
+            {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+    {% endif %}
+    <label>
+         <span class="block input-icon input-icon-right">
+             {% crispy_field field %}
+             <i class="icon-{{ field.id_for_label }}"></i>
+         </span>
+    <label>
+    {% include 'bootstrap/layout/help_text.html' %}
+</div>

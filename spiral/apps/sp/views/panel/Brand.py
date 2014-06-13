@@ -9,10 +9,11 @@ from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.forms.Brand import BrandForm, BrandFiltersForm
 from apps.sp.models.Brand import Brand
-from apps.common.view import LoginRequiredMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class BrandListView(LoginRequiredMixin, SearchFormMixin, ListView):
+class BrandListView(LoginRequiredMixin, PermissionRequiredMixin,
+                    SearchFormMixin, ListView):
     model = Brand
     template_name = 'panel/brand/brand_list.html'
     search_form_class = BrandFiltersForm
@@ -20,15 +21,17 @@ class BrandListView(LoginRequiredMixin, SearchFormMixin, ListView):
     filtering = {
         'entry_id': SearchFormMixin.ALL,
         'name': SearchFormMixin.ALL,
-
     }
 
 
-class BrandCreateView(LoginRequiredMixin, CreateView):
+class BrandCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     model = Brand
     form_class = BrandForm
     template_name = 'panel/brand/create.html'
     success_url = 'brand_list'
+    permissions = {
+        "permission": ('sp.add_brand', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(BrandCreateView,self).get_context_data(**kwargs)
@@ -38,11 +41,14 @@ class BrandCreateView(LoginRequiredMixin, CreateView):
         return reverse('brand_list')
 
 
-class BrandUpdateView(LoginRequiredMixin, UpdateView):
+class BrandUpdateView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
     model = Brand
     form_class = BrandForm
     template_name = 'panel/brand/update.html'
     success_url = 'brand_list'
+    permissions = {
+        "permission": ('sp.change_brand', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(BrandUpdateView, self).get_context_data(**kwargs)
@@ -52,10 +58,13 @@ class BrandUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('brand_list')
 
 
-class BrandDeleteView(LoginRequiredMixin, DeleteView):
+class BrandDeleteView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
     model = Brand
     template_name = 'panel/brand/delete.html'
     success_url = 'brand_list'
+    permissions = {
+        "permission": ('sp.delete_brand', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(BrandDeleteView,self).get_context_data(**kwargs)
@@ -65,7 +74,8 @@ class BrandDeleteView(LoginRequiredMixin, DeleteView):
         return reverse('brand_list')
 
 
-class BrandByEntryIdJson(LoginRequiredMixin, JSONResponseMixin, ListView):
+class BrandByEntryIdJson(LoginRequiredMixin, PermissionRequiredMixin,
+                         JSONResponseMixin, ListView):
     model = Brand
 
     def get_queryset(self):

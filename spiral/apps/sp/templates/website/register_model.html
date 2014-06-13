@@ -9,12 +9,8 @@
     </div>
 
       <form method="post" action="" class="form-horizontal">
-
           {% csrf_token %}
           {% crispy form %}
-
-
-
         <div id="div_phone" class="clearfix control-group">
           {% for field in model_phone_form %}
                 {{ field.errors }}
@@ -25,7 +21,6 @@
         {% endfor %}
         </div>
         {{ criterion_form }}
-
           <div class="form-actions">
                <a class="btn" href="{% url "home" %}">{% trans 'Cancel' %}</a>
                <input type="submit" class="btn btn-inverse" value="{% trans 'Crear' %}" />
@@ -38,9 +33,7 @@
     $(document).on('ready',function(){
         $('#div_phone > label').addClass('control-label');
         $('#div_phone > label').attr("style","padding-top: 20px");
-
     });
-
     </script>
 
 {% endblock %}
