@@ -68,6 +68,55 @@ class AdminGroupEditView(LoginRequiredMixin, UpdateView):
     model = Group
     form_class = GroupForm
 
+    def get_entity_permissions(self):
+        data = []
+        group = Group.objects.get(pk=self.kwargs.get('pk'))
+        permissions = group.permissions.all()
+
+        content_types = ContentType.objects.filter(Q(app_label='sp') | Q(app_label='auth'))
+        for content_type in content_types:
+            permission, status = self.get_permission(content_type, permissions)
+            data.append({
+                'content_type_id': content_type.id,
+                'content_type_name': content_type.name,
+                'content_type_permissions': permission,
+                'status': status
+            })
+        return data
+
+    def get_permission(self, entity, group_permissions):
+        result = []
+        permissions = Permission.objects.filter(content_type=entity)
+        status_result = True
+        for permission in permissions:
+            status = False
+            for group_permission in group_permissions:
+                if group_permission.id == permission.id:
+                    status=True
+            result.append({
+                'status': status,
+                'permission_id': permission.id,
+                'permission_name': permission.name
+            })
+            if not status:
+                status_result = False
+        return result, status_result
+
+    def get_context_data(self, **kwargs):
+        content = super(AdminGroupEditView, self).get_context_data(**kwargs)
+        content_types = self.get_entity_permissions()
+        content['content_types'] = content_types
+        return content
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.permissions.clear()
+        for post in self.request.POST:
+            if 'permission' in post:
+                permission = Permission.objects.get(pk=self.request.POST[post])
+                self.object.permissions.add(permission)
+        return super(AdminGroupEditView, self).form_valid(form)
+
     def get_success_url(self):
         return reverse('admin_group_list')
 
