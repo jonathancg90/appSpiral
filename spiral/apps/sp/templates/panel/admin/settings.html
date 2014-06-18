@@ -1,0 +1,63 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+{% block extra_style %}
+
+{% endblock %}
+
+
+{% block script_menu %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="{% url "dashboard_view" %}">Home</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-cog home-icon"></i>Settings
+        </li>
+    </ul><!--.breadcrumb-->
+
+{% endblock %}
+
+{% block content %}
+
+<div class="page-content">
+    <div class="page-header position-relative">
+        <h1>
+            Panel de Administracion
+        </h1>
+    </div><!--/.page-header-->
+
+    <div class="row-fluid">
+        <div class="span12">
+        <!--PAGE CONTENT BEGINS-->
+
+        <div class="row-fluid">
+
+            <p>
+                <a href="{% url "admin_group_list" %}" class="btn btn-app radius-4">
+                    <i class="icon-cog bigger-230"></i>
+                    Grupos
+                </a>
+                <a href="{% url "admin_user_list" %}" class="btn btn-app btn-primary no-radius">
+                    <i class="icon-edit bigger-230"></i>
+                    Usuarios
+                </a>
+            </p>
+        </div>
+
+        <div class="space"></div>
+
+        <!--PAGE CONTENT ENDS-->
+        </div><!--/.row-fluid-->
+    </div><!--/.page-content-->
+</div>
+{% endblock %}
+{% block script_bottom %}
+
+{% endblock %}

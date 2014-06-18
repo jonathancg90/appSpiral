@@ -1,0 +1,245 @@
+{% extends 'website/website_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block extra_style %}
+
+    <style>
+        .icon-id_password:before {
+            content: "\f023";
+        }
+        .icon-id_username:before {
+            content: "\f007";
+        }
+        .form-horizontal .control-group {
+            margin-bottom: 0px !important;
+        }
+        .alert {
+            width: 17%;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <div class="position-relative">
+        <div id="login-box" class="login-box visible widget-box no-border">
+            <div class="widget-body">
+                <div class="widget-main">
+                    <h4 class="header blue lighter bigger">
+                        <i class="icon-coffee green"></i>
+                        Ingrese su informacion
+                    </h4>
+
+                    <div class="space-6"></div>
+
+                    <form method="post" action="" class="form-horizontal">
+                        <fieldset>
+                            {% csrf_token %}
+                            {% crispy form %}
+
+                            <div class="space"></div>
+
+                            <div class="clearfix">
+                                <label class="inline">
+                                    <input type="checkbox" />
+                                    <span class="lbl"> Recuerdame</span>
+                                </label>
+                                <button class="width-35 pull-right btn btn-small btn-primary">
+                                    <i class="icon-key"></i>
+                                    Login
+                                </button>
+                            </div>
+
+                            <div class="space-4"></div>
+                        </fieldset>
+                    </form>
+
+                </div><!--/widget-main-->
+
+                <div class="toolbar clearfix">
+                    <div>
+                        <a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
+                            <i class="icon-arrow-left"></i>
+                            Olvide mi contraseña
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#" onclick="show_box('signup-box'); return false;" class="user-signup-link">
+                            Registrarme
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div><!--/widget-body-->
+        </div><!--/login-box-->
+
+        <div id="forgot-box" class="forgot-box widget-box no-border">
+            <div class="widget-body">
+                <div class="widget-main">
+                    <h4 class="header red lighter bigger">
+                        <i class="icon-key"></i>
+                        Recuperar contraseña
+                    </h4>
+
+                    <div class="space-6"></div>
+                    <p>
+                        Ingrese su correo y recibira las instrucciones
+                    </p>
+                    <form  method="post" action="{% url "recover_password" %}"  />
+                    <fieldset>
+                        <label>
+                            <span class="block input-icon input-icon-right">
+                                <input type="email" name="email" class="span12" placeholder="Email" />
+                                <i class="icon-envelope"></i>
+                            </span>
+                        </label>
+                        <div class="clearfix">
+                            <button type="submit" class="width-35 pull-right btn btn-small btn-danger">
+                                <i class="icon-lightbulb"></i>
+                                Enviar!
+                            </button>
+                        </div>
+                    </fieldset>
+                    </form>
+                </div><!--/widget-main-->
+
+                <div class="toolbar center">
+                    <a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
+                        Regresar a Login
+                        <i class="icon-arrow-right"></i>
+                    </a>
+                </div>
+            </div><!--/widget-body-->
+        </div><!--/forgot-box-->
+
+        <div id="signup-box" class="signup-box widget-box no-border">
+            <div class="widget-body">
+                <div class="widget-main">
+                    <h4 class="header green lighter bigger">
+                        <i class="icon-group blue"></i>
+                        Registro nuevo Usuario
+                    </h4>
+
+                    <div class="space-6"></div>
+                    <p> Ingrese sus datos: </p>
+
+                    <form method="post" action="{% url "register_user" %}" class="form-horizontal">
+                        <fieldset>
+                        <label>
+                            <span class="block input-icon input-icon-right">
+                                <input type="email" name="email" class="span12" placeholder="Email" />
+                                <i class="icon-envelope"></i>
+                            </span>
+                        </label>
+
+                        <label>
+                            <span class="block input-icon input-icon-right">
+                                <input type="text" name="username" class="span12" placeholder="Username" />
+                                    <i class="icon-user"></i>
+                            </span>
+                        </label>
+
+                        <label>
+                            <span class="block input-icon input-icon-right">
+                                <input type="password" name="password" class="span12" placeholder="Password" />
+                                <i class="icon-lock"></i>
+                            </span>
+                        </label>
+
+                        <label>
+                            <span class="block input-icon input-icon-right">
+                                <input type="password" name="re-password"  class="span12" placeholder="Repeat password" />
+                                <i class="icon-retweet"></i>
+                            </span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" />
+                                <span class="lbl">
+                                    Yo acepto las
+                                    <a href="#">Politicas de uso</a>
+                                </span>
+                        </label>
+
+                        <div class="space-24"></div>
+
+                        <div class="clearfix">
+                            <button type="reset" class="width-30 pull-left btn btn-small">
+                                <i class="icon-refresh"></i>
+                                Limpiar
+                            </button>
+
+                            <button type="submit" value="registrar" name="registrar" class="width-65 pull-right btn btn-small btn-success">
+                                Registrar
+                                <i class="icon-arrow-right icon-on-right"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+                    </form>
+                </div>
+
+                <div class="toolbar center">
+                    <a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
+                        <i class="icon-arrow-left"></i>
+                        Regresar a login
+                    </a>
+                </div>
+            </div><!--/widget-body-->
+        </div><!--/signup-box-->
+    </div><!--/position-relative-->
+</div>
+{% endblock %}
+
+
+{% block script_bottom %}
+
+    <!--basic scripts-->
+
+    <!--[if !IE]>-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <!--<![endif]-->
+
+    <!--[if IE]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+
+    <!--[if !IE]>-->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='{{ STATIC_URL }}admin/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    </script>
+
+    <!--<![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='{{ STATIC_URL }}admin/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if("ontouchend" in document) document.write("<script src='{{ STATIC_URL }}admin/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="{{ STATIC_URL }}admin/js/bootstrap.min.js"></script>
+
+    <!--page specific plugin scripts-->
+
+    <!--ace scripts-->
+
+    <script src="{{ STATIC_URL }}admin/js/ace-elements.min.js"></script>
+    <script src="{{ STATIC_URL }}admin/js/ace.min.js"></script>
+
+    <!--inline scripts related to this page-->
+
+    <script type="text/javascript">
+        function show_box(id) {
+            $('.widget-box.visible').removeClass('visible');
+            $('#'+id).addClass('visible');
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    <style>
+        .tools{
+            float: right !important;
+        }
+    </style>
+{% endblock %}
+
+{% block script_menu %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="{% url "dashboard_view" %}">Home</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-cog home-icon"></i>
+            <a href="{% url "admin_settings" %}">Settings</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-comments home-icon"></i>Groups
+        </li>
+    </ul><!--.breadcrumb-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="{% url "admin_group_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo Grupo' %}</a>
+        </div>
+        <h2>{%  trans 'Grupos' %}</h2>
+    </div>
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>{% trans 'Nombre' %}</th>
+                <th>{% trans 'Opciones' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in object_list %}
+                <tr>
+                    <td>{{ group.name }}</td>
+                    <td><a href="{% url "admin_group_edit" group.id %} ">Editar</a> |
+                        <a href="#" class="deletePermission" data-toggle="modal" data-target="#modalDelete" data-id="{{ group.id }}">Eliminar</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Eliminar Grupo</h4>
+                </div>
+                <div class="modal-body">
+                    Estas seguro de eliminar este grupo ?
+                </div>
+                <div class="modal-footer">
+                    <form method="post" action="{% url "admin_group_delete" %}">
+                        <input type="hidden" id="deleteGroup" name="deleteGroup"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+
+        $('.deletePermission').on('click', function(){
+            var groupId = $(this).data('id');
+            $('#deleteGroup').val(groupId);
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    <style>
+        .control-group{
+            width: 50%;
+            float: left;
+        }
+        .button-group{
+            width: 40%;
+            float:right;
+        }
+    </style>
+{% endblock %}
+
+{% block script_menu %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="{% url "dashboard_view" %}">Home</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-cog home-icon"></i>
+            <a href="{% url "admin_settings" %}">Settings</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-group home-icon"></i>
+            <a href="{% url "admin_user_list" %}">Users</a>
+        </li>
+    </ul><!--.breadcrumb-->
+
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h2><a href="{% url "admin_user_list" %}">{%  trans 'Usuario ' %}</a> : {{ user_detail.username }}</h2>
+    </div>
+    <div class="row-fluid">
+
+        <form method="post" class="form-horizontal" role="form">
+            {% csrf_token %}
+            {% crispy form %}
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </div>
+        </form>
+            <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>{% trans 'Grupo' %}</th>
+                <th>{% trans 'Opciones' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+                <tr>
+                    <td>{{ group.name }}</td>
+                    <td><a href="{% url "admin_user_permission_detail" user_detail.id %}">Permisos</a> |
+                        <a href="#" class="deletePermission" data-toggle="modal" data-target="#modalDelete" data-id="{{ group.id }}">Eliminar</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Eliminar Permiso</h4>
+                </div>
+                <div class="modal-body">
+                    Estas seguro de eliminar este grupo ?
+                </div>
+                <div class="modal-footer">
+                    <form method="post" action="{% url "admin_user_group_delete" user_detail.id %}">
+                        <input type="hidden" id="deleteGroup" name="deleteGroup"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+        $('#id_group').addClass('chzn-select');
+        $('#id_group').chosen({});
+
+        $('.deletePermission').on('click', function(){
+            var groupId = $(this).data('id');
+            $('#deleteGroup').val(groupId);
+        })
+    </script>
+{% endblock %}

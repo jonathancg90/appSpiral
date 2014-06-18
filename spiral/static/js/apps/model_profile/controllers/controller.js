@@ -35,11 +35,12 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     $scope.saveProfile = function(){
         if(required()){
             ModelFactory.setProfile($scope.model.profile);
-            if($scope.pk == undefined){
+            if($scope.pk == undefined || $scope.pk == ""){
                 url = urlSave;
             } else {
                 url = urlUpdate.replace(':pk', $scope.pk);
             }
+
             var response = ModelFactory.saveProfileData(url);
             response.then(function(data){
                 if(data.status == 'success'){
@@ -58,6 +59,7 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         $scope.model.profile.id = $scope.model.profile.code;
         ModelFactory.searchModel(urlSearch.replace(':pk', $scope.model.profile.id)).then(function(model) {
             if(model.status == 'success'){
+                $scope.pk = model.profile.id;
                 $scope.created = true;
                 $scope.$emit("Remove_Message");
                 $scope.model.profile = model.profile;

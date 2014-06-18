@@ -3,12 +3,20 @@ import json
 from django import http
 from .util import dict_strip_unicode_keys
 from django.utils import simplejson
+from django.utils.http import urlquote
+from django.http import HttpResponseForbidden
+from django.http import HttpResponseRedirect
 from django.http import HttpResponseBadRequest
 from django.core.exceptions import ImproperlyConfigured
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core import serializers
 from django.http import HttpResponse
-
+from django.contrib.contenttypes.models import ContentType
+from django.contrib import messages
+from django.contrib.auth.models import Permission
+from django.contrib.auth.decorators import login_required, permission_required
+from django.conf import settings
+from django.utils.decorators import method_decorator
 
 
 class InvalidFilterError(Exception):
@@ -247,7 +255,6 @@ class JSONResponseMixin(object):
         return simplejson.dumps(context)
 
 
-
 class NewJSONResponseMixin(object):
     """
     A mixin that allows you to easily serialize simple data such as a dict or
@@ -285,15 +292,74 @@ class NewJSONResponseMixin(object):
         json_data = serializers.serialize("json", objects, **kwargs)
         return HttpResponse(json_data, content_type=self.get_response_content_type())
 
+
 class LoginRequiredMixin(object):
-    pass
-    # @method_decorator(login_required)
-    # def dispatch(self, request, *args, **kwargs):
-    #     self.request = request
-    #
-    #     if self.request.user.is_authenticated():
-    #         return super(LoginRequiredMixin, self).dispatch(
-    #                         self.request, *args, **kwargs)
-    #     else:
-    #         return super(LoginRequiredMixin, self).dispatch(
-    #             request, *args, **kwargs)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(
+                        self.request, *args, **kwargs)
+
+
+class PermissionRequiredMixin(object):
+    login_url = settings.LOGIN_URL
+    raise_exception = False
+    model = None
+    permissions = {}
+
+    def verify_entity(self, request, entities):
+        # verify always permission in entity
+        has_permission = []
+        for entity in entities:
+            verify = []
+            content_type = ContentType.objects.get_for_model(entity)
+            permission_content_type = Permission.objects.filter(content_type=content_type)
+            for permission in permission_content_type:
+                permission = '%s.%s' %(permission.content_type.app_label, permission.codename)
+                has_permission = request.user.has_perm(permission)
+                verify.append(has_permission)
+            has_permission = True if(True in verify) else False
+            if not has_permission:
+                return has_permission
+
+        return has_permission
+
+    def verify_permission(self, request, permissions):
+        # verify exact permission
+        has_permission = False
+        for permission in permissions:
+            if permission == None or len(permission.split('.')) != 2:
+                raise ImproperlyConfigured("'PermissionRequiredMixin' requires 'permission_required' attribute to be set to '<app_label>.<permission codename>' but is set to '%s' instead" % self.permission_required)
+
+            # verify permission on object instance if needed
+            has_permission = request.user.has_perm(permission)
+            if not has_permission:
+                return has_permission
+        return has_permission
+
+    def dispatch(self, request, *args, **kwargs):
+        has_permission = False
+
+        #Multiple entity
+        if 'entity' in self.permissions:
+            has_permission = self.verify_entity(request, self.permissions.get('entity'))
+        elif 'permission' in self.permissions:
+            has_permission = self.verify_permission(request, self.permissions.get('permission'))
+        elif self.model is not None:
+            has_permission = self.verify_entity(request, (self.model,))
+
+        # user failed permission
+        if not has_permission:
+            if self.raise_exception:
+                return HttpResponseForbidden()
+            else:
+                path = urlquote(request.get_full_path())
+                tup = self.login_url, 'next', path
+                # request.session['error'] = "ERROR"
+                messages.error(self.request, 'No tiene los permisos necesarios.')
+                return HttpResponseRedirect("%s?%s=%s" % tup)
+
+        # user passed permission check so just return the result of calling .dispatch()
+        return super(PermissionRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+

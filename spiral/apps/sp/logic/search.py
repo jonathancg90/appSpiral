@@ -141,8 +141,8 @@ class Search(object):
                     if search is not None:
                         if column == 'sp_model.birth':
                             now = datetime.datetime.now()
-                            end = now - relativedelta(years=int(search[0])).strftime('%Y-%m-%d')
-                            start = now - relativedelta(years=int(search[1])).strftime('%Y-%m-%d')
+                            end = (now - relativedelta(years=int(search[0]))).strftime('%Y-%m-%d')
+                            start = (now - relativedelta(years=int(search[1]))).strftime('%Y-%m-%d')
                         else:
                             end = search[1]
                             start = search[0]
@@ -278,7 +278,6 @@ class Search(object):
             self._message.update({'error': self.MESSAGE_ERR_PARAM})
             log.exception(e.message)
         return models
-
 
     def run(self):
         self.set_tables_names()

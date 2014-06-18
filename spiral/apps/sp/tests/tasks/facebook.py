@@ -69,14 +69,14 @@ class FacebookTaskTest(TestCase):
     #     self.assertEquals(result.get('status'), 200)
 =======
     @patch("apps.sp.tasks.facebook.TabFacebookTask.get_data")
-    def _test_task_save_model(self, mock_get_data):
+    def test_task_save_model(self, mock_get_data):
         self.assertEqual(Model.objects.all().count(), 4)
         mock_get_data.return_value = self.fake_response()
         self.tab_facebook_task.apply()
         self.assertEqual(Model.objects.all().count(), 5)
 
     @patch("apps.sp.tasks.facebook.TabFacebookTask.get_data")
-    def _test_method_get_data(self, mock_get_data):
+    def test_method_get_data(self, mock_get_data):
         mock_get_data.return_value = self.fake_response()
         self.assertEqual(Model.objects.all().count(), 4)
         result = self.tab_facebook_task.run()
@@ -84,6 +84,7 @@ class FacebookTaskTest(TestCase):
         self.assertEquals(result.get('status'), 200)
 >>>>>>> f3f688468a37b6a901f63a2ac97f52df7d04f4d6
 
+<<<<<<< HEAD
     def test_method_test_real(self):
         self.assertEqual(Model.objects.all().count(), 4)
         result = self.tab_facebook_task.run()
@@ -93,3 +94,10 @@ class FacebookTaskTest(TestCase):
         self.assertEqual(Model.objects.all().count(), 5)
 >>>>>>> f3f688468a37b6a901f63a2ac97f52df7d04f4d6
         self.assertEquals(result.get('status'), 200)
+=======
+    # def _test_method_test_real(self):
+    #     self.assertEqual(Model.objects.all().count(), 4)
+    #     result = self.tab_facebook_task.run()
+    #     self.assertEqual(Model.objects.all().count(), 5)
+    #     self.assertEquals(result.get('status'), 200)
+>>>>>>> 5efb30166a87765b30ff5a79eb8125ceb315009e

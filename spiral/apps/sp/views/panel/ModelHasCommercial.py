@@ -217,7 +217,7 @@ class ModelHasCommercialDelRedirectView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, pk):
         self.delete_model_has_commercial()
         return reverse('model_has_commercial_model_list', kwargs={
-            'pk':self.model_id
+            'pk': self.model_id
         })
 
 

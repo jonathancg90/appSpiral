@@ -27,7 +27,12 @@
         <li class="active" id="modelActive"></li>
     </ul><!--.breadcrumb-->
 {% endblock %}
-
+{% for message in messages %}
+    <div class="alert  alert-{{ message.tags }} messages">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+    </div>
+{% endfor %}
 {% block content %}
 <div ng-app="modelApp" ng-cloak class="ng-cloak">
 

@@ -16,11 +16,13 @@ from apps.fileupload.response import JSONResponse, response_mimetype
 from apps.sp.models.Model import Model, ModelFeatureDetail
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.common.view import JSONResponseMixin
-from apps.common.view import LoginRequiredMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class ModelControlTemplateView(LoginRequiredMixin, TemplateView):
+class ModelControlTemplateView(LoginRequiredMixin, PermissionRequiredMixin,
+                               TemplateView):
     template_name = 'panel/model/profile.html'
+    model = Model
 
     def get_context_data(self, **kwargs):
         context = super(ModelControlTemplateView, self).get_context_data(**kwargs)
@@ -32,7 +34,9 @@ class ModelControlTemplateView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
+class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
+                        JSONResponseMixin, View):
+    model = Model
     MESSAGE_SUCCESSFUL = 'El modelo encontrado'
     MESSAGE_ERR_NOT_FOUND = 'El modelo no ha sido encontrado'
     MESSAGE_ERR = 'Ocurrio un error al buscar al modelo'
@@ -162,10 +166,14 @@ class ModelDataJsonView(LoginRequiredMixin, JSONResponseMixin, View):
         return self.render_to_response(data)
 
 
-class ModelCreateView(LoginRequiredMixin, JSONResponseMixin, View):
+class ModelCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                      JSONResponseMixin, View):
     SAVE_SUCCESSFUL = 'Modelo registrado'
     ERROR_MODEL_DNI = "Numero de DNI duplicado"
     ERROR_MODEL_SAVE = 'ocurrio un error al tratar de grabar la informacion del modelo'
+    permissions = {
+        "permission": ('sp.add_model', ),
+    }
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -220,14 +228,22 @@ class ModelUpdateView(ModelCreateView):
     SAVE_SUCCESSFUL = 'Modelo actualizado'
     ERROR_MODEL_DNI = "Numero de DNI duplicado"
     ERROR_MODEL_SAVE = 'ocurrio un error al tratar de grabar la informacion del modelo'
+    permissions = {
+        "permission": ('sp.change_model', ),
+    }
 
     def get_model(self):
         return Model.objects.get(pk=self.kwargs.get('pk'))
 
 
-class PictureModelCreateView(LoginRequiredMixin, CreateView):
+class PictureModelCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                             CreateView):
     model = Picture
     thumb_options = PictureThumbnail.THUMBS
+    permissions = {
+        "permission": ('fileupload.add_picture', ),
+    }
+
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -284,9 +300,13 @@ class PictureModelCreateView(LoginRequiredMixin, CreateView):
         return HttpResponse(content=data, status=400, content_type='application/json')
 
 
-class ModelFeatureUpdateView(LoginRequiredMixin, JSONResponseMixin, View):
+class ModelFeatureUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
+                             JSONResponseMixin, View):
     UPDATE_SUCCESSFUL = 'Datos descriptivos grabados'
     ERROR_MODEL_SAVE = 'ocurrio un error al tratar de grabar la informacion del modelo'
+    permissions = {
+        "permission": ('sp.change_modelfeaturedetail', ),
+    }
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -296,7 +316,6 @@ class ModelFeatureUpdateView(LoginRequiredMixin, JSONResponseMixin, View):
         model = Model.objects.get(pk=self.kwargs.get('pk'))
         description = data.get('description', None)
         feature_value = data.get('feature')
-
         model_feature_detail = ModelFeatureDetail.objects.get(pk=data.get('model_feature_id'))
         model_feature_detail.feature_value = FeatureValue.objects.get(pk=feature_value.get('value_id'))
         model_feature_detail.model = model
@@ -340,9 +359,13 @@ class ModelFeatureUpdateView(LoginRequiredMixin, JSONResponseMixin, View):
         return self.render_to_response(context)
 
 
-class ModelFeatureCreateView(LoginRequiredMixin, JSONResponseMixin, View):
+class ModelFeatureCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                             JSONResponseMixin, View):
     SAVE_SUCCESSFUL = 'Datos descriptivos grabados'
     ERROR_MODEL_SAVE = 'La carracteristica ya existe registrada'
+    permissions = {
+        "permission": ('sp.add_modelfeaturedetail', ),
+    }
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -407,9 +430,13 @@ class ModelFeatureCreateView(LoginRequiredMixin, JSONResponseMixin, View):
         return self.render_to_response(context)
 
 
-class ModelFeatureDeleteView(LoginRequiredMixin, JSONResponseMixin, View):
+class ModelFeatureDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
+                             JSONResponseMixin, View):
     DELETE_SUCCESSFUL = 'Carracteristica eliminada'
     ERROR_MODEL_FEATURE_DELETE = 'ocurrio un error al tratar de eliminar la informacion del modelo'
+    permissions = {
+        "permission": ('sp.delete_modelfeaturedetail', ),
+    }
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
