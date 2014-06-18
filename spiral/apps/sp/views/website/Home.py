@@ -2,13 +2,15 @@
 from django.shortcuts import redirect
 from django.contrib import auth, messages
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import FormView, RedirectView, View
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import EmailMessage
 
-from apps.sp.forms.User import LoginForm, RecoverForm
+from apps.sp.forms.User import LoginForm
 
 
 class HomeFormView(FormView):
@@ -65,19 +67,43 @@ class RegisterUser(View):
             return redirect(reverse('home'))
 
 
-class RecoverPasswordFormView(FormView):
-    template_name = 'website/recover_password.html'
-    form_class = RecoverForm
+class RecoverPasswordFormView(View):
+    SEND_RECOVER = 'su contrasseña ha sido enviada a su correo'
+    ERROR_SEND = 'ocurrio un error al tratar de restaurar su contraseña'
+    ERROR_EMAIL = 'Correo electronico invalido'
 
-    def form_valid(self, form):
-        data = form.clean()
-        user = User.objects.get(pk=1)
-        user.set_password(data.get('password'))
-        user.save()
-        return super(RecoverPasswordFormView, self).form_valid(form)
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(RecoverPasswordFormView, self).dispatch(request, *args, **kwargs)
 
-    def get_success_url(self):
-        return reverse('home')
+    def recover_password(self, data):
+        try:
+            user = User.objects.get(email=data.get('email'))
+            self.send_email('prueba', 'mensaje', 'app@spiral.com.pe')
+            return user, self.SEND_RECOVER
+        except Exception, e:
+            return None, self.ERROR_EMAIL
+
+    def send_email(self, subject, message, from_email):
+        if subject and message and from_email:
+            try:
+                send_mail(subject, message, from_email, ['jonathancg90@gmail.com'])
+            except BadHeaderError:
+                messages.error(self.request, _(u'Ocurrio un error al enviar el correo.'))
+                return redirect(reverse('home'))
+            except Exception, e:
+                messages.error(self.request, _(u'No se ha podido restaurar su contraseña, consulte con soporte.'))
+                return redirect(reverse('home'))
+        else:
+            messages.error(self.request, _(u'Parametros invalidos, para restaurar su contraseña.'))
+            return redirect(reverse('home'))
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        user, msg = self.recover_password(data)
+        if user:
+            messages.success(self.request, _(u'Contraseña enviado a su correo'))
+            return redirect(reverse('home'))
 
 
 class LoginAuthView(FormView):

@@ -13,6 +13,9 @@
         .form-horizontal .control-group {
             margin-bottom: 0px !important;
         }
+        .alert {
+            width: 17%;
+        }
 
     </style>
 {% endblock %}
@@ -85,17 +88,16 @@
                     <p>
                         Ingrese su correo y recibira las instrucciones
                     </p>
-
-                    <form />
+                    <form  method="post" action="{% url "recover_password" %}"  />
                     <fieldset>
                         <label>
                             <span class="block input-icon input-icon-right">
-                                <input type="email" class="span12" placeholder="Email" />
+                                <input type="email" name="email" class="span12" placeholder="Email" />
                                 <i class="icon-envelope"></i>
                             </span>
                         </label>
                         <div class="clearfix">
-                            <button onclick="return false;" class="width-35 pull-right btn btn-small btn-danger">
+                            <button type="submit" class="width-35 pull-right btn btn-small btn-danger">
                                 <i class="icon-lightbulb"></i>
                                 Enviar!
                             </button>
