@@ -52,7 +52,7 @@ class RegisterUser(View):
             user.username = data.get('username')
             user.set_password(data.get('password'))
             user.email = data.get('email')
-            # user.is_active = False
+            user.is_active = False
             user.save()
             return user, self.USER_SAVE
         except Exception,e:

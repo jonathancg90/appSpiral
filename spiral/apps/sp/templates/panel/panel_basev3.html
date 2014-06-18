@@ -263,7 +263,7 @@
         <img class="nav-user-photo" src="{{ STATIC_URL }}admin/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
-									Jason
+									{{ user.username }}
 								</span>
 
         <i class="icon-caret-down"></i>
@@ -590,16 +590,13 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="icon-home home-icon"></i>
-                    <a href="#">Home</a>
-
-							<span class="divider">
-								<i class="icon-angle-right arrow-icon"></i>
-							</span>
+                    <a href="{% url "dashboard_view" %}">Home</a>
+					    <span class="divider">
+						    <i class="icon-angle-right arrow-icon"></i>
+						</span>
                 </li>
-
             </ul><!--.breadcrumb-->
         {% endblock script_menu %}
-
 
         <div class="nav-search" id="nav-search">
             <form class="form-search" />

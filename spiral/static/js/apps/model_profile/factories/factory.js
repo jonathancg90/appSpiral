@@ -33,12 +33,19 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
     factory.saveProfileData = function(urlSave){
         return $http.post(urlSave, angular.toJson(self.profile))
             .then(function(response) {
-                if(response.status == 200) {
-                    return response.data
-                } else{
+                if(typeof(response.data) == 'object') {
+                    if(response.status == 200) {
+                        return response.data
+                    } else{
+                        return {
+                            'status':'error',
+                            'message':'ERR02: Ocurrio un error: notificar a soporte'
+                        };
+                    }
+                } else {
                     return {
                         'status':'error',
-                        'message':'ERR02: Ocurrio un error: notificar a soporte'
+                        'message':'ERR03: Usted no tiene permisos para realizar esa accion'
                     };
                 }
             });
@@ -47,8 +54,16 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
     factory.saveFeatureData = function(urlSave, data){
         return $http.post(urlSave, angular.toJson(data))
             .then(function(response) {
-                if(response.status == 200) {
-                    return response.data;
+                debugger
+                if(typeof(response.data) == 'object') {
+                    if (response.status == 200) {
+                        return response.data;
+                    }
+                } else {
+                    return {
+                        'status':'error',
+                        'message':'ERR03: Usted no tiene permisos para realizar esa accion'
+                    };
                 }
             });
     };
@@ -56,8 +71,17 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
     factory.updateFeatureData = function(urlUpdate, data){
         return $http.post(urlUpdate, angular.toJson(data))
             .then(function(response) {
-                if(response.status == 200) {
-                    return response.data;
+                debugger
+                if(typeof(response.data) == 'object') {
+                    if (response.status == 200) {
+                        return response.data;
+                    }
+                }
+                else {
+                    return {
+                        'status':'error',
+                        'message':'ERR03: Usted no tiene permisos para realizar esa accion'
+                    };
                 }
             });
     };
@@ -65,8 +89,17 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
     factory.deleteFeatureData = function(urlDelete, data){
         return $http.post(urlDelete, angular.toJson(data))
             .then(function(response) {
-                if(response.status == 200) {
-                    return response.data;
+                debugger
+                if(typeof(response.data) == 'object') {
+                    if(response.status == 200) {
+                        return response.data;
+                    }
+                }
+                else {
+                    return {
+                        'status':'error',
+                        'message':'ERR03: Usted no tiene permisos para realizar esa accion'
+                    };
                 }
             });
     };

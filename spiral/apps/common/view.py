@@ -304,19 +304,23 @@ class LoginRequiredMixin(object):
 class PermissionRequiredMixin(object):
     login_url = settings.LOGIN_URL
     raise_exception = False
+    model = None
     permissions = {}
 
     def verify_entity(self, request, entities):
         # verify always permission in entity
-        has_permission = False
+        has_permission = []
         for entity in entities:
+            verify = []
             content_type = ContentType.objects.get_for_model(entity)
             permission_content_type = Permission.objects.filter(content_type=content_type)
             for permission in permission_content_type:
-                permission= '%s.%s' %(permission.content_type.app_label, permission.codename)
+                permission = '%s.%s' %(permission.content_type.app_label, permission.codename)
                 has_permission = request.user.has_perm(permission)
-                if not has_permission:
-                    return has_permission
+                verify.append(has_permission)
+            has_permission = True if(True in verify) else False
+            if not has_permission:
+                return has_permission
 
         return has_permission
 
@@ -334,12 +338,11 @@ class PermissionRequiredMixin(object):
         return has_permission
 
     def dispatch(self, request, *args, **kwargs):
-        original_return_value = super(PermissionRequiredMixin, self).dispatch(request, *args, **kwargs)
         has_permission = False
 
+        #Multiple entity
         if 'entity' in self.permissions:
             has_permission = self.verify_entity(request, self.permissions.get('entity'))
-
         elif 'permission' in self.permissions:
             has_permission = self.verify_permission(request, self.permissions.get('permission'))
         elif self.model is not None:
@@ -357,6 +360,6 @@ class PermissionRequiredMixin(object):
                 return HttpResponseRedirect("%s?%s=%s" % tup)
 
         # user passed permission check so just return the result of calling .dispatch()
-        return original_return_value
+        return super(PermissionRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 

@@ -1,0 +1,82 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load common_tags %}
+{% load i18n %}
+
+{% block extra_style %}
+    <style>
+        .tools{
+            float: right !important;
+        }
+    </style>
+{% endblock %}
+
+{% block script_menu %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="{% url "dashboard_view" %}">Home</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-cog home-icon"></i>
+            <a href="{% url "admin_settings" %}">Settings</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-group home-icon"></i>User
+        </li>
+    </ul><!--.breadcrumb-->
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="{% url "admin_user_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo Usuario' %}</a>
+        </div>
+        <h2>{%  trans 'Usuarios' %}</h2>
+    </div>
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>{% trans 'Username' %}</th>
+                <th>{% trans 'Name complete' %}</th>
+                <th>{% trans 'Email' %}</th>
+                <th>{% trans 'Last login' %}</th>
+                <th>{% trans 'Opciones' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in object_list %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.last_login }}</td>
+                    <td><a href="{% url "admin_user_group_detail" user.pk %}">Group</a> |
+                        <a href="{% url "admin_user_update" user.pk %}"> Editar</a> |
+                        {% if user.is_active %}
+                            <a href="{% url "admin_user_change_status" user.pk %}"> Activo</a> |
+                        {% else %}
+                            <a href="{% url "admin_user_change_status" user.pk %}"> Inactivo</a> |
+                        {% endif %}
+                        Eliminar</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% url 'admin_user_list' as page_url %}
+        {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
+    </div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+{% endblock %}

@@ -3,7 +3,7 @@
 from crispy_forms.layout import Field
 from django import forms
 from crispy_forms.helper import FormHelper, Layout
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 
 
 class LoginForm(forms.Form):
@@ -79,3 +79,53 @@ class UserGroupForm(forms.Form):
 
     def set_groups(self):
         self.fields['group'].queryset = Group.objects.all()
+
+
+class UserEditForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_show_errors = True
+        self.helper.form_tag = False
+        super(UserEditForm, self).__init__(*args, **kwargs)
+
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name',
+                  'email',  'groups']
+
+class UserForm(forms.ModelForm):
+
+    password = forms.CharField(
+        max_length=60,
+        required=True,
+        label='Password',
+        widget=forms.PasswordInput,
+    )
+
+    re_password = forms.CharField(
+        max_length=60,
+        required=True,
+        label='Re - Password',
+        widget=forms.PasswordInput,
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_show_errors = True
+        self.helper.form_tag = False
+        super(UserForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        password = self.cleaned_data.get('password')
+        re_password = self.cleaned_data.get('re_password')
+        if password and password != re_password:
+            raise forms.ValidationError("Contraseñas no coinciden")
+
+        return self.cleaned_data
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name',
+                  'email', 'password', 're_password',  'groups']

@@ -2,31 +2,37 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, CreateView, UpdateView, View
+from django.views.generic import ListView, CreateView, \
+    UpdateView, View
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.models import Permission
 from django.contrib.admin.models import ContentType
 from django.shortcuts import redirect
 from django.db.models import Q
 
-from apps.common.view import LoginRequiredMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 from apps.sp.forms.Group import GroupForm
 
 
-class AdminGroupListView(LoginRequiredMixin, ListView):
-    template_name = 'panel/admin/group_list.html'
+class AdminGroupListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    template_name = 'panel/admin/group/group_list.html'
     model = Group
     paginate_by = settings.PANEL_PAGE_SIZE
 
 
-class AdminGroupCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'panel/admin/group_create.html'
+class AdminGroupCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    template_name = 'panel/admin/group/group_create.html'
     model = Group
     form_class = GroupForm
+    permissions = {
+        "permission": ('auth.add_group', ),
+    }
 
     def get_entity_permissions(self):
         data = []
-        content_types = ContentType.objects.filter(Q(app_label='sp') | Q(app_label='auth'))
+        content_types = ContentType.objects.filter(
+            Q(app_label='sp') | Q(app_label='auth') |
+            Q(app_label='fileupload') | Q(app_label='easy_thumbnails'))
         for content_type in content_types:
             data.append({
                 'content_type_id': content_type.id,
@@ -63,17 +69,22 @@ class AdminGroupCreateView(LoginRequiredMixin, CreateView):
         return reverse('admin_group_list')
 
 
-class AdminGroupEditView(LoginRequiredMixin, UpdateView):
-    template_name = 'panel/admin/group_edit.html'
+class AdminGroupEditView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    template_name = 'panel/admin/group/group_edit.html'
     model = Group
     form_class = GroupForm
+    permissions = {
+        "permission": ('auth.change_group', ),
+    }
 
     def get_entity_permissions(self):
         data = []
         group = Group.objects.get(pk=self.kwargs.get('pk'))
         permissions = group.permissions.all()
 
-        content_types = ContentType.objects.filter(Q(app_label='sp') | Q(app_label='auth'))
+        content_types = ContentType.objects.filter(
+            Q(app_label='sp') | Q(app_label='auth') |
+            Q(app_label='fileupload') | Q(app_label='easy_thumbnails'))
         for content_type in content_types:
             permission, status = self.get_permission(content_type, permissions)
             data.append({
@@ -108,20 +119,38 @@ class AdminGroupEditView(LoginRequiredMixin, UpdateView):
         content['content_types'] = content_types
         return content
 
+    def clear_user_permission(self, users):
+        permissions = self.object.permissions.all()
+        for user in users:
+            for permission in permissions:
+                user.user_permissions.remove(permission)
+
+    def insert_user_permission(self, users):
+        permissions = self.object.permissions.all()
+        for user in users:
+            for permission in permissions:
+                user.user_permissions.add(permission)
+
     def form_valid(self, form):
+        users = User.objects.filter(groups=self.object)
         self.object = form.save()
+        self.clear_user_permission(users)
         self.object.permissions.clear()
         for post in self.request.POST:
             if 'permission' in post:
                 permission = Permission.objects.get(pk=self.request.POST[post])
                 self.object.permissions.add(permission)
+        self.insert_user_permission(users)
         return super(AdminGroupEditView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('admin_group_list')
 
 
-class AdminGroupDeleteView(LoginRequiredMixin, View):
+class AdminGroupDeleteView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    permissions = {
+        "permission": ('auth.delete_group', ),
+    }
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -141,3 +170,4 @@ class AdminGroupDeleteView(LoginRequiredMixin, View):
         group.delete()
 
         return redirect(reverse('admin_group_list'))
+

@@ -1,0 +1,51 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block extra_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+{% endblock %}
+
+{% block script_menu %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="{% url "dashboard_view" %}">Home</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-cog home-icon"></i>
+            <a href="{% url "admin_settings" %}">Settings</a>
+			    <span class="divider">
+				    <i class="icon-angle-right arrow-icon"></i>
+				</span>
+        </li>
+        <li>
+            <i class="icon-group home-icon"></i>
+            <a href="{% url "admin_user_list" %}">Users</a>
+        </li>
+    </ul><!--.breadcrumb-->
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h2>{% trans "Actualizar Usuario: " %} {{ user.usename }}</h2>
+    </div>
+    <form method="post" action="" class="form-horizontal">
+        {% csrf_token %}
+        {% crispy form %}
+        <div class="form-actions">
+            <a class="btn" href="{% url "admin_user_list" %}">{% trans 'Cancelar' %}</a> o
+            <input type="submit" class="btn btn-inverse" value="{% trans 'Actualizar'%}" />
+        </div>
+    </form>
+
+
+{% endblock %}
+
+{% block script_bottom %}
+
+{% endblock %}
