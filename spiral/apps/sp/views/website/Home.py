@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import uuid
 from django.shortcuts import redirect
 from django.contrib import auth, messages
 from django.core.urlresolvers import reverse
@@ -9,8 +10,10 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail, BadHeaderError
 from django.core.mail import EmailMessage
+from django.conf import settings
 
 from apps.sp.forms.User import LoginForm
+from apps.common.email import Email
 
 
 class HomeFormView(FormView):
@@ -79,15 +82,31 @@ class RecoverPasswordFormView(View):
     def recover_password(self, data):
         try:
             user = User.objects.get(email=data.get('email'))
-            self.send_email('prueba', 'mensaje', 'app@spiral.com.pe')
+            password = uuid.uuid4().hex
+            user.set_password(password)
+            user.save()
+            self._send_email(user, password)
+            #self.send_email('prueba', 'mensaje', 'app@spiral.com.pe')
             return user, self.SEND_RECOVER
         except Exception, e:
             return None, self.ERROR_EMAIL
 
+    def _send_email(self, user, password):
+        data = {
+            'template_name': 'helpers/email/recover_password.html',
+            'subject': 'Spiral Producciones - Password!',
+            'to': [user.email],
+            'context': {
+                'user': user,
+                'password': password
+            }
+        }
+        Email.send_html_email(**data)
+
     def send_email(self, subject, message, from_email):
         if subject and message and from_email:
             try:
-                send_mail(subject, message, from_email, ['jonathancg90@gmail.com'])
+                send_mail(subject, message, settings.EMAIL_HOST_USER, ['jonathancg90@gmail.com'])
             except BadHeaderError:
                 messages.error(self.request, _(u'Ocurrio un error al enviar el correo.'))
                 return redirect(reverse('home'))
