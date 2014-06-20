@@ -4,6 +4,7 @@ from django.test import TestCase
 from django.utils.timezone import utc
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Brand import Brand
@@ -23,6 +24,7 @@ class CommercialViewTest(TestCase):
 
     def insert_test_data(self):
         self.insert_data_helper.run()
+        self.user = User.objects.get(is_superuser=True)
 
     def test_basic_data(self):
         """
@@ -43,6 +45,7 @@ class CommercialViewTest(TestCase):
         request = self.request_factory.get(
             reverse('commercial_list')
         )
+        request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context_data['object_list'].count(), 4)
@@ -59,7 +62,9 @@ class CommercialViewTest(TestCase):
         """
         self.insert_test_data()
         request = self.request_factory.get(reverse('commercial_list'),
-                                   data={'name__icontains': 'Navidad'})
+                                   data={'name__icontains': 'Navidad'}
+        )
+        request.user = self.user
         view = CommercialListView.as_view()
         response = view(request)
 
@@ -82,6 +87,7 @@ class CommercialViewTest(TestCase):
         request = self.request_factory.post(
             reverse('commercial_create'), data
         )
+        request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Commercial.objects.all().count(), 5)
@@ -96,8 +102,9 @@ class CommercialViewTest(TestCase):
         commercial = Commercial.objects.get(pk=1)
 
         request = self.request_factory.get(reverse('commercial_edit',
-                                                   kwargs={'pk': commercial.id}))
-
+                                                   kwargs={'pk': commercial.id})
+        )
+        request.user = self.user
         view = CommercialUpdateView.as_view()
         response = view(request, pk=commercial.id)
         self.assertEqual(response.status_code, 200)
@@ -116,6 +123,7 @@ class CommercialViewTest(TestCase):
         url_kwargs = {'pk': commercial.id}
         url = reverse('commercial_edit', kwargs=url_kwargs)
         request = self.request_factory.post(url, data=data)
+        request.user = self.user
         view = CommercialUpdateView.as_view()
         response = view(request, **data)
 
@@ -134,6 +142,7 @@ class CommercialViewTest(TestCase):
         kwargs = {'pk': commercial.id}
         url = reverse('commercial_delete', kwargs=kwargs)
         request = self.request_factory.post(url, kwargs)
+        request.user = self.user
         response = CommercialDeleteView.as_view()(request, **kwargs)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Commercial.objects.all().count(), 3)

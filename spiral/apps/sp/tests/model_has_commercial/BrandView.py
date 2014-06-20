@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
@@ -16,6 +18,7 @@ class BrandViewTest(TestCase):
 
     def insert_test_data(self):
         self.insert_data_helper.run()
+        self.user = User.objects.get(is_superuser=True)
 
     def test_basic_data(self):
         """
@@ -34,6 +37,7 @@ class BrandViewTest(TestCase):
         request = self.request_factory.get(
             reverse('brand_list')
         )
+        request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context_data['object_list'].count(), 9)
@@ -51,6 +55,7 @@ class BrandViewTest(TestCase):
         self.insert_test_data()
         request = self.request_factory.get(reverse('brand_list'),
                                    data={'name__icontains': 'Sprite'})
+        request.user = self.user
         view = BrandListView.as_view()
         response = view(request)
 
@@ -71,6 +76,7 @@ class BrandViewTest(TestCase):
         request = self.request_factory.post(
             reverse('brand_create'), data
         )
+        request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Brand.objects.all().count(), 10)
@@ -84,8 +90,9 @@ class BrandViewTest(TestCase):
         brand = Brand.objects.get(pk=1)
 
         request = self.request_factory.get(reverse('brand_edit',
-                                         kwargs={'pk': brand.id}))
-
+                                         kwargs={'pk': brand.id})
+        )
+        request.user = self.user
         view = BrandUpdateView.as_view()
         response = view(request, pk=brand.id)
         self.assertEqual(response.status_code, 200)
@@ -101,6 +108,7 @@ class BrandViewTest(TestCase):
         url_kwargs = {'pk': brand.id}
         url = reverse('brand_edit', kwargs=url_kwargs)
         request = self.request_factory.post(url, data=data)
+        request.user = self.user
         view = BrandUpdateView.as_view()
         response = view(request, **data)
 
@@ -119,6 +127,7 @@ class BrandViewTest(TestCase):
         kwargs = {'pk': brand.id}
         url = reverse('brand_delete', kwargs=kwargs)
         request = self.request_factory.post(url, kwargs)
+        request.user = self.user
         response = BrandDeleteView.as_view()(request, **kwargs)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Brand.objects.all().count(), 8)

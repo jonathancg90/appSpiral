@@ -4,7 +4,10 @@ from json import dumps
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
+from apps.sp.views.panel.Model import ModelCreateView, ModelUpdateView,\
+    ModelFeatureCreateView, ModelFeatureUpdateView, ModelFeatureDeleteView
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.views.panel.Model import ModelDataJsonView, \
     ModelControlTemplateView
@@ -13,6 +16,7 @@ from django.test.client import Client
 
 from apps.sp.models.Model import ModelFeatureDetail
 from apps.sp.models.Feature import FeatureValue
+
 
 class ModelCreateTest(TestCase):
 
@@ -24,6 +28,7 @@ class ModelCreateTest(TestCase):
 
     def insert_test_data(self):
         self.insert_data_helper.run()
+        self.user = User.objects.get(is_superuser=True)
 
     def test_template_model_create(self):
         view = ModelControlTemplateView.as_view()
@@ -31,6 +36,7 @@ class ModelCreateTest(TestCase):
         request = self.request_factory.get(
             reverse('panel_model_control_list') + '?pk=' + str(model.id)
         )
+        request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context_data), 5)
@@ -45,6 +51,7 @@ class ModelCreateTest(TestCase):
         request = self.request_factory.get(
             reverse('panel_information_model', kwargs={'pk': model.pk})
         )
+        request.user = self.user
         response = view(request, pk=model.pk)
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
@@ -59,6 +66,7 @@ class ModelCreateTest(TestCase):
         request = self.request_factory.get(
             reverse('panel_information_model', kwargs={'pk': 876})
         )
+        request.user = self.user
         response = view(request, pk=876)
         content = json.loads(response._container[0])
         self.assertEqual(response.status_code, 200)
@@ -79,8 +87,13 @@ class ModelCreateTest(TestCase):
             "phone_mobil": "963726756",
             "gender": 1
         }
-        url = reverse('panel_model_save_profile')
-        response = self.client.post(url, dumps(data), content_type='application/json')
+
+        view = ModelCreateView.as_view()
+        request = self.request_factory.post(
+            reverse('panel_model_save_profile'), data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request)
         self.assertEqual(response.status_code, 200)
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), "success")
@@ -103,7 +116,12 @@ class ModelCreateTest(TestCase):
             "phone_mobil": "963726756",
             "gender": 1
         }
-        response = self.client.post(url, dumps(data), content_type='application/json')
+        view = ModelUpdateView.as_view()
+        request = self.request_factory.post(
+            url, data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request, pk=model.id)
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), "success")
         self.assertEqual(Model.objects.all().count(), 4)
@@ -118,7 +136,12 @@ class ModelCreateTest(TestCase):
                 "value_name": "Facebook"
             }
         }
-        response = self.client.post(url, dumps(data), content_type='application/json')
+        view = ModelFeatureCreateView.as_view()
+        request = self.request_factory.post(
+            url, data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request, pk=model.id)
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), 'success')
         self.assertEqual(model.model_feature_detail_set.all().count(), 2)
@@ -141,7 +164,12 @@ class ModelCreateTest(TestCase):
             "description": "olalal",
             "model_feature_id": model_feature_detail.id
         }
-        response = self.client.post(url, dumps(data), content_type='application/json')
+        view = ModelFeatureUpdateView.as_view()
+        request = self.request_factory.post(
+            url, data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request, pk=model.id)
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), 'success')
         self.assertEqual(model.model_feature_detail_set.all().count(), 2)
@@ -157,7 +185,12 @@ class ModelCreateTest(TestCase):
 
         url = reverse('panel_model_delete_feature')
         data = str(model_feature_detail.id)
-        response = self.client.post(url, dumps(data), content_type='application/json')
+        view = ModelFeatureDeleteView.as_view()
+        request = self.request_factory.post(
+            url, data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request)
         content = json.loads(response._container[0])
         self.assertEqual(content.get('status'), 'success')
         self.assertEqual(model.model_feature_detail_set.all().count(), 1)

@@ -5,10 +5,12 @@ from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User, Group
 
+from django.contrib.messages.storage.fallback import FallbackStorage
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.views.panel.admin.User import AdminUserListView, \
     AdminUserCreateView, AdminUserChangeStatusRedirectView, \
     AdminUserUpdateView, AdminUserDetailView
+from apps.sp.views.panel.Dashboard import SettingsTemplateView
 
 
 class UsersTest(TestCase):
@@ -28,12 +30,6 @@ class UsersTest(TestCase):
         self.user.set_password(uuid.uuid4().hex)
         self.user.email = 'testuser@gmail.com'
         self.user.save()
-
-    def test_no_repeat_username(self):
-        pass
-
-    def test_no_repeat_email(self):
-        pass
 
     def test_list_users(self):
         """
@@ -166,7 +162,7 @@ class UsersTest(TestCase):
         #Post
         data = {
             'pk': self.user.id,
-            'group': Group.objects.get(pk=1)
+            'group': Group.objects.get(pk=1).id
         }
 
         url_kwargs = {'pk': self.user.id}
@@ -181,6 +177,20 @@ class UsersTest(TestCase):
         self.assertEqual(user_group.count(), 1)
         self.assertEqual(response.status_code, 302)
 
-
     def test_permission_dashboard(self):
-        pass
+        #SuperAdmin
+        view = SettingsTemplateView.as_view()
+        request = self.request_factory.get(
+            reverse('admin_settings')
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        #Other User
+        self.create_user()
+        request.user = self.user
+        setattr(request, 'session', 'session')
+        messages = FallbackStorage(request)
+        setattr(request, '_messages', messages)
+        response = view(request)
+        self.assertEqual(response.status_code, 302)
