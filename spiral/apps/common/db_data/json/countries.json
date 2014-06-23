@@ -375,5 +375,48 @@
                     }
 
                 ]
+    },
+    {
+        "name": "España",
+        "nationality": "Español",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Estados Unidos",
+        "nationality": "Estadounidense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Colombia",
+        "nationality": "Colombiano",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bolivia",
+        "nationality": "Boliviano",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Ucrania",
+        "nationality": "Ucraniano",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Argentina",
+        "nationality": "Argentino",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Ecuador",
+        "nationality": "Ecuatoriano",
+        "currency": "$",
+        "cities": []
     }
 ]
+

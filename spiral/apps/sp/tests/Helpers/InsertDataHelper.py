@@ -8,6 +8,8 @@ from apps.sp.tests.Helpers.data_helpers.commercial import CommercialHelper
 from apps.sp.tests.Helpers.data_helpers.project import ProjectHelper
 from apps.sp.tests.Helpers.data_helpers.model import ModelHelper
 from apps.sp.tests.Helpers.data_helpers.model import ModelFeatureHelper
+from apps.sp.tests.Helpers.data_helpers.user import SuperAdminHelper
+from apps.sp.tests.Helpers.data_helpers.group import GroupHelper
 
 
 class InsertDataHelper(object):
@@ -22,6 +24,8 @@ class InsertDataHelper(object):
         self.project_helper = ProjectHelper()
         self.model_helper = ModelHelper()
         self.model_feature_helper = ModelFeatureHelper()
+        self.super_admin_helper = SuperAdminHelper()
+        self.group_helper = GroupHelper()
 
     def run(self):
         self.entry_helper.set_data()
@@ -45,3 +49,9 @@ class InsertDataHelper(object):
 
         self.model_feature_helper.set_data()
         self.model_feature_helper.insert_data()
+
+        self.super_admin_helper.set_data()
+        self.super_admin_helper.insert_data()
+
+        self.group_helper.set_data()
+        self.group_helper.insert_data()

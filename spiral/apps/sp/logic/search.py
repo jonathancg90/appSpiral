@@ -55,6 +55,7 @@ class Search(object):
         self._table_model_birth = self._table_model + "." + getattr(Model, '_meta').get_field('birth').column
         self._table_model_height = self._table_model + "." + getattr(Model, '_meta').get_field('height').column
         self._table_model_last_visit = self._table_model + "." + getattr(Model, '_meta').get_field('last_visit').column
+        self._table_model_modified = self._table_model + "." + getattr(Model, '_meta').get_field('modified').column
 
         self._table_model_column['text'] = [
             self._table_model_name_complete,
@@ -94,6 +95,9 @@ class Search(object):
 
     def set_params(self, params):
         self._params = params
+
+    def set_order_by(self, order):
+        self._order_by = order
 
     def set_mode(self, mode):
         self._mode = mode
@@ -208,6 +212,12 @@ class Search(object):
             if len(columns) > ind_column:
                 self._sql = self._sql + " or "
 
+    def order_by(self):
+        if self._order_by is not None:
+            self._sql = self._sql + ' order by  ' + self._order_by.get('camp') + ' as ' + self._order_by.get('as')
+        else:
+            self._sql = self._sql + ' order by  ' + self._table_model_modified + ' desc '
+
     def start_cursor(self):
         try:
             self.cursor = connection.cursor()
@@ -236,6 +246,7 @@ class Search(object):
         try:
             if 'text' in self._params:
                 self.add_filters()
+                self.order_by()
                 items, desc = self._get_cursor_result()
                 for row in items:
                     row = dict(zip([col[0] for col in desc], row))

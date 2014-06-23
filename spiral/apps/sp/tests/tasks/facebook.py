@@ -48,7 +48,8 @@ class FacebookTaskTest(TestCase):
                 "hobbie": "Fotografía, Rock n Roll https",
                 "terminos": "aceptar",
                 "status": "0",
-                "pais": "PerÃº"
+                "pais": "Perú",
+                "naci": "Perú"
             }
         ]
 
@@ -85,6 +86,7 @@ class FacebookTaskTest(TestCase):
 >>>>>>> f3f688468a37b6a901f63a2ac97f52df7d04f4d6
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def test_method_test_real(self):
         self.assertEqual(Model.objects.all().count(), 4)
         result = self.tab_facebook_task.run()
@@ -101,3 +103,10 @@ class FacebookTaskTest(TestCase):
     #     self.assertEqual(Model.objects.all().count(), 5)
     #     self.assertEquals(result.get('status'), 200)
 >>>>>>> 5efb30166a87765b30ff5a79eb8125ceb315009e
+=======
+    def _test_method_test_real(self):
+        self.assertEqual(Model.objects.all().count(), 4)
+        result = self.tab_facebook_task.run()
+        self.assertEqual(Model.objects.all().count(), 5)
+        self.assertEquals(result.get('status'), 200)
+>>>>>>> 0073a1a753ca1f4ec5756734d890539f18a18bc0
