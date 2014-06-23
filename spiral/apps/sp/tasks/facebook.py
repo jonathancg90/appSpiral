@@ -32,7 +32,7 @@ class TabFacebookTask(PeriodicTask):
 
     def get_country(self, nationality):
         try:
-            country = Country.objects.get(nationality=nationality)
+            country = Country.objects.get(name=nationality)
             return country
         except ObjectDoesNotExist:
             return None
@@ -108,7 +108,7 @@ class TabFacebookTask(PeriodicTask):
                 model.birth = model_data.get('fec_datos')
                 model.gender = self.get_gender(model_data.get('sexo'))
                 model.city = self.get_city(model_data.get('dep_datos'))
-                model.nationality = self.get_country(model_data.get('naci_datos'))
+                model.nationality = self.get_country(model_data.get('naci'))
                 model.phone_fixed = model_data.get('fijo_datos')
                 model.phone_mobil = model_data.get('movil_datos')
                 model.height = model_data.get('estatura')
