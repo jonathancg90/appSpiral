@@ -8,13 +8,17 @@ from django.conf import settings
 from apps.sp.forms.Entry import EntryForm
 from apps.sp.models.Entry import Entry
 from apps.sp.forms.Entry import EntryFiltersForm
-from apps.common.view import LoginRequiredMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class EntryCreateView(LoginRequiredMixin, CreateView):
+class EntryCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                      CreateView):
     form_class = EntryForm
     template_name = 'panel/entry/create.html'
     success_url = "entry_list"
+    permissions = {
+        "permission": ('sp.add_entry', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(EntryCreateView,self).get_context_data(**kwargs)
@@ -24,11 +28,15 @@ class EntryCreateView(LoginRequiredMixin, CreateView):
         return reverse('entry_list')
 
 
-class EntryUpdateView(LoginRequiredMixin, UpdateView):
+class EntryUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
+                      UpdateView):
     model = Entry
     form_class = EntryForm
     template_name = 'panel/entry/update.html'
     success_url = "entry_list"
+    permissions = {
+        "permission": ('sp.change_entry', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(EntryUpdateView,self).get_context_data(**kwargs)
@@ -38,10 +46,14 @@ class EntryUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('entry_list')
 
 
-class EntryDeleteView(LoginRequiredMixin, DeleteView):
+class EntryDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
+                      DeleteView):
     model = Entry
     template_name = 'panel/entry/delete.html'
     success_url = "entry_list"
+    permissions = {
+        "permission": ('sp.delete_entry', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(EntryDeleteView,self).get_context_data(**kwargs)
@@ -51,7 +63,8 @@ class EntryDeleteView(LoginRequiredMixin, DeleteView):
         return reverse('entry_list')
 
 
-class EntryListView(LoginRequiredMixin, SearchFormMixin, ListView):
+class EntryListView(LoginRequiredMixin, PermissionRequiredMixin,
+                    SearchFormMixin, ListView):
     model = Entry
     template_name = 'panel/entry/entry_list.html'
     search_form_class = EntryFiltersForm

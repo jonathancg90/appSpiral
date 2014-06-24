@@ -1,24 +1,19 @@
-{% extends 'panel/panel_base.html' %}
+{% extends 'panel/panel_basev3.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
 
     <div class="row-fluid">
-        <table class="table table-bordered table-striped">
-
-
             <h2>
-                 {% trans "Está seguro de eliminar este rubro?" %}
+                 {% trans "Está seguro de eliminar este rubro: " %} {{ object.name }} {% trans "  ?" %}
             </h2>
             <hr>
-
-
-      <form method="post" action="" class="">{% csrf_token %}
-
-                    <a class="btn" href="{% url "entry_list" %}">{% trans 'Cancel' %}</a>
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Eliminar' %}" />
-
-        </form>
-        </table>
+      <form method="post" action="" class="">
+          {% csrf_token %}
+          <div class="form-actions">
+            <a class="btn" href="{% url "entry_list" %}">{% trans 'Cancel' %}</a>
+            <input type="submit" class="btn btn-danger" value="{% trans 'Eliminar' %}" />
+          </div>
+      </form>
     </div>
 {% endblock %}

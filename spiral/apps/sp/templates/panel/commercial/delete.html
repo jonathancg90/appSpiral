@@ -1,4 +1,4 @@
-{% extends 'panel/panel_base.html' %}
+{% extends 'panel/panel_basev3.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
@@ -9,20 +9,16 @@
 {% block content %}
 
     <div class="row-fluid">
-        <table class="table table-bordered table-striped">
-
-            <h2>
-                 {% trans "Está seguro de eliminar este comercial?" %}
-            </h2>
-            <hr>
-
+        <h2>
+                 {% trans "Está seguro de eliminar este comercial: " %} {{ object.name }} {% trans " ? " %}
+        </h2>
+        <hr>
       <form method="post" action="" class="">{% csrf_token %}
-
+          <div class="form-actions">
                     <a class="btn" href="{% url "commercial_list" %}">{% trans 'Cancelar' %}</a>
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Eliminar' %}" />
-
+                    <input type="submit" class="btn btn-danger" value="{% trans 'Eliminar' %}" />
+          </div>
         </form>
-        </table>
     </div>
 {% endblock %}
 

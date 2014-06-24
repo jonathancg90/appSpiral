@@ -8,10 +8,11 @@ from apps.sp.forms.Commercial import CommercialCreateForm, CommercialUpdateForm,
 from apps.common.view import JSONResponseMixin
 from apps.sp.models.Project import Project
 from apps.sp.models.Commercial import Commercial
-from apps.common.view import LoginRequiredMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class CommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
+class CommercialListView(LoginRequiredMixin, PermissionRequiredMixin,
+                         SearchFormMixin, ListView):
     model = Commercial
     template_name = 'panel/commercial/commercial_list.html'
     search_form_class = CommercialFiltersForm
@@ -41,11 +42,15 @@ class CommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         return form
 
 
-class CommercialCreateView(LoginRequiredMixin, CreateView):
+class CommercialCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                           CreateView):
     model = Commercial
     form_class = CommercialCreateForm
     template_name = 'panel/commercial/create.html'
     success_url = 'commercial_list'
+    permissions = {
+        "permission": ('sp.add_commercial', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(CommercialCreateView,self).get_context_data(**kwargs)
@@ -92,11 +97,15 @@ class CommercialCreateView(LoginRequiredMixin, CreateView):
         return reverse('commercial_list')
 
 
-class CommercialUpdateView(LoginRequiredMixin, UpdateView):
+class CommercialUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
+                           UpdateView):
     model = Commercial
     form_class = CommercialUpdateForm
     template_name = 'panel/commercial/update.html'
     success_url = 'commercial_list'
+    permissions = {
+        "permission": ('sp.change_commercial', ),
+    }
 
     def get_form(self, form_class):
         form = super(CommercialUpdateView, self).get_form(form_class)
@@ -135,10 +144,14 @@ class CommercialUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('commercial_list')
 
 
-class CommercialDeleteView(LoginRequiredMixin, DeleteView):
+class CommercialDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
+                           DeleteView):
     model = Commercial
     template_name = 'panel/commercial/delete.html'
     success_url = 'commercial_list'
+    permissions = {
+        "permission": ('sp.delete_commercial', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(CommercialDeleteView,self).get_context_data(**kwargs)
@@ -148,7 +161,8 @@ class CommercialDeleteView(LoginRequiredMixin, DeleteView):
         return reverse('commercial_list')
 
 
-class CommercialByBrandIdJson(LoginRequiredMixin, JSONResponseMixin, ListView):
+class CommercialByBrandIdJson(LoginRequiredMixin, PermissionRequiredMixin,
+                              JSONResponseMixin, ListView):
     model = Commercial
 
     def get_queryset(self):

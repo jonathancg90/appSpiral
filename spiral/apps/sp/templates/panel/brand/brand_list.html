@@ -1,10 +1,15 @@
-{% extends 'panel/panel_base.html' %}
+{% extends 'panel/panel_basev3.html' %}
 {% load i18n %}
 {% load common_tags %}
 {% load crispy_forms_tags %}
 
     {% block extra_style %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+        <style>
+            .tools {
+                float: right !important;
+            }
+        </style>
     {% endblock %}
 
 {% block content %}
