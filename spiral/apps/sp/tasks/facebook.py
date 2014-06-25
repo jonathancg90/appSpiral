@@ -111,7 +111,7 @@ class TabFacebookTask(PeriodicTask):
                 model.nationality = self.get_country(model_data.get('naci'))
                 model.phone_fixed = model_data.get('fijo_datos')
                 model.phone_mobil = model_data.get('movil_datos')
-                model.height = model_data.get('estatura').replace(',','.')
+                model.height = model_data.get('estatura')
                 model.terms = model_data.get('terminos')
                 model.save()
                 ids = ids + model_data.get('id_adulto') + ','
@@ -186,11 +186,16 @@ class TabFacebookTask(PeriodicTask):
     def parse_data(self, data):
         for model_data in data:
             terms = False
-            if len(model_data.get('estatura')) == 0 \
-                    or float(model_data.get('estatura').replace(',','.')) > 3:
-                estatura = 0
+            try:
+                if len(model_data.get('estatura')) == 0 \
+                        or float(model_data.get('estatura').replace(',','.')) > 3:
+                    estatura = 0
+                    model_data.update({
+                        'estatura': estatura
+                    })
+            except ValueError:
                 model_data.update({
-                    'estatura': estatura
+                    'estatura': 0
                 })
 
             if model_data.get('terminos') == 'aceptar':
