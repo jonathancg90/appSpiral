@@ -1,5 +1,6 @@
 from django import forms
-from apps.sp.models.Model import Model, ModelPhone
+from apps.sp.models.Model import Model
+from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Div
 
@@ -16,29 +17,12 @@ class RegisterModelForm(forms.ModelForm):
         model = Model
         exclude = ['status','model_code','last_visit']
 
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        username = self.cleaned_data['username']
 
-class RegisterModelPhoneForm(forms.Form):
-
-    CHOICES = ModelPhone.CHOICE_OPERATOR
-    operators = []
-    for line in CHOICES:
-        if line[0] != ModelPhone.LANDLINE:
-            operators.append(line)
-
-    number_landline = forms.CharField(
-        max_length=100,
-        required=True,
-        label=(u'Telefoni fijo')
-    )
-
-    operator = forms.ChoiceField(
-        choices=operators,
-        required=False,
-        label=(u'Operador celular')
-    )
-
-    number = forms.CharField(
-        max_length=100,
-        required=False,
-        label=(u'Numero celular')
-    )
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("This email already used")
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("This username already used")
+        return email
