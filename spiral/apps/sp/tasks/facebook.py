@@ -111,7 +111,7 @@ class TabFacebookTask(PeriodicTask):
                 model.nationality = self.get_country(model_data.get('naci'))
                 model.phone_fixed = model_data.get('fijo_datos')
                 model.phone_mobil = model_data.get('movil_datos')
-                model.height = model_data.get('estatura')
+                model.height = model_data.get('estatura').replace(',','.')
                 model.terms = model_data.get('terminos')
                 model.save()
                 ids = ids + model_data.get('id_adulto') + ','
@@ -119,7 +119,7 @@ class TabFacebookTask(PeriodicTask):
                 self.save_model_photo(model, model_data)
                 self.update_main_image(model)
                 transaction.commit()
-            except:
+            except Exception, e:
                 transaction.rollback()
         return ids
 

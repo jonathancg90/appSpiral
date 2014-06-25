@@ -10,7 +10,7 @@ from apps.sp.views.panel.ModelHasCommercial import ModelHasCommercialListView, \
 urlpatterns = patterns('',
 
     #Model has commercial
-    url(r'^list/(?P<key>\w+)/$',
+    url(r'^list/(?P<key>[^/]+)/$',
         ModelHasCommercialListView.as_view(),
         name='model_commercial_list'),
 

@@ -5,9 +5,14 @@
 
 {% block script_top %}
     <style>
-
         .fileupload-buttonbar{
             margin-left: 0px !important;
+        }
+        #commercial {
+            height: 100%;
+        }
+        iframe{
+            border: 0px;
         }
     </style>
 
@@ -62,14 +67,14 @@
             </li>
 
             <li>
-                <a data-toggle="tab" href="#pictures">
+                <a data-toggle="tab" href="#videos">
                     <i class="pink icon-camera bigger-120"></i>
                     Videos
                 </a>
             </li>
 
             <li>
-                <a data-toggle="tab" href="#pictures">
+                <a data-toggle="tab" href="#commercial">
                     <i class="red icon-group bigger-120"></i>
                     Comerciales
                 </a>
@@ -95,24 +100,21 @@
             </div>
         </div><!--/#friends-->
 
-        <div id="pictures" class="tab-pane">
+        <div id="videos" class="tab-pane">
             {% include 'panel/model/section_create/photos.html' %}
         </div><!--/#pictures-->
 
-
+        <div id="commercial" class="tab-pane">
+            {% if pk %}
+                <iframe src="{% url "model_commercial_list" pk %}" scrolling="no" height="100%" width="100%"></iframe>
+            {% endif %}
+        </div><!--/#pictures-->
 
         </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-    </div>
+</div>
 {% endblock %}
 
 
@@ -133,7 +135,8 @@
         update_feature: '{% url "panel_model_update_feature" pk=':pk' %}',
         delete_feature: '{% url "panel_model_delete_feature"  %}',
         urlCountries: '{% url "country_list_json" %}',
-        urlSearch: '{% url "panel_information_model" pk=':pk' %}'
+        urlSearch: '{% url "panel_information_model" pk=':pk' %}',
+        urlCommercial: '{% url "model_commercial_list" key=':key' %}'
     });
     // search urls
     angular.module('modelApp').value("modelData", {

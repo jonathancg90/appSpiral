@@ -30,18 +30,9 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
     }
 
     def get(self, request, *args, **kwargs):
-        model_code = self.kwargs.get('key')
-        if len(model_code) == 6:
-            try:
-                self.model = Model.objects.get(model_code=model_code)
-            except:
-                self.model = Model()
-                self.model.model_code = model_code
-                self.model.name = ''
-                self.model.last_name = ''
-                self.model.birth = datetime.datetime.now()
-                self.model.last_visit = datetime.datetime.now()
-                self.model.save()
+        model_key = self.kwargs.get('key')
+        if model_key:
+            self.model = Model.objects.get(pk=model_key)
         else:
             raise Http404
 

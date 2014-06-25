@@ -1,0 +1,41 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/bootstrap-responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/font-awesome.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/ace.min.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/ace-responsive.min.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}admin/css/ace-skins.min.css" />
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/introjs.css" type="text/css" />
+
+    <style>
+        .tools {
+            float: right;
+        }
+        .form-horizontal .control-group {
+            margin-bottom: 2px;
+        }
+        .control-group {
+            margin-bottom: 1px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-content">
+    {% block content %}
+    {% endblock content %}
+</div>
+
+<script src='{{ STATIC_URL }}admin/js/jquery-2.0.3.min.js'></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/intro.js"></script>
+{% block scripts %}
+
+{% endblock scripts %}

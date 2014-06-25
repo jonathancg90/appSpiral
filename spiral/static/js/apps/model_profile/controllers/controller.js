@@ -5,7 +5,8 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     var urlSave = modelUrls.save_model,
         urlUpdate = modelUrls.update_model,
         urlCountries = modelUrls.urlCountries,
-        urlSearch = modelUrls.urlSearch;
+        urlSearch = modelUrls.urlSearch,
+        urlCommercial = modelUrls.urlCommercial;
 
     $scope.docTypes = jQuery.parseJSON(modelData.docTypes);
     $scope.genders = jQuery.parseJSON(modelData.genders);
@@ -70,6 +71,10 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
                 updateChoicesProfile();
                 //updateFeature(model.features);
                 $('#modelActive').html(model.profile.name_complete);
+                var url = urlCommercial.replace(':key', $scope.model.profile.id);
+                $('#commercial').html('');
+                $('#commercial').html('<iframe src="'+url+'" scrolling="no" height="100%" width="100% frameborder=0"></iframe>'
+                );
             } else {
                 $scope.flashType = model.status;
                 if(model.status == 'warning'){
@@ -133,11 +138,13 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         });
 
         //Direccion - Ciudad
-        angular.forEach($scope.model.profile.dir_country.cities, function(value, key) {
-            if($scope.model.profile.city_id == value.city_id){
-                $scope.model.profile.city = value;
-            }
-        });
+        if($scope.model.profile.dir_country != undefined){
+            angular.forEach($scope.model.profile.dir_country.cities, function(value, key) {
+                if($scope.model.profile.city_id == value.city_id){
+                    $scope.model.profile.city = value;
+                }
+            });
+        }
 
         //Nacionalidad
         if($scope.model.profile.nationality != 'No ingresado') {

@@ -255,7 +255,7 @@ class ModelFeatureDetail(models.Model):
 
     description = models.CharField(
         verbose_name=_(u'Descripcion'),
-        max_length=100,
+        max_length=150,
         null=True,
         blank=True
     )

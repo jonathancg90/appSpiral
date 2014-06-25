@@ -95,6 +95,7 @@ class UserEditForm(forms.ModelForm):
         fields = ['username', 'first_name', 'last_name',
                   'email',  'groups']
 
+
 class UserForm(forms.ModelForm):
 
     password = forms.CharField(
@@ -120,8 +121,15 @@ class UserForm(forms.ModelForm):
     def clean(self):
         password = self.cleaned_data.get('password')
         re_password = self.cleaned_data.get('re_password')
+        email = self.cleaned_data['email']
+        username = self.cleaned_data['username']
+
         if password and password != re_password:
             raise forms.ValidationError("Contraseñas no coinciden")
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Este correo ya esta siendo usado")
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Este username ya esta siendo usado")
 
         return self.cleaned_data
 

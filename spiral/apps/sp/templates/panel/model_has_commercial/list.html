@@ -1,11 +1,8 @@
-{% extends 'panel/panel_base.html' %}
+{% extends 'panel/base_frame.html' %}
+
 {% load i18n %}
 {% load common_tags %}
 {% load crispy_forms_tags %}
-
-    {% block extra_style %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
-    {% endblock %}
 
 {% block content %}
     <div class="page-header">
@@ -15,7 +12,7 @@
             <a href="{% url 'export_model_commercial_list' model.id %}" class="btn btn-info" id="step5">
                 <i class=" icon-file icon-white"></i> {% trans 'Exportar' %}</a>
             <button type="button" class="btn btn-inverse" id="start-intro">
-                <i class="icon-question-sign icon-white"></i>
+                <i class="icon-question-sign icon-white"></i>Ayuda
             </button>
         </div>
         <h2>{%  trans 'Comerciales realizados: ' %}{{ model_name.modelo }}</h2>
@@ -64,14 +61,15 @@
         {% url 'model_has_commercial_list' as page_url %}
         {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
     </div>
+
 {% endblock %}
-{% block script_bottom %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+{% block scripts %}
     <script>
         url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
         url_commercial_by_brand = '{% url 'commercial_by_brand_json' brand=0 %}'
 
         $(document).on('ready',function(){
+            $('#search-form').hide();
             $('#hide-show-search').click(function(){
                 $('#search-form').toggle('fade');
             });
@@ -115,5 +113,4 @@
         });
     </script>
     <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>
-
 {% endblock %}
