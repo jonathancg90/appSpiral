@@ -3,15 +3,15 @@ import uuid
 from django.shortcuts import redirect
 from django.contrib import auth, messages
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic import FormView, RedirectView, View
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail, BadHeaderError
-from django.core.mail import EmailMessage
 from django.conf import settings
 
+from apps.common.view import NewJSONResponseMixin
 from apps.sp.forms.User import LoginForm
 from apps.common.email import Email
 
@@ -46,6 +46,9 @@ class HomeFormView(FormView):
 class RegisterUser(View):
     USER_SAVE = 'Registro completado'
     ERROR_USER_SAVE = 'ocurrio un error al tratar de registrarlo'
+    WARNING_USER_EMAIL = 'El correo utilizado ya se encuentra registrado'
+    WARNING_USER_USERMANE = 'El username utilizado ya se encuentra registrado'
+
 
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -53,6 +56,11 @@ class RegisterUser(View):
 
     def save_user(self, data):
         try:
+
+            if User.objects.filter(email=data.get('email')).exists():
+                return None, self.WARNING_USER_EMAIL
+            if User.objects.filter(username=data.get('username')).exists():
+                return None, self.WARNING_USER_USERMANE
             user = User()
             user.username = data.get('username')
             user.set_password(data.get('password'))
@@ -67,6 +75,9 @@ class RegisterUser(View):
         data = request.POST
         user, msg = self.save_user(data)
         if user:
+            return redirect(reverse('home'))
+        else:
+            messages.error(self.request, msg)
             return redirect(reverse('home'))
 
 
@@ -85,13 +96,12 @@ class RecoverPasswordFormView(View):
             password = uuid.uuid4().hex
             user.set_password(password)
             user.save()
-            self._send_email(user, password)
-            #self.send_email('prueba', 'mensaje', 'app@spiral.com.pe')
+            self.send_email(user, password)
             return user, self.SEND_RECOVER
         except Exception, e:
             return None, self.ERROR_EMAIL
 
-    def _send_email(self, user, password):
+    def send_email(self, user, password):
         data = {
             'template_name': 'helpers/email/recover_password.html',
             'subject': 'Spiral Producciones - Password!',
@@ -102,20 +112,6 @@ class RecoverPasswordFormView(View):
             }
         }
         Email.send_html_email(**data)
-
-    def send_email(self, subject, message, from_email):
-        if subject and message and from_email:
-            try:
-                send_mail(subject, message, settings.EMAIL_HOST_USER, ['jonathancg90@gmail.com'])
-            except BadHeaderError:
-                messages.error(self.request, _(u'Ocurrio un error al enviar el correo.'))
-                return redirect(reverse('home'))
-            except Exception, e:
-                messages.error(self.request, _(u'No se ha podido restaurar su contraseña, consulte con soporte.'))
-                return redirect(reverse('home'))
-        else:
-            messages.error(self.request, _(u'Parametros invalidos, para restaurar su contraseña.'))
-            return redirect(reverse('home'))
 
     def post(self, request, *args, **kwargs):
         data = request.POST
