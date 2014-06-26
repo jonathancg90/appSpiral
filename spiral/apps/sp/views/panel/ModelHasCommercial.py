@@ -133,6 +133,9 @@ class ModelHasCommercialAddListView(LoginRequiredMixin, SearchFormMixin, ListVie
         'brand__entry': SearchFormMixin.ALL,
         'brand_id': SearchFormMixin.ALL,
     }
+    permissions = {
+        "permission": ('sp.add_modelhascommercial', ),
+    }
 
     def _set_filter_entry(self, qs):
         entry_id = str(self.request.GET.get('brand__entry', ''))
@@ -177,6 +180,9 @@ class ModelHasCommercialRedirectView(LoginRequiredMixin, RedirectView):
 
 class ModelHasCommercialAddRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
+    permissions = {
+        "permission": ('sp.add_modelhascommercial', ),
+    }
 
     def get(self, request, *args, **kwargs):
         model_id = kwargs.get('model_id')
@@ -199,6 +205,9 @@ class ModelHasCommercialAddRedirectView(LoginRequiredMixin, RedirectView):
 class ModelHasCommercialDelRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
     model_id = None
+    permissions = {
+        "permission": ('sp.delete_modelhascommercial', ),
+    }
 
     def delete_model_has_commercial(self):
         model_has_commercial = get_object_or_404(ModelHasCommercial, id=self.kwargs.get('pk'))
