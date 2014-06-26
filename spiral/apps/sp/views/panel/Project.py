@@ -29,6 +29,7 @@ class ProjectUpdateView(UpdateView):
         context['action'] = 'update'
         return context
 
+
 class ProjectDeleteView(DeleteView):
     model = Project
     template = 'templates/CRUD.html'
@@ -38,6 +39,7 @@ class ProjectDeleteView(DeleteView):
         context = super(ProjectUpdateView,self).get_context_data(**kwargs)
         context['action'] = 'delete'
         return context
+
 
 class ProjectListView(ListView):
     model = Project

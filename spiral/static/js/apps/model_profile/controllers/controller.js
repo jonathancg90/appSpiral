@@ -73,7 +73,7 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
                 $('#modelActive').html(model.profile.name_complete);
                 var url = urlCommercial.replace(':key', $scope.model.profile.id);
                 $('#commercial').html('');
-                $('#commercial').html('<iframe src="'+url+'" scrolling="no" height="100%" width="100% frameborder=0"></iframe>'
+                $('#commercial').html('<iframe src="'+url+'" scrolling="yes" height="100%" width="100% frameborder=0"></iframe>'
                 );
             } else {
                 $scope.flashType = model.status;

@@ -8,14 +8,18 @@ from apps.common.view import SearchFormMixin
 from apps.sp.forms.Contract import ContractForm, ContractFiltersForm
 from apps.sp.models.Contract import Contract
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
-from apps.common.view import LoginRequiredMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class ContractCreateView(LoginRequiredMixin, CreateView):
+class ContractCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                         CreateView):
     model = Contract
     form_class = ContractForm
     template_name = 'panel/contract/create.html'
     success_url = 'contract_list'
+    permissions = {
+        "permission": ('sp.add_contract', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(ContractCreateView, self).get_context_data(**kwargs)
@@ -31,11 +35,15 @@ class ContractCreateView(LoginRequiredMixin, CreateView):
         return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
 
 
-class ContractUpdateView(LoginRequiredMixin, UpdateView):
+class ContractUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
+                         UpdateView):
     model = Contract
     form_class = ContractForm
     template_name = 'panel/contract/update.html'
     success_url = 'contract_list'
+    permissions = {
+        "permission": ('sp.change_contract', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(ContractUpdateView, self).get_context_data(**kwargs)
@@ -46,10 +54,14 @@ class ContractUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
 
 
-class ContractDeleteView(LoginRequiredMixin, DeleteView):
+class ContractDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
+                         DeleteView):
     model = Contract
-    template_name = 'panel/contract/update.html'
+    template_name = 'panel/contract/delete.html'
     success_url = 'contract_list'
+    permissions = {
+        "permission": ('sp.delete_contract', ),
+    }
 
     def get_context_data(self, **kwargs):
         context = super(ContractDeleteView, self).get_context_data(**kwargs)
@@ -60,7 +72,8 @@ class ContractDeleteView(LoginRequiredMixin, DeleteView):
         return reverse('contract_list', kwargs={'fk': self.kwargs.get('fk', 0)})
 
 
-class ContractListView(LoginRequiredMixin, SearchFormMixin,ListView):
+class ContractListView(LoginRequiredMixin, SearchFormMixin, PermissionRequiredMixin,
+                       ListView):
     model = Contract
     template_name = 'panel/contract/contract_list.html'
     search_form_class = ContractFiltersForm
@@ -68,6 +81,7 @@ class ContractListView(LoginRequiredMixin, SearchFormMixin,ListView):
     filtering = {
         'character': SearchFormMixin.ALL,
     }
+
 
     def get_context_data(self, **kwargs):
         context = super(ContractListView, self).get_context_data(**kwargs)

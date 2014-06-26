@@ -80,7 +80,7 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         if model.last_visit is not None:
             model.last_visit = model.last_visit.strftime("%d/%m/%Y")
         else:
-            model.last_visit = 'Ahun no ha sido citado'
+            model.last_visit = 'Aún no ha sido citado'
 
         if model.weight is None:
             model.weight = 0

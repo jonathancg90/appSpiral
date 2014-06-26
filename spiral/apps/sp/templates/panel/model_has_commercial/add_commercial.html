@@ -1,11 +1,22 @@
-{% extends 'panel/panel_base.html' %}
+{% extends 'panel/base_frame.html' %}
+
 {% load i18n %}
 {% load common_tags %}
 {% load crispy_forms_tags %}
 
-    {% block extra_style %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
-    {% endblock %}
+{% block extra_style %}
+    <style>
+        .tools {
+            float: right;
+        }
+        .form-horizontal .control-group {
+            margin-bottom: 2px;
+        }
+        .control-group {
+            margin-bottom: 1px;
+        }
+    </style>
+{% endblock  %}
 
 {% block content %}
     <div class="page-header">
@@ -58,15 +69,16 @@
     {% url 'model_has_commercial_add' as page_url %}
     {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
     </div>
-
-
 {% endblock %}
-{% block script_bottom %}
+
+{% block scripts %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
     <script type="text/javascript">
         url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
 
         $(document).on('ready',function(){
+            $('#search-form').hide();
+
             $('#hide-show-search').click(function(){
                 $('#search-form').toggle('fade');
             });
