@@ -4,6 +4,20 @@
 {% load common_tags %}
 {% load crispy_forms_tags %}
 
+{% block extra_style %}
+    <style>
+        .tools {
+            float: right;
+        }
+        .form-horizontal .control-group {
+            margin-bottom: 2px;
+        }
+        .control-group {
+            margin-bottom: 1px;
+        }
+    </style>
+{% endblock  %}
+
 {% block content %}
     <div class="page-header">
         <div class="tools">

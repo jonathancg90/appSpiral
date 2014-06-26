@@ -48,7 +48,7 @@ class ContractUpdateView(LoginRequiredMixin, UpdateView):
 
 class ContractDeleteView(LoginRequiredMixin, DeleteView):
     model = Contract
-    template_name = 'panel/contract/update.html'
+    template_name = 'panel/contract/delete.html'
     success_url = 'contract_list'
 
     def get_context_data(self, **kwargs):

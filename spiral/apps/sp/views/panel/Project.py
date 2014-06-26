@@ -29,6 +29,7 @@ class ProjectUpdateView(UpdateView):
         context['action'] = 'update'
         return context
 
+
 class ProjectDeleteView(DeleteView):
     model = Project
     template = 'templates/CRUD.html'

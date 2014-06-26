@@ -15,17 +15,8 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}panel/css/main.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/introjs.css" type="text/css" />
 
-    <style>
-        .tools {
-            float: right;
-        }
-        .form-horizontal .control-group {
-            margin-bottom: 2px;
-        }
-        .control-group {
-            margin-bottom: 1px;
-        }
-    </style>
+    {% block extra_style %}
+    {% endblock extra_style %}
 </head>
 <body>
 <div class="page-content">

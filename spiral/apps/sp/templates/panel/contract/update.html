@@ -1,11 +1,11 @@
-{% extends 'panel/panel_base.html' %}
+{% extends 'panel/base_frame.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
 
 {% block extra_style %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
-{% endblock extra_style %}
+{% endblock %}
 {% block content %}
 
     <div class="page-header">
@@ -25,9 +25,6 @@
 
 {% endblock %}
 
-{% block script_bottom %}
+{% block scripts %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
-    <script>
-
-    </script>
-{% endblock script_bottom %}
+{% endblock %}

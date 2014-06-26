@@ -1,4 +1,5 @@
-{% extends 'panel/panel_base.html' %}
+{% extends 'panel/base_frame.html' %}
+
 {% load i18n %}
 {% load crispy_forms_tags %}
 
@@ -6,6 +7,7 @@
 {% block extra_style %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
 {% endblock extra_style %}
+
 {% block content %}
 
     <div class="page-header">
@@ -17,8 +19,8 @@
 
         {% crispy form %}
         <div class="form-actions">
-                    <a class="btn" href="{% url "contract_list" model_has_commercial.id %}">{% trans 'Cancelar' %}</a> o
-                    <input type="submit" class="btn btn-inverse" value="{% trans 'Crear' %}" />
+            <a class="btn" href="{% url "contract_list" model_has_commercial.id %}">{% trans 'Cancelar' %}</a> o
+            <input type="submit" class="btn btn-inverse" value="{% trans 'Crear' %}" />
         </div>
 
         </form>
