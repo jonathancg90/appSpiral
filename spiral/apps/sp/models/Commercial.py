@@ -72,3 +72,17 @@ class Commercial(models.Model):
             'response': False
         }
         return data
+
+
+class CommercialDateDetail(models.Model):
+
+    commercial = models.ForeignKey(
+        'commercial',
+        verbose_name='Comercial',
+        related_name='company_detail_account_set'
+    )
+
+    date = models.DateField(
+        verbose_name='Fecha del comercial',
+        null=False,
+    )
