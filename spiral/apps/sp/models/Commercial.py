@@ -86,3 +86,9 @@ class CommercialDateDetail(models.Model):
         verbose_name='Fecha del comercial',
         null=False,
     )
+
+    def __unicode__(self):
+        return '%s %s' %(self.commercial, self.date)
+
+    class Meta:
+        app_label = 'sp'

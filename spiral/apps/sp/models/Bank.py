@@ -21,3 +21,9 @@ class Bank(models.Model):
         choices=CHOICE_STATUS,
         default=STATUS_ACTIVE
     )
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        app_label = 'sp'

@@ -32,6 +32,12 @@ class Company(models.Model):
         default=STATUS_ACTIVE
     )
 
+    def __unicode__(self):
+        return '%s %s' %(self.name, self.ruc)
+
+    class Meta:
+        app_label = 'sp'
+
 
 class CompanyDetailAccount(models.Model):
 
@@ -45,3 +51,9 @@ class CompanyDetailAccount(models.Model):
         verbose_name='Numero de cuenta',
         max_length=30,
     )
+
+    def __unicode__(self):
+        return '%s %s' %(self.bank.name, self.account)
+
+    class Meta:
+        app_label = 'sp'
