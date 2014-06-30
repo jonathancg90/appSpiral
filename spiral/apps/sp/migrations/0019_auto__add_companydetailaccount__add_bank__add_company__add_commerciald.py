@@ -16,6 +16,14 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('sp', ['CompanyDetailAccount'])
 
+        # Adding model 'Bank'
+        db.create_table(u'sp_bank', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            ('status', self.gf('django.db.models.fields.SmallIntegerField')(default=1)),
+        ))
+        db.send_create_signal('sp', ['Bank'])
+
         # Adding model 'Company'
         db.create_table(u'sp_company', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -26,14 +34,6 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('sp', ['Company'])
 
-        # Adding model 'Bank'
-        db.create_table(u'sp_bank', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=70)),
-            ('status', self.gf('django.db.models.fields.SmallIntegerField')(default=1)),
-        ))
-        db.send_create_signal('sp', ['Bank'])
-
         # Adding model 'CommercialDateDetail'
         db.create_table(u'sp_commercialdatedetail', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -42,19 +42,99 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('sp', ['CommercialDateDetail'])
 
+        # Deleting field 'Project.project_name'
+        db.delete_column(u'sp_project', 'project_name')
+
+        # Deleting field 'Project.project_type'
+        db.delete_column(u'sp_project', 'project_type')
+
+        # Adding field 'Project.line_productions'
+        db.add_column(u'sp_project', 'line_productions',
+                      self.gf('django.db.models.fields.SmallIntegerField')(default=1),
+                      keep_default=False)
+
+        # Adding field 'Project.commercial'
+        db.add_column(u'sp_project', 'commercial',
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='project_set', null=True, to=orm['sp.Commercial']),
+                      keep_default=False)
+
+        # Adding field 'Project.start_productions'
+        db.add_column(u'sp_project', 'start_productions',
+                      self.gf('django.db.models.fields.DateField')(default=datetime.datetime(2014, 6, 27, 0, 0)),
+                      keep_default=False)
+
+        # Adding field 'Project.end_productions'
+        db.add_column(u'sp_project', 'end_productions',
+                      self.gf('django.db.models.fields.DateField')(default=datetime.datetime(2014, 6, 27, 0, 0)),
+                      keep_default=False)
+
+        # Adding field 'Project.budget'
+        db.add_column(u'sp_project', 'budget',
+                      self.gf('django.db.models.fields.DecimalField')(default=0, max_digits=10, decimal_places=2),
+                      keep_default=False)
+
+        # Adding field 'Project.budget_cost'
+        db.add_column(u'sp_project', 'budget_cost',
+                      self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=10, decimal_places=2),
+                      keep_default=False)
+
+        # Adding field 'Project.observations'
+        db.add_column(u'sp_project', 'observations',
+                      self.gf('django.db.models.fields.TextField')(default=0),
+                      keep_default=False)
+
+        # Adding field 'Project.status'
+        db.add_column(u'sp_project', 'status',
+                      self.gf('django.db.models.fields.SmallIntegerField')(default=1),
+                      keep_default=False)
+
 
     def backwards(self, orm):
         # Deleting model 'CompanyDetailAccount'
         db.delete_table(u'sp_companydetailaccount')
 
-        # Deleting model 'Company'
-        db.delete_table(u'sp_company')
-
         # Deleting model 'Bank'
         db.delete_table(u'sp_bank')
 
+        # Deleting model 'Company'
+        db.delete_table(u'sp_company')
+
         # Deleting model 'CommercialDateDetail'
         db.delete_table(u'sp_commercialdatedetail')
+
+        # Adding field 'Project.project_name'
+        db.add_column(u'sp_project', 'project_name',
+                      self.gf('django.db.models.fields.CharField')(default=0, max_length=45),
+                      keep_default=False)
+
+        # Adding field 'Project.project_type'
+        db.add_column(u'sp_project', 'project_type',
+                      self.gf('django.db.models.fields.SmallIntegerField')(default=0),
+                      keep_default=False)
+
+        # Deleting field 'Project.line_productions'
+        db.delete_column(u'sp_project', 'line_productions')
+
+        # Deleting field 'Project.commercial'
+        db.delete_column(u'sp_project', 'commercial_id')
+
+        # Deleting field 'Project.start_productions'
+        db.delete_column(u'sp_project', 'start_productions')
+
+        # Deleting field 'Project.end_productions'
+        db.delete_column(u'sp_project', 'end_productions')
+
+        # Deleting field 'Project.budget'
+        db.delete_column(u'sp_project', 'budget')
+
+        # Deleting field 'Project.budget_cost'
+        db.delete_column(u'sp_project', 'budget_cost')
+
+        # Deleting field 'Project.observations'
+        db.delete_column(u'sp_project', 'observations')
+
+        # Deleting field 'Project.status'
+        db.delete_column(u'sp_project', 'status')
 
 
     models = {
@@ -211,7 +291,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Project'},
             'budget': ('django.db.models.fields.DecimalField', [], {'max_digits': '10', 'decimal_places': '2'}),
             'budget_cost': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '2'}),
-            'commercial': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'project_set'", 'to': "orm['sp.Commercial']"}),
+            'commercial': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'project_set'", 'null': 'True', 'to': "orm['sp.Commercial']"}),
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'end_productions': ('django.db.models.fields.DateField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),

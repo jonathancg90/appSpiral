@@ -39,7 +39,7 @@ class Project(models.Model):
         'commercial',
         verbose_name=_(u'Comercial'),
         related_name='project_set',
-        null=False,
+        null=True,
     )
 
     start_productions = models.DateField (
@@ -66,7 +66,7 @@ class Project(models.Model):
     )
 
     observations = models.TextField(
-        verbose_name= 'Observaciones'
+        verbose_name='Observaciones'
     )
 
     status = models.SmallIntegerField(
