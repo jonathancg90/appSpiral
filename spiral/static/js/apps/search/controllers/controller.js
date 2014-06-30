@@ -19,7 +19,7 @@ controllers.searchController = function($scope, ModelFactory,
         'advance': false
     };
     angular.element('#advance').hide();
-    
+
     $scope.$watch('search', function(newValue, oldValue) {
         if(newValue != oldValue) {
             if($scope.find != undefined) {
