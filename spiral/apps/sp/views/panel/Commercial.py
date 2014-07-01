@@ -14,6 +14,7 @@ from apps.sp.forms.Commercial import CommercialCreateForm, CommercialUpdateForm,
     CommercialFiltersForm
 from apps.common.view import JSONResponseMixin
 from apps.sp.models.Project import Project
+from apps.sp.cache.CleanCache import CleanCache
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
@@ -30,6 +31,10 @@ class CommercialListView(LoginRequiredMixin, PermissionRequiredMixin,
         'brand__entry': SearchFormMixin.ALL,
         'brand_id': SearchFormMixin.ALL,
     }
+    cache_status = True
+
+    def set_cache_status(self, status):
+        self.cache_status = status
 
     def _set_filter_entry(self, qs):
         entry_id = str(self.request.GET.get('brand__entry', ''))
@@ -42,12 +47,6 @@ class CommercialListView(LoginRequiredMixin, PermissionRequiredMixin,
         qs = qs.select_related('brand', 'brand__entry')
         qs = self._set_filter_entry(qs)
         for commercial in qs:
-            date = ''
-            for detail in commercial.commercial_date_detail_set.all():
-                date = date + detail.date.strftime("%d/%m/%Y") + ' | '
-            project = Project.objects.filter(commercial=commercial).exists()
-            commercial.project = Project.objects.get(commercial=commercial).project_code if project else 'Ninguno'
-            commercial.realized = date
             data.append({
                 'pk': commercial.id,
                 'id': commercial.id,
@@ -60,22 +59,21 @@ class CommercialListView(LoginRequiredMixin, PermissionRequiredMixin,
         return data
 
     def get_queryset(self):
-        data = []
         options = {
             'brand_id': self.request.GET.get('brand_id', ''),
             'brand__entry': self.request.GET.get('brand__entry', ''),
             'name': self.request.GET.get('name__icontains', ''),
             'page': self.request.GET.get('page', '')
         }
-        if settings.APPLICATION_CACHE:
+        if settings.APPLICATION_CACHE and self.cache_status:
             str(self.request.GET.get('brand__entry', ''))
 
-            if cache.hexists('commercial_list', options):
+            if cache.hexists(Commercial.get_commercial_tag(), options):
                 data = json.loads(cache.hget('commercial_list', options))
             else:
                 qs = super(CommercialListView, self).get_queryset()
                 data = self.get_list(qs)
-                cache.hset('commercial_list', options, json.dumps(data))
+                cache.hset(Commercial.get_commercial_tag(), options, json.dumps(data))
         else:
             qs = super(CommercialListView, self).get_queryset()
             data = self.get_list(qs)
@@ -118,6 +116,11 @@ class CommercialCreateView(LoginRequiredMixin, PermissionRequiredMixin,
                         self.object.commercial_date_detail_set.add(detail)
                     except:
                         pass
+            if settings.APPLICATION_CACHE:
+                clean_cache = CleanCache()
+                clean_cache.set_cache_result_tag(Commercial.get_commercial_tag())
+                clean_cache.set_model(Commercial)
+                clean_cache.update_cache_by_id([self.object.id], CleanCache.MODE_INSERT)
             return super(CommercialCreateView, self).form_valid(form)
         else:
             messages.error(self.request, 'Ingrese una fecha de grabacion.')
@@ -182,6 +185,11 @@ class CommercialUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
                     self.object.commercial_date_detail_set.add(detail)
                 except:
                     pass
+        if settings.APPLICATION_CACHE:
+            clean_cache = CleanCache()
+            clean_cache.set_cache_result_tag(Commercial.get_commercial_tag())
+            clean_cache.set_model(Commercial)
+            clean_cache.update_cache_by_id([self.object.id], CleanCache.MODE_UPDATE)
 
         return super(CommercialUpdateView, self).form_valid(form)
 
@@ -199,7 +207,6 @@ class CommercialUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
                 "value": detail.date.strftime("%d/%m/%Y")
             })
         return data
-
 
     def get_context_data(self, **kwargs):
         context = super(CommercialUpdateView, self).get_context_data(**kwargs)
@@ -224,6 +231,11 @@ class CommercialDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
         return context
 
     def get_success_url(self):
+        if settings.APPLICATION_CACHE:
+            clean_cache = CleanCache()
+            clean_cache.set_cache_result_tag(Commercial.get_commercial_tag())
+            clean_cache.set_model(Commercial)
+            clean_cache.update_cache_by_id([self.kwargs.get('pk')], CleanCache.MODE_DELETE)
         return reverse('commercial_list')
 
 

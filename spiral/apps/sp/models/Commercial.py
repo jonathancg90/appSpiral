@@ -3,6 +3,8 @@ from django.db import models
 import urllib2
 from django.utils import simplejson
 
+from apps.sp.models.Project import Project
+
 
 class Commercial(models.Model):
 
@@ -71,6 +73,23 @@ class Commercial(models.Model):
             'response': False
         }
         return data
+
+    @staticmethod
+    def get_commercial_tag():
+        return 'commercial_list'
+
+    @property
+    def realized(self):
+        date = ''
+        for detail in self.commercial_date_detail_set.all():
+            date = date + detail.date.strftime("%d/%m/%Y") + ' | '
+        return date
+
+    @property
+    def project(self):
+        project = Project.objects.filter(commercial=self).exists()
+        project = Project.objects.get(commercial=self).project_code if project else 'Ninguno'
+        return project
 
 
 class CommercialDateDetail(models.Model):

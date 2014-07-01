@@ -36,8 +36,8 @@ class Project(models.Model):
     )
 
     commercial = models.ForeignKey(
-        'commercial',
-        verbose_name=_(u'Comercial'),
+        'Commercial',
+        verbose_name='Comercial',
         related_name='project_set',
         null=True,
     )
