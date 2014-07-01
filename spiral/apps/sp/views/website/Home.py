@@ -8,10 +8,7 @@ from django.views.generic import FormView, RedirectView, View
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.core.mail import send_mail, BadHeaderError
-from django.conf import settings
 
-from apps.common.view import NewJSONResponseMixin
 from apps.sp.forms.User import LoginForm
 from apps.common.email import Email
 

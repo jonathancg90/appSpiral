@@ -191,3 +191,5 @@ EMAIL_HOST_USER = 'app@spiral.com.pe'
 EMAIL_HOST_PASSWORD = 'sp1r4l4pp'
 EMAIL_HOST = 'mail.spiral.com.pe'
 EMAIL_PORT = '587'
+
+APPLICATION_CACHE = False

@@ -32,7 +32,7 @@ class Project(models.Model):
 
     project_code = models.CharField(
         max_length=9,
-        unique=True,
+        unique=True
     )
 
     commercial = models.ForeignKey(

@@ -1,13 +1,21 @@
 # -*- coding: utf-8 -*-
+
+import json
+
+import datetime
+from django.core.cache import cache
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+
 from apps.common.view import SearchFormMixin
 from apps.sp.forms.Commercial import CommercialCreateForm, CommercialUpdateForm,\
     CommercialFiltersForm
 from apps.common.view import JSONResponseMixin
 from apps.sp.models.Project import Project
-from apps.sp.models.Commercial import Commercial
+from apps.sp.models.Entry import Entry
+from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -29,10 +37,49 @@ class CommercialListView(LoginRequiredMixin, PermissionRequiredMixin,
             qs = qs.filter(brand__entry=entry_id)
         return qs
 
-    def get_queryset(self):
-        qs = super(CommercialListView, self).get_queryset()
+    def get_list(self, qs):
+        data = []
+        qs = qs.select_related('brand', 'brand__entry')
         qs = self._set_filter_entry(qs)
-        return qs
+        for commercial in qs:
+            date = ''
+            for detail in commercial.commercial_date_detail_set.all():
+                date = date + detail.date.strftime("%d/%m/%Y") + ' | '
+            project = Project.objects.filter(commercial=commercial).exists()
+            commercial.project = Project.objects.get(commercial=commercial).project_code if project else 'Ninguno'
+            commercial.realized = date
+            data.append({
+                'pk': commercial.id,
+                'id': commercial.id,
+                'name': commercial.name,
+                'project': commercial.project,
+                'realized': commercial.realized,
+                'brand': commercial.brand.name,
+                'entry': commercial.brand.entry.name
+            })
+        return data
+
+    def get_queryset(self):
+        data = []
+        options = {
+            'brand_id': self.request.GET.get('brand_id', ''),
+            'brand__entry': self.request.GET.get('brand__entry', ''),
+            'name': self.request.GET.get('name__icontains', ''),
+            'page': self.request.GET.get('page', '')
+        }
+        if settings.APPLICATION_CACHE:
+            str(self.request.GET.get('brand__entry', ''))
+
+            if cache.hexists('commercial_list', options):
+                data = json.loads(cache.hget('commercial_list', options))
+            else:
+                qs = super(CommercialListView, self).get_queryset()
+                data = self.get_list(qs)
+                cache.hset('commercial_list', options, json.dumps(data))
+        else:
+            qs = super(CommercialListView, self).get_queryset()
+            data = self.get_list(qs)
+        return data
 
     def get_search_form(self, form_class):
         entry_id = self.request.GET.get('brand__entry', None)
@@ -59,22 +106,22 @@ class CommercialCreateView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        project_code = self.request.POST.get('project')
-        if self.validate_project_code(project_code):
-            project = Project.objects.get(project_code=project_code)
-            self.object.project = project
+        dataPost = self.request.POST
+        if dataPost.get('id_realized') is not None and dataPost.get('id_realized') != '':
             self.object.save()
+            for data in dataPost:
+                if 'realized' in data:
+                    try:
+                        realized = datetime.datetime.strptime(dataPost.get(data), '%d/%m/%Y').strftime('%Y-%m-%d')
+                        detail = CommercialDateDetail()
+                        detail.date = realized
+                        self.object.commercial_date_detail_set.add(detail)
+                    except:
+                        pass
             return super(CommercialCreateView, self).form_valid(form)
-
         else:
-            project = Project()
-            project.project_code = project_code
-            project.name = project_code
-            project.project_type = Project.TYPE_CASTING
-            project.save()
-            self.object.project = project
-            self.object.save()
-            return super(CommercialCreateView, self).form_valid(form)
+            messages.error(self.request, 'Ingrese una fecha de grabacion.')
+            return self.form_invalid(form)
 
     def validate_project_code(self, project_code):
         try:
@@ -109,29 +156,34 @@ class CommercialUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get_form(self, form_class):
         form = super(CommercialUpdateView, self).get_form(form_class)
-        pk = self.kwargs.get('pk')
-        commercial = Commercial.objects.get(pk=pk)
-        form.fields['project'].initial = commercial.project.project_code
-        return form
+        _entry_id = self.request.POST.get('entry_id', None)
+        try:
+            if _entry_id:
+                form.cleaned_data['entry_id'] = Entry.objects.get(pk=_entry_id)
+                form.set_entry(_entry_id)
+                form.set_brand(_entry_id)
+            else:
+                form.set_entry(self.object.brand.entry.id)
+            return form
+        except AttributeError:
+            return form
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        project_code = self.request.POST.get('project')
-        if self.validate_project_code(project_code):
-            project = Project.objects.get(project_code=project_code)
-            self.object.project = project
-            self.object.save()
-            return super(CommercialUpdateView, self).form_valid(form)
+        dataPost = self.request.POST
+        self.object.commercial_date_detail_set.all().delete()
+        self.object.save()
+        for data in dataPost:
+            if 'realized' in data:
+                try:
+                    realized = datetime.datetime.strptime(dataPost.get(data), '%d/%m/%Y').strftime('%Y-%m-%d')
+                    detail = CommercialDateDetail()
+                    detail.date = realized
+                    self.object.commercial_date_detail_set.add(detail)
+                except:
+                    pass
 
-        else:
-            project = Project()
-            project.project_code = project_code
-            project.name = project_code
-            project.project_type = Project.TYPE_CASTING
-            project.save()
-            self.object.project = project
-            self.object.save()
-            return super(CommercialUpdateView, self).form_valid(form)
+        return super(CommercialUpdateView, self).form_valid(form)
 
     def validate_project_code(self, project_code):
         try:
@@ -139,6 +191,20 @@ class CommercialUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
             return True
         except:
             return False
+
+    def get_details(self):
+        data = []
+        for detail in self.object.commercial_date_detail_set.all():
+            data.append({
+                "value": detail.date.strftime("%d/%m/%Y")
+            })
+        return data
+
+
+    def get_context_data(self, **kwargs):
+        context = super(CommercialUpdateView, self).get_context_data(**kwargs)
+        context['dates'] = json.dumps(self.get_details())
+        return context
 
     def get_success_url(self):
         return reverse('commercial_list')

@@ -6,6 +6,11 @@
 {% block extra_style %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    <style>
+        .newRealized{
+            margin-top: 4px;
+        }
+    </style>
 {% endblock extra_style %}
 {% block content %}
 
@@ -16,6 +21,15 @@
         <hr>
       <form method="post" action="" class="form-horizontal">{% csrf_token %}
             {% crispy form %}
+          <div id='realized' class="control-group">
+              <label for="inputRealized" class="col-sm-2 control-label">Fechas de grabacion</label>
+              <div class="controls">
+                  <input type="text" id="id_realized" name="id_realized" class="realized form-control" placeholder="dd/mm/yy">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="more" type="button">+</button>
+                    </span>
+              </div>
+          </div>
             <div class="form-actions">
                 <a class="btn" href="{% url "commercial_list" %}">{% trans 'Cancel' %}</a>
                 <input type="submit" class="btn btn-inverse" value="{% trans 'Actualizar' %}" />
@@ -28,10 +42,42 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
     <script>
+    url_brand_by_entry = "{% url 'brand_by_entry_json' entry=0 %}";
+    dates = '{{ dates|safe }}';
     $(document).on('ready', function(){
+        var identity = 1;
+
+        activateDatePicker();
+
         $( "#id_realized" ).datepicker();
-        $('#id_brand').addClass('chzn-select');
-        $('#id_brand').chosen({});
+
+        $('#more').on('click', function(){
+            addRealized('')
+        });
+
+        function activateDatePicker(){
+            $( ".realized" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy'
+            });
+        }
+
+        function addRealized(value) {
+            var InputHtml = '<div class="controls newRealized"> ' +
+                    '<input placeholder="dd/mm/yy" type="text" id="id_realized'+identity+'" name="id_realized'+identity+'" value='+value+' class="realized form-control">' +
+                    '</div>';
+            identity ++;
+            $('#realized').append(InputHtml);
+            activateDatePicker()
+        }
+        dates = jQuery.parseJSON(dates);
+        $.each(dates, function( index, value ) {
+            addRealized(value.value);
+        });
+
     });
     </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>
+
 {% endblock script_bottom %}

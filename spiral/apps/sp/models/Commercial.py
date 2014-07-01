@@ -17,9 +17,6 @@ class Commercial(models.Model):
         verbose_name=_(u'Nombre'),
         max_length=50
     )
-    realized = models.DateTimeField(
-        verbose_name=_(u'Realizado'),
-    )
 
     brand = models.ForeignKey(
         'Brand',
@@ -29,13 +26,6 @@ class Commercial(models.Model):
     status = models.SmallIntegerField(
         choices=CHOICE_STATUS,
         default=STATUS_ACTIVE
-    )
-
-    project = models.ForeignKey(
-        'Project',
-        related_name='commercial_set',
-        null=True,
-        blank=True
     )
 
     created = models.DateTimeField(
@@ -88,7 +78,7 @@ class CommercialDateDetail(models.Model):
     commercial = models.ForeignKey(
         'commercial',
         verbose_name='Comercial',
-        related_name='company_detail_account_set'
+        related_name='commercial_date_detail_set'
     )
 
     date = models.DateField(
