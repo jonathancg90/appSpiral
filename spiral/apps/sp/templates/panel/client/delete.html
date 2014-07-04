@@ -1,0 +1,17 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+     <div class="page-header">
+         <h2>{% trans "Está seguro de eliminar este cliente: " %} {{ object.name }} {% trans " ?" %}</h2>
+     </div>
+
+      <form method="post" action="" class="">
+          {% csrf_token %}
+          <div class="form-actions">
+              <a class="btn" href="{% url "client_list" %}">{% trans 'Cancelar' %}</a> o
+              <input type="submit" class="btn btn-danger" value="{% trans 'Eliminar' %}" />
+          </div>
+      </form>
+{% endblock %}

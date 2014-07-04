@@ -1,9 +1,134 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
 
-</body>
-</html>
+{% block script_top %}
+{% endblock %}
+
+{% block extra_style %}
+    <style>
+        .wizard-steps li{
+            min-height: 25%;
+            min-width: 25%;
+        }
+
+        #fuelux-wizard{
+            display: block !important;
+        }
+
+        .add-button{
+            margin-left: 45%;
+        }
+    </style>
+{% endblock %}
+
+{#{% block script_menu %}#}
+{##}
+{#{% endblock %}#}
+{% for message in messages %}
+    <div class="alert  alert-{{ message.tags }} messages">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+    </div>
+{% endfor %}
+{% block content %}
+    <div class="row-fluid">
+    <div class="span12">
+    <div class="widget-box"  ng-app="projectApp">
+    <div class="widget-header widget-header-blue widget-header-flat">
+        <h4 class="lighter">Proyecto</h4>
+
+        <div class="widget-toolbar">
+            <label>
+
+                <div class="btn-group open">
+                    <button data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle">
+                        Tipo de proyecto
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-info pull-right">
+                        <li>
+                            <a href="#">Casting</a>
+                        </li>
+                        <li>
+                            <a href="#">Extras</a>
+                        </li>
+                        <li>
+                            <a href="#">Representacion</a>
+                        </li>
+                        <li>
+                            <a href="#">Fotos</a>
+                        </li>
+                    </ul>
+                </div>
+                <span class="lbl"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="widget-body">
+        <div class="widget-main">
+        <div class="row-fluid">
+           <project-steps></project-steps>
+        <hr />
+        <div class="step-content row-fluid position-relative" id="step-container" ng-controller="projectController" >
+            <div class="step-pane active" id="step1" ng-if="project_service.step == 1">
+                {% include 'panel/project/project.html' %}
+            </div>
+
+            <div class="step-pane active" id="step2" ng-if="project_service.step == 2">
+                {% include 'panel/project/models.html' %}
+            </div>
+
+            <div class="step-pane active" id="step3" ng-if="project_service.step == 3" >
+                {% include 'panel/project/payment.html' %}
+            </div>
+
+            <div class="step-pane active" id="step4" ng-if="project_service.step == 4">
+                {% include 'panel/project/resources.html' %}
+            </div>
+        </div>
+
+        <hr />
+            <project-action-steps></project-action-steps>
+        </div>
+        </div><!--/widget-main-->
+            </div><!--/widget-body-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script_bottom %}
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/project/app.js"></script>
+
+    <script src="{{ STATIC_URL }}js/apps/project/services/project.js"></script>
+{##}
+    <script src="{{ STATIC_URL }}js/apps/project/controllers/project.js"></script>
+{#    <script src="{{ STATIC_URL }}js/apps/project/controllers/payment.js"></script>#}
+{#    <script src="{{ STATIC_URL }}js/apps/project/controllers/resources.js"></script>#}
+{#    <script src="{{ STATIC_URL }}js/apps/project/controllers/models.js"></script>#}
+{##}
+{#    <script src="{{ STATIC_URL }}js/apps/project/factories/brand.js"></script>#}
+{#    <script src="{{ STATIC_URL }}js/apps/project/factories/commercial.js"></script>#}
+{#    <script src="{{ STATIC_URL }}js/apps/project/factories/entry.js"></script>#}
+
+    <script src="{{ STATIC_URL }}js/apps/project/directives/steps.js"></script>
+
+    <script>
+        //urls
+        angular.module('projectApp').value("factoryUrl", {
+            brandUrl: '{% url "panel_model_save_profile" %}',
+            commercialUrl: '{% url "panel_model_save_profile" %}',
+            entryUrl: '{% url "panel_model_save_profile" %}'
+        });
+        angular.module('projectApp').value('csrfToken', {
+            csrfToken: '{{ csrf_token }}'
+        });
+    </script>
+{% endblock %}

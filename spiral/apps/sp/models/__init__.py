@@ -12,6 +12,7 @@ from apps.sp.models.Feature import Feature
 from apps.sp.models.Feature import FeatureValue
 from apps.sp.models.Model import ModelFeatureDetail
 from apps.sp.models.Bank import Bank
+from apps.sp.models.Client import Client, TypeClient
 from apps.sp.models.Company import Company, CompanyDetailAccount
 
 __all__ = [

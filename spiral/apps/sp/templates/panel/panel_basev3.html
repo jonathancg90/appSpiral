@@ -396,7 +396,24 @@
                 Bancos
             </a>
         </li>
-
+        <li>
+            <a href="{% url "client_list" %}">
+                <i class="icon-double-angle-right"></i>
+                Clientes
+            </a>
+        </li>
+        <li>
+            <a href="{% url "commercial_list" %}">
+                <i class="icon-double-angle-right"></i>
+                Empleados
+            </a>
+        </li>
+        <li>
+            <a href="{% url "commercial_list" %}">
+                <i class="icon-double-angle-right"></i>
+                Estudios
+            </a>
+        </li>
     </ul>
 </li>
 
@@ -408,7 +425,7 @@
 </li>
 
     <li>
-        <a href="tables.html">
+        <a href="{% url "project_crud" %}">
             <i class="icon-edit"></i>
             <span class="menu-text"> Proyecto </span>
         </a>

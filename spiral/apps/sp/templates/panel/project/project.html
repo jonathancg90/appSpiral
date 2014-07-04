@@ -1,0 +1,132 @@
+<form class="form-horizontal" id="sample-form">
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Comercial</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select class="form-control span12">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+            </span>
+        </div>
+    </div>
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Fecha de comercial</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Clientes</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select class="form-control span12">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Fecha de produccion</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Fecha de entrega</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Observaciones</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <textarea id="form-field-11" class="autosize-transition span12"></textarea>
+            </span>
+        </div>
+    </div>
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Comercial</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!--PAGE CONTENT BEGINS-->
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Rubro</label>
+
+                                <div class="controls">
+                                    <select class="">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Marca</label>
+
+                                <div class="controls">
+                                    <select class="">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Nombre</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="Username" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Grabar</button>
+            </div>
+        </div>
+    </div>
+</div>

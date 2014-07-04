@@ -24,6 +24,7 @@ class City(models.Model):
         choices=CHOICE_STATUS,
         default=STATUS_ACTIVE
     )
+
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False
