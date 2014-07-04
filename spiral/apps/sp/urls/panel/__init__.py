@@ -15,4 +15,6 @@ urlpatterns = patterns('',
     url(r'^entry/', include('apps.sp.urls.panel.entry')),
     url(r'^model/', include('apps.sp.urls.panel.model')),
     url(r'^search/', include('apps.sp.urls.panel.search')),
+    url(r'^project/', include('apps.sp.urls.panel.project')),
+    url(r'^client/', include('apps.sp.urls.panel.client')),
 )

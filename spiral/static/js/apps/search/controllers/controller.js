@@ -18,6 +18,7 @@ controllers.searchController = function($scope, ModelFactory,
         'simple': true,
         'advance': false
     };
+    angular.element('#advance').hide();
 
     $scope.$watch('search', function(newValue, oldValue) {
         if(newValue != oldValue) {
@@ -51,6 +52,14 @@ controllers.searchController = function($scope, ModelFactory,
         $rootScope.countInitial = '';
         $scope.typeSearch.simple = !$scope.typeSearch.simple;
         $scope.typeSearch.advance = !$scope.typeSearch.advance;
+        if($scope.typeSearch.advance){
+            angular.element('#simple').hide();
+            angular.element('#advance').show();
+        }
+        else{
+            angular.element('#advance').hide();
+            angular.element('#simple').show();
+        }
     };
 
     $scope.getOccupation = function(summary) {
@@ -75,6 +84,7 @@ controllers.searchController = function($scope, ModelFactory,
                 if($scope.mode){
                     var b = /"/g;
                     $scope.search = $scope.search.replace(b,"");
+
                 }
 
                 var data = {
@@ -249,7 +259,6 @@ controllers.searchController = function($scope, ModelFactory,
                 }
             }
         });
-        debugger
         return data;
     }
 

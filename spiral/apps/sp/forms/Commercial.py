@@ -19,18 +19,11 @@ class CommercialCreateForm(forms.ModelForm):
         self.helper.form_show_errors = True
         self.helper.form_tag = False
         super(CommercialCreateForm, self).__init__(*args, **kwargs)
-        self.fields['project'] = forms.CharField(
-            label='Codigo del proyecto',
-            max_length=9,
-            min_length=9,
-            required=False
-        )
-        self.Meta.fields.append('project')
         self.set_entry()
         self.fields['entry_id'].widget.attrs.update({'class' : 'form-entry'})
         self.fields['brand'].widget.attrs.update({'class' : 'form-brand'})
         self.fields['brand'].choices = [('', '--------------')]
-        self.fields.keyOrder = ['name', 'realized','entry_id', 'brand', 'project']
+        self.fields.keyOrder = ['name','entry_id', 'brand']
 
     def set_entry(self):
         self.fields['entry_id'].choices = [('', '--------------')] +\
@@ -42,28 +35,44 @@ class CommercialCreateForm(forms.ModelForm):
 
     class Meta:
         model = Commercial
-        fields = ['name', 'realized', 'brand']
-        exclude = ['status', 'project']
+        fields = ['name', 'brand']
+        exclude = ['status']
 
 
 class CommercialUpdateForm(forms.ModelForm):
+
+    entry_id = forms.ChoiceField(
+        label=_(u'Rubro'),
+        choices=[('', '--------------')],
+        required=False
+    )
+
+    def set_entry(self, entry):
+        if entry is None:
+            self.fields['entry_id'].choices = [('', '--------------')]
+            self.fields['entry_id'].choices += list(Entry.objects.all().values_list('id', 'name'))
+        else:
+            self.fields['entry_id'].choices = Entry.objects.filter(pk=entry).values_list('id', 'name')
+            self.fields['entry_id'].choices += list(Entry.objects.exclude(pk=entry).values_list('id', 'name'))
+
+    def set_brand(self, entry):
+        self.fields['brand'].choices = [('', '--------------')] + \
+                                       list(Brand.objects.filter(entry_id=entry).values_list('id', 'name'))
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_show_errors = True
         self.helper.form_tag = False
         super(CommercialUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['project'] = forms.CharField(
-            label='Codigo del proyecto',
-            max_length=9,
-            min_length=9
-        )
-        self.Meta.fields.append('project')
+        self.fields['entry_id'].widget.attrs.update({'class' : 'form-entry'})
+        self.fields['brand'].widget.attrs.update({'class' : 'form-brand'})
+        self.fields.keyOrder = ['name','entry_id', 'brand']
+        self.set_entry(None)
 
     class Meta:
         model = Commercial
-        fields = ['name', 'realized', 'brand']
-        exclude = [ 'status', 'project']
+        fields = ['name', 'brand']
+        exclude = ['status']
 
 
 class CommercialFiltersForm(forms.Form):

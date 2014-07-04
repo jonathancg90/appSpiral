@@ -6,6 +6,11 @@
 {% block extra_style %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    <style>
+        .newRealized{
+            margin-top: 4px;
+        }
+    </style>
 {% endblock extra_style %}
 {% block content %}
 
@@ -16,6 +21,15 @@
     <form method="post" action="" class="form-horizontal">
           {% csrf_token %}
               {% crispy form %}
+            <div id='realized' class="control-group">
+                <label for="inputRealized" class="col-sm-2 control-label">Fechas de grabacion</label>
+                <div class="controls">
+                    <input type="text" id="id_realized" name="id_realized" class="realized form-control" placeholder="dd/mm/yy">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="more" type="button">+</button>
+                    </span>
+                </div>
+            </div>
           <div class="form-actions">
               <a class="btn" href="{% url "commercial_list" %}">{% trans 'Cancelar' %}</a>
               <input type="submit" class="btn btn-success" value="{% trans 'Crear' %}" />
@@ -30,10 +44,23 @@
     <script>
       url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
       $(function() {
-        $( "#id_realized" ).datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'dd/mm/yy'
+        var identity = 1;
+        activateDatePicker();
+        function activateDatePicker(){
+            $( ".realized" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy'
+            });
+        }
+
+        $('#more').on('click', function(){
+            var InputHtml = '<div class="controls newRealized"> ' +
+                    '<input placeholder="dd/mm/yy" type="text" id="id_realized'+identity+'" name="id_realized'+identity+'" class="realized form-control">' +
+                    '</div>';
+            identity ++;
+            $('#realized').append(InputHtml);
+            activateDatePicker()
         });
       });
     </script>

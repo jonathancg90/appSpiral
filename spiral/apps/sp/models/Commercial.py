@@ -3,6 +3,8 @@ from django.db import models
 import urllib2
 from django.utils import simplejson
 
+from apps.sp.models.Project import Project
+
 
 class Commercial(models.Model):
 
@@ -17,9 +19,6 @@ class Commercial(models.Model):
         verbose_name=_(u'Nombre'),
         max_length=50
     )
-    realized = models.DateTimeField(
-        verbose_name=_(u'Realizado'),
-    )
 
     brand = models.ForeignKey(
         'Brand',
@@ -31,11 +30,13 @@ class Commercial(models.Model):
         default=STATUS_ACTIVE
     )
 
-    project = models.ForeignKey(
-        'Project',
-        related_name='commercial_set',
-        null=True,
-        blank=True
+    created = models.DateTimeField(
+        auto_now_add=True,
+        editable=False
+    )
+
+    modified = models.DateTimeField(
+        auto_now_add=True
     )
 
     def __unicode__(self):
@@ -72,3 +73,40 @@ class Commercial(models.Model):
             'response': False
         }
         return data
+
+    @staticmethod
+    def get_commercial_tag():
+        return 'commercial_list'
+
+    @property
+    def realized(self):
+        date = ''
+        for detail in self.commercial_date_detail_set.all():
+            date = date + detail.date.strftime("%d/%m/%Y") + ' | '
+        return date
+
+    @property
+    def project(self):
+        project = Project.objects.filter(commercial=self).exists()
+        project = Project.objects.get(commercial=self).project_code if project else 'Ninguno'
+        return project
+
+
+class CommercialDateDetail(models.Model):
+
+    commercial = models.ForeignKey(
+        'commercial',
+        verbose_name='Comercial',
+        related_name='commercial_date_detail_set'
+    )
+
+    date = models.DateField(
+        verbose_name='Fecha del comercial',
+        null=False,
+    )
+
+    def __unicode__(self):
+        return '%s %s' %(self.commercial, self.date)
+
+    class Meta:
+        app_label = 'sp'

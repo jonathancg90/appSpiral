@@ -50,6 +50,22 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/ng-tags-input.css">
 {% endblock %}
 
+{% block script_menu %}
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-eye-open home-icon"></i>
+            <a href="">Buscador</a>
+					    <span class="divider">
+						    <i class="icon-angle-right arrow-icon"></i>
+						</span>
+        </li>
+        <li>
+            <span id="simple">Simple</span>
+            <span id="advance">Avanzado</span>
+        </li>
+    </ul><!--.breadcrumb-->
+{% endblock %}
+
 {% block content %}
 <div ng-app="searchApp" ng-controller="searchController" ng-cloak class="ng-cloak" ng-init="getFeatures()">
     <div class="page-header position-relative">
@@ -198,7 +214,7 @@
                                         <li class="active">
                                             <a data-toggle="tab" href="#home">
                                                 <i class="green icon-user bigger-120"></i>
-                                                Profile
+                                                perfil
                                             </a>
                                         </li>
 

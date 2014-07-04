@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.core.mail import send_mail
+from celery.task import task
 from django.core.mail import EmailMessage, get_connection, EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
@@ -9,6 +9,7 @@ from django.conf import settings
 class Email():
 
     @staticmethod
+    @task
     def send_html_email(*args, **kwargs):
         try:
             from_email = kwargs.get('from_email', settings.EMAIL_HOST_USER)

@@ -137,10 +137,10 @@
         <li>
             <a href="#">
                 <div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-mini no-hover btn-pink icon-comment"></i>
-												New Comments
-											</span>
+				    <span class="pull-left">
+					    <i class="btn btn-mini no-hover btn-pink icon-comment"></i>
+						    New Comments
+					</span>
                     <span class="pull-right badge badge-info">+12</span>
                 </div>
             </a>
@@ -384,48 +384,35 @@
                 Comerciales
             </a>
         </li>
-
         <li>
-            <a href="#" class="dropdown-toggle">
+            <a href="{% url "commercial_list" %}">
                 <i class="icon-double-angle-right"></i>
-
-                Three Level Menu
-                <b class="arrow icon-angle-down"></b>
+                Empresa
             </a>
-
-            <ul class="submenu">
-                <li>
-                    <a href="#">
-                        <i class="icon-leaf"></i>
-                        Item #1
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-pencil"></i>
-
-                        4th level
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-
-                    <ul class="submenu">
-                        <li>
-                            <a href="#">
-                                <i class="icon-plus"></i>
-                                Add Product
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="icon-eye-open"></i>
-                                View Products
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        </li>
+        <li>
+            <a href="{% url "commercial_list" %}">
+                <i class="icon-double-angle-right"></i>
+                Bancos
+            </a>
+        </li>
+        <li>
+            <a href="{% url "client_list" %}">
+                <i class="icon-double-angle-right"></i>
+                Clientes
+            </a>
+        </li>
+        <li>
+            <a href="{% url "commercial_list" %}">
+                <i class="icon-double-angle-right"></i>
+                Empleados
+            </a>
+        </li>
+        <li>
+            <a href="{% url "commercial_list" %}">
+                <i class="icon-double-angle-right"></i>
+                Estudios
+            </a>
         </li>
     </ul>
 </li>
@@ -437,37 +424,12 @@
     </a>
 </li>
 
-<li>
-    <a href="#" class="dropdown-toggle">
-        <i class="icon-edit"></i>
-        <span class="menu-text"> Forms </span>
-
-        <b class="arrow icon-angle-down"></b>
-    </a>
-
-    <ul class="submenu">
-        <li>
-            <a href="form-elements.html">
-                <i class="icon-double-angle-right"></i>
-                Form Elements
-            </a>
-        </li>
-
-        <li>
-            <a href="form-wizard.html">
-                <i class="icon-double-angle-right"></i>
-                Wizard &amp; Validation
-            </a>
-        </li>
-
-        <li>
-            <a href="wysiwyg.html">
-                <i class="icon-double-angle-right"></i>
-                Wysiwyg &amp; Markdown
-            </a>
-        </li>
-    </ul>
-</li>
+    <li>
+        <a href="{% url "project_crud" %}">
+            <i class="icon-edit"></i>
+            <span class="menu-text"> Proyecto </span>
+        </a>
+    </li>
 
 <li>
     <a href="widgets.html">

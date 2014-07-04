@@ -44,6 +44,9 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
             data.update({'features': self._features})
             data.update({'advance': self._advance})
         else:
+            # if "DNI" in self._text:
+            #     data.update({'dni': self._text})
+            # else:
             data.update({'text': self._text})
         search.set_params(data)
         result = search.run()
