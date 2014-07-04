@@ -84,6 +84,7 @@ controllers.searchController = function($scope, ModelFactory,
                 if($scope.mode){
                     var b = /"/g;
                     $scope.search = $scope.search.replace(b,"");
+
                 }
 
                 var data = {
