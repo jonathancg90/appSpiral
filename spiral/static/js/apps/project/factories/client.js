@@ -1,4 +1,4 @@
-projectApp.factory('commercialFactory',['$http', function($http) {
+projectApp.factory('clientFactory',['$http', function($http) {
     var factory = {};
 
     factory.all = function(urlSearch){

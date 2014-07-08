@@ -115,8 +115,9 @@
 {#    <script src="{{ STATIC_URL }}js/apps/project/controllers/models.js"></script>#}
 {##}
 {#    <script src="{{ STATIC_URL }}js/apps/project/factories/brand.js"></script>#}
-{#    <script src="{{ STATIC_URL }}js/apps/project/factories/commercial.js"></script>#}
-{#    <script src="{{ STATIC_URL }}js/apps/project/factories/entry.js"></script>#}
+    <script src="{{ STATIC_URL }}js/apps/project/factories/commercial.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/project/factories/client.js"></script>
+    {#    <script src="{{ STATIC_URL }}js/apps/project/factories/entry.js"></script>#}
 
     <script src="{{ STATIC_URL }}js/apps/project/directives/steps.js"></script>
 
@@ -124,8 +125,9 @@
         //urls
         angular.module('projectApp').value("factoryUrl", {
             brandUrl: '{% url "panel_model_save_profile" %}',
-            commercialUrl: '{% url "panel_model_save_profile" %}',
-            entryUrl: '{% url "panel_model_save_profile" %}'
+            commercialUrl: '{% url "commercial_data_list" %}',
+            entryUrl: '{% url "panel_model_save_profile" %}',
+            clientUrl : '{% url "client_data_list" %}'
         });
         angular.module('projectApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'

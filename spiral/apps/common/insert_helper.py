@@ -4,7 +4,7 @@ from django.conf import settings
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.models.Country import Country
 from apps.sp.models.City import City
-
+from apps.sp.models.Client import TypeClient
 
 
 class ReaderJsonHelper(object):
@@ -75,3 +75,12 @@ class CountryHelper(ReaderJsonHelper):
                 _city.country = _country
                 _city.save()
 
+
+class TypeClientHelper(object):
+
+    def insert_data(self):
+        names = ['Productora', 'Realizadora', 'Agencia']
+        for name in names:
+            type_client = TypeClient()
+            type_client.name = name
+            type_client.save()

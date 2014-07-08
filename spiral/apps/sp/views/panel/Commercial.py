@@ -253,3 +253,18 @@ class CommercialByBrandIdJson(LoginRequiredMixin, PermissionRequiredMixin,
         brand = self.get_queryset().values('id', 'name')
         data['commercial'] = [item for item in brand]
         return data
+
+
+class CommercialDataListView(LoginRequiredMixin, PermissionRequiredMixin,
+                              JSONResponseMixin, ListView):
+    model = Commercial
+
+    def get_queryset(self):
+        qs = Commercial.objects.filter(status=Commercial.STATUS_ACTIVE)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        data = {}
+        brand = self.get_queryset().values('id', 'name')
+        data['commercial'] = [item for item in brand]
+        return data

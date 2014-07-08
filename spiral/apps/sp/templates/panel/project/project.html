@@ -3,12 +3,8 @@
         <label class="control-label" for="inputInfo">Comercial</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <select class="form-control span12">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control span12" ng-model="project_service.commercial" ng-options="commercial.name for commercial in commercials">
+                    <option value="">-- Elige un comercial --</option>
                 </select>
 
             </span>
@@ -33,12 +29,8 @@
         <label class="control-label" for="inputInfo">Clientes</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <select class="form-control span12">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control span12" ng-model="project_service.client" ng-options="client.name for client in clients">
+                    <option value="">-- Elige la productora --</option>
                 </select>
 
             </span>
@@ -68,6 +60,12 @@
             </span>
             <span class="span6 input-icon input-icon-right">
                 <button class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+            </span>
+        </div>
+
+        <div class="controls" ng-repeat="item in items">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
             </span>
         </div>
     </div>

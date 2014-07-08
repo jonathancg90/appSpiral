@@ -72,3 +72,18 @@ class ClientDeleteView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('client_list')
 
+
+class ClientDataListView(LoginRequiredMixin, PermissionRequiredMixin,
+                             JSONResponseMixin, ListView):
+    model = Client
+
+    def get_queryset(self):
+        qs = Client.objects.filter(status=Client.STATUS_ACTIVE)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        data = {}
+        brand = self.get_queryset().values('id', 'name')
+        data['client'] = [item for item in brand]
+        return data
+

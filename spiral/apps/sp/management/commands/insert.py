@@ -2,7 +2,9 @@ from django.core.management.base import BaseCommand
 from optparse import make_option
 from apps.sp.models.Feature import Feature
 from apps.sp.models.Country import Country
+from apps.sp.models.Client import TypeClient
 from apps.common.insert_helper import CountryHelper
+from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import FeatureHelper
 
 class Command(BaseCommand):
@@ -32,6 +34,9 @@ class Command(BaseCommand):
         if entity == 'feature':
             self.insert_features()
 
+        if entity == 'type_client':
+            self.insert_type_client()
+
     def insert_features(self):
         if self.data_delete:
             Feature.objects.all().delete()
@@ -55,3 +60,15 @@ class Command(BaseCommand):
                 self.stdout.write('Successfully inserted data: country. \n')
             else:
                 self.stdout.write('can not insert the data: country. \n')
+
+    def insert_type_client(self):
+        if self.data_delete:
+            TypeClient.objects.all().delete()
+            self.stdout.write('delete data: type client. \n')
+        else:
+            if TypeClient.objects.all().count() == 0:
+                country_helper = TypeClientHelper()
+                country_helper.insert_data()
+                self.stdout.write('Successfully inserted data: type client. \n')
+            else:
+                self.stdout.write('can not insert the data: type client. \n')
