@@ -5,6 +5,7 @@ from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.models.Country import Country
 from apps.sp.models.City import City
 from apps.sp.models.Client import TypeClient
+from apps.sp.models.Casting import TypeCasting
 
 
 class ReaderJsonHelper(object):
@@ -82,5 +83,18 @@ class TypeClientHelper(object):
         names = ['Productora', 'Realizadora', 'Agencia']
         for name in names:
             type_client = TypeClient()
+            type_client.name = name
+            type_client.save()
+
+
+class TypeCastingHelper(object):
+
+    def insert_data(self):
+        names = ['Especifico', 'Archivo',
+                 'Scouting', 'Callback',
+                 'Archivo Fotografico',
+                 'Casting Fotografico']
+        for name in names:
+            type_client = TypeCasting()
             type_client.name = name
             type_client.save()

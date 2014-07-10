@@ -11,8 +11,8 @@ class Project(models.Model):
     CHOICE_LINE = (
         (LINE_EXTRA, _(u'extra')),
         (LINE_CASTING, _(u'casting')),
-        (LINE_REPRESENTATION, _(u'casting')),
-        (LINE_PHOTO, _(u'casting'))
+        (LINE_REPRESENTATION, _(u'Representacion')),
+        (LINE_PHOTO, _(u'Foto'))
     )
 
     STATUS_STAND_BY = 0

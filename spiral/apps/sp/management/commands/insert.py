@@ -5,6 +5,7 @@ from apps.sp.models.Country import Country
 from apps.sp.models.Client import TypeClient
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
+from apps.common.insert_helper import TypeCastingHelper
 from apps.common.insert_helper import FeatureHelper
 
 class Command(BaseCommand):
@@ -37,6 +38,9 @@ class Command(BaseCommand):
         if entity == 'type_client':
             self.insert_type_client()
 
+        if entity == 'type_casting':
+            self.insert_type_casting()
+
     def insert_features(self):
         if self.data_delete:
             Feature.objects.all().delete()
@@ -67,8 +71,20 @@ class Command(BaseCommand):
             self.stdout.write('delete data: type client. \n')
         else:
             if TypeClient.objects.all().count() == 0:
-                country_helper = TypeClientHelper()
-                country_helper.insert_data()
+                type_client_helper = TypeClientHelper()
+                type_client_helper.insert_data()
                 self.stdout.write('Successfully inserted data: type client. \n')
             else:
                 self.stdout.write('can not insert the data: type client. \n')
+
+    def insert_type_casting(self):
+        if self.data_delete:
+            TypeClient.objects.all().delete()
+            self.stdout.write('delete data: type casting. \n')
+        else:
+            if TypeClient.objects.all().count() == 0:
+                type_casting_helper = TypeCastingHelper()
+                type_casting_helper.insert_data()
+                self.stdout.write('Successfully inserted data: type casting. \n')
+            else:
+                self.stdout.write('can not insert the data: type casting. \n')

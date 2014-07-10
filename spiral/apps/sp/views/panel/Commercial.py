@@ -260,11 +260,27 @@ class CommercialDataListView(LoginRequiredMixin, PermissionRequiredMixin,
     model = Commercial
 
     def get_queryset(self):
-        qs = Commercial.objects.filter(status=Commercial.STATUS_ACTIVE)
-        return qs
+        data = []
+        commercials = Commercial.objects.filter(status=Commercial.STATUS_ACTIVE)[5:10]
+        for commercial in commercials:
+            data.append({
+                'id': commercial.id,
+                'name':  commercial.name,
+                'dates': self.get_details(commercial)
+            })
+        return data
+
+    def get_details(self, commercial):
+        data = []
+        for detail in commercial.commercial_date_detail_set.all():
+            data.append({
+                'id': detail.id,
+                'date': detail.date.strftime('%d/%m/%Y')
+            })
+        return data
 
     def get_context_data(self, **kwargs):
         data = {}
-        brand = self.get_queryset().values('id', 'name')
-        data['commercial'] = [item for item in brand]
+        commercials = self.get_queryset()
+        data['commercial'] = [item for item in commercials]
         return data

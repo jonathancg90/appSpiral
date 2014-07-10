@@ -8,7 +8,7 @@ from django.views.generic import ListView
 from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.forms.Client import ClientFiltersForm, ClientForm
-from apps.sp.models.Client import Client
+from apps.sp.models.Client import Client, TypeClient
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -85,5 +85,16 @@ class ClientDataListView(LoginRequiredMixin, PermissionRequiredMixin,
         data = {}
         brand = self.get_queryset().values('id', 'name')
         data['client'] = [item for item in brand]
+        return data
+
+
+class TypeClientDataListView(LoginRequiredMixin, PermissionRequiredMixin,
+                             JSONResponseMixin, ListView):
+    model = TypeClient
+
+    def get_context_data(self, **kwargs):
+        data = {}
+        type = self.get_queryset().values('id', 'name')
+        data['types'] = [item for item in type]
         return data
 

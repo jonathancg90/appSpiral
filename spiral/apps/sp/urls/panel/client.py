@@ -2,7 +2,7 @@
 
 from django.conf.urls import url, patterns
 from apps.sp.views.panel.Client import ClientListView, ClientCreateView, \
-    ClientUpdateView, ClientDeleteView, ClientDataListView
+    ClientUpdateView, ClientDeleteView, ClientDataListView, TypeClientDataListView
 
 
 urlpatterns = patterns('',
@@ -22,6 +22,8 @@ urlpatterns = patterns('',
                            name='client_delete'),
                        url(r'^data-list/$',
                            ClientDataListView.as_view(),
-                           name='client_data_list')
-
+                           name='client_data_list'),
+                        url(r'^type-data-list/$',
+                            TypeClientDataListView.as_view(),
+                            name='type_client_data_list')
                        )

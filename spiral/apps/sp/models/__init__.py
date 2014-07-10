@@ -14,6 +14,7 @@ from apps.sp.models.Model import ModelFeatureDetail
 from apps.sp.models.Bank import Bank
 from apps.sp.models.Client import Client, TypeClient
 from apps.sp.models.Company import Company, CompanyDetailAccount
+from apps.sp.models.Casting import Casting, TypeCasting
 
 __all__ = [
     'Commercial',

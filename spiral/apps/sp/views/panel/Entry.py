@@ -8,6 +8,7 @@ from django.conf import settings
 from apps.sp.forms.Entry import EntryForm
 from apps.sp.models.Entry import Entry
 from apps.sp.forms.Entry import EntryFiltersForm
+from apps.common.view import JSONResponseMixin
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -73,3 +74,18 @@ class EntryListView(LoginRequiredMixin, PermissionRequiredMixin,
     filtering = {
         'name': SearchFormMixin.ALL,
     }
+
+
+class EntryDataListView(LoginRequiredMixin, PermissionRequiredMixin,
+                         JSONResponseMixin, ListView):
+    model = Entry
+
+    def get_queryset(self):
+        qs = Entry.objects.filter(status=Entry.STATUS_ACTIVE)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        data = {}
+        brand = self.get_queryset().values('id', 'name')
+        data['entry'] = [item for item in brand]
+        return data
