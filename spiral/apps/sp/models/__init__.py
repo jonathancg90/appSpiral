@@ -14,12 +14,14 @@ from apps.sp.models.Model import ModelFeatureDetail
 from apps.sp.models.Bank import Bank
 from apps.sp.models.Client import Client, TypeClient
 from apps.sp.models.Company import Company, CompanyDetailAccount
-from apps.sp.models.Casting import Casting, TypeCasting
+from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel
 
 __all__ = [
     'Commercial',
     'Contract.py',
     'Brand',
+    'Client',
+    'TypeClient',
     'Entry.py',
     'City',
     'Model_has_commercial',
@@ -33,5 +35,8 @@ __all__ = [
     'CommercialDateDetail',
     'Bank',
     'Company',
+    'Casting',
+    'TypeCasting',
+    'CastingDetailModel',
     'CompanyDetailAccount'
 ]

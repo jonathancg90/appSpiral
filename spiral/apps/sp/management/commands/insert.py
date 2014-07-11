@@ -3,6 +3,7 @@ from optparse import make_option
 from apps.sp.models.Feature import Feature
 from apps.sp.models.Country import Country
 from apps.sp.models.Client import TypeClient
+from apps.sp.models.Casting import TypeCasting
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import TypeCastingHelper
@@ -79,10 +80,10 @@ class Command(BaseCommand):
 
     def insert_type_casting(self):
         if self.data_delete:
-            TypeClient.objects.all().delete()
+            TypeCasting.objects.all().delete()
             self.stdout.write('delete data: type casting. \n')
         else:
-            if TypeClient.objects.all().count() == 0:
+            if TypeCasting.objects.all().count() == 0:
                 type_casting_helper = TypeCastingHelper()
                 type_casting_helper.insert_data()
                 self.stdout.write('Successfully inserted data: type casting. \n')

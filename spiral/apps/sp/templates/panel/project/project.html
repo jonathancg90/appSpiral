@@ -107,6 +107,37 @@ project {[{  project_service }]}
             </span>
         </div>
     </div>
+    <span id="lineCasting" ng-show="lineCasting">
+        <div class="control-group info">
+            <label class="control-label" for="inputInfo">PPI</label>
+            <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                </span>
+                <span class="span6">
+                </span>
+            </div>
+        </div>
+        <div class="control-group info">
+            <label class="control-label" for="inputInfo">PPG</label>
+            <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+            </span>
+            <span class="span6">
+            </span>
+            </div>
+        </div>
+    </span>
+    <div id="lineCasting" ng-show="lineExtras">
+        Extras
+    </div>
+    <div id="lineCasting" ng-show="lineRepresentacion">
+        Representacion
+    </div>
+    <div id="lineCasting" ng-show="lineFotos">
+        Fotos
+    </div>
 </form>
 
 
@@ -156,7 +187,6 @@ project {[{  project_service }]}
                                     </select>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>

@@ -7,7 +7,12 @@ controllers.projectController = function($scope,
                                          brandFactory,
                                          projectService,
                                          factoryUrl){
+
     $scope.project_service = projectService;
+    $scope.lineCasting = false;
+    $scope.lineExtras = false;
+    $scope.lineRepresentacion = false;
+    $scope.lineFotos = false;
 
     //Urls
     var urlCommercial = factoryUrl.commercialUrl,
@@ -57,6 +62,26 @@ controllers.projectController = function($scope,
             $scope.brands = data.brand;
             urlBrand = urlBrand.replace(entry.id, ':entry');
         });
+    };
+
+    $scope.$on('changeLine', function(event, args) {
+        var line = args.value;
+        cleanStatusLines();
+        if(line == 'Casting')
+            $scope.lineCasting = true;
+        if(line == 'Extras')
+            $scope.lineExtras = true;
+        if(line == 'Representacion')
+            $scope.lineRepresentacion = true;
+        if(line == 'Fotos')
+            $scope.lineFotos = true;
+    });
+
+    function cleanStatusLines(){
+        $scope.lineCasting = false;
+        $scope.lineExtras = false;
+        $scope.lineRepresentacion = false;
+        $scope.lineFotos = false;
     }
 
 };

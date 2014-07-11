@@ -38,8 +38,8 @@
     <div class="row-fluid">
     <div class="span12">
     <div class="widget-box"  ng-app="projectApp">
-    <div class="widget-header widget-header-blue widget-header-flat">
-        <h4 class="lighter">Proyecto</h4>
+    <div class="widget-header widget-header-blue widget-header-flat" ng-controller="menuController">
+        <h4 class="lighter">Proyecto >> {[{ lineSelected }]}</h4>
 
         <div class="widget-toolbar">
             <label>
@@ -51,17 +51,8 @@
                     </button>
 
                     <ul class="dropdown-menu dropdown-info pull-right">
-                        <li>
-                            <a href="#">Casting</a>
-                        </li>
-                        <li>
-                            <a href="#">Extras</a>
-                        </li>
-                        <li>
-                            <a href="#">Representacion</a>
-                        </li>
-                        <li>
-                            <a href="#">Fotos</a>
+                        <li ng-repeat="line in lines">
+                            <a href="" ng-click="changeLine(line)">{[{ line }]}</a>
                         </li>
                     </ul>
                 </div>
@@ -116,8 +107,9 @@
     <script src="{{ STATIC_URL }}js/apps/project/app.js"></script>
 
     <script src="{{ STATIC_URL }}js/apps/project/services/project.js"></script>
-{##}
+
     <script src="{{ STATIC_URL }}js/apps/project/controllers/project.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/project/controllers/menu.js"></script>
 {#    <script src="{{ STATIC_URL }}js/apps/project/controllers/payment.js"></script>#}
 {#    <script src="{{ STATIC_URL }}js/apps/project/controllers/resources.js"></script>#}
 {#    <script src="{{ STATIC_URL }}js/apps/project/controllers/models.js"></script>#}
