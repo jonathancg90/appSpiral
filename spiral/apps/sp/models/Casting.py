@@ -89,7 +89,7 @@ class CastingDetailModel(models.Model):
     type_casting = models.ForeignKey(
         'TypeCasting',
         verbose_name='Tipo de casting',
-        related_name='casting_set',
+        related_name='casting_detail_model_set',
     )
 
     scene = models.CharField(

@@ -6,6 +6,7 @@ controllers.menuController = function($scope, $rootScope){
     $scope.changeLine = function(option){
         $scope.lineSelected = option;
         $rootScope.$broadcast('changeLine', { value: option });
+        $rootScope.$broadcast('setLine', { });
     }
 };
 

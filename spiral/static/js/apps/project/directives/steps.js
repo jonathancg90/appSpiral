@@ -9,7 +9,7 @@ projectApp.directive('projectSteps', function(projectService) {
         priority: 1,
         replace: true,
         link: function(scope, elm, attrs) {
-//            updateStep();
+            scope.statusline = false;
 
             scope.$watch(function() {
                 updateStep();
@@ -49,14 +49,24 @@ projectApp.directive('projectActionSteps', function(projectService) {
         priority: 1,
         replace: true,
         link: function(scope, elm, attrs) {
+            scope.statusLine = false;
+
+            scope.$on('setLine', function(event, args) {
+                debugger
+                scope.statusLine = true;
+            });
             scope.next = function() {
                 if(projectService.step <4){
-                    projectService.step += 1;
+                    if( scope.statusLine) {
+                        projectService.step += 1;
+                    }
                 }
             };
             scope.prev = function() {
                 if(projectService.step > 1){
-                    projectService.step -= 1;
+                    if( scope.statusLine) {
+                        projectService.step -= 1;
+                    }
                 }
             };
         }

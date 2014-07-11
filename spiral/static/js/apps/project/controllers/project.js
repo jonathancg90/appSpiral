@@ -13,6 +13,7 @@ controllers.projectController = function($scope,
     $scope.lineExtras = false;
     $scope.lineRepresentacion = false;
     $scope.lineFotos = false;
+    $scope.line = false;
 
     //Urls
     var urlCommercial = factoryUrl.commercialUrl,
@@ -67,6 +68,7 @@ controllers.projectController = function($scope,
     $scope.$on('changeLine', function(event, args) {
         var line = args.value;
         cleanStatusLines();
+        $scope.line = true;
         if(line == 'Casting')
             $scope.lineCasting = true;
         if(line == 'Extras')
