@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'^search/', include('apps.sp.urls.panel.search')),
     url(r'^project/', include('apps.sp.urls.panel.project')),
     url(r'^client/', include('apps.sp.urls.panel.client')),
+    url(r'^casting/', include('apps.sp.urls.panel.casting')),
+    url(r'^type-casting/', include('apps.sp.urls.panel.type_casting')),
 )

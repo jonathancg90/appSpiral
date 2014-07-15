@@ -52,6 +52,12 @@ class Project(models.Model):
         null=False,
     )
 
+    currency = models.ForeignKey(
+        'Currency',
+        verbose_name='Moneda',
+        related_name='project_set'
+    )
+
     budget = models.DecimalField(
         verbose_name=_(u'Presupuesto'),
         max_digits=10,
@@ -89,3 +95,58 @@ class Project(models.Model):
     class Meta:
         app_label = 'sp'
 
+
+class ProjectDetailStaff(models.Model):
+
+    ROLE_PRODUCER = 1
+    ROLE_EDITOR = 0
+    ROLE_DIRECTOR = 2
+
+    CHOICE_ROLE = (
+        (ROLE_PRODUCER, 'Productor'),
+        (ROLE_EDITOR, 'Editor'),
+        (ROLE_DIRECTOR, 'Director')
+    )
+
+    project = models.ForeignKey(
+        'Project',
+        verbose_name='Proyecto',
+        related_name='project_detail_set',
+    )
+
+    role = models.SmallIntegerField(
+        choices=CHOICE_ROLE,
+    )
+
+    employee = models.SmallIntegerField()
+
+    budget = models.DecimalField(
+        verbose_name='Presupuesto de pago',
+        max_digits=10,
+        decimal_places=2,
+        null=True
+    )
+
+    percentage = models.PositiveIntegerField(
+        verbose_name='Porcentaje de ganancia',
+        max_length= 3
+    )
+
+    observations = models.TextField(
+        verbose_name='Observaciones'
+    )
+
+    created = models.DateTimeField(
+        auto_now_add=True,
+        editable=False
+    )
+
+    modified = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        app_label = 'sp'

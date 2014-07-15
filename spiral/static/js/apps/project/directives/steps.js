@@ -52,13 +52,17 @@ projectApp.directive('projectActionSteps', function(projectService) {
             scope.statusLine = false;
 
             scope.$on('setLine', function(event, args) {
-                debugger
                 scope.statusLine = true;
             });
             scope.next = function() {
                 if(projectService.step <4){
                     if( scope.statusLine) {
                         projectService.step += 1;
+                    } else {
+                        scope.$emit("setMessage", {
+                            'type':  'warning',
+                            'message': 'Debe escoger un tipo de proyecto antes de continuar'
+                        });
                     }
                 }
             };

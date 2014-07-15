@@ -23,5 +23,15 @@ projectApp.factory('clientFactory',['$http', function($http) {
             });
     };
 
+    factory.saveClient = function(urlSave, data){
+        return $http.post(urlSave, angular.toJson(data))
+            .then(function(response) {
+                if(response.status == 200) {
+                    return response.data;
+                }else {
+                    return [];
+                }
+            });
+    };
     return factory;
 }]);

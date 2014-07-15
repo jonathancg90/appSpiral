@@ -4,8 +4,13 @@ chosen.directive('chosen', function() {
     return {
         restrict: 'A',
         link: function (scope, elem, attrs) {
-            var list = attrs['chosen'];
-            scope.$watch(list, function () {
+            var list = attrs['list'];
+            scope.$watch('list', function (newValue) {
+                elem.trigger('liszt:updated');
+                if(newValue){
+                }
+            });
+            scope.$watch(function() {
                 elem.trigger('liszt:updated');
             });
             scope.$watch(attrs['ngModel'], function() {

@@ -1,10 +1,10 @@
-project {[{  project_service }]}
+project: {[{  project_service }]}
 <form class="form-horizontal" id="sample-form">
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Comercial</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <select id="chosen" chosen="commercials" class="form-control span12"
+                <select id="chosen1" chosen="commercials" class="form-control span12"
                         ng-model="project_service.commercial"
                         ng-options="commercial.name for commercial in commercials"
                         ng-change="updateDate()">
@@ -21,7 +21,9 @@ project {[{  project_service }]}
         <label class="control-label" for="inputInfo">Clientes</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <select chosen="clients" class="form-control span12" ng-model="project_service.productor" ng-options="client.name for client in clients">
+                <select chosen="clientsProductor" class="form-control span12"
+                        ng-model="project_service.productor"
+                        ng-options="client.name for client in clientsProductor">
                     <option value="">-- Elige la productora --</option>
                 </select>
             </span>
@@ -31,7 +33,9 @@ project {[{  project_service }]}
         </div>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <select chosen="clients" class="form-control span12" ng-model="project_service.agency" ng-options="client.name for client in clients">
+                <select chosen="clientsAgency" class="form-control span12"
+                        ng-model="project_service.agency"
+                        ng-options="client.name for client in clientsAgency">
                     <option value="">-- Elige la Agencia --</option>
                 </select>
             </span>
@@ -40,7 +44,9 @@ project {[{  project_service }]}
         </div>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <select chosen="clients" class="form-control span12" ng-model="project_service.director" ng-options="client.name for client in clients">
+                <select chosen="clientsDirector" class="form-control span12"
+                        ng-model="project_service.director"
+                        ng-options="client.name for client in clientsDirector">
                     <option value="">-- Elige la Realizadora --</option>
                 </select>
             </span>
@@ -72,10 +78,10 @@ project {[{  project_service }]}
         <label class="control-label" for="inputInfo">Fecha de produccion</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                <input class="span12" type="text" date-picker id="inputInfo"  ng-model="project_service.startProduction" placeholder="dd/mm/yy"/>
             </span>
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                <input class="span12" type="text" date-picker id="inputInfo"  ng-model="project_service.finishProduction" placeholder="dd/mm/yy"/>
             </span>
         </div>
     </div>
@@ -103,16 +109,31 @@ project {[{  project_service }]}
         <label class="control-label" for="inputInfo">Observaciones</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <textarea id="form-field-11" class="autosize-transition span12"></textarea>
+                <textarea id="form-field-11" class="autosize-transition span12"  ng-model="project_service.observation"></textarea>
             </span>
         </div>
     </div>
+    {# Casting Form #}
     <span id="lineCasting" ng-show="lineCasting">
+        <div class="control-group info">
+            <label class="control-label" for="inputInfo">Tipo de casting</label>
+            <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <select id="chosenBrand" multiple="multiple" class="form-control"
+                            ng-model="project_service.typeCasting"
+                            ng-options="type.name for type in typeCasting">
+                        <option value="">-- Elige un tipo de casting --</option>
+                    </select>
+                </span>
+                <span class="span6">
+                </span>
+            </div>
+        </div>
         <div class="control-group info">
             <label class="control-label" for="inputInfo">PPI</label>
             <div class="controls">
                 <span class="span6 input-icon input-icon-right">
-                    <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                    <input class="span12" type="text" date-picker id="inputInfo"  ng-model="project_service.ppi" placeholder="dd/mm/yy"/>
                 </span>
                 <span class="span6">
                 </span>
@@ -121,11 +142,11 @@ project {[{  project_service }]}
         <div class="control-group info">
             <label class="control-label" for="inputInfo">PPG</label>
             <div class="controls">
-            <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
-            </span>
-            <span class="span6">
-            </span>
+                <span class="span6 input-icon input-icon-right">
+                    <input class="span12" type="text" date-picker id="inputInfo"  ng-model="project_service.ppg" placeholder="dd/mm/yy"/>
+                </span>
+                <span class="span6">
+                </span>
             </div>
         </div>
     </span>
@@ -159,21 +180,21 @@ project {[{  project_service }]}
                                 <label class="control-label" for="form-field-1">Nombre</label>
 
                                 <div class="controls">
-                                    <input type="text" id="form-field-1" placeholder="Razon Social" ng-model="clientName"/>
+                                    <input type="text" id="form-field-1" placeholder="Razon Social" ng-model="newClient.name"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="form-field-1">RUC</label>
 
                                 <div class="controls">
-                                    <input type="text" id="form-field-2" placeholder="RUC" ng-model="clientRuc"/>
+                                    <input type="text" id="form-field-2" placeholder="RUC" ng-model="newClient.ruc"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="form-field-1">Direccion</label>
 
                                 <div class="controls">
-                                    <input type="text" id="form-field-3" placeholder="Direccion" ng-model="clientAddress"/>
+                                    <input type="text" id="form-field-3" placeholder="Direccion" ng-model="newClient.address"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -181,7 +202,7 @@ project {[{  project_service }]}
 
                                 <div class="controls">
                                     <select id="form-field-select-2" multiple="multiple"
-                                            ng-model="clientType"
+                                            ng-model="newClient.type"
                                             ng-options="type.name for type in typeClients">
                                         <option value="">-- Seleccione el tipo de cliente --</option>
                                     </select>
@@ -193,7 +214,7 @@ project {[{  project_service }]}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Grabar</button>
+                <button type="button" class="btn btn-primary" ng-click="saveClient(newClient)">Grabar</button>
             </div>
         </div>
     </div>
@@ -229,7 +250,7 @@ project {[{  project_service }]}
 
                                 <div class="controls">
                                     <select id="chosenBrand" chosen="brands" class="form-control"
-                                            ng-model="brandSelected"
+                                            ng-model="newCommercial.brandSelected"
                                             ng-options="brand.name for brand in brands">
                                         <option value="">-- Elige un rubro --</option>
                                     </select>
@@ -239,7 +260,7 @@ project {[{  project_service }]}
                                 <label class="control-label" for="form-field-1">Nombre</label>
 
                                 <div class="controls">
-                                    <input type="text" id="form-field-1" placeholder="Username" />
+                                    <input type="text" id="form-field-1" ng-model="newCommercial.name" placeholder="Nombre del comercial" />
                                 </div>
                             </div>
                         </form>
@@ -248,7 +269,7 @@ project {[{  project_service }]}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Grabar</button>
+                <button type="button" class="btn btn-primary" ng-click="saveCommercial(newCommercial)">Grabar</button>
             </div>
         </div>
     </div>

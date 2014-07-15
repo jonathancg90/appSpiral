@@ -460,4 +460,3 @@ class ModelFeatureDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
             context["status"] = "success"
             context["message"] = self.DELETE_SUCCESSFUL
         return self.render_to_response(context)
-

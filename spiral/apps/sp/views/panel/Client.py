@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
+import json
+
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
+from django.views.generic import View
+from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError
+
 from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.forms.Client import ClientFiltersForm, ClientForm
@@ -81,10 +87,31 @@ class ClientDataListView(LoginRequiredMixin, PermissionRequiredMixin,
         qs = Client.objects.filter(status=Client.STATUS_ACTIVE)
         return qs
 
+    def get_client_detail(self, clients):
+        data = []
+        for client in clients:
+            data.append({
+                'id': client.id,
+                'name': client.name,
+                'type': self.get_types(client)
+            })
+        return data
+
+    def get_types(self, client):
+        data = []
+        types = client.type_client.all()
+        for type in types:
+            data.append({
+                'id': type.id,
+                'name': type.name
+            })
+        return data
+
+
     def get_context_data(self, **kwargs):
         data = {}
-        brand = self.get_queryset().values('id', 'name')
-        data['client'] = [item for item in brand]
+        clients = self.get_queryset()
+        data['client'] = self.get_client_detail(clients)
         return data
 
 
@@ -98,3 +125,60 @@ class TypeClientDataListView(LoginRequiredMixin, PermissionRequiredMixin,
         data['types'] = [item for item in type]
         return data
 
+
+class ClientCreateDataJson(LoginRequiredMixin, PermissionRequiredMixin,
+                               JSONResponseMixin, View):
+    permissions = {
+        "permission": ('sp.add_client', ),
+        }
+    SAVE_SUCCESSFUL = 'Cliente registrado'
+    SAVE_ERROR = 'Ocurrio un error al registrar el cliente'
+    SAVE_RUC_ERROR = 'El RUC ingresado ya se encuentra regisrado'
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ClientCreateDataJson, self).dispatch(request, *args, **kwargs)
+
+    def save_client(self, data):
+        try:
+            client = Client()
+            client.name = data.get('name')
+            client.address = data.get('address')
+            client.ruc = data.get('ruc')
+            client.save()
+            self.save_type_detail(client, data.get('type'))
+            return client, self.SAVE_SUCCESSFUL
+        except IntegrityError, e:
+            return None, self.SAVE_RUC_ERROR
+        except Exception, e:
+            return None, self.SAVE_ERROR
+
+    def save_type_detail(self, client, types):
+        for type in types:
+            client.type_client.add(TypeClient.objects.get(pk=type.get('id')))
+
+    def get_types(self, client):
+        data = []
+        types = client.type_client.all()
+        for type in types:
+            data.append({
+                'id': type.id,
+                'name': type.name
+            })
+        return data
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        client, msg = self.save_client(data)
+        context['status'] = 'success'
+        context['message'] = msg
+        if client is None:
+            context['status'] = 'warning'
+        else:
+            context['result'] = {
+                'name': client.name,
+                'id': client.id,
+                'type':  self.get_types(client)
+            }
+        return self.render_to_response(context)

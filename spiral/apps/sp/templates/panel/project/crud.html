@@ -22,6 +22,9 @@
         .add-button{
             margin-left: 45%;
         }
+        .modal {
+            display: none;
+        }
     </style>
 {% endblock %}
 
@@ -35,6 +38,7 @@
     </div>
 {% endfor %}
 {% block content %}
+
     <div class="row-fluid">
     <div class="span12">
     <div class="widget-box"  ng-app="projectApp">
@@ -49,7 +53,6 @@
                         Tipo de proyecto
                         <span class="caret"></span>
                     </button>
-
                     <ul class="dropdown-menu dropdown-info pull-right">
                         <li ng-repeat="line in lines">
                             <a href="" ng-click="changeLine(line)">{[{ line }]}</a>
@@ -67,6 +70,7 @@
            <project-steps></project-steps>
         <hr />
         <div class="step-content row-fluid position-relative" id="step-container" ng-controller="projectController" >
+            <message-flash message="{[{ flashMessage }]}" type="flashType"></message-flash>
             <div class="step-pane active" id="step1" ng-if="project_service.step == 1">
                 {% include 'panel/project/project.html' %}
             </div>
@@ -103,6 +107,7 @@
     <script src="{{ STATIC_URL }}js/angular.js"></script>
     <script src="{{ STATIC_URL }}js/apps/commons/directives/chosen.js"></script>
     <script src="{{ STATIC_URL }}js/apps/commons/directives/datePicker.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/commons/directives/messages.js"></script>
 
     <script src="{{ STATIC_URL }}js/apps/project/app.js"></script>
 
@@ -115,6 +120,7 @@
 {#    <script src="{{ STATIC_URL }}js/apps/project/controllers/models.js"></script>#}
 {##}
     <script src="{{ STATIC_URL }}js/apps/project/factories/brand.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/project/factories/project.js"></script>
     <script src="{{ STATIC_URL }}js/apps/project/factories/commercial.js"></script>
     <script src="{{ STATIC_URL }}js/apps/project/factories/client.js"></script>
     <script src="{{ STATIC_URL }}js/apps/project/factories/entry.js"></script>
@@ -126,9 +132,13 @@
         angular.module('projectApp').value("factoryUrl", {
             brandUrl: '{% url "brand_by_entry_json" entry=':entry' %}',
             commercialUrl: '{% url "commercial_data_list" %}',
+            commercialSaveUrl: '{% url "commercial_json_create" %}',
+            clientSaveUrl: '{% url "client_json_create" %}',
             entryUrl: '{% url "entry_data_list" %}',
             clientUrl : '{% url "client_data_list" %}',
-            urlTypeClient: '{% url "type_client_data_list" %}'
+            urlTypeClient: '{% url "type_client_data_list" %}',
+            typeCastingUrl: '{% url "type_casting_data" %}',
+            urlCharacterCasting: '{% url "casting_data_character" %}'
         });
         angular.module('projectApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'
