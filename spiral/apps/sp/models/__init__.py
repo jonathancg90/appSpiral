@@ -7,20 +7,32 @@ from apps.sp.models.Country import Country
 from apps.sp.models.City import City
 from apps.sp.models.ContryHasContract import CountryHasContract
 from apps.sp.models.Model import Model
-from apps.sp.models.Project import Project
+from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDetail
 from apps.sp.models.Feature import Feature
 from apps.sp.models.Feature import FeatureValue
+from apps.sp.models.Studio import Studio
 from apps.sp.models.Model import ModelFeatureDetail
 from apps.sp.models.Bank import Bank
 from apps.sp.models.Client import Client, TypeClient
+from apps.sp.models.Currency import Currency
+from apps.sp.models.Payment import Payment
 from apps.sp.models.Company import Company, CompanyDetailAccount
 from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel
+from apps.sp.models.Extras import Extras, ExtrasDetailModel
+from apps.sp.models.PhotoCasting import PhotoCasting, TypePhotoCasting
+from apps.sp.models.Representation import Representation, RepresentationDetailModel, TypeEvent
 
 __all__ = [
+    'PhotoCasting',
+    'TypePhotoCasting',
+    'Representation',
+    'TypeEvent',
+    'RepresentationDetailModel',
     'Commercial',
     'Contract.py',
     'Brand',
     'Client',
+    'Currency',
     'TypeClient',
     'Entry.py',
     'City',
@@ -29,6 +41,7 @@ __all__ = [
     'Country'
     'Model',
     'Project',
+    'ProjectDetailStaff',
     'ModelFeatureDetail',
     'Feature',
     'FeatureValue',
@@ -38,5 +51,10 @@ __all__ = [
     'Casting',
     'TypeCasting',
     'CastingDetailModel',
-    'CompanyDetailAccount'
+    'CompanyDetailAccount',
+    'Payment',
+    'ProjectClientDetail',
+    'Studio',
+    'Extras',
+    'ExtrasDetailModel'
 ]

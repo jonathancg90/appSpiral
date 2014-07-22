@@ -27,6 +27,9 @@
             z-index: 10;
             margin-top: 3%;
         }
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
     </style>
 
     {% block extra_style %}
@@ -409,7 +412,7 @@
             </a>
         </li>
         <li>
-            <a href="{% url "commercial_list" %}">
+            <a href="{% url "studio_list" %}">
                 <i class="icon-double-angle-right"></i>
                 Estudios
             </a>
@@ -425,7 +428,7 @@
 </li>
 
     <li>
-        <a href="{% url "project_crud" %}">
+        <a href="{% url "project_list" %}">
             <i class="icon-edit"></i>
             <span class="menu-text"> Proyecto </span>
         </a>

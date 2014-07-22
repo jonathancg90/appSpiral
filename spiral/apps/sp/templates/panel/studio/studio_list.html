@@ -1,0 +1,52 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+        <style>
+            .tools {
+                float: right !important;
+            }
+        </style>
+    {% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="{%   url "studio_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo Estudio' %}</a>
+        </div>
+        <h2>{%  trans 'Estudios registrados' %}</h2>
+    </div>
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans 'Nombre' %}</th>
+                    <th>{% trans 'Modificado' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for brand in object_list %}
+                <tr>
+                    <td>{{ brand.name }}</td>
+                    <td>{{ brand.modified }}</td>
+                    <td><a href="{% url "studio_edit" brand.pk %}">{% trans 'Update' %}</a> |
+                        <a href="{% url "studio_delete" brand.pk %}">{% trans 'Delete' %}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% url 'studio_list' as page_url %}
+    {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
+    </div>
+{% endblock %}
+
+{% block script_bottom %}
+
+{% endblock %}

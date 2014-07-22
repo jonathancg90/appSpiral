@@ -4,5 +4,6 @@ projectApp.service('projectService', function() {
     self.deliveries = [];
     self.detailModel = [];
     self.conditions = [];
+    self.detailStaff = [];
     self.payment = {}
 });

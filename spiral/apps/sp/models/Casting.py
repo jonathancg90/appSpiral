@@ -18,10 +18,9 @@ class Casting(models.Model):
         null=True,
     )
 
-    type_casting = models.ForeignKey(
+    type_casting = models.ManyToManyField(
         'TypeCasting',
         verbose_name='Tipo de casting',
-        related_name='casting_set',
     )
 
     class Meta:
@@ -69,6 +68,11 @@ class CastingDetailModel(models.Model):
         (CHARACTER_SECONDARY, 'Secundario')
     )
 
+    casting = models.ForeignKey(
+        'Casting',
+        related_name='casting_detail_model_set',
+    )
+
     quantity = models.SmallIntegerField()
 
     profile = models.CharField(
@@ -78,23 +82,26 @@ class CastingDetailModel(models.Model):
 
     feature = models.CharField(
         verbose_name='Carracteristicas',
-        max_length=200
+        max_length=200,
+        null=True
     )
 
     character = models.SmallIntegerField(
         choices=CHOICE_CHARACTER,
-        default=CHARACTER_PRINCIPAL
+        default=CHARACTER_PRINCIPAL,
+        null=True
     )
 
-    type_casting = models.ForeignKey(
+    type_casting = models.ManyToManyField(
         'TypeCasting',
         verbose_name='Tipo de casting',
-        related_name='casting_detail_model_set',
+        null=True
     )
 
     scene = models.CharField(
         verbose_name='Escena',
-        max_length=100
+        max_length=100,
+        null=True
     )
 
     created = models.DateTimeField(

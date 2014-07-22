@@ -4,8 +4,13 @@ from django.conf import settings
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.models.Country import Country
 from apps.sp.models.City import City
+from apps.sp.models.Currency import Currency
 from apps.sp.models.Client import TypeClient
 from apps.sp.models.Casting import TypeCasting
+from apps.sp.models.Client import Client
+from apps.sp.models.Brand import Brand
+from apps.sp.models.Entry import Entry
+from apps.sp.models.Commercial import Commercial
 
 
 class ReaderJsonHelper(object):
@@ -98,3 +103,69 @@ class TypeCastingHelper(object):
             type_client = TypeCasting()
             type_client.name = name
             type_client.save()
+
+
+class CurrencyHelper(object):
+
+    def insert_data(self):
+        coins = [
+            {
+                'name': 'Soles',
+                'symbol':  'S/.'
+            },
+            {
+                'name': 'Dolares Americanos',
+                'symbol':  '$'
+            }
+        ]
+        for coin in coins:
+            currency = Currency()
+            currency.name = coin.get('name')
+            currency.symbol = coin.get('symbol')
+            currency.save()
+
+
+class DataTestHelper(object):
+
+    def insert_client(self):
+        if not Client.objects.filter(name='Productor').exists():
+            client_productor = Client()
+            client_productor.name = 'Productor'
+            client_productor.ruc = '12345678901'
+            client_productor.save()
+            client_productor.type_client.add(TypeClient.objects.get(name= 'Productora'))
+
+        if not Client.objects.filter(name='Realizadora').exists():
+            client_director = Client()
+            client_director.name = 'Realizadora'
+            client_director.ruc = '12333678901'
+            client_director.save()
+            client_director.type_client.add(TypeClient.objects.get(name='Realizadora'))
+
+
+    if not Client.objects.filter(name='Agencia').exists():
+            client_agency = Client()
+            client_agency.name = 'Agencia'
+            client_agency.ruc = '12555678901'
+            client_agency.save()
+            client_agency.type_client.add(TypeClient.objects.get(name= 'Agencia'))
+
+    def insert_commercial(self):
+        if not Commercial.objects.filter(name='Comercial de prueba').exists():
+            entry = Entry()
+            entry.name = 'Rubro de prueba'
+            entry.save()
+
+            brand = Brand()
+            brand.entry = entry
+            brand.name = 'Marca de prueba'
+            brand.save()
+
+            commercial = Commercial()
+            commercial.brand = brand
+            commercial.name = 'Comercial de prueba'
+            commercial.save()
+
+    def insert_data(self):
+        self.insert_client()
+        self.insert_commercial()

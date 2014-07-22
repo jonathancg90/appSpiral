@@ -9,6 +9,10 @@ class Currency(models.Model):
         (STATUS_INACTIVE, 'inactivo'),
         (STATUS_ACTIVE, 'activo')
     )
+    symbol = models.CharField(
+        verbose_name='Simbolo',
+        max_length=5
+    )
 
     name = models.CharField(
         verbose_name='Nombre',

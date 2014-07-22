@@ -1,10 +1,174 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
 
-</body>
-</html>
+
+
+
+
+<div class="row-fluid">
+    <div class="span12">
+        Detalles: {[{ project_service.detailStaff }]}
+
+
+
+        <div class="widget-box transparent" id="recent-box">
+        <div class="widget-header">
+            <h4 class="lighter smaller">
+                <i class="icon-rss orange"></i>
+                RECENT
+            </h4>
+
+            <div class="widget-toolbar no-border">
+                <ul class="nav nav-tabs" id="recent-tab">
+                    <li class="active">
+                        <a data-toggle="tab" href="#team-tab">Empleados</a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#studio-tab">Estudios</a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#coordinators-tab">Coordinadores</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="widget-body">
+        <div class="widget-main padding-4">
+        <div class="tab-content padding-8 overflow-visible">
+
+        <div id="team-tab" class="tab-pane active">
+            <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Empleado</th>
+                    <th>Funcion</th>
+                    <th>Porcentaje</th>
+                    <th>Monto</th>
+                    <th>Ganancia</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="detail in project_service.detailStaff">
+                    <td>
+                        <a href="#">{[{ detail.employee.name }]} {[{ detail.employee.last_name }]}</a>
+                    </td>
+                    <td>
+                        {[{ detail.role.name }]}
+                    </td>
+                    <td>
+                        {[{ detail.percentage }]} %
+                    </td>
+                    <td>
+                        {[{ detail.budget }]}
+                    </td>
+                    <td>
+                        <span class="label label-warning">{[{ detail.total }]}</span>
+                    </td>
+
+                    <td>
+                        <div class="hidden-phone visible-desktop btn-group">
+                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#modalStaffDetail" ng-click="updateStaffDetail(detail)">
+                                <i class="icon-edit bigger-120"></i>
+                            </button>
+
+                            <button class="btn btn-mini btn-danger" ng-click="deleteDetailStaff($index)">
+                                <i class="icon-trash bigger-120"></i>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <button class="add-button btn btn-primary btn-small" data-toggle="modal" data-target="#modalStaffDetail" ng-click="setStatusSave(true)">Agregar</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+        <div id="studio-tab" class="tab-pane">
+
+        </div><!--member-tab-->
+
+        <div id="coordinators-tab" class="tab-pane">
+
+        </div>
+        </div>
+        </div><!--/widget-main-->
+        </div><!--/widget-body-->
+        </div><!--/widget-box-->
+
+
+
+    </div><!--/span-->
+</div><!--/row-->
+
+
+<!-- Modal commercial-->
+<div class="modal fade" id="modalStaffDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                <h4 class="modal-title" id="myModalLabel">Staff</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!--PAGE CONTENT BEGINS-->
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Funcion</label>
+
+                                <div class="controls">
+                                    <select id="chosenBrand" class="form-control"
+                                            ng-model="detailStaff.role"
+                                            ng-options="role.name for role in roles"
+                                            ng-change="changeEmployeeRole(detailStaff.role)">
+                                        <option value="">-- Elige una funcion --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Empleado</label>
+
+                                <div class="controls">
+                                    <select id="chosenBrand"  class="form-control"
+                                            ng-model="detailStaff.employee"
+                                            ng-options="employee.name for employee in employees">
+                                        <option value="">-- Elige un Empleado --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1" >Porcentaje</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="%" ng-model="detailStaff.percentage"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Monto</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="Monto" ng-model="detailStaff.budget"/>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-show="saveDetail" ng-click="addDetailStaff(detailStaff)">Grabar</button>
+            </div>
+        </div>
+    </div>
+</div>

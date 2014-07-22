@@ -14,7 +14,11 @@
             min-height: 25%;
             min-width: 25%;
         }
-
+        .message-float{
+            position: absolute;
+            z-index: 99999;
+            margin-left: 70%;
+        }
         #fuelux-wizard{
             display: block !important;
         }
@@ -24,6 +28,9 @@
         }
         .modal {
             display: none;
+        }
+        .btn-save{
+            margin-right: 67%;
         }
     </style>
 {% endblock %}
@@ -43,7 +50,7 @@
     <div class="span12">
     <div class="widget-box"  ng-app="projectApp">
     <div class="widget-header widget-header-blue widget-header-flat" ng-controller="menuController">
-        <h4 class="lighter">Proyecto >> {[{ lineSelected }]}</h4>
+        <h4 class="lighter" ng-cloak class="ng-cloak" >Proyecto{[{ lineSelected }]}{[{ commercial }]}{[{ project_code }]}</h4>
 
         <div class="widget-toolbar">
             <label>
@@ -55,7 +62,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-info pull-right">
                         <li ng-repeat="line in lines">
-                            <a href="" ng-click="changeLine(line)">{[{ line }]}</a>
+                            <a href="" ng-click="changeLine(line)">{[{ line.name }]}</a>
                         </li>
                     </ul>
                 </div>
@@ -70,20 +77,23 @@
            <project-steps></project-steps>
         <hr />
         <div class="step-content row-fluid position-relative" id="step-container" ng-controller="projectController" >
-            <message-flash message="{[{ flashMessage }]}" type="flashType"></message-flash>
-            <div class="step-pane active" id="step1" ng-if="project_service.step == 1">
+            <message-flash message="{[{ flashMessage }]}" type="flashType" class="message-float"></message-flash>
+            <div class="loader" ng-show="detailLoader" ng-cloak class="ng-cloak">
+                <img src="{{ STATIC_URL }}admin/img/gif-load.gif" alt=""/>
+            </div>
+            <div class="step-pane active" id="step1" ng-if="project_service.step == 1" ng-hide="detailLoader" ng-cloak class="ng-cloak">
                 {% include 'panel/project/project.html' %}
             </div>
 
-            <div class="step-pane active" id="step2" ng-if="project_service.step == 2">
+            <div class="step-pane active" id="step2" ng-if="project_service.step == 2" ng-hide="detailLoader" ng-cloak class="ng-cloak">
                 {% include 'panel/project/models.html' %}
             </div>
 
-            <div class="step-pane active" id="step3" ng-if="project_service.step == 3" >
+            <div class="step-pane active" id="step3" ng-if="project_service.step == 3" ng-hide="detailLoader" ng-cloak class="ng-cloak">
                 {% include 'panel/project/payment.html' %}
             </div>
 
-            <div class="step-pane active" id="step4" ng-if="project_service.step == 4">
+            <div class="step-pane active" id="step4" ng-if="project_service.step == 4" ng-hide="detailLoader" ng-cloak class="ng-cloak">
                 {% include 'panel/project/resources.html' %}
             </div>
         </div>
@@ -138,10 +148,26 @@
             clientUrl : '{% url "client_data_list" %}',
             urlTypeClient: '{% url "type_client_data_list" %}',
             typeCastingUrl: '{% url "type_casting_data" %}',
-            urlCharacterCasting: '{% url "casting_data_character" %}'
+            urlCharacterCasting: '{% url "casting_data_character" %}',
+            urlCharacterExtra: '{% url "extra_data_character" %}',
+            urlEventsRepresentation: '{% url "representation_data_event" %}',
+            urlCharacterRepresentation: '{% url "representation_data_character" %}',
+            urlCurrency: '{% url "currency_list_json" %}',
+            urlRoles: '{% url "project_roles_json" %}',
+            urlEmployee: '{% url "employee_list_json" %}',
+            projectSaveUrl: '{% url "project_save" %}',
+            urlSearchModel: '{% url "simple_search_model" %}',
+            urlPhotoCastingType: '{% url "photo_casting_data_types" %}',
+            projectLineUrl: '{% url "project_line_json" %}',
+            urlProjectUpdate: '{% url "project_update" %}',
+            urlDataUpdateProject: '{% url "project_update_data_json" %}',
         });
         angular.module('projectApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'
+        });
+        angular.module('projectApp').value("contextData", {
+            codeUpdate: '{{ code|safe }}',
+            idUpdate: '{{ id|safe }}'
         });
     </script>
 

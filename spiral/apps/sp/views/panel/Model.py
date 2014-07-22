@@ -72,7 +72,7 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             data.update({
                 "nationality": model.nationality.nationality,
                 "nationality_id": model.nationality.id,
-                })
+            })
         return data
 
     def parse_data(self, model):
@@ -459,4 +459,34 @@ class ModelFeatureDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
         if result:
             context["status"] = "success"
             context["message"] = self.DELETE_SUCCESSFUL
+        return self.render_to_response(context)
+
+
+class ModelSimpleSearchView(LoginRequiredMixin, PermissionRequiredMixin,
+                            JSONResponseMixin, View):
+    MESSAGE_SUCCESS = 'Modelo encontrado'
+    ERROR_SEARCH = 'Ha ocurrido un error al momento de buscar al modelo'
+    model = Model
+
+    def search_model(self, data):
+        result = []
+        models = Model.objects.filter(name_complete__contains=data.get('name'))
+        for model in models:
+            result.append({
+                'id': model.id,
+                'name': model.name_complete,
+                'document': '%s %s' %(model.get_type_doc_display(), model.number_doc)
+            })
+        return result
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        result = self.search_model(data)
+        context["status"] = "error"
+        context["message"] = self.ERROR_SEARCH
+        if result:
+            context["status"] = "success"
+            context["message"] = self.MESSAGE_SUCCESS
+            context["models"] = result
         return self.render_to_response(context)

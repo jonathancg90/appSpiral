@@ -72,6 +72,12 @@ class RepresentationDetailModel(models.Model):
         (CHARACTER_BOOSTER, 'Impulsadora')
     )
 
+    representation = models.ForeignKey(
+        'Representation',
+        verbose_name='Modelo',
+        related_name='representation_detail_model_set',
+    )
+
     profile = models.CharField(
         verbose_name='Perfil',
         max_length=100
@@ -80,7 +86,7 @@ class RepresentationDetailModel(models.Model):
     model = models.ForeignKey(
         'Model',
         verbose_name='Modelo',
-        related_name='representation_set',
+        related_name='representation_detail_model_set',
     )
 
     character = models.SmallIntegerField(
@@ -88,8 +94,29 @@ class RepresentationDetailModel(models.Model):
         default=CHARACTER_PRINCIPAL
     )
 
-    observations = models.TextField(
-        verbose_name='Observaciones'
+    currency = models.ForeignKey(
+        'Currency',
+        verbose_name='Moneda',
+        related_name='representation_detail_model_set',
+        null=True
+    )
+
+    budget = models.DecimalField(
+        verbose_name='Presupuesto',
+        max_digits=10,
+        decimal_places=2
+    )
+
+    budget_cost = models.DecimalField(
+        verbose_name='Presupuesto para el modelo',
+        max_digits=10,
+        decimal_places=2,
+        null=True
+    )
+
+    schedule = models.TextField(
+        verbose_name='Horario',
+        null=True
     )
 
     created = models.DateTimeField(

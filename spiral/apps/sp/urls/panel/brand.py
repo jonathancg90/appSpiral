@@ -23,5 +23,4 @@ urlpatterns = patterns('',
     url(r'^brand-by-entry/(?P<entry>[^/]+)/$',
         BrandByEntryIdJson.as_view(),
         name='brand_by_entry_json'),
-
 )

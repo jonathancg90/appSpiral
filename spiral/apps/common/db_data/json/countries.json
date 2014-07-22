@@ -417,6 +417,1386 @@
         "nationality": "Ecuatoriano",
         "currency": "$",
         "cities": []
+    },
+    {
+        "name": "Afganistán",
+        "nationality": "Afgana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Albania",
+        "nationality": "Albanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Alemania",
+        "nationality": "Alemana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "American Samoa",
+        "nationality": "de Samoa Americana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Andorra",
+        "nationality": "Andorrana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Angola",
+        "nationality": "Angolana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Anguila",
+        "nationality": "Anguilense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Antártida",
+        "nationality": "Antartica",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Antigua and Barbuda",
+        "nationality": "Español",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Antillas Holandesas",
+        "nationality": "holandesa de las Antillas",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Arabia Saudita",
+        "nationality": "Saudi",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Argelia",
+        "nationality": "Argelina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Armenia",
+        "nationality": "Armenia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Aruba",
+        "nationality": "Arubeño",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Australia",
+        "nationality": "Australiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Austria",
+        "nationality": "Austriaca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Azerbaijan",
+        "nationality": "Azerbaiyana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bahamas",
+        "nationality": "Bahameña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bahrein",
+        "nationality": "Bareiní",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bangladesh",
+        "nationality": "Bangladesí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Barbados",
+        "nationality": "Barbadense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bélgica",
+        "nationality": "Belga",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Belice",
+        "nationality": "Beliceña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Benin",
+        "nationality": "Beninesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bermuda",
+        "nationality": "Bermudeña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bielorrusia",
+        "nationality": "Bielorrusa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bosnia y Herzegovina",
+        "nationality": "Bosnia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Botsuana",
+        "nationality": "Botsuana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bouvet Island",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Brasil",
+        "nationality": "Brasileña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "British Indian Ocean Territory",
+        "nationality": "Chaguense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Brunei Darussalam",
+        "nationality": "Bruneana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bulgaria",
+        "nationality": "Búlgara",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Burkina Faso",
+        "nationality": "Burkinesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Burundi",
+        "nationality": "Burundesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Bután",
+        "nationality": "Butanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Cabo Verda",
+        "nationality": "Caboverdiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Camboya",
+        "nationality": "Camboyana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Camerún",
+        "nationality": "Camerunesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Canadá",
+        "nationality": "Canadiense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Chad",
+        "nationality": "Chadiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Chile",
+        "nationality": "Chilena",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "China",
+        "nationality": "China",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Chipre",
+        "nationality": "Chipriota",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Comores",
+        "nationality": "Comorense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Congo",
+        "nationality": "Congoleña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Corea del Norte",
+        "nationality": "Norcoreana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Corea del Sur",
+        "nationality": "Surcoreana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Costa Rica",
+        "nationality": "Costarricense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Cote D Ivoire",
+        "nationality": "Marfileña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Croacia",
+        "nationality": "Croata",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Cuba",
+        "nationality": "Cubana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Dinamarca",
+        "nationality": "Danesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Djibouti",
+        "nationality": "Yibutiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Dominica",
+        "nationality": "Dominiquesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "East Timor",
+        "nationality": "Timorense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Egipto",
+        "nationality": "Egipcia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "El Salvador",
+        "nationality": "Salvadoreña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "El Vaticano",
+        "nationality": "Vaticana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Emiratos Arabes Unidos",
+        "nationality": "Emiratí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Eritrea",
+        "nationality": "Eritrea",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Eslovaquia",
+        "nationality": "Eslovaca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Eslovenia",
+        "nationality": "Eslovena",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Estonia",
+        "nationality": "Estonia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Etiopía",
+        "nationality": "Etíope",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Fiyi",
+        "nationality": "Fiyiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Filipinas",
+        "nationality": "Filipina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Finlandia",
+        "nationality": "Finlandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Francia",
+        "nationality": "Francesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "French Guiana",
+        "nationality": "Francoguayanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "French Polynesia",
+        "nationality": "Francopolinesia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "French Southern Territories",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Gabón",
+        "nationality": "Gabonesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Gambia",
+        "nationality": "Gambiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Georgia",
+        "nationality": "Georgiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Ghana",
+        "nationality": "Ghanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Gibraltar",
+        "nationality": "Gibraltareña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Granada",
+        "nationality": "Granadina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Grecia",
+        "nationality": "Griega",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Groenlandia",
+        "nationality": "Groenlandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Guadalupe",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Guam",
+        "nationality": "Guamesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Guatemala",
+        "nationality": "Guatemalteca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Guinea",
+        "nationality": "Guineana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Guinea Ecuatorial",
+        "nationality": "Ecuatoguineana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Guinea-Bissau",
+        "nationality": "Guineana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Guyana",
+        "nationality": "Guyanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Haití",
+        "nationality": "Haitiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Heard Island and McDonald Isla",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Holanda",
+        "nationality": "Holandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Honduras",
+        "nationality": "Hondureña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Hong Kong",
+        "nationality": "Hongkonesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Hungría",
+        "nationality": "Húngara",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "India",
+        "nationality": "India",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Indonesia",
+        "nationality": "Indonesia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Iraq",
+        "nationality": "Iraquí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Irlanda",
+        "nationality": "Irlandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Isalas Cocos",
+        "nationality": "de las Islas Cocos",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Isla Christmas",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islandia",
+        "nationality": "Islandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Caimán",
+        "nationality": "Caimanés",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Cook",
+        "nationality": "de las Islas Cook",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Feroe",
+        "nationality": "Feroés",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Malvinas",
+        "nationality": "Malvinense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Marshall",
+        "nationality": "Marshalesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Mauricio",
+        "nationality": "Mauriciana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Salomón",
+        "nationality": "Salomonense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Sandwhich",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Turks y Caicos",
+        "nationality": "de las Islas Turcas y Caicos",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Islas Wallis y Futuna",
+        "nationality": "de Wallis y Futuna",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Israel",
+        "nationality": "Israelí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Italia",
+        "nationality": "Italiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Jamaica",
+        "nationality": "Jamaiquina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Japón",
+        "nationality": "Japonesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Jordania",
+        "nationality": "Jordana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Kazakhstán",
+        "nationality": "Kazaja",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Kenia",
+        "nationality": "Keniana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Kiribati",
+        "nationality": "Kiribatiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Kuwait",
+        "nationality": "Kuwaití",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Kyrgyzstán",
+        "nationality": "Kirguís",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Laos",
+        "nationality": "Laosiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Latvia",
+        "nationality": "Letona",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Lesoto",
+        "nationality": "Lesotense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Líbano",
+        "nationality": "Libanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Liberia",
+        "nationality": "Liberiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Libia",
+        "nationality": "Libia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Liechtenstein",
+        "nationality": "Liechtensteiniana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Lituania",
+        "nationality": "Lituana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Luxemburgo",
+        "nationality": "Luxemburguesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Macao",
+        "nationality": "Macaense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Macedonia",
+        "nationality": "Macedonia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Madagascar",
+        "nationality": "Malgache",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Malasia",
+        "nationality": "Malasia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Malaui",
+        "nationality": "Malauí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Maldivas",
+        "nationality": "Maldiva",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Malí",
+        "nationality": "Maliense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Malta",
+        "nationality": "Maltesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Marruecos",
+        "nationality": "Marroquí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Martinique",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Mauritania",
+        "nationality": "Mauritana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Mayotte",
+        "nationality": "Mayotense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "México",
+        "nationality": "Mexicana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Micronesia",
+        "nationality": "Micronesia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Moldavia",
+        "nationality": "Moldava",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Mónaco",
+        "nationality": "Monegasca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Mongolia",
+        "nationality": "Mongola",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Montserrat",
+        "nationality": "Montserratense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Mozambique",
+        "nationality": "Mozambiqueña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Myanmar",
+        "nationality": "Birmana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Namibia",
+        "nationality": "Namibia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Nauru",
+        "nationality": "Nauruana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Nepal",
+        "nationality": "Nepalí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Nicaragua",
+        "nationality": "Nicaragüense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Níger",
+        "nationality": "Nigerina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Nigeria",
+        "nationality": "Nigeriana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Niue",
+        "nationality": "Niueña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Norfolk Island",
+        "nationality": "de la Isla Norfolk",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Northern Mariana Islands",
+        "nationality": "de las Islas Marianas del Norte",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Noruega",
+        "nationality": "Noruega",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Nueva Caledonia",
+        "nationality": "Neocaledonia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Nueva Zelanda",
+        "nationality": "Neozelandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Omán",
+        "nationality": "Omaní",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Pakistán",
+        "nationality": "Pakistaní",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Palau",
+        "nationality": "Palauana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Palestinian Territory",
+        "nationality": "Palestina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Panamá",
+        "nationality": "Panameña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Papúa Nueva Guinea",
+        "nationality": "Papú",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Paraguay",
+        "nationality": "Paraguaya",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Pitcairn",
+        "nationality": "de las Islas Pitcairn",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Polonia",
+        "nationality": "Polaca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Portugal",
+        "nationality": "Portuguesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Puerto Rico",
+        "nationality": "Puertorriqueña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Qatar",
+        "nationality": "Catarí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Reino Unido",
+        "nationality": "Británica",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "República Centroafricana",
+        "nationality": "Centroafricana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "República Checa",
+        "nationality": "Checa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "República Democrática del Congo",
+        "nationality": "Congoleña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "República Dominicana",
+        "nationality": "Dominicana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "República Islámica de Irán",
+        "nationality": "Iraní",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Ruanda",
+        "nationality": "Ruandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Rumania",
+        "nationality": "Rumana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Rusian",
+        "nationality": "Rusa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Saint Kitts and Nevis",
+        "nationality": "Sancristobaleña",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Saint Pierre y Miquelon",
+        "nationality": "de San Pedro y Miquelón",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Samoa",
+        "nationality": "Samoana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "San Marino",
+        "nationality": "Sanmarinense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "San Vicente y Las Granadinas",
+        "nationality": "Sanvicentina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Santa Elena",
+        "nationality": "de Santa Elena, Ascensión y Tristán da Cunha",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Santa Lucía",
+        "nationality": "Santalucense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Sao Tome and Principe",
+        "nationality": "Santotomense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Senegal",
+        "nationality": "Senegalesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Serbia y Montenegro",
+        "nationality": "Serbio",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Seychelles",
+        "nationality": "Seychellense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Sierra Leona",
+        "nationality": "Sierraleonesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Singapur",
+        "nationality": "Singapurense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Siria",
+        "nationality": "Siria",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Somalía",
+        "nationality": "Somalí",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Sri Lanka",
+        "nationality": "Ceilanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Suazilandia",
+        "nationality": "Ssuazi",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Sudáfrica",
+        "nationality": "Sudafricana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Sudán",
+        "nationality": "Sudanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Suecia",
+        "nationality": "Sueca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Surinam",
+        "nationality": "Surinamesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Svalbard and Jan Mayen",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Tailandia",
+        "nationality": "Tailandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Taiwan",
+        "nationality": "Taiwanesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Tajikistan",
+        "nationality": "Tayika",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Tanzania",
+        "nationality": "Tanzana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Togo",
+        "nationality": "Togolesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Tonga",
+        "nationality": "Tongana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Tokelau",
+        "nationality": "Tokelauense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Trinidad y Tobago",
+        "nationality": "Trinitense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Túnez",
+        "nationality": "Tunecina",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Turkmenistán",
+        "nationality": "Turkmena",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Turquía",
+        "nationality": "Turca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Tuvalu",
+        "nationality": "Tuvaluana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Uganda",
+        "nationality": "Ugandesa",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "United States Minor Outlying Islands",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Uruguay",
+        "nationality": "Uruguaya",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Uzbekistan",
+        "nationality": "Uzbeka",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Vanuatu",
+        "nationality": "Vanuatuense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Venezuela",
+        "nationality": "Venezolana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Vietnam",
+        "nationality": "Vietnamita",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Virgin Islands British",
+        "nationality": "Virgenense británica",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Virgin Islands U.S.",
+        "nationality": "Virgenense",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Western Sahara",
+        "nationality": "Sahariana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Yemen",
+        "nationality": "Yemení",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Zaire",
+        "nationality": "-",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Zambia",
+        "nationality": "Zambiana",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Zimbabue",
+        "nationality": "Zimbabuense",
+        "currency": "$",
+        "cities": []
     }
 ]
 

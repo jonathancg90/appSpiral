@@ -1,4 +1,5 @@
 from django.db import models
+from apps.sp.models.Client import Client, TypeClient
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -9,20 +10,22 @@ class Project(models.Model):
     LINE_EXTRA = 2
     LINE_CASTING = 1
     CHOICE_LINE = (
-        (LINE_EXTRA, _(u'extra')),
-        (LINE_CASTING, _(u'casting')),
-        (LINE_REPRESENTATION, _(u'Representacion')),
-        (LINE_PHOTO, _(u'Foto'))
+        (LINE_EXTRA, 'extra'),
+        (LINE_CASTING, 'casting'),
+        (LINE_REPRESENTATION, 'Representacion'),
+        (LINE_PHOTO, 'Foto')
     )
 
     STATUS_STAND_BY = 0
     STATUS_START = 1
     STATUS_FINISH = 2
+    STATUS_EXTEND = 3
 
     CHOICE_STATUS = (
         (STATUS_START, _(u'Iniciado')),
         (STATUS_FINISH, _(u'Terminado')),
-        (STATUS_STAND_BY, _(u'Stand By'))
+        (STATUS_STAND_BY, _(u'Stand By')),
+        (STATUS_EXTEND, _(u'Extendido'))
     )
 
     line_productions = models.SmallIntegerField(
@@ -30,9 +33,15 @@ class Project(models.Model):
         default=LINE_CASTING
     )
 
-    project_code = models.CharField(
-        max_length=9,
-        unique=True
+    code = models.IntegerField(
+        editable=False,
+        null=False,
+        default=1
+    )
+    version = models.IntegerField(
+        editable=False,
+        null=False,
+        default=0
     )
 
     commercial = models.ForeignKey(
@@ -42,7 +51,12 @@ class Project(models.Model):
         null=True,
     )
 
-    start_productions = models.DateField (
+    client = models.ManyToManyField(
+        Client,
+        through='ProjectClientDetail'
+    )
+
+    start_productions = models.DateField(
         verbose_name=_(u'Inicio de Produccion'),
         null=False,
     )
@@ -55,7 +69,8 @@ class Project(models.Model):
     currency = models.ForeignKey(
         'Currency',
         verbose_name='Moneda',
-        related_name='project_set'
+        related_name='project_set',
+        null=True
     )
 
     budget = models.DecimalField(
@@ -72,7 +87,8 @@ class Project(models.Model):
     )
 
     observations = models.TextField(
-        verbose_name='Observaciones'
+        verbose_name='Observaciones',
+        null=True
     )
 
     status = models.SmallIntegerField(
@@ -90,7 +106,63 @@ class Project(models.Model):
     )
 
     def __unicode__(self):
-        return self.project_code
+        return self.commercial.name
+
+    class Meta:
+        app_label = 'sp'
+
+    def get_code(self):
+        code = ''
+        number = str(self.code)
+        date = self.start_productions
+        moth = str(date.month)
+        year = str(date.year)
+        if self.line_productions == self.LINE_CASTING:
+            line = 'M'
+
+        if self.line_productions == self.LINE_EXTRA:
+            line = 'E'
+
+        if self.line_productions == self.LINE_PHOTO:
+            line = 'F'
+
+        if self.line_productions == self.LINE_REPRESENTATION:
+            line = 'R'
+
+        if len(number) == 1:
+            number = '0' + number
+        if len(moth) == 1:
+            moth = '0' + moth
+
+        code = year[2:4] + '-' + moth + line + number + str(self.version)
+
+        return code
+
+
+class ProjectClientDetail(models.Model):
+    project = models.ForeignKey(Project)
+    client = models.ForeignKey(Client)
+    type = models.ForeignKey(TypeClient)
+
+    class Meta:
+        app_label = 'sp'
+
+
+class ProjectDetailStudio(models.Model):
+
+    project = models.ForeignKey(
+        'Project',
+        verbose_name='Proyecto',
+        related_name='project_detail_studio_set',
+        null=True
+    )
+
+    studio = models.ForeignKey(
+        'Studio',
+        verbose_name='Estudio',
+        related_name='project_detail_studio_set',
+        null=True
+    )
 
     class Meta:
         app_label = 'sp'
@@ -102,7 +174,7 @@ class ProjectDetailStaff(models.Model):
     ROLE_EDITOR = 0
     ROLE_DIRECTOR = 2
 
-    CHOICE_ROLE = (
+    CHOICE_ROLES = (
         (ROLE_PRODUCER, 'Productor'),
         (ROLE_EDITOR, 'Editor'),
         (ROLE_DIRECTOR, 'Director')
@@ -111,11 +183,12 @@ class ProjectDetailStaff(models.Model):
     project = models.ForeignKey(
         'Project',
         verbose_name='Proyecto',
-        related_name='project_detail_set',
+        related_name='project_detail_staff_set',
+        null=True
     )
 
     role = models.SmallIntegerField(
-        choices=CHOICE_ROLE,
+        choices=CHOICE_ROLES,
     )
 
     employee = models.SmallIntegerField()
@@ -133,7 +206,8 @@ class ProjectDetailStaff(models.Model):
     )
 
     observations = models.TextField(
-        verbose_name='Observaciones'
+        verbose_name='Observaciones',
+        null=True
     )
 
     created = models.DateTimeField(

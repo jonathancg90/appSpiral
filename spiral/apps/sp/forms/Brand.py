@@ -3,7 +3,6 @@ from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
 from crispy_forms.helper import FormHelper
 from django.utils.translation import ugettext_lazy as _
-from crispy_forms.layout import Layout, Field, Button
 
 
 class BrandForm(forms.ModelForm):
