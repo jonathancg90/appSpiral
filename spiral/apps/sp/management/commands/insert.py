@@ -8,6 +8,7 @@ from apps.sp.models.Casting import TypeCasting
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import TypeCastingHelper
+from apps.common.insert_helper import TypePhotoCastingHelper
 from apps.common.insert_helper import FeatureHelper
 from apps.common.insert_helper import DataTestHelper
 from apps.common.insert_helper import CurrencyHelper
@@ -35,6 +36,7 @@ class Command(BaseCommand):
             self.insert_type_casting()
             self.insert_type_client()
             self.insert_currency()
+            self.insert_type_photo_casting()
 
         if entity == 'country':
             self.insert_countries()
@@ -47,6 +49,9 @@ class Command(BaseCommand):
 
         if entity == 'type_casting':
             self.insert_type_casting()
+
+        if entity == 'type_photo_casting':
+            self.insert_type_photo_casting()
 
         if entity == 'currency':
             self.insert_currency()
@@ -101,6 +106,18 @@ class Command(BaseCommand):
                 self.stdout.write('Successfully inserted data: type casting. \n')
             else:
                 self.stdout.write('can not insert the data: type casting. \n')
+
+    def insert_type_photo_casting(self):
+        if self.data_delete:
+            TypeCasting.objects.all().delete()
+            self.stdout.write('delete data: type photo casting. \n')
+        else:
+            if TypeCasting.objects.all().count() == 0:
+                type_photo_casting_helper = TypePhotoCastingHelper()
+                type_photo_casting_helper.insert_data()
+                self.stdout.write('Successfully inserted data: type photo casting. \n')
+            else:
+                self.stdout.write('can not insert the data: type photo casting. \n')
 
     def insert_currency(self):
         if self.data_delete:

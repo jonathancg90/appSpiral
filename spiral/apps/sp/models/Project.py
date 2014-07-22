@@ -76,7 +76,8 @@ class Project(models.Model):
     budget = models.DecimalField(
         verbose_name=_(u'Presupuesto'),
         max_digits=10,
-        decimal_places=2
+        decimal_places=2,
+        default=0
     )
 
     budget_cost = models.DecimalField(

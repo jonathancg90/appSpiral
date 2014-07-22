@@ -7,6 +7,7 @@ from apps.sp.models.City import City
 from apps.sp.models.Currency import Currency
 from apps.sp.models.Client import TypeClient
 from apps.sp.models.Casting import TypeCasting
+from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.Client import Client
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
@@ -100,10 +101,19 @@ class TypeCastingHelper(object):
                  'Archivo Fotografico',
                  'Casting Fotografico']
         for name in names:
-            type_client = TypeCasting()
-            type_client.name = name
-            type_client.save()
+            type_casting = TypeCasting()
+            type_casting.name = name
+            type_casting.save()
 
+
+class TypePhotoCastingHelper(object):
+
+    def insert_data(self):
+        names = ['Archico Fotografico', 'Archivo Fotografico con Callback']
+        for name in names:
+            type_photo_casting = TypePhotoCasting()
+            type_photo_casting.name = name
+            type_photo_casting.save()
 
 class CurrencyHelper(object):
 

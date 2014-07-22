@@ -8,10 +8,14 @@ class Representation(models.Model):
         primary_key=True
     )
 
-    photo_use = models.CharField(
-        verbose_name='Uso de la foto',
+    ppi = models.DateField(
+        verbose_name='PPI',
         null=True,
-        max_length=200
+    )
+
+    ppg = models.DateField(
+        verbose_name='PPG',
+        null=True,
     )
 
     type_event = models.ForeignKey(
