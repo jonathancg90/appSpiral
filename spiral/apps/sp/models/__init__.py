@@ -7,7 +7,8 @@ from apps.sp.models.Country import Country
 from apps.sp.models.City import City
 from apps.sp.models.ContryHasContract import CountryHasContract
 from apps.sp.models.Model import Model
-from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDetail
+from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDetail, \
+    ProjectDetailDeliveries
 from apps.sp.models.Feature import Feature
 from apps.sp.models.Feature import FeatureValue
 from apps.sp.models.Studio import Studio
@@ -56,5 +57,6 @@ __all__ = [
     'ProjectClientDetail',
     'Studio',
     'Extras',
-    'ExtrasDetailModel'
+    'ExtrasDetailModel',
+    'ProjectDetailDeliveries'
 ]

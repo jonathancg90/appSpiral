@@ -121,14 +121,16 @@ controllers.projectController = function($scope,
 
     var codeUpdate = contextData.codeUpdate,
         idUpdate = contextData.idUpdate;
+    debugger
 
-    updateProject();
+    updateProject(idUpdate);
 
     function updateProject(idUpdate){
-        var rpUpdateProject = commercialFactory.all(urlCommercial);
+        debugger
+        var url = urlDataUpdateProject.replace(':pk', idUpdate);
+        var rpUpdateProject = projectFactory.searchUrl(url);
         rpUpdateProject.then(function(data) {
-            $scope.commercials = data.commercial;
-            $scope.detailLoader = false;
+            debugger
         });
     }
 

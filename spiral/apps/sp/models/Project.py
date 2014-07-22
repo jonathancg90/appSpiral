@@ -148,6 +148,23 @@ class ProjectClientDetail(models.Model):
         app_label = 'sp'
 
 
+class ProjectDetailDeliveries(models.Model):
+    project = models.ForeignKey(
+        'Project',
+        verbose_name='Proyecto',
+        related_name='project_detail_deliveries_set',
+        null=True
+    )
+
+    delivery_date = models.DateField(
+        verbose_name=_(u'Fecha de entrega'),
+        null=False,
+    )
+
+    class Meta:
+        app_label = 'sp'
+
+
 class ProjectDetailStudio(models.Model):
 
     project = models.ForeignKey(

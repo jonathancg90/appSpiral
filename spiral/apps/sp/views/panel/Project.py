@@ -305,10 +305,16 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     model = Project
 
     def get_step(self):
-        pass
+        self.step_permissions = []
+        for permission in self.permissions:
+            result = self.user.has_perm(permission.get('permission'))
+            if result:
+                self.step_permissions.append(permission.get('step'))
+        step = self.step_permissions.sort()
+        return step[0]
 
     def get_deliveries(self):
-        pass
+        self.project.de
 
     def get_detail_model(self):
         pass
@@ -320,9 +326,6 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         pass
 
     def get_payment(self):
-        pass
-
-    def get_line(self):
         pass
 
     def get_commercial(self):
@@ -340,7 +343,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_data_project(self):
         project = {
             "step": self.get_step(),
-            "line":  self.get_line(),
+            "line":  self.line,
             "deliveries": self.get_deliveries(),
             "detailModel": self.get_detail_model(),
             "conditions":  self.get_conditions(),
@@ -378,22 +381,22 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 'permission': 'change_projectdetailstaff'
             }
         ]
-        if self.line == Project.LINE_EXTRA:
+        if self.line.get('id') == Project.LINE_EXTRA:
             permissions.append({
                 'step': 2,
                 'permission': 'change_extrasdetailmodel'
             })
-        if self.line == Project.LINE_CASTING:
+        if self.line.get('id') == Project.LINE_CASTING:
             permissions.append({
                 'step': 2,
                 'permission': 'change_castingdetailmodel'
             })
-        if self.line == Project.LINE_PHOTO:
+        if self.line.get('id') == Project.LINE_PHOTO:
             permissions.append({
                 'step': 2,
-                'permission': ''
+                'permission': 'change_photocastingdetailmodel'
             })
-        if self.line == Project.LINE_REPRESENTATION:
+        if self.line.get('id') == Project.LINE_REPRESENTATION:
             permissions.append({
                 'step': 2,
                 'permission': 'change_representationdetailmodel'
@@ -402,9 +405,12 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def set_attributes(self):
         self.user = self.request.user
-        self.project = Project.objects.get(pk=1)
-        self.line = self.project.line_productions
-        self.permission = self.get_permissions()
+        self.project = Project.objects.get(pk=self.kwargs.get('pk'))
+        self.line = {
+            'id': self.project.line_productions,
+            'name': self.project.get_line_productions_display()
+        }
+        self.permissions = self.get_permissions()
 
     def get(self, request, *args, **kwargs):
         context = {}
