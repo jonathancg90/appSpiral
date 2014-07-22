@@ -17,6 +17,7 @@ chosen.directive('chosen', function() {
                 elem.trigger('liszt:updated');
             });
             elem.chosen({ width: attrs['width']});
+
         }
     };
 });

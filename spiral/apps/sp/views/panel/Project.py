@@ -19,9 +19,14 @@ from apps.sp.views.panel.Casting import CastingSaveProcess
 from apps.sp.views.panel.Extra import ExtraSaveProcess
 from apps.sp.views.panel.Representation import RepresentationSaveProcess
 from apps.sp.views.panel.PhotoCasting import PhotoCastingSaveProcess
-from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDetail
+from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDetail, \
+    ProjectDetailDeliveries
 from apps.sp.forms.Project import ProjectFiltersForm
 from django.views.generic import View
+from apps.sp.models.Casting import Casting
+from apps.sp.models.Extras import Extras
+from apps.sp.models.PhotoCasting import PhotoCasting
+from apps.sp.models.Representation import Representation
 
 
 class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -204,6 +209,7 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         project.line_productions = self.data_project.get('line_productions')
         project.save()
         self.save_clients(project)
+        self.save_delivery_dates(project)
         return project
 
     def format_date(self, date):
@@ -225,6 +231,13 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         else:
             return 1
         return code
+
+    def save_delivery_dates(self, project):
+        for delivery in self.data_deliveries:
+            project_delivery = ProjectDetailDeliveries()
+            project_delivery.project = project
+            project_delivery.delivery_date = self.format_date(delivery.get('date'))
+            project_delivery.save()
 
     def save_clients(self, project):
         type_director = TypeClient.objects.get(name='Realizadora')
@@ -259,20 +272,12 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             )
             client_detail.save()
 
-    def save_extra(self, project):
-        pass
-
-    def save_photo(self, project):
-        pass
-
-    def save_representation(self, project):
-        pass
-
     def set_attributes(self, data):
         self.data_project = data.get('project')
         self.data_line = data.get('line')
         self.data_client = data.get('client')
         self.data_commercial = data.get('commercial')
+        self.data_deliveries = data.get('deliveries')
         self.data_models = data.get('models')
         self.data_resources = data.get('resources')
         self.data_payment = data.get('payment')
@@ -303,6 +308,9 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                                 JSONResponseMixin, View):
 
     model = Project
+    PRODUCTOR = 'Productora'
+    AGENCY = 'Agencia'
+    DIRECTOR = 'Realizadora'
 
     def get_step(self):
         self.step_permissions = []
@@ -310,61 +318,205 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             result = self.user.has_perm(permission.get('permission'))
             if result:
                 self.step_permissions.append(permission.get('step'))
-        step = self.step_permissions.sort()
-        return step[0]
+        self.step_permissions.sort()
+        return self.step_permissions
 
     def get_deliveries(self):
-        self.project.de
+        data=[]
+        detail_deliveries = ProjectDetailDeliveries.objects.filter(project=self.project)
+        for delivery in detail_deliveries:
+            data.append({
+                'date': delivery.delivery_date.strftime("%d/%m/%Y"),
+            })
+        return data
 
     def get_detail_model(self):
-        pass
+        data = []
+        if self.line.get('id') == Project.LINE_EXTRA:
+            details = self.line_project.extras_detail_model_set.all()
+            for detail in details:
+                data.append({
+                    'cant': detail.quantity,
+                    'profile': detail.profile,
+                    'feature': detail.feature,
+                    'character': {
+                        'id': detail.character,
+                        'name': detail.get_character_display()
+                    },
+                    'currency': {
+                        'symbol': detail.currency.symbol,
+                        'id': detail.currency.id
+                    },
+                    'budget_cost': detail.budget_cost,
+                    'schedule': detail.schedule
+                })
+
+        if self.line.get('id') == Project.LINE_CASTING:
+            details = self.line_project.casting_detail_model_set.all()
+            for detail in details:
+                data.append({
+                    'cant': detail.quantity,
+                    'profile': detail.profile,
+                    'feature': detail.feature,
+                    'character': {
+                        'id': detail.character,
+                        'name': detail.get_character_display()
+                    },
+                    'type': self.get_types(detail.type_casting.all()),
+                    'scene': detail.scene,
+                    'budget': detail.budget
+                })
+
+        if self.line.get('id') == Project.LINE_PHOTO:
+            details = self.line_project.photo_casting_detail_model_set.all()
+            for detail in details:
+                data.append({
+                    'cant': detail.quantity,
+                    'profile': detail.profile,
+                    'feature': detail.feature,
+                    'character': {
+                        'id': detail.character,
+                        'name': detail.get_character_display()
+                    },
+                    'currency': {
+                        'symbol': detail.currency.symbol,
+                        'id': detail.currency.id
+                    },
+                    'budget_cost': detail.budget_cost
+                })
+
+        if self.line.get('id') == Project.LINE_REPRESENTATION:
+            details = self.line_project.representation_detail_model_set.all()
+            for detail in details:
+                data.append({
+                    'profile': detail.profile,
+                    'model_name': detail.model.name_complete,
+                    'model': {
+                        'document': detail.model.get_type_document_display() + + detail.model.number_doc,
+                        'id': detail.model.id,
+                        'name': detail.model.name_complete,
+                    },
+                    'character': {
+                        'id': detail.character,
+                        'name': detail.get_character_display()
+                    },
+                    'observations': detail.observations
+                })
+        return data
+
+    def get_types(self, types):
+        data = []
+        for type in types:
+            data.append({
+                'id': type.id,
+                'name': type.name
+            })
+        return data
+
 
     def get_conditions(self):
-        pass
+        try:
+            payment = Payment.objects.get(project=self.project)
+            return json.loads(payment.conditions)
+        except:
+            return {}
 
     def get_detail_staff(self):
-        pass
+        data = []
+        try:
+            detail_staff = ProjectDetailStaff.objects.filter(project=self.project)
+            for staff in detail_staff:
+                data.append({
+                    'role': {
+                        'id':  staff.role,
+                        'name':  staff.get_role_display()
+                    },
+                    'employee': {
+                        'id': staff.employee,
+                    },
+                    'percentage': int(staff.percentage),
+                    'budget': float(staff.budget),
+                    'total': float((staff.budget * staff.percentage)/100)
+                })
+        except:
+            return data
+        return data
 
     def get_payment(self):
-        pass
+        try:
+            payment = Payment.objects.get(project=self.project)
+            return {
+                'client': {
+                    'type': self.get_types(payment.client.type_client.all()),
+                    'id': payment.client.id,
+                    'name': payment.client.name
+                },
+                'currency': {
+                    'symbol': self.project.currency.symbol,
+                    'id': self.project.currency.id
+                }
+            }
+        except:
+            return {}
 
     def get_commercial(self):
-        pass
+        commercial = self.project.commercial
+        date_detail = CommercialDateDetail.objects.filter(commercial=commercial)
+        dates = []
+        for detail in date_detail:
+            dates.append({
+                'id': detail.id,
+                'date': detail.date.strftime("%d/%m/%Y")
+            })
+        data = {
+            'id': commercial.id,
+            'name': commercial.name,
+            'dates': dates
+        }
 
-    def start_production(self):
-        pass
+        return data
 
-    def get_finish_production(self):
-        pass
-
-    def get_observation(self):
-        pass
+    def get_client(self, type):
+        try:
+            type_client = TypeClient.objects.get(name=type)
+            client_detail = ProjectClientDetail.objects.get(type=type_client, project=self.project)
+            return {
+                'id': client_detail.client.id,
+                'name': client_detail.client.name,
+                'type': self.get_types(client_detail.client.type_client.all())
+            }
+        except Exception, e:
+            return {}
 
     def get_data_project(self):
+
         project = {
-            "step": self.get_step(),
+            "permission_steps": self.get_step(),
+            "step": 1,
             "line":  self.line,
             "deliveries": self.get_deliveries(),
             "detailModel": self.get_detail_model(),
             "conditions":  self.get_conditions(),
+            "productor": self.get_client(self.PRODUCTOR),
+            "agency": self.get_client(self.AGENCY),
+            "director": self.get_client(self.DIRECTOR),
             "detailStaff": self.get_detail_staff(),
             "payment": self.get_payment(),
             "commercial":  self.get_commercial(),
-            "startProduction":  self.start_production(),
-            "finishProduction": self.get_finish_production(),
-            "observation": self.get_observation()
+            "startProduction":  self.project.start_productions.strftime("%d/%m/%Y"),
+            "finishProduction": self.project.end_productions.strftime("%d/%m/%Y"),
+            "observation": self.project.observations
         }
 
-        if self.line == Project.LINE_CASTING:
-            data_casting = self.get_casting()
+        if self.line.get('id') == Project.LINE_CASTING:
             project.update({
-                "typeCasting": data_casting.get('typeCasting'),
-                "ppi": data_casting.get('ppi'),
-                "ppg": data_casting.get('ppg')
+                "typeCasting": self.get_types(self.line_project.type_casting.all()),
+                "ppi": self.line_project.ppi.strftime("%d/%m/%Y") if self.line_project.ppi is not None else [],
+                "ppg": self.line_project.ppg.strftime("%d/%m/%Y") if self.line_project.ppg is not None else [],
+                "internalBudget": float(self.project.budget),
+                "budget": float(self.project.budget_cost)
             })
-
-    def get_casting(self):
-        pass
+        return project
 
     def get_permissions(self):
         permissions = [
@@ -386,21 +538,25 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 'step': 2,
                 'permission': 'change_extrasdetailmodel'
             })
+            self.line_project = Extras.objects.get(project=self.project)
         if self.line.get('id') == Project.LINE_CASTING:
             permissions.append({
                 'step': 2,
                 'permission': 'change_castingdetailmodel'
             })
+            self.line_project = Casting.objects.get(project=self.project)
         if self.line.get('id') == Project.LINE_PHOTO:
             permissions.append({
                 'step': 2,
                 'permission': 'change_photocastingdetailmodel'
             })
+            self.line_project = PhotoCasting.objects.get(project=self.project)
         if self.line.get('id') == Project.LINE_REPRESENTATION:
             permissions.append({
                 'step': 2,
                 'permission': 'change_representationdetailmodel'
             })
+            self.line_project = Representation.objects.get(project=self.project)
         return permissions
 
     def set_attributes(self):

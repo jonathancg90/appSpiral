@@ -32,7 +32,11 @@ controllers.menuController = function($scope,
 
         $rootScope.$broadcast('changeLine', { value: option });
         $rootScope.$broadcast('setLine', { });
-    }
+    };
+    $scope.$on('updateLine', function(event, args) {
+         var line = args.line;
+         $scope.changeLine(line);
+    });
 };
 
 

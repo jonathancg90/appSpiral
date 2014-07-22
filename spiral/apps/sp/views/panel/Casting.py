@@ -54,6 +54,7 @@ class CastingSaveProcess(View):
             casting_detail_model.feature = detail.get('feature')
             casting_detail_model.character = detail.get('character').get('id')
             casting_detail_model.scene = detail.get('scene')
+            casting_detail_model.budget = detail.get('budget')
             casting_detail_model.save()
 
             for type in detail.get('type'):

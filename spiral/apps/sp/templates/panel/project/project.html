@@ -1,4 +1,4 @@
-project: {[{  project_service }]}
+{#project: {[{  project_service }]}#}
 <form class="form-horizontal" id="sample-form">
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Comercial</label>
@@ -7,7 +7,6 @@ project: {[{  project_service }]}
                 <select id="chosen1" chosen="commercials" class="form-control span12"
                         ng-model="project_service.commercial"
                         ng-options="commercial.name for commercial in commercials"
-                        ng-change="updateDate()"
                         required>
                     <option value="">-- Elige un comercial --</option>
                 </select>

@@ -104,6 +104,12 @@ class CastingDetailModel(models.Model):
         null=True
     )
 
+    budget = models.DecimalField(
+        verbose_name='Presupuesto',
+        max_digits=10,
+        decimal_places=2
+    )
+
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False
@@ -114,7 +120,7 @@ class CastingDetailModel(models.Model):
     )
 
     def __unicode__(self):
-        return self.name
+        return '%s %s' %(self.quantity, self.profile)
 
     class Meta:
         app_label = 'sp'

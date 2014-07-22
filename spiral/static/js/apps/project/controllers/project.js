@@ -25,6 +25,7 @@ controllers.projectController = function($scope,
     $scope.clientsAgency = [];
     $scope.clientsDirector = [];
     $scope.detailLoader = true;
+    $scope.loadDetail = false;
 
     //-----------------------------------------------
 
@@ -38,7 +39,8 @@ controllers.projectController = function($scope,
                 'line': dataLine(),
                 'models': $scope.project_service.detailModel,
                 'payment': dataPayment(),
-                'resources': $scope.project_service.detailStaff
+                'resources': $scope.project_service.detailStaff,
+                'deliveries': $scope.project_service.deliveries
             };
             var url = urlProjectSave;
             if($scope.project_service.project_id != undefined){
@@ -114,26 +116,6 @@ controllers.projectController = function($scope,
         urlDataUpdateProject = factoryUrl.urlDataUpdateProject,
         urlProjectSave = factoryUrl.projectSaveUrl;
 
-
-    //-----------------------------------------------
-    //Update
-    //-----------------------------------------------
-
-    var codeUpdate = contextData.codeUpdate,
-        idUpdate = contextData.idUpdate;
-    debugger
-
-    updateProject(idUpdate);
-
-    function updateProject(idUpdate){
-        debugger
-        var url = urlDataUpdateProject.replace(':pk', idUpdate);
-        var rpUpdateProject = projectFactory.searchUrl(url);
-        rpUpdateProject.then(function(data) {
-            debugger
-        });
-    }
-
     //-----------------------------------------------
     //Request Methods
     //-----------------------------------------------
@@ -180,6 +162,93 @@ controllers.projectController = function($scope,
         $scope.realizers = data.realized;
     });
 
+    //-----------------------------------------------
+    //Update
+    //-----------------------------------------------
+
+    $scope.$watch('detailLoader', function(newValue, oldValue){
+        if(newValue != oldValue){
+            var codeUpdate = contextData.codeUpdate,
+                idUpdate = contextData.idUpdate;
+            if(newValue == false)
+                updateProject(idUpdate, codeUpdate);
+        }
+    });
+
+    function updateProject(idUpdate, codeUpdate){
+        if(idUpdate == 0)
+            return;
+        var url = urlDataUpdateProject.replace(':pk', idUpdate);
+        var rpUpdateProject = projectFactory.searchUrl(url);
+        rpUpdateProject.then(function(data) {
+
+            data.result.codeUpdate = codeUpdate;
+            projectService.set_result(data.result);
+
+            $rootScope.$broadcast('updateLine', {'line':$scope.project_service.line});
+            $scope.$watch('loadDetail', function(newValue, oldValue){
+                if(newValue){
+                    processUpdate(data.result);
+                }
+            });
+        });
+    };
+
+    function processUpdate(result){
+        angular.forEach($scope.commercials, function(value, key) {
+            if($scope.project_service.commercial.id == value.id) {
+                $scope.project_service.commercial =  value;
+            }
+        });
+        angular.forEach($scope.clientsProductor, function(value, key) {
+            if(result.productor.id == value.id) {
+                $scope.project_service.productor =  value;
+            }
+        });
+        angular.forEach($scope.clientsAgency, function(value, key) {
+            if(result.agency.id == value.id) {
+                $scope.project_service.agency =  value;
+            }
+        });
+        angular.forEach($scope.clientsDirector, function(value, key) {
+            if(result.director.id == value.id) {
+                $scope.project_service.director =  value;
+            }
+        });
+        angular.forEach($scope.typeCasting, function(value_list, key_list) {
+            angular.forEach(result.typeCasting, function(value, key) {
+                if(value.id == value_list.id) {
+                    $scope.project_service.typeCasting.push(value_list);
+                }
+            });
+        });
+        angular.forEach($scope.clients, function(value, key) {
+            if(result.payment.client.id == value.id) {
+                $scope.project_service.payment.client =  value;
+            }
+        });
+        angular.forEach($scope.coins, function(value, key) {
+            if(result.payment.currency.id == value.id) {
+                $scope.project_service.payment.currency =  value;
+            }
+        });
+        angular.forEach($scope.project_service.detailStaff, function(value, key) {
+            angular.forEach($scope.realizers, function(value_realizer, key_realizer) {
+                if(value.employee.id == value_realizer.id_emp) {
+                    $scope.project_service.detailStaff[key].employee.last_name = value_realizer.last_name;
+                    $scope.project_service.detailStaff[key].employee.name = value_realizer.name;
+                }
+            });
+            angular.forEach($scope.productors, function(value_productor, key_productor) {
+                if(value.employee.id == value_productor.id_emp) {
+                    $scope.project_service.detailStaff[key].employee.last_name = value_productor.last_name;
+                    $scope.project_service.detailStaff[key].employee.name = value_productor.name;
+                }
+            });
+
+
+        });
+    }
 
     //-----------------------------------------------
     //Project
@@ -194,8 +263,8 @@ controllers.projectController = function($scope,
         }
     };
     //Busqueda de modelos a travez de un input
-    $scope.$watch('castDetailModel.model_name', function(newValue, oldValue){
-        if(newValue != oldValue){
+    $scope.$watch('castDetailModel.model_name', function(newValue, oldValue) {
+        if(newValue != oldValue) {
             var model = getModelById(newValue);
             $scope.castDetailModel.model_name = model.name;
             $scope.castDetailModel.model = model;
@@ -261,6 +330,7 @@ controllers.projectController = function($scope,
 
     //Agrega detalle de staff
     $scope.addDetailStaff = function(addDetailStaff){
+        addDetailStaff.total = addDetailStaff.percent * addDetailStaff.budget;
         $scope.project_service.detailStaff.push(addDetailStaff);
         $scope.detailStaff = {}
     };
@@ -342,8 +412,10 @@ controllers.projectController = function($scope,
         var rpTypePhotoCasting = projectFactory.searchUrl(urlPhotoCastingType);
         rpTypePhotoCasting.then(function(data) {
             $scope.types = data.types;
+            $scope.$scope.loadDetail = true;
         });
     }
+
     //-----------------------------------------------
     //Representation
     //-----------------------------------------------
@@ -357,6 +429,7 @@ controllers.projectController = function($scope,
         var rpCharacterRepresentation = projectFactory.searchUrl(urlCharacterRepresentation);
         rpCharacterRepresentation.then(function(data) {
             $scope.characters = data.character;
+            $scope.loadDetail = true;
         });
     }
 
@@ -378,8 +451,7 @@ controllers.projectController = function($scope,
             }
         });
         return result;
-    };
-
+    }
 
     //-----------------------------------------------
     //Extra
@@ -389,6 +461,7 @@ controllers.projectController = function($scope,
         var rpCharacterExtra = projectFactory.searchUrl(urlCharacterExtra);
         rpCharacterExtra.then(function(data) {
             $scope.characters = data.character;
+            $scope.loadDetail = true;
         });
     }
 
@@ -401,10 +474,12 @@ controllers.projectController = function($scope,
             $scope.characters = data.character;
         });
     }
+
     function getTypeCasting(){
         var rpTypeCasting = projectFactory.searchUrl(urlTypeCasting);
         rpTypeCasting.then(function(data) {
             $scope.typeCasting = data.type;
+            $scope.loadDetail = true;
         });
     }
 

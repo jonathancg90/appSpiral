@@ -10,6 +10,7 @@
                 <th class="hidden-480">Carracteristicas</th>
                 <th class="hidden-480">Personaje</th>
                 <th>Tipo de casting</th>
+                <th>Presupuesto</th>
                 <th>Escena</th>
                 <th>Opciones</th>
             </tr>
@@ -34,6 +35,9 @@
                         <span ng-repeat="type in detail.type">
                             {[{ type.name }]} |
                         </span>
+                    </td>
+                    <td class="hidden-480">
+                        <span class="label label-warning">{[{ detail.budget }]}</span>
                     </td>
                     <td class="hidden-480">
                         <span class="label label-warning">{[{ detail.scene }]}</span>
@@ -293,6 +297,13 @@
                                             ng-options="type.name for type in typeCasting">
                                         <option value="">-- Elige un tipo de casting --</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Presupuesto de pago</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="Monto de pago" ng-model="castDetailModel.budget" />
                                 </div>
                             </div>
                             <div class="control-group">
