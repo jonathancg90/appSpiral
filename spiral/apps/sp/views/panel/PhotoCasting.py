@@ -4,7 +4,7 @@ from django.views.generic import View
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.models.PhotoCasting import TypePhotoCasting, PhotoCasting,\
-    PhotoCastingDetailModel
+    PhotoCastingDetailModel, UsePhotos
 
 
 class TypePhotoCastingDataList(LoginRequiredMixin, PermissionRequiredMixin,
@@ -28,6 +28,27 @@ class TypePhotoCastingDataList(LoginRequiredMixin, PermissionRequiredMixin,
         return self.render_to_response(context)
 
 
+class UsePhotoDataList(LoginRequiredMixin, PermissionRequiredMixin,
+                       JSONResponseMixin, View):
+
+    model = UsePhotos
+
+    def get_uses(self):
+        data = []
+        uses = UsePhotos.objects.filter(status=TypePhotoCasting.STATUS_ACTIVE)
+        for use in uses:
+            data.append({
+                'id': use.id,
+                'name': use.name
+            })
+        return data
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        context['uses'] = self.get_uses()
+        return self.render_to_response(context)
+
+
 class PhotoCastingSaveProcess(View):
     data_line = {}
     data_models = {}
@@ -36,11 +57,16 @@ class PhotoCastingSaveProcess(View):
         return date
 
     def save_photo(self, project):
+        type_casting = None
+        if self.data_line.get('type_casting') is not None:
+            type_casting = TypePhotoCasting.objects.get(pk=self.data_line.get('type_casting'))
         photo_casting = PhotoCasting()
         photo_casting.project = project
-        photo_casting.use_photo = self.data_line.get('photo_use')
-        photo_casting.type_casting = self.data_line.get('type_casting')
+        photo_casting.type_casting = type_casting
         photo_casting.save()
+        for use in  self.data_line.get('uses'):
+            photo_casting.use_photo.add(UsePhotos.objects.get(pk=use.get('id')))
+
         return photo_casting
 
     def save_detail_model_photo(self, project_line):

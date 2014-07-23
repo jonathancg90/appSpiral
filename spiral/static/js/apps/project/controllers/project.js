@@ -89,6 +89,7 @@ controllers.projectController = function($scope,
         if(line.name == 'Foto'){
             getCharacterCasting();
             getTypeCastingPhotoCasting();
+            getUsePhotoCasting();
             $scope.lineFotos = true;
         }
     });
@@ -113,6 +114,7 @@ controllers.projectController = function($scope,
         urlSearchModel = factoryUrl.urlSearchModel,
         urlCharacterRepresentation = factoryUrl.urlCharacterRepresentation,
         urlPhotoCastingType = factoryUrl.urlPhotoCastingType,
+        urlUsePhoto = factoryUrl.urlUsePhoto,
         urlProjectUpdate = factoryUrl.urlProjectUpdate,
         urlDataUpdateProject = factoryUrl.urlDataUpdateProject,
         urlProjectSave = factoryUrl.projectSaveUrl;
@@ -425,6 +427,13 @@ controllers.projectController = function($scope,
         });
     }
 
+    function getUsePhotoCasting(){
+        var rpUsePhotos= projectFactory.searchUrl(urlUsePhoto);
+        rpUsePhotos.then(function(data) {
+            $scope.photoUses = data.uses;
+        });
+    }
+
     //-----------------------------------------------
     //Representation
     //-----------------------------------------------
@@ -700,6 +709,7 @@ controllers.projectController = function($scope,
 
             return  {
                 'type_event': event_id,
+                'uses':  $scope.project_service.use,
                 'ppi': $scope.project_service.ppi,
                 'ppg': $scope.project_service.ppg
             }

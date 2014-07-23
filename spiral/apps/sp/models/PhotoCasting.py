@@ -13,9 +13,10 @@ class PhotoCasting(models.Model):
         verbose_name='Uso de las fotos',
     )
 
-    type_casting = models.ManyToManyField(
+    type_casting = models.ForeignKey(
         'TypePhotoCasting',
         verbose_name='Tipo de casting',
+        related_name='photo_casting_set',
     )
 
     class Meta:
