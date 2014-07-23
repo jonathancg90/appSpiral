@@ -28,27 +28,29 @@ projectApp.service('projectService', function() {
         self.ppg = result.ppg;
         self.budget = result.budget;
         self.internalBudget = result.internalBudget;
-    }
+    };
 
-    self.clean = function(){
+    self.clean = function(line){
         self.deliveries = [];
         self.detailModel = [];
         self.detailStaff = [];
         self.conditions = [];
         self.payment = {};
-        self.line = {};
+        self.line = line;
         self.productor = {};
         self.agency = {};
         self.director = {};
-        self.commercial = {};
-        self.startProduction = '';
-        self.finishProduction = '';
-        self.observation = '';
-        self.project_code = '';
+        self.commercial = {
+            'name': ''
+        };
+        self.startProduction = undefined;
+        self.finishProduction = undefined;
+        self.observation = undefined;
+        self.project_code = undefined;
         self.typeCasting = {};
-        self.ppi = '';
-        self.ppg = '';
-        self.budget = '';
-        self.internalBudget = '';
+        self.ppi = undefined;
+        self.ppg = undefined;
+        self.budget = undefined;
+        self.internalBudget = undefined;
     }
 });

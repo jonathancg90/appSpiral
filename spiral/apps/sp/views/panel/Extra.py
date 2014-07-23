@@ -48,7 +48,7 @@ class ExtraSaveProcess(View):
             extra_detail_model.profile = detail.get('profile')
             extra_detail_model.feature = detail.get('feature')
             extra_detail_model.character = detail.get('character').get('id')
-            extra_detail_model.currency = detail.get('currency')
+            extra_detail_model.currency_id = detail.get('currency').get('id')
             extra_detail_model.budget = detail.get('budget')
             extra_detail_model.budget_cost = detail.get('budget_cost')
             extra_detail_model.schedule = detail.get('schedule')

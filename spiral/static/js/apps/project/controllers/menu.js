@@ -29,6 +29,8 @@ controllers.menuController = function($scope,
 
     $scope.changeLine = function(option){
         $scope.lineSelected = ' >> ' + option.name;
+        $scope.project_code = '';
+        projectService.clean(option);
 
         $rootScope.$broadcast('changeLine', { value: option });
         $rootScope.$broadcast('setLine', { });

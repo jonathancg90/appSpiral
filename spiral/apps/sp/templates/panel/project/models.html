@@ -192,6 +192,8 @@
                         <th>Perfil</th>
                         <th class="hidden-480">Carracteristicas</th>
                         <th class="hidden-480">Personaje</th>
+                        <th class="hidden-480">Moneda</th>
+                        <th class="hidden-480">Presupuesto</th>
                         <th>Observaciones</th>
                         <th>Opciones</th>
                     </tr>
@@ -205,14 +207,20 @@
                         <td>
                             {[{ detail.profile }]}
                         </td>
-                        <td class="hidden-480">
+                        <td >
                             {[{ detail.feature }]}
                         </td>
-                        <td class="hidden-phone">
+                        <td >
                             {[{ detail.character.name }]}
                         </td>
+                        <td>
+                            {[{ detail.currency.symbol }]}
+                        </td>
+                        <td>
+                            {[{ detail.budget }]}
+                        </td>
 
-                        <td class="hidden-480">
+                        <td>
                             {[{ detail.observations }]}
                         </td>
 
@@ -485,7 +493,7 @@
     </div>
 </div>
 
-<!-- Modal Representation Model-->
+<!-- Modal Foto Casting-->
 <div class="modal fade" id="modalCreatePhotoDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -529,6 +537,24 @@
                                             required>
                                         <option value="">-- Elige un personaje --</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Moneda</label>
+
+                                <div class="controls">
+                                    <select id="chosenBrand" class="form-control"
+                                            ng-model="castDetailModel.currency"
+                                            ng-options="coin.symbol for coin in coins">
+                                        <option value="">-- Elige tipo de moneda --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Monto de pago</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="Monto de pago" ng-model="castDetailModel.budget_cost" />
                                 </div>
                             </div>
                             <div class="control-group">

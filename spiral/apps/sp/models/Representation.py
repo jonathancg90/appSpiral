@@ -22,6 +22,7 @@ class Representation(models.Model):
         'TypeEvent',
         verbose_name='Tipo de evento',
         related_name='representation_set',
+        null=True
     )
 
     class Meta:

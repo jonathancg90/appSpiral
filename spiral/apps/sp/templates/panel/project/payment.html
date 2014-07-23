@@ -47,6 +47,7 @@
             <label class="control-label" for="inputInfo">Condiciones de pago</label>
             <div class="controls">
                 <span class="span6 input-icon input-icon-right">
+                    {[{   }]}
                     <input class="span12" type="text" id="inputCondition" placeholder="Condicion de pago" ng-model="newCondition"/>
                 </span>
                 <span class="span6 input-icon input-icon-right">
@@ -272,40 +273,4 @@
                 </div>
             </div>
         </form>
-
-        <hr/>
-    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>Cantidad</th>
-            <th>Descripcion</th>
-            <th>Moneda</th>
-            <th>Presupuesto</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr ng-repeat="detail in project_service.detailModel">
-            <td>
-                {[{ detail.cant }]}
-            </td>
-            <td>
-                {[{ detail.profile }]}  {[{ detail.feature }]} | {[{ detail.character.name }]}
-            </td>
-
-            <td>
-                <select id="chosenBrand" class="form-control"
-                        ng-model="detail.currency"
-                        ng-options="coin.symbol for coin in coins">
-                    <option value="">-- Elige tipo de moneda --</option>
-                </select>
-            </td>
-            <td>
-                <input type="text" placeholder="Presupuesto" ng-model="detail.budget" />
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-
 </span>

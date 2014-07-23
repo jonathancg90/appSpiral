@@ -1,4 +1,4 @@
-{#project: {[{  project_service }]}#}
+project: {[{  project_service }]}
 <form class="form-horizontal" id="sample-form">
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Comercial</label>
@@ -167,11 +167,23 @@
         </div>
 
         <div class="control-group info">
-            <label class="control-label" for="inputInfo">Uso de la foto</label>
+            <label class="control-label" for="inputInfo">PPI</label>
             <div class="controls">
-            <span class="span6 input-icon input-icon-right">
-                <textarea id="form-field-11" class="autosize-transition span12"  ng-model="project_service.use_photo"></textarea>
-            </span>
+                <span class="span6 input-icon input-icon-right">
+                    <input class="span12" type="text" date-picker id="inputPpi"  ng-model="project_service.ppi" placeholder="dd/mm/yy"/>
+                </span>
+                <span class="span6">
+                </span>
+            </div>
+        </div>
+        <div class="control-group info">
+            <label class="control-label" for="inputInfo">PPG</label>
+            <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <input class="span12" type="text" date-picker id="inputPpg"  ng-model="project_service.ppg" placeholder="dd/mm/yy"/>
+                </span>
+                <span class="span6">
+                </span>
             </div>
         </div>
     </div>

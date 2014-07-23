@@ -7,6 +7,7 @@ from apps.sp.models.City import City
 from apps.sp.models.Currency import Currency
 from apps.sp.models.Client import TypeClient
 from apps.sp.models.Casting import TypeCasting
+from apps.sp.models.Representation import TypeEvent
 from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.Client import Client
 from apps.sp.models.Brand import Brand
@@ -106,6 +107,17 @@ class TypeCastingHelper(object):
             type_casting.save()
 
 
+class TypeEventHelper(object):
+
+    def insert_data(self):
+        names = ['Foto', 'Comercial',
+                 'Evento', 'Reposicion']
+        for name in names:
+            type_event = TypeEvent()
+            type_event.name = name
+            type_event.save()
+
+
 class TypePhotoCastingHelper(object):
 
     def insert_data(self):
@@ -114,6 +126,7 @@ class TypePhotoCastingHelper(object):
             type_photo_casting = TypePhotoCasting()
             type_photo_casting.name = name
             type_photo_casting.save()
+
 
 class CurrencyHelper(object):
 
@@ -152,8 +165,7 @@ class DataTestHelper(object):
             client_director.save()
             client_director.type_client.add(TypeClient.objects.get(name='Realizadora'))
 
-
-    if not Client.objects.filter(name='Agencia').exists():
+        if not Client.objects.filter(name='Agencia').exists():
             client_agency = Client()
             client_agency.name = 'Agencia'
             client_agency.ruc = '12555678901'

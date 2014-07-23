@@ -50,10 +50,11 @@ controllers.projectController = function($scope,
             var rpSaveProject = projectFactory.save(url, data);
             rpSaveProject.then(function(data) {
                 if(data.status == 'success'){
-                    $scope.flashMessage = data.message + ' : '+ data.result.code;
+                    $scope.project_service.project_code = data.result.code;
+                    $scope.project_service.project_id = data.result.id;
+                    data.message = data.message + ' : '+ data.result.code;
                 }
-                $scope.project_service.project_code = data.result.code;
-                $scope.project_service.project_id = data.result.id;
+                $scope.flashMessage = data.message;
                 $scope.flashType = data.status;
             });
         } else {
@@ -181,20 +182,22 @@ controllers.projectController = function($scope,
         var url = urlDataUpdateProject.replace(':pk', idUpdate);
         var rpUpdateProject = projectFactory.searchUrl(url);
         rpUpdateProject.then(function(data) {
+            $rootScope.$broadcast('updateLine', {'line':data.result.line});
 
             data.result.codeUpdate = codeUpdate;
             projectService.set_result(data.result);
-
-            $rootScope.$broadcast('updateLine', {'line':$scope.project_service.line});
+            $scope.project_service =projectService;
             $scope.$watch('loadDetail', function(newValue, oldValue){
                 if(newValue){
                     processUpdate(data.result);
                 }
             });
         });
-    };
+    }
 
     function processUpdate(result){
+        $scope.project_service = projectService;
+
         angular.forEach($scope.commercials, function(value, key) {
             if($scope.project_service.commercial.id == value.id) {
                 $scope.project_service.commercial =  value;
@@ -222,16 +225,20 @@ controllers.projectController = function($scope,
                 }
             });
         });
-        angular.forEach($scope.clients, function(value, key) {
-            if(result.payment.client.id == value.id) {
-                $scope.project_service.payment.client =  value;
-            }
-        });
-        angular.forEach($scope.coins, function(value, key) {
-            if(result.payment.currency.id == value.id) {
-                $scope.project_service.payment.currency =  value;
-            }
-        });
+        if(result.payment.client != undefined){
+            angular.forEach($scope.clients, function(value, key) {
+                if(result.payment.client.id == value.id) {
+                    $scope.project_service.payment.client =  value;
+                }
+            });
+        }
+        if(result.payment.currency != undefined){
+            angular.forEach($scope.coins, function(value, key) {
+                if(result.payment.currency.id == value.id) {
+                    $scope.project_service.payment.currency =  value;
+                }
+            });
+        }
         angular.forEach($scope.project_service.detailStaff, function(value, key) {
             angular.forEach($scope.realizers, function(value_realizer, key_realizer) {
                 if(value.employee.id == value_realizer.id_emp) {
@@ -266,8 +273,10 @@ controllers.projectController = function($scope,
     $scope.$watch('castDetailModel.model_name', function(newValue, oldValue) {
         if(newValue != oldValue) {
             var model = getModelById(newValue);
-            $scope.castDetailModel.model_name = model.name;
-            $scope.castDetailModel.model = model;
+            if(model != undefined){
+                $scope.castDetailModel.model_name = model.name;
+                $scope.castDetailModel.model = model;
+            }
         }
     });
 
@@ -439,7 +448,12 @@ controllers.projectController = function($scope,
         };
         var rpSearchModel = projectFactory.searchPost(urlSearchModel, data);
         rpSearchModel.then(function(data) {
-            $scope.models = data.models;
+            if(data.status == 'success'){
+                $scope.models = data.models;
+            } else {
+                $scope.flashMessage = data.message;
+                $scope.flashType = data.status;
+            }
         });
     };
 
@@ -494,6 +508,28 @@ controllers.projectController = function($scope,
     $scope.updateCastingDetail = function(detail){
         $scope.castDetailModel = detail;
         $scope.setStatusSave(false);
+
+        if($scope.castDetailModel.character != undefined){
+            angular.forEach($scope.characters, function(value, key) {
+                if($scope.castDetailModel.character.id == value.id) {
+                    $scope.castDetailModel.character =  value;
+                }
+            });
+        }
+        if($scope.castDetailModel.type != undefined){
+            var data = [];
+            angular.forEach($scope.typeCasting, function(value_list, key_list) {
+                angular.forEach($scope.castDetailModel.type, function(value, key) {
+                    if(value.id == value_list.id) {
+                        data.push(value_list);
+                    }
+                });
+            });
+            $scope.castDetailModel.type = [];
+            angular.forEach(data, function(value, key) {
+                $scope.castDetailModel.type.push(value);
+            })
+        }
     };
 
 
@@ -653,16 +689,22 @@ controllers.projectController = function($scope,
                 'type_casting': $scope.project_service.typeCasting
             }
         }
-        if($scope.project_service.line == 'extras'){
+        if($scope.project_service.line.name == 'extra'){
             return  {}
         }
-        if($scope.project_service.line == 'representacion'){
+        if($scope.project_service.line.name == 'Representacion'){
+            var event_id = undefined;
+            if($scope.project_service.event != undefined){
+                event_id = $scope.project_service.event.id
+            }
+
             return  {
-                'photo_use': $scope.project_service.use_photo,
-                'type_event': $scope.project_service.event.id
+                'type_event': event_id,
+                'ppi': $scope.project_service.ppi,
+                'ppg': $scope.project_service.ppg
             }
         }
-        if($scope.project_service.line == 'fotos'){
+        if($scope.project_service.line.name == 'Foto'){
             return  {
                 'photo_use': $scope.project_service.use_photo,
                 'type_casting': $scope.project_service.type.id

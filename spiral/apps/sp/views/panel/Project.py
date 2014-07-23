@@ -156,10 +156,11 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             CommercialDateDetail.objects.filter(commercial=commercial).delete()
 
         for _commercial in self.data_commercial.get('dates'):
-            commercial_detail = CommercialDateDetail()
-            commercial_detail.commercial = commercial
-            commercial_detail.date = self.format_date(_commercial.get('date'))
-            commercial_detail.save()
+            if _commercial.get('date') != '' and _commercial.get('date')  != None:
+                commercial_detail = CommercialDateDetail()
+                commercial_detail.commercial = commercial
+                commercial_detail.date = self.format_date(_commercial.get('date'))
+                commercial_detail.save()
 
     def save_resources(self, project):
         for resources in self.data_resources:
@@ -347,7 +348,8 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                         'symbol': detail.currency.symbol,
                         'id': detail.currency.id
                     },
-                    'budget_cost': detail.budget_cost,
+                    'budget_cost': float(detail.budget_cost),
+                    'budget': float(detail.budget),
                     'schedule': detail.schedule
                 })
 
@@ -364,7 +366,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                     },
                     'type': self.get_types(detail.type_casting.all()),
                     'scene': detail.scene,
-                    'budget': detail.budget
+                    'budget': float(detail.budget)
                 })
 
         if self.line.get('id') == Project.LINE_PHOTO:
@@ -382,7 +384,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                         'symbol': detail.currency.symbol,
                         'id': detail.currency.id
                     },
-                    'budget_cost': detail.budget_cost
+                    'budget_cost': float(detail.budget_cost)
                 })
 
         if self.line.get('id') == Project.LINE_REPRESENTATION:
@@ -445,18 +447,22 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_payment(self):
         try:
             payment = Payment.objects.get(project=self.project)
-            return {
+            data = {
                 'client': {
                     'type': self.get_types(payment.client.type_client.all()),
                     'id': payment.client.id,
                     'name': payment.client.name
-                },
-                'currency': {
-                    'symbol': self.project.currency.symbol,
-                    'id': self.project.currency.id
                 }
             }
-        except:
+            if self.project.currency is not None:
+                data.update({
+                    'currency': {
+                    'symbol': self.project.currency.symbol,
+                    'id': self.project.currency.id
+                    }
+                })
+            return data
+        except Exception,e :
             return {}
 
     def get_commercial(self):

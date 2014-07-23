@@ -81,6 +81,7 @@
             <div class="loader" ng-show="detailLoader" ng-cloak class="ng-cloak">
                 <img src="{{ STATIC_URL }}admin/img/gif-load.gif" alt=""/>
             </div>
+            {[{ project_service.step }]}
             <div class="step-pane active" id="step1" ng-if="project_service.step == 1" ng-hide="detailLoader" ng-cloak class="ng-cloak">
                 {% include 'panel/project/project.html' %}
             </div>

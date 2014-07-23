@@ -59,8 +59,8 @@ class RepresentationSaveProcess(View):
     def save_representation(self, project):
         representation = Representation()
         representation.project = project
-        representation.photo_use = self.data_line.get('photo_use')
-        representation.type_event = self.data_line.get('type_event')
+        representation.ppi = self.data_line.get('ppi')
+        representation.ppg = self.data_line.get('ppg')
         representation.save()
         return representation
 
