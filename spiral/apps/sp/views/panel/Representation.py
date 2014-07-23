@@ -59,8 +59,9 @@ class RepresentationSaveProcess(View):
     def save_representation(self, project):
         representation = Representation()
         representation.project = project
-        representation.ppi = self.data_line.get('ppi')
-        representation.ppg = self.data_line.get('ppg')
+        representation.ppi = self.format_date(self.data_line.get('ppi'))
+        representation.ppg = self.format_date(self.data_line.get('ppg'))
+        representation.type_event = self.data_line.get('type_event')
         representation.save()
         return representation
 
