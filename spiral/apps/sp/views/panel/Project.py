@@ -522,6 +522,14 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 "internalBudget": float(self.project.budget),
                 "budget": float(self.project.budget_cost)
             })
+        if self.line.get('id') == Project.LINE_PHOTO:
+            project.update({
+                "type": {
+                    'id': self.line_project.type_casting.id,
+                    'name': self.line_project.type_casting.name
+                },
+                "use": self.get_types(self.line_project.use_photo.all()),
+            })
         return project
 
     def get_permissions(self):

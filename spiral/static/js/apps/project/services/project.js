@@ -28,6 +28,10 @@ projectApp.service('projectService', function() {
         self.ppg = result.ppg;
         self.budget = result.budget;
         self.internalBudget = result.internalBudget;
+
+        //Photo
+        self.type = result.type;
+        self.use = result.use;
     };
 
     self.clean = function(line){

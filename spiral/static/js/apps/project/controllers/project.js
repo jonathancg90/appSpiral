@@ -227,20 +227,6 @@ controllers.projectController = function($scope,
                 }
             });
         });
-        if(result.payment.client != undefined){
-            angular.forEach($scope.clients, function(value, key) {
-                if(result.payment.client.id == value.id) {
-                    $scope.project_service.payment.client =  value;
-                }
-            });
-        }
-        if(result.payment.currency != undefined){
-            angular.forEach($scope.coins, function(value, key) {
-                if(result.payment.currency.id == value.id) {
-                    $scope.project_service.payment.currency =  value;
-                }
-            });
-        }
         angular.forEach($scope.project_service.detailStaff, function(value, key) {
             angular.forEach($scope.realizers, function(value_realizer, key_realizer) {
                 if(value.employee.id == value_realizer.id_emp) {
@@ -257,6 +243,33 @@ controllers.projectController = function($scope,
 
 
         });
+        angular.forEach($scope.types, function(value, key) {
+            if($scope.project_service.type.id == value.id) {
+                $scope.project_service.type =  value;
+            }
+        });
+        angular.forEach($scope.photoUses, function(value_list, key_list) {
+            angular.forEach(result.use, function(value, key) {
+                if(value.id == value_list.id) {
+                    $scope.project_service.use.push(value_list);
+                }
+            });
+        });
+        if(result.payment.client != undefined){
+            angular.forEach($scope.clients, function(value, key) {
+                if(result.payment.client.id == value.id) {
+                    $scope.project_service.payment.client =  value;
+                }
+            });
+        }
+        if(result.payment.currency != undefined){
+            angular.forEach($scope.coins, function(value, key) {
+                if(result.payment.currency.id == value.id) {
+                    $scope.project_service.payment.currency =  value;
+                }
+            });
+        }
+
     }
 
     //-----------------------------------------------
@@ -423,7 +436,7 @@ controllers.projectController = function($scope,
         var rpTypePhotoCasting = projectFactory.searchUrl(urlPhotoCastingType);
         rpTypePhotoCasting.then(function(data) {
             $scope.types = data.types;
-            $scope.$scope.loadDetail = true;
+            $scope.loadDetail = true;
         });
     }
 
@@ -706,17 +719,16 @@ controllers.projectController = function($scope,
             if($scope.project_service.event != undefined){
                 event_id = $scope.project_service.event.id
             }
-
-            return  {
+            return {
                 'type_event': event_id,
-                'uses':  $scope.project_service.use,
+                'uses': $scope.project_service.use,
                 'ppi': $scope.project_service.ppi,
                 'ppg': $scope.project_service.ppg
             }
         }
         if($scope.project_service.line.name == 'Foto'){
             return  {
-                'photo_use': $scope.project_service.use_photo,
+                'uses': $scope.project_service.use,
                 'type_casting': $scope.project_service.type.id
             }
         }

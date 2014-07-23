@@ -64,7 +64,7 @@ class PhotoCastingSaveProcess(View):
         photo_casting.project = project
         photo_casting.type_casting = type_casting
         photo_casting.save()
-        for use in  self.data_line.get('uses'):
+        for use in self.data_line.get('uses'):
             photo_casting.use_photo.add(UsePhotos.objects.get(pk=use.get('id')))
 
         return photo_casting
