@@ -7,6 +7,7 @@ from apps.sp.models.Client import TypeClient
 from apps.sp.models.Representation import TypeEvent
 from apps.sp.models.Casting import TypeCasting
 from apps.sp.models.PhotoCasting import TypePhotoCasting
+from apps.sp.models.PhotoCasting import UsePhotos
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import TypeCastingHelper
@@ -15,6 +16,7 @@ from apps.common.insert_helper import FeatureHelper
 from apps.common.insert_helper import DataTestHelper
 from apps.common.insert_helper import CurrencyHelper
 from apps.common.insert_helper import TypeEventHelper
+from apps.common.insert_helper import PhotoUseHelper
 
 
 class Command(BaseCommand):
@@ -42,6 +44,7 @@ class Command(BaseCommand):
             self.insert_currency()
             self.insert_type_photo_casting()
             self.insert_type_event()
+            self.insert_photo_use()
 
         if entity == 'country':
             self.insert_countries()
@@ -57,6 +60,9 @@ class Command(BaseCommand):
 
         if entity == 'type_event':
             self.insert_type_event()
+
+        if entity == 'photo_use':
+            self.insert_photo_use()
 
         if entity == 'type_photo_casting':
             self.insert_type_photo_casting()
@@ -126,6 +132,18 @@ class Command(BaseCommand):
                 self.stdout.write('Successfully inserted data: type event. \n')
             else:
                 self.stdout.write('can not insert the data: type event. \n')
+
+    def insert_photo_use(self):
+        if self.data_delete:
+            UsePhotos.objects.all().delete()
+            self.stdout.write('delete data: photo use. \n')
+        else:
+            if UsePhotos.objects.all().count() == 0:
+                use_photos_helper = PhotoUseHelper()
+                use_photos_helper.insert_data()
+                self.stdout.write('Successfully inserted data: photo use. \n')
+            else:
+                self.stdout.write('can not insert the data: photo use. \n')
 
     def insert_type_photo_casting(self):
         if self.data_delete:

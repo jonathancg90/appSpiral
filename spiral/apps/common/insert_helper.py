@@ -12,6 +12,7 @@ from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.Client import Client
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
+from apps.sp.models.PhotoCasting import UsePhotos
 from apps.sp.models.Commercial import Commercial
 
 
@@ -116,6 +117,20 @@ class TypeEventHelper(object):
             type_event = TypeEvent()
             type_event.name = name
             type_event.save()
+
+
+class PhotoUseHelper(object):
+
+    def insert_data(self):
+        names = ['Todo Uso', 'Paneles',
+                 'Uso interno', 'Uso externo',
+                 'Vallas', 'POP', 'Prensa',
+                 'Graficas', 'Paraderos',
+                 'Exhibicion']
+        for name in names:
+            use_photo = UsePhotos()
+            use_photo.name = name
+            use_photo.save()
 
 
 class TypePhotoCastingHelper(object):
