@@ -123,11 +123,24 @@ controllers.projectController = function($scope,
         urlCountryList = factoryUrl.urlCountryList,
         urlDataUpdateProject = factoryUrl.urlDataUpdateProject,
         urlTypeContract = factoryUrl.urlTypeContract,
+        urlBroadcastList = factoryUrl.urlBroadcastList,
         urlProjectSave = factoryUrl.projectSaveUrl;
 
     //-----------------------------------------------
     //Request Methods
     //-----------------------------------------------
+
+    var rpTypeContract = commercialFactory.all(urlTypeContract);
+    rpTypeContract.then(function(data) {
+        $scope.type_contract = data.type_contracts;
+    });
+
+    var rpBroadcast = commercialFactory.all(urlBroadcastList);
+    rpBroadcast.then(function(data) {
+        debugger
+        $scope.broadcasts = data.broadcasts;
+    });
+
 
     var rpCountry = commercialFactory.all(urlCountryList);
     rpCountry.then(function(data) {

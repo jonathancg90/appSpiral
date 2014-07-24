@@ -112,5 +112,5 @@ class ContractTypeDataList(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get(self, request, *args, **kwargs):
         context = {}
-        context['character'] = self.get_types()
+        context['type_contracts'] = self.get_types()
         return self.render_to_response(context)

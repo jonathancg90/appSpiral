@@ -11,6 +11,7 @@ from apps.sp.models.Representation import TypeEvent
 from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.Client import Client
 from apps.sp.models.Broadcast import Broadcast
+from apps.sp.models.Contract import TypeContract
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
 from apps.sp.models.PhotoCasting import UsePhotos
@@ -174,6 +175,18 @@ class BroadcastHelper(object):
             _broadcast = Broadcast()
             _broadcast.name = name
             _broadcast.save()
+
+
+class TypeContractHelper(object):
+
+    def insert_data(self):
+        names = [
+            'Uso de imagen', 'Exclusividad en rubro', 'Exclusividad total'
+        ]
+        for name in names:
+            type_contract = TypeContract()
+            type_contract.name = name
+            type_contract.save()
 
 class DataTestHelper(object):
 

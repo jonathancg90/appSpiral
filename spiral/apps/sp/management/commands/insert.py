@@ -9,6 +9,7 @@ from apps.sp.models.Casting import TypeCasting
 from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.PhotoCasting import UsePhotos
 from apps.sp.models.Broadcast import Broadcast
+from apps.sp.models.Contract import TypeContract
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import TypeCastingHelper
@@ -19,6 +20,7 @@ from apps.common.insert_helper import BroadcastHelper
 from apps.common.insert_helper import CurrencyHelper
 from apps.common.insert_helper import TypeEventHelper
 from apps.common.insert_helper import PhotoUseHelper
+from apps.common.insert_helper import TypeContractHelper
 
 
 class Command(BaseCommand):
@@ -48,6 +50,7 @@ class Command(BaseCommand):
             self.insert_type_event()
             self.insert_photo_use()
             self.insert_broadcast()
+            self.insert_type_contract()
 
         if entity == 'country':
             self.insert_countries()
@@ -63,6 +66,9 @@ class Command(BaseCommand):
 
         if entity == 'type_event':
             self.insert_type_event()
+
+        if entity == 'type_contract':
+            self.insert_type_contract()
 
         if entity == 'photo_use':
             self.insert_photo_use()
@@ -174,6 +180,18 @@ class Command(BaseCommand):
                 self.stdout.write('Successfully inserted data: currency. \n')
             else:
                 self.stdout.write('can not insert the data: currency. \n')
+
+    def insert_type_contract(self):
+        if self.data_delete:
+            TypeContract.objects.all().delete()
+            self.stdout.write('delete data:  type contract. \n')
+        else:
+            if TypeContract.objects.all().count() == 0:
+                type_contract_helper = TypeContractHelper()
+                type_contract_helper.insert_data()
+                self.stdout.write('Successfully inserted data: type contract. \n')
+            else:
+                self.stdout.write('can not insert the data: type contract. \n')
 
     def insert_broadcast(self):
         if self.data_delete:

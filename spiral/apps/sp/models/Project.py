@@ -160,11 +160,19 @@ class DutyDetail(models.Model):
         null=False,
         default=0
     )
+    broadcast = models.ManyToManyField(
+        'Broadcast',
+        verbose_name='Medios',
+        null=True
+    )
     country = models.ManyToManyField(
         'Country',
         verbose_name='Paises',
         null=True
     )
+
+    class Meta:
+        app_label = 'sp'
 
 
 class ProjectClientDetail(models.Model):

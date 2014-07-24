@@ -124,9 +124,10 @@
         <label class="control-label" for="inputInfo">Tiempo de contrato</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <input id="periodContract" class="span12" type="number" id="inputInfo"> Meses
+                <input id="periodContract" class="span12" type="number" id="inputInfo" mg-model="project_service.duty.duration_month">
             </span>
             <span class="span6 input-icon input-icon-right">
+                Meses
             </span>
         </div>
     </div>
@@ -136,7 +137,7 @@
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
                 <select id="chosenCommercial" chosen="countries" multiple class="form-control span12"
-                        ng-model="project_service.duty.country"
+                        ng-model="project_service.duty.countries"
                         ng-options="country.name for country in countries"
                         required>
                     <option value="">-- Elige los paises --</option>
@@ -168,7 +169,7 @@
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
                 <select id="chosen1" chosen="commercials" class="form-control span12"
-                        ng-model="project_service.duty.contract"
+                        ng-model="project_service.duty.type_contract"
                         ng-options="contract.name for contract in type_contract"
                         required>
                     <option value="">-- Elige un tipo --</option>

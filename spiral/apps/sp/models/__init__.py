@@ -18,6 +18,7 @@ from apps.sp.models.Client import Client, TypeClient
 from apps.sp.models.Currency import Currency
 from apps.sp.models.Payment import Payment
 from apps.sp.models.Broadcast import Broadcast
+from apps.sp.models.Project import DutyDetail
 from apps.sp.models.Company import Company, CompanyDetailAccount
 from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel
 from apps.sp.models.Extras import Extras, ExtrasDetailModel
@@ -40,6 +41,7 @@ __all__ = [
     'TypeClient',
     'Entry.py',
     'City',
+    'DutyDetail',
     'Model_has_commercial',
     'Country_has_contract',
     'Country'

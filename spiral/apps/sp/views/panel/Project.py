@@ -7,14 +7,17 @@ from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView
 from datetime import datetime
+from django.views.generic import View
 
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 from apps.common.view import JSONResponseMixin
 from apps.common.view import SearchFormMixin
+from apps.sp.models.Country import Country
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Currency import Currency
 from apps.sp.models.Client import Client, TypeClient
 from apps.sp.models.Payment import Payment
+from apps.sp.models.Broadcast import Broadcast
 from apps.sp.views.panel.Casting import CastingSaveProcess
 from apps.sp.views.panel.Extra import ExtraSaveProcess
 from apps.sp.views.panel.Representation import RepresentationSaveProcess
@@ -22,7 +25,7 @@ from apps.sp.views.panel.PhotoCasting import PhotoCastingSaveProcess
 from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDetail, \
     ProjectDetailDeliveries
 from apps.sp.forms.Project import ProjectFiltersForm
-from django.views.generic import View
+from apps.sp.models.Project import DutyDetail
 from apps.sp.models.Casting import Casting, CastingDetailModel
 from apps.sp.models.Extras import Extras, ExtrasDetailModel
 from apps.sp.models.PhotoCasting import PhotoCasting, PhotoCastingDetailModel
@@ -217,7 +220,20 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         project.save()
         self.save_clients(project)
         self.save_delivery_dates(project)
+        self.save_duty(project)
         return project
+
+    def save_duty(self, project):
+        duty_detail = DutyDetail()
+        duty_detail.project = project
+        duty_detail.type_contract_id = self.data_duty('type_contract').get('id')
+        duty_detail.duration_month = self.data_duty('duration_month')
+        duty_detail.save()
+        for broadcast in self.data_duty('broadcasts'):
+            duty_detail.country.add(Broadcast.objects.get(pk=broadcast.get('id')))
+
+        for country in self.data_duty('countries'):
+            duty_detail.country.add(Country.objects.get(pk=country.get('id')))
 
     def format_date(self, date):
         if date is not None:
@@ -281,7 +297,7 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             client_detail.save()
 
     def set_attributes(self, data):
-
+        self.data_duty = data.get('duty')
         self.data_project = data.get('project')
         self.data_line = data.get('line')
         self.data_client = data.get('client')
@@ -606,6 +622,17 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         except Exception, e:
             return {}
 
+    def get_duty(self):
+        duty_detail = DutyDetail.objects.get(project=self.project)
+        return {
+            'type_contract': {
+                'id':  duty_detail.type_contract.id,
+                'name':  duty_detail.type_contract.name
+            },
+            'countries': self.get_types(duty_detail.country.all())
+
+        }
+
     def get_data_project(self):
         project = {
             'id': self.project.id,
@@ -623,7 +650,8 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             "commercial":  self.get_commercial(),
             "startProduction":  self.project.start_productions.strftime("%d/%m/%Y"),
             "finishProduction": self.project.end_productions.strftime("%d/%m/%Y"),
-            "observation": self.project.observations
+            "observation": self.project.observations,
+            "duty":  self.get_duty()
         }
 
         if self.line.get('id') == Project.LINE_CASTING:
