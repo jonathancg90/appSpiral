@@ -107,7 +107,10 @@ class Project(models.Model):
     )
 
     def __unicode__(self):
-        return self.commercial.name
+        try:
+            return self.commercial.name
+        except:
+            pass
 
     class Meta:
         app_label = 'sp'

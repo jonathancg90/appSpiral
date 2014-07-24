@@ -23,10 +23,10 @@ from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDet
     ProjectDetailDeliveries
 from apps.sp.forms.Project import ProjectFiltersForm
 from django.views.generic import View
-from apps.sp.models.Casting import Casting
-from apps.sp.models.Extras import Extras
-from apps.sp.models.PhotoCasting import PhotoCasting
-from apps.sp.models.Representation import Representation
+from apps.sp.models.Casting import Casting, CastingDetailModel
+from apps.sp.models.Extras import Extras, ExtrasDetailModel
+from apps.sp.models.PhotoCasting import PhotoCasting, PhotoCastingDetailModel
+from apps.sp.models.Representation import Representation, RepresentationDetailModel
 
 
 class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -172,10 +172,13 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             project_detail_staff.percentage = resources.get('percentage')
             project_detail_staff.save()
 
+    def get_payment(self, **kwargs):
+        return Payment()
+
     def save_payment(self, project):
         client_id = self.data_payment.get('client')
 
-        payment = Payment()
+        payment = self.get_payment()
         payment.client = Client.objects.get(pk=client_id) if client_id is not None else None
         payment.conditions = json.dumps(self.data_payment.get('conditions'))
         payment.project = project
@@ -197,8 +200,11 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             self.save_detail_model_representation(project_line)
         return project_line
 
+    def get_project(self, **kwargs):
+        return Project()
+
     def save_project(self):
-        project = Project()
+        project = self.project
         project.code = self.generate_code()
         project.commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
         project.end_productions = self.format_date(self.data_project.get('end_productions'))
@@ -274,6 +280,7 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             client_detail.save()
 
     def set_attributes(self, data):
+
         self.data_project = data.get('project')
         self.data_line = data.get('line')
         self.data_client = data.get('client')
@@ -282,6 +289,16 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         self.data_models = data.get('models')
         self.data_resources = data.get('resources')
         self.data_payment = data.get('payment')
+
+        kwargs = {
+            'project_id': data.get('project_id'),
+            'line': self.data_project.get('line_productions')
+        }
+        self.project = self.get_project(**kwargs)
+        self.casting = self.get_casting(**kwargs)
+        self.extras= self.get_extras(**kwargs)
+        self.photo_casting = self.get_photo_casting(**kwargs)
+        self.representation = self.get_representation(**kwargs)
 
     def post(self, request, *args, **kwargs):
         context = {}
@@ -302,7 +319,96 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
 
 class ProjectUpdateJsonView(ProjectSaveJsonView):
-    pass
+    MESSAGE_SUCCESS = 'Projecto actualizado correctamente'
+
+    def get_representation(self, **kwargs):
+        if kwargs.get('line') == Project.LINE_REPRESENTATION:
+            representation = Representation.objects.get(project=self.project)
+            return representation
+        else:
+            return Representation()
+
+    def save_detail_model_representation(self, project_line):
+        RepresentationDetailModel.objects.filter(representation=project_line).delete()
+        return super(ProjectUpdateJsonView, self).save_detail_model_representation(project_line)
+
+    def get_photo_casting(self, **kwargs):
+        if kwargs.get('line') == Project.LINE_PHOTO:
+            photo_casting = PhotoCasting.objects.get(project=self.project)
+            return photo_casting
+        else:
+            return PhotoCasting()
+
+    def save_detail_model_photo(self, project_line):
+        PhotoCastingDetailModel.objects.filter(photo_casting=project_line).delete()
+        return super(ProjectUpdateJsonView, self).save_detail_model_photo(project_line)
+
+    def get_extras(self, **kwargs):
+        if kwargs.get('line') == Project.LINE_EXTRA:
+            extras = Extras.objects.get(project=self.project)
+            return extras
+        else:
+            return Extras()
+
+    def save_detail_model_extra(self, project_line):
+        ExtrasDetailModel.objects.filter(extras=project_line).delete()
+        return super(ProjectUpdateJsonView, self).save_detail_model_extra(project_line)
+
+    def get_casting(self, **kwargs):
+        if kwargs.get('line') == Project.LINE_CASTING:
+            casting = Casting.objects.get(project=self.project)
+            return casting
+        else:
+            return Casting()
+
+    def save_detail_model_casting(self, project_line):
+        CastingDetailModel.objects.filter(casting=project_line).delete()
+        return super(ProjectUpdateJsonView, self).save_detail_model_casting(project_line)
+
+    def get_project(self, **kwargs):
+        project = Project.objects.get(pk=kwargs.get('project_id'))
+        return project
+
+    def save_clients(self, project):
+        ProjectClientDetail.objects.filter(project=project).delete()
+        return super(ProjectUpdateJsonView, self).save_clients(project)
+
+    def save_delivery_dates(self, project):
+        ProjectDetailDeliveries.objects.filter(project=project).delete()
+        return super(ProjectUpdateJsonView, self).save_delivery_dates(project)
+
+    def save_resources(self, project):
+        ProjectDetailStaff.objects.filter(project=project).delete()
+        return super(ProjectUpdateJsonView, self).save_resources(project)
+
+    def get_payment(self, **kwargs):
+        return Payment.objects.get(project=self.project)
+
+    def process_validate(self):
+        commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
+        if Project.objects.filter(
+                commercial=commercial,
+                line_productions=self.data_project.get('line_productions')
+        ).exclude(id__in=[self.project.id]).exists():
+            return False, self.MESSAGE_ERROR_COMMERCIAL
+        return True, None
+
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        context = {}
+        self.set_attributes(data)
+        project, msg = self.save_process()
+        context['status'] = 'success'
+        context['message'] = msg
+        if project is None:
+            context['status'] = 'warning'
+        else:
+            project = Project.objects.get(pk=project.id)
+            context['result'] = {
+                'code': project.get_code(),
+                'id': project.id
+            }
+        return self.render_to_response(context)
 
 
 class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -394,7 +500,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                     'profile': detail.profile,
                     'model_name': detail.model.name_complete,
                     'model': {
-                        'document': detail.model.get_type_document_display() + + detail.model.number_doc,
+                        'document': detail.model.get_type_doc_display() + ' | ' + detail.model.number_doc,
                         'id': detail.model.id,
                         'name': detail.model.name_complete,
                     },
@@ -402,7 +508,12 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                         'id': detail.character,
                         'name': detail.get_character_display()
                     },
-                    'observations': detail.observations
+                    'currency': {
+                        'id': detail.currency.id,
+                        'symbol': detail.currency.symbol
+                    },
+                    'budget_cost': float(detail.budget_cost),
+                    'budget': float(detail.budget)
                 })
         return data
 
@@ -414,7 +525,6 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 'name': type.name
             })
         return data
-
 
     def get_conditions(self):
         try:
@@ -434,7 +544,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                         'name':  staff.get_role_display()
                     },
                     'employee': {
-                        'id': staff.employee,
+                        'id_emp': staff.employee,
                     },
                     'percentage': int(staff.percentage),
                     'budget': float(staff.budget),
@@ -495,8 +605,8 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             return {}
 
     def get_data_project(self):
-
         project = {
+            'id': self.project.id,
             "permission_steps": self.get_step(),
             "step": 1,
             "line":  self.line,
@@ -517,8 +627,8 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         if self.line.get('id') == Project.LINE_CASTING:
             project.update({
                 "typeCasting": self.get_types(self.line_project.type_casting.all()),
-                "ppi": self.line_project.ppi.strftime("%d/%m/%Y") if self.line_project.ppi is not None else [],
-                "ppg": self.line_project.ppg.strftime("%d/%m/%Y") if self.line_project.ppg is not None else [],
+                "ppi": self.line_project.ppi.strftime("%d/%m/%Y") if self.line_project.ppi is not None else None,
+                "ppg": self.line_project.ppg.strftime("%d/%m/%Y") if self.line_project.ppg is not None else None,
                 "internalBudget": float(self.project.budget),
                 "budget": float(self.project.budget_cost)
             })
@@ -530,6 +640,15 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 },
                 "use": self.get_types(self.line_project.use_photo.all()),
             })
+        if self.line.get('id') == Project.LINE_REPRESENTATION:
+            project.update({
+                "event": {
+                    'id': self.line_project.type_event.id,
+                    'name': self.line_project.type_event.name
+                },
+                "ppi": self.line_project.ppi.strftime("%d/%m/%Y") if self.line_project.ppg is not None else None,
+                "ppg": self.line_project.ppg.strftime("%d/%m/%Y") if self.line_project.ppg is not None else None,
+                })
         return project
 
     def get_permissions(self):

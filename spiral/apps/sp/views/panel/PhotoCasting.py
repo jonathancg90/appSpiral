@@ -56,14 +56,18 @@ class PhotoCastingSaveProcess(View):
     def format_date(self, date):
         return date
 
+    def get_photo_casting(self, **kwargs):
+        return PhotoCasting()
+
     def save_photo(self, project):
         type_casting = None
         if self.data_line.get('type_casting') is not None:
             type_casting = TypePhotoCasting.objects.get(pk=self.data_line.get('type_casting'))
-        photo_casting = PhotoCasting()
+        photo_casting = self.photo_casting
         photo_casting.project = project
         photo_casting.type_casting = type_casting
         photo_casting.save()
+        photo_casting.use_photo.clear()
         for use in self.data_line.get('uses'):
             photo_casting.use_photo.add(UsePhotos.objects.get(pk=use.get('id')))
 
@@ -77,7 +81,7 @@ class PhotoCastingSaveProcess(View):
             photo_casting_detail_model.profile = detail.get('profile')
             photo_casting_detail_model.feature = detail.get('feature')
             photo_casting_detail_model.character = detail.get('character').get('id')
-            photo_casting_detail_model.currency = detail.get('currency')
-            photo_casting_detail_model.budget = detail.get('budget')
+            photo_casting_detail_model.currency_id = detail.get('currency').get('id')
+            photo_casting_detail_model.budget = float(detail.get('budget')) if detail.get('budget') is not None and detail.get('budget') != '' else None
             photo_casting_detail_model.observations = detail.get('observations')
             photo_casting_detail_model.save()

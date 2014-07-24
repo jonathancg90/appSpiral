@@ -9,6 +9,7 @@ projectApp.service('projectService', function() {
 
 
     self.set_result = function(result){
+        self.id = result.id;
         self.deliveries = result.deliveries;
         self.detailModel = result.detailModel;
         self.detailStaff = result.detailStaff;
@@ -32,6 +33,9 @@ projectApp.service('projectService', function() {
         //Photo
         self.type = result.type;
         self.use = result.use;
+
+        //Representation
+        self.event = result.event;
     };
 
     self.clean = function(line){

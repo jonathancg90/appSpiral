@@ -1,0 +1,29 @@
+<div id="lineCasting" ng-show="lineFotos">
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Tipo de casting</label>
+        <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <select id="chosenBrand" class="form-control"
+                            ng-model="project_service.type"
+                            ng-options="type.name for type in types">
+                        <option value="">-- Elige un tipo de casting --</option>
+                    </select>
+                </span>
+                <span class="span6">
+                </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Uso de la foto</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select id="chosenBrand" class="form-control" multiple="multiple"
+                        ng-model="project_service.use"
+                        ng-options="use.name for use in photoUses">
+                    <option value="">-- Elige el uso de las fotos --</option>
+                </select>
+            </span>
+        </div>
+    </div>
+</div>

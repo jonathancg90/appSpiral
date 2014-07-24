@@ -1,4 +1,4 @@
-{#project: {[{  project_service }]}#}
+project: {[{  project_service }]}
 <form class="form-horizontal" id="sample-form">
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Comercial</label>
@@ -82,7 +82,6 @@
             </span>
         </div>
     </div>
-
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Fecha de entrega</label>
         <div class="controls">
@@ -101,7 +100,6 @@
             </span>
         </div>
     </div>
-
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Observaciones</label>
         <div class="controls">
@@ -110,100 +108,14 @@
             </span>
         </div>
     </div>
-    {# Casting Form #}
-    <span id="lineCasting" ng-show="lineCasting">
-        <div class="control-group info">
-            <label class="control-label" for="inputInfo">Tipo de casting</label>
-            <div class="controls">
-                <span class="span6 input-icon input-icon-right">
-                    <select id="chosenBrand" multiple="multiple" class="form-control"
-                            ng-model="project_service.typeCasting"
-                            ng-options="type.name for type in typeCasting">
-                        <option value="">-- Elige un tipo de casting --</option>
-                    </select>
-                </span>
-                <span class="span6">
-                </span>
-            </div>
-        </div>
-        <div class="control-group info">
-            <label class="control-label" for="inputInfo">PPI</label>
-            <div class="controls">
-                <span class="span6 input-icon input-icon-right">
-                    <input class="span12" type="text" date-picker id="inputPpi"  ng-model="project_service.ppi" placeholder="dd/mm/yy"/>
-                </span>
-                <span class="span6">
-                </span>
-            </div>
-        </div>
-        <div class="control-group info">
-            <label class="control-label" for="inputInfo">PPG</label>
-            <div class="controls">
-                <span class="span6 input-icon input-icon-right">
-                    <input class="span12" type="text" date-picker id="inputPpg"  ng-model="project_service.ppg" placeholder="dd/mm/yy"/>
-                </span>
-                <span class="span6">
-                </span>
-            </div>
-        </div>
-    </span>
-    <div id="lineCasting" ng-show="lineExtras">
 
-    </div>
-    <div id="lineCasting" ng-show="lineRepresentacion">
-        <div class="control-group info">
-            <label class="control-label" for="inputInfo">Tipo de evento</label>
-            <div class="controls">
-                <span class="span6 input-icon input-icon-right">
-                    <select id="chosenBrand" class="form-control"
-                            ng-model="project_service.event"
-                            ng-options="event.name for event in events">
-                            <option value="">-- Elige un tipo de evento --</option>
-                    </select>
-                </span>
-                <span class="span6">
-                </span>
-            </div>
-        </div>
+    {% include 'panel/project/casting/project.html' %}
 
-        <div class="control-group info">
-            <label class="control-label" for="inputInfo">Uso de la foto</label>
-            <div class="controls">
-            <span class="span6 input-icon input-icon-right">
-                <textarea id="form-field-11" class="autosize-transition span12"  ng-model="project_service.use_photo"></textarea>
-            </span>
-            </div>
-        </div>
-    </div>
-    <div id="lineCasting" ng-show="lineFotos">
-        <div class="control-group info">
-            <label class="control-label" for="inputInfo">Tipo de casting</label>
-            <div class="controls">
-                <span class="span6 input-icon input-icon-right">
-                    <select id="chosenBrand" class="form-control"
-                            ng-model="project_service.type"
-                            ng-options="type.name for type in types">
-                        <option value="">-- Elige un tipo de casting --</option>
-                    </select>
-                </span>
-                <span class="span6">
-                </span>
-            </div>
-        </div>
+    {% include 'panel/project/extras/project.html' %}
 
-        <div class="control-group info">
-            <label class="control-label" for="inputInfo">Uso de la foto</label>
-            <div class="controls">
-            <span class="span6 input-icon input-icon-right">
-                <select id="chosenBrand" class="form-control" multiple="multiple"
-                        ng-model="project_service.use"
-                        ng-options="use.name for use in photoUses">
-                    <option value="">-- Elige el uso de las fotos --</option>
-                </select>
-            </span>
-            </div>
-        </div>
-    </div>
+    {% include 'panel/project/representation/project.html' %}
+
+    {% include 'panel/project/photo/project.html' %}
 </form>
 
 

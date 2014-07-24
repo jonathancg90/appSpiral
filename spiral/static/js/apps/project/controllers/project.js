@@ -43,15 +43,20 @@ controllers.projectController = function($scope,
                 'deliveries': $scope.project_service.deliveries
             };
             var url = urlProjectSave;
-            if($scope.project_service.project_id != undefined){
+            if($scope.project_service.id != undefined){
                 url = urlProjectUpdate;
+                data['project_id'] = $scope.project_service.id;
             }
 
             var rpSaveProject = projectFactory.save(url, data);
             rpSaveProject.then(function(data) {
+                $('html, body').animate({
+                        scrollTop: '0px'
+                    },
+                    1000);
                 if(data.status == 'success'){
                     $scope.project_service.project_code = data.result.code;
-                    $scope.project_service.project_id = data.result.id;
+                    $scope.project_service.id = data.result.id;
                     data.message = data.message + ' : '+ data.result.code;
                 }
                 $scope.flashMessage = data.message;
@@ -165,9 +170,9 @@ controllers.projectController = function($scope,
         $scope.realizers = data.realized;
     });
 
-    //-----------------------------------------------
-    //Update
-    //-----------------------------------------------
+    /*-----------------------------------------
+     | Update                                 |
+     -----------------------------------------*/
 
     $scope.$watch('detailLoader', function(newValue, oldValue){
         if(newValue != oldValue){
@@ -227,6 +232,7 @@ controllers.projectController = function($scope,
                 }
             });
         });
+        //Detail Staff
         angular.forEach($scope.project_service.detailStaff, function(value, key) {
             angular.forEach($scope.realizers, function(value_realizer, key_realizer) {
                 if(value.employee.id == value_realizer.id_emp) {
@@ -240,8 +246,16 @@ controllers.projectController = function($scope,
                     $scope.project_service.detailStaff[key].employee.name = value_productor.name;
                 }
             });
-
-
+        });
+        //Detail Model
+        angular.forEach($scope.project_service.detailModel, function(value, key) {
+            if(value.currency != undefined) {
+                angular.forEach($scope.coins, function(value_coins, key_coins) {
+                    if(value.currency.id == value_coins.id) {
+                        $scope.project_service.detailModel[key].currency = value_coins;
+                    }
+                });
+            }
         });
         angular.forEach($scope.types, function(value, key) {
             if($scope.project_service.type.id == value.id) {
@@ -269,12 +283,26 @@ controllers.projectController = function($scope,
                 }
             });
         }
+        if(result.payment.currency != undefined){
+            angular.forEach($scope.coins, function(value, key) {
+                if(result.payment.currency.id == value.id) {
+                    $scope.project_service.payment.currency =  value;
+                }
+            });
+        }
+        if(result.event != undefined){
+            angular.forEach($scope.events, function(value, key) {
+                if(result.event.id == value.id) {
+                    $scope.project_service.event =  value;
+                }
+            });
+        }
 
     }
 
-    //-----------------------------------------------
-    //Project
-    //-----------------------------------------------
+    /*---------------------------------------
+    | Project                               |
+    -----------------------------------------*/
 
     // Cambia estado del modal de detalle de modelos
     $scope.setStatusSave = function(value) {
@@ -721,7 +749,6 @@ controllers.projectController = function($scope,
             }
             return {
                 'type_event': event_id,
-                'uses': $scope.project_service.use,
                 'ppi': $scope.project_service.ppi,
                 'ppg': $scope.project_service.ppg
             }

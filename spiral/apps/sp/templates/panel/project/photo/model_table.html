@@ -1,0 +1,62 @@
+<span ng-show=" project_service.line.name == 'Foto'">
+        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Cantidad</th>
+                <th>Perfil</th>
+                <th class="hidden-480">Carracteristicas</th>
+                <th class="hidden-480">Personaje</th>
+                <th class="hidden-480">Moneda</th>
+                <th class="hidden-480">Presupuesto</th>
+                <th>Observaciones</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="detail in project_service.detailModel">
+                <td>
+                    <a href="#">{[{ detail.cant }]}</a>
+                </td>
+                <td>
+                    {[{ detail.profile }]}
+                </td>
+                <td >
+                    {[{ detail.feature }]}
+                </td>
+                <td >
+                    {[{ detail.character.name }]}
+                </td>
+                <td>
+                    {[{ detail.currency.symbol }]}
+                </td>
+                <td>
+                    {[{ detail.budget }]}
+                </td>
+
+                <td>
+                    {[{ detail.observations }]}
+                </td>
+
+                <td>
+                    <div class="hidden-phone visible-desktop btn-group">
+                        <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#modalCreatePhotoDetail" ng-click="updateCastingDetail(detail)">
+                            <i class="icon-edit bigger-120"></i>
+                        </button>
+
+                        <button class="btn btn-mini btn-danger" ng-click="deleteDetailModel($index)">
+                            <i class="icon-trash bigger-120"></i>
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <button class="add-button btn btn-primary btn-small" data-toggle="modal" data-target="#modalCreatePhotoDetail" ng-click="setStatusSave(true)">Agregar</button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+</span>

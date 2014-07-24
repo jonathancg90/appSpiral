@@ -34,12 +34,16 @@ class CastingSaveProcess(View):
     def format_date(self, date):
         return date
 
+    def get_casting(self, **kwargs):
+        return Casting()
+
     def save_casting(self, project):
-        casting = Casting()
+        casting = self.casting
         casting.project = project
         casting.ppi = self.format_date(self.data_line.get('ppi'))
         casting.ppg = self.format_date(self.data_line.get('ppg'))
         casting.save()
+        casting.type_casting.clear()
         for type in self.data_line.get('type_casting', []):
             casting.type_casting.add(TypeCasting.objects.get(pk=type.get('id')))
 
@@ -54,9 +58,9 @@ class CastingSaveProcess(View):
             casting_detail_model.feature = detail.get('feature')
             casting_detail_model.character = detail.get('character').get('id')
             casting_detail_model.scene = detail.get('scene')
-            casting_detail_model.budget = detail.get('budget')
+            casting_detail_model.budget = float(detail.get('budget')) if detail.get('budget') is not None and detail.get('budget') != '' else None
             casting_detail_model.save()
-
+            casting_detail_model.type_casting.clear()
             for type in detail.get('type'):
                 type_casting = TypeCasting.objects.get(pk=type.get('id'))
                 casting_detail_model.type_casting.add(type_casting)
