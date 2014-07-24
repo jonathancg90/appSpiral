@@ -160,6 +160,11 @@ class DutyDetail(models.Model):
         null=False,
         default=0
     )
+    country = models.ManyToManyField(
+        'Country',
+        verbose_name='Paises',
+        null=True
+    )
 
 
 class ProjectClientDetail(models.Model):
