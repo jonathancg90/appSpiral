@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Bank(models.Model):
+class Broadcast(models.Model):
 
     STATUS_ACTIVE = 1
     STATUS_DELETE = 2

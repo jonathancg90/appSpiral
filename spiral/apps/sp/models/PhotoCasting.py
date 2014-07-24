@@ -131,7 +131,7 @@ class PhotoCastingDetailModel(models.Model):
         null=True
     )
 
-    budget = models.DecimalField(
+    budget_cost = models.DecimalField(
         verbose_name='Presupuesto',
         max_digits=10,
         decimal_places=2

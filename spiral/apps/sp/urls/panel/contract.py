@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
-from apps.sp.views.panel.Contract import ContractCreateView, ContractDeleteView, ContractListView, ContractUpdateView
+from apps.sp.views.panel.Contract import ContractCreateView,\
+    ContractDeleteView, ContractListView, ContractUpdateView,\
+    ContractTypeDataList
 
 
 urlpatterns = patterns('',
@@ -19,4 +21,7 @@ urlpatterns = patterns('',
     url(r'^model-commercial/(?P<fk>\d+)/delete/(?P<pk>\d+)/$',
         ContractDeleteView.as_view(),
         name='contract_delete'),
+    url(r'^type-contract/$',
+        ContractTypeDataList.as_view(),
+        name='type_contract_json'),
     )

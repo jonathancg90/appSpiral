@@ -94,7 +94,6 @@ controllers.projectController = function($scope,
         if(line.name == 'Foto'){
             getCharacterCasting();
             getTypeCastingPhotoCasting();
-            getUsePhotoCasting();
             $scope.lineFotos = true;
         }
     });
@@ -121,12 +120,19 @@ controllers.projectController = function($scope,
         urlPhotoCastingType = factoryUrl.urlPhotoCastingType,
         urlUsePhoto = factoryUrl.urlUsePhoto,
         urlProjectUpdate = factoryUrl.urlProjectUpdate,
+        urlCountryList = factoryUrl.urlCountryList,
         urlDataUpdateProject = factoryUrl.urlDataUpdateProject,
+        urlTypeContract = factoryUrl.urlTypeContract,
         urlProjectSave = factoryUrl.projectSaveUrl;
 
     //-----------------------------------------------
     //Request Methods
     //-----------------------------------------------
+
+    var rpCountry = commercialFactory.all(urlCountryList);
+    rpCountry.then(function(data) {
+        $scope.countries = data.countries;
+    });
 
     var rpCommercial = commercialFactory.all(urlCommercial);
     rpCommercial.then(function(data) {
@@ -193,7 +199,7 @@ controllers.projectController = function($scope,
 
             data.result.codeUpdate = codeUpdate;
             projectService.set_result(data.result);
-            $scope.project_service =projectService;
+            $scope.project_service = projectService;
             $scope.$watch('loadDetail', function(newValue, oldValue){
                 if(newValue){
                     processUpdate(data.result);
@@ -262,6 +268,7 @@ controllers.projectController = function($scope,
                 $scope.project_service.type =  value;
             }
         });
+        debugger
         angular.forEach($scope.photoUses, function(value_list, key_list) {
             angular.forEach(result.use, function(value, key) {
                 if(value.id == value_list.id) {
@@ -464,7 +471,7 @@ controllers.projectController = function($scope,
         var rpTypePhotoCasting = projectFactory.searchUrl(urlPhotoCastingType);
         rpTypePhotoCasting.then(function(data) {
             $scope.types = data.types;
-            $scope.loadDetail = true;
+            getUsePhotoCasting();
         });
     }
 
@@ -472,6 +479,7 @@ controllers.projectController = function($scope,
         var rpUsePhotos= projectFactory.searchUrl(urlUsePhoto);
         rpUsePhotos.then(function(data) {
             $scope.photoUses = data.uses;
+            $scope.loadDetail = true;
         });
     }
 
@@ -667,9 +675,14 @@ controllers.projectController = function($scope,
                 $scope.flashType = 'warning';
                 return false
             }
+            if (newDetail.profile == undefined || newDetail.profile == {}) {
+                $scope.flashMessage = 'Falta indicar el perfil del modelo';
+                $scope.flashType = 'warning';
+                return false
+            }
         }
         //Extras
-        if($scope.project_service.line == 'extra'){
+        if($scope.project_service.line.name == 'extra'){
             if (newDetail.cant == undefined || newDetail.cant == '') {
                 $scope.flashMessage = 'Falta indicar la cantidad de modelos';
                 $scope.flashType = 'warning';
@@ -677,11 +690,15 @@ controllers.projectController = function($scope,
             }
         }
         //Representacion
-        if($scope.project_service.line == 'Representacion'){
-
+        if($scope.project_service.line.name == 'Representacion'){
+            if (newDetail.model == undefined || newDetail.cant == '') {
+                $scope.flashMessage = 'Falta indicar al modelo';
+                $scope.flashType = 'warning';
+                return  false;
+            }
         }
         //Foto
-        if($scope.project_service.line == 'Foto'){
+        if($scope.project_service.line.name == 'Foto'){
             if (newDetail.cant == undefined || newDetail.cant == '') {
                 $scope.flashMessage = 'Falta indicar la cantidad de modelos';
                 $scope.flashType = 'warning';
@@ -716,12 +733,11 @@ controllers.projectController = function($scope,
         var agency = undefined,
             productor = undefined,
             director = undefined;
-
         if($scope.project_service.agency != undefined)
             agency = $scope.project_service.agency.id;
-        if($scope.project_service.agency != undefined)
+        if($scope.project_service.productor != undefined)
             productor = $scope.project_service.productor.id;
-        if($scope.project_service.agency != undefined)
+        if($scope.project_service.director != undefined)
             director = $scope.project_service.director.id;
 
         return {

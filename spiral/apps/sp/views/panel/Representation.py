@@ -78,9 +78,9 @@ class RepresentationSaveProcess(View):
             representation_detail_model = RepresentationDetailModel()
             representation_detail_model.representation = project_line
             representation_detail_model.profile = detail.get('profile')
-            representation_detail_model.model_id = detail.get('model').get('id')
+            representation_detail_model.model_id = detail.get('model').get('id') if detail.get('model') is not None else None
             representation_detail_model.character = detail.get('character').get('id')
-            representation_detail_model.currency_id = detail.get('currency').get('id')
+            representation_detail_model.currency_id = detail.get('currency').get('id') if detail.get('currency') is not None else None
             representation_detail_model.budget = float(detail.get('budget')) if detail.get('budget') is not None and detail.get('budget') != '' else None
             representation_detail_model.budget_cost = float(detail.get('budget_cost')) if detail.get('budget_cost') is not None and detail.get('budget_cost') != '' else None
             representation_detail_model.schedule = detail.get('schedule')

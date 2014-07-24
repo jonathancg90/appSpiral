@@ -1,4 +1,4 @@
-project: {[{  project_service }]}
+{#project: {[{  project_service }]}#}
 <form class="form-horizontal" id="sample-form">
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Comercial</label>
@@ -116,6 +116,70 @@ project: {[{  project_service }]}
     {% include 'panel/project/representation/project.html' %}
 
     {% include 'panel/project/photo/project.html' %}
+
+    <hr/>
+    <h4>Derechos</h4>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Tiempo de contrato</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <input id="periodContract" class="span12" type="number" id="inputInfo"> Meses
+            </span>
+            <span class="span6 input-icon input-icon-right">
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Paises</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select id="chosenCommercial" chosen="countries" multiple class="form-control span12"
+                        ng-model="project_service.duty.country"
+                        ng-options="country.name for country in countries"
+                        required>
+                    <option value="">-- Elige los paises --</option>
+                </select>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Difusion</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select id="chosenBroadcast" chosen="broadcasts" multiple class="form-control span12"
+                        ng-model="project_service.duty.broadcasts"
+                        ng-options="broadcast.name for broadcast in broadcasts"
+                        required>
+                    <option value="">-- Elige los medios  --</option>
+                </select>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Tipo de Contrato</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select id="chosen1" chosen="commercials" class="form-control span12"
+                        ng-model="project_service.duty.contract"
+                        ng-options="contract.name for contract in type_contract"
+                        required>
+                    <option value="">-- Elige un tipo --</option>
+                </select>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button data-toggle="modal" data-target="#modalCommercial" class="btn btn-success btn-small" id="bootbox-options">Nuevo</button>
+            </span>
+        </div>
+    </div>
+
 </form>
 
 

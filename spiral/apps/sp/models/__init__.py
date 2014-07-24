@@ -1,5 +1,5 @@
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
-from apps.sp.models.Contract import Contract
+from apps.sp.models.Contract import Contract, TypeContract
 from apps.sp.models.Brand import Brand
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Entry import Entry
@@ -17,6 +17,7 @@ from apps.sp.models.Bank import Bank
 from apps.sp.models.Client import Client, TypeClient
 from apps.sp.models.Currency import Currency
 from apps.sp.models.Payment import Payment
+from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Company import Company, CompanyDetailAccount
 from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel
 from apps.sp.models.Extras import Extras, ExtrasDetailModel
@@ -24,6 +25,7 @@ from apps.sp.models.PhotoCasting import PhotoCasting, TypePhotoCasting
 from apps.sp.models.Representation import Representation, RepresentationDetailModel, TypeEvent
 
 __all__ = [
+    'Broadcast',
     'PhotoCasting',
     'TypePhotoCasting',
     'Representation',
@@ -32,6 +34,7 @@ __all__ = [
     'Commercial',
     'Contract.py',
     'Brand',
+    'TypeContract',
     'Client',
     'Currency',
     'TypeClient',

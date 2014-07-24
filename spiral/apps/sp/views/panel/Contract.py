@@ -3,11 +3,12 @@
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, View
 from apps.common.view import SearchFormMixin
 from apps.sp.forms.Contract import ContractForm, ContractFiltersForm
-from apps.sp.models.Contract import Contract
+from apps.sp.models.Contract import Contract, TypeContract
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
+from apps.common.view import JSONResponseMixin
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -92,3 +93,24 @@ class ContractListView(LoginRequiredMixin, SearchFormMixin, PermissionRequiredMi
         qs = super(ContractListView, self).get_queryset()
         qs =  qs.filter(model_has_commercial_id=self.kwargs.get('fk'))
         return qs
+
+
+class ContractTypeDataList(LoginRequiredMixin, PermissionRequiredMixin,
+                               JSONResponseMixin, View):
+
+    model = TypeContract
+
+    def get_types(self):
+        data = []
+        types = TypeContract.objects.filter(status=TypeContract.STATUS_ACTIVE)
+        for type in types:
+            data.append({
+                'id': type.id,
+                'name': type.name
+            })
+        return data
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        context['character'] = self.get_types()
+        return self.render_to_response(context)

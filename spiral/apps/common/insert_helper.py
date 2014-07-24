@@ -10,6 +10,7 @@ from apps.sp.models.Casting import TypeCasting
 from apps.sp.models.Representation import TypeEvent
 from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.Client import Client
+from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
 from apps.sp.models.PhotoCasting import UsePhotos
@@ -162,6 +163,17 @@ class CurrencyHelper(object):
             currency.symbol = coin.get('symbol')
             currency.save()
 
+
+class BroadcastHelper(object):
+
+    def insert_data(self):
+        broadcasts = [
+            'Television', 'Web', 'Cine', 'Cable'
+        ]
+        for name in broadcasts:
+            _broadcast = Broadcast()
+            _broadcast.name = name
+            _broadcast.save()
 
 class DataTestHelper(object):
 

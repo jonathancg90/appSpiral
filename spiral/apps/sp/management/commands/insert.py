@@ -8,12 +8,14 @@ from apps.sp.models.Representation import TypeEvent
 from apps.sp.models.Casting import TypeCasting
 from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.PhotoCasting import UsePhotos
+from apps.sp.models.Broadcast import Broadcast
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import TypeCastingHelper
 from apps.common.insert_helper import TypePhotoCastingHelper
 from apps.common.insert_helper import FeatureHelper
 from apps.common.insert_helper import DataTestHelper
+from apps.common.insert_helper import BroadcastHelper
 from apps.common.insert_helper import CurrencyHelper
 from apps.common.insert_helper import TypeEventHelper
 from apps.common.insert_helper import PhotoUseHelper
@@ -45,6 +47,7 @@ class Command(BaseCommand):
             self.insert_type_photo_casting()
             self.insert_type_event()
             self.insert_photo_use()
+            self.insert_broadcast()
 
         if entity == 'country':
             self.insert_countries()
@@ -69,6 +72,9 @@ class Command(BaseCommand):
 
         if entity == 'currency':
             self.insert_currency()
+
+        if entity == 'broadcast':
+            self.insert_broadcast()
 
         if entity == 'test_data':
             self.insert_data_test()
@@ -168,6 +174,18 @@ class Command(BaseCommand):
                 self.stdout.write('Successfully inserted data: currency. \n')
             else:
                 self.stdout.write('can not insert the data: currency. \n')
+
+    def insert_broadcast(self):
+        if self.data_delete:
+            Broadcast.objects.all().delete()
+            self.stdout.write('delete data: broadcast. \n')
+        else:
+            if Broadcast.objects.all().count() == 0:
+                broadcast_helper = BroadcastHelper()
+                broadcast_helper.insert_data()
+                self.stdout.write('Successfully inserted data: broadcast. \n')
+            else:
+                self.stdout.write('can not insert the data: broadcast. \n')
 
     def insert_data_test(self):
         if self.data_delete:

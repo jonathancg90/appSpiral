@@ -143,6 +143,25 @@ class Project(models.Model):
         return code
 
 
+class DutyDetail(models.Model):
+    project = models.OneToOneField(
+        'Project',
+        primary_key=True
+    )
+
+    type_contract =  models.ForeignKey(
+        'TypeContract',
+        verbose_name='tipo de contrato',
+        related_name='duty_detail_set',
+        null=True
+    )
+    duration_month = models.IntegerField(
+        editable=False,
+        null=False,
+        default=0
+    )
+
+
 class ProjectClientDetail(models.Model):
     project = models.ForeignKey(Project)
     client = models.ForeignKey(Client)

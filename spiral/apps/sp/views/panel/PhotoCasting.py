@@ -77,11 +77,11 @@ class PhotoCastingSaveProcess(View):
         for detail in self.data_models:
             photo_casting_detail_model = PhotoCastingDetailModel()
             photo_casting_detail_model.photo_casting = project_line
-            photo_casting_detail_model.quantity = detail.get('quantity')
+            photo_casting_detail_model.quantity = detail.get('cant')
             photo_casting_detail_model.profile = detail.get('profile')
             photo_casting_detail_model.feature = detail.get('feature')
             photo_casting_detail_model.character = detail.get('character').get('id')
             photo_casting_detail_model.currency_id = detail.get('currency').get('id')
-            photo_casting_detail_model.budget = float(detail.get('budget')) if detail.get('budget') is not None and detail.get('budget') != '' else None
+            photo_casting_detail_model.budget_cost = float(detail.get('budget_cost')) if detail.get('budget_cost') is not None and detail.get('budget_cost') != '' else None
             photo_casting_detail_model.observations = detail.get('observations')
             photo_casting_detail_model.save()

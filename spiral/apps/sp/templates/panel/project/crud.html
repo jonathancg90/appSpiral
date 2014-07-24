@@ -32,6 +32,9 @@
         .btn-save{
             margin-right: 67%;
         }
+        .lighter{
+            width: 70%;
+        }
     </style>
 {% endblock %}
 
@@ -147,7 +150,10 @@
             entryUrl: '{% url "entry_data_list" %}',
             clientUrl : '{% url "client_data_list" %}',
             urlTypeClient: '{% url "type_client_data_list" %}',
+            urlCountryList: '{% url "country_list_json" %}',
             typeCastingUrl: '{% url "type_casting_data" %}',
+            urlTypeContract: '{% url "type_contract_json" %}',
+            urlBroadcastList: '{% url "broadcast_json" %}',
             urlCharacterCasting: '{% url "casting_data_character" %}',
             urlCharacterExtra: '{% url "extra_data_character" %}',
             urlEventsRepresentation: '{% url "representation_data_event" %}',

@@ -241,10 +241,11 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def save_delivery_dates(self, project):
         for delivery in self.data_deliveries:
-            project_delivery = ProjectDetailDeliveries()
-            project_delivery.project = project
-            project_delivery.delivery_date = self.format_date(delivery.get('date'))
-            project_delivery.save()
+            if delivery.get('date') is not None:
+                project_delivery = ProjectDetailDeliveries()
+                project_delivery.project = project
+                project_delivery.delivery_date = self.format_date(delivery.get('date'))
+                project_delivery.save()
 
     def save_clients(self, project):
         type_director = TypeClient.objects.get(name='Realizadora')
@@ -472,7 +473,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                     },
                     'type': self.get_types(detail.type_casting.all()),
                     'scene': detail.scene,
-                    'budget': float(detail.budget)
+                    'budget': float(detail.budget) if detail.budget is not None else None
                 })
 
         if self.line.get('id') == Project.LINE_PHOTO:
@@ -490,7 +491,8 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                         'symbol': detail.currency.symbol,
                         'id': detail.currency.id
                     },
-                    'budget_cost': float(detail.budget_cost)
+                    'budget_cost': float(detail.budget_cost) if detail.budget_cost is not None else None,
+                    'observations': detail.observations
                 })
 
         if self.line.get('id') == Project.LINE_REPRESENTATION:
@@ -512,8 +514,8 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                         'id': detail.currency.id,
                         'symbol': detail.currency.symbol
                     },
-                    'budget_cost': float(detail.budget_cost),
-                    'budget': float(detail.budget)
+                    'budget_cost': float(detail.budget_cost) if detail.budget_cost is not None else None,
+                    'budget': float(detail.budget) if detail.budget is not None else None
                 })
         return data
 
@@ -547,7 +549,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                         'id_emp': staff.employee,
                     },
                     'percentage': int(staff.percentage),
-                    'budget': float(staff.budget),
+                    'budget': float(staff.budget) if staff.budget is not None else None,
                     'total': float((staff.budget * staff.percentage)/100)
                 })
         except:
@@ -639,13 +641,17 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                     'name': self.line_project.type_casting.name
                 },
                 "use": self.get_types(self.line_project.use_photo.all()),
+                "budget": float(self.project.budget)
             })
         if self.line.get('id') == Project.LINE_REPRESENTATION:
-            project.update({
-                "event": {
+            event = {}
+            if self.line_project.type_event is not None:
+                event.update({
                     'id': self.line_project.type_event.id,
                     'name': self.line_project.type_event.name
-                },
+                })
+            project.update({
+                "event": event,
                 "ppi": self.line_project.ppi.strftime("%d/%m/%Y") if self.line_project.ppg is not None else None,
                 "ppg": self.line_project.ppg.strftime("%d/%m/%Y") if self.line_project.ppg is not None else None,
                 })
