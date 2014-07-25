@@ -40,7 +40,8 @@ controllers.projectController = function($scope,
                 'models': $scope.project_service.detailModel,
                 'payment': dataPayment(),
                 'resources': $scope.project_service.detailStaff,
-                'deliveries': $scope.project_service.deliveries
+                'deliveries': $scope.project_service.deliveries,
+                'duty': $scope.project_service.duty
             };
             var url = urlProjectSave;
             if($scope.project_service.id != undefined){
@@ -61,10 +62,15 @@ controllers.projectController = function($scope,
                 }
                 $scope.flashMessage = data.message;
                 $scope.flashType = data.status;
+
             });
         } else {
             $scope.flashMessage = 'Campos requeridos incompletos: '+ validate.msg;
             $scope.flashType = 'warning';
+            $('html, body').animate({
+                    scrollTop: '0px'
+                },
+                1000);
         }
     });
 
@@ -130,27 +136,29 @@ controllers.projectController = function($scope,
     //Request Methods
     //-----------------------------------------------
 
-    var rpTypeContract = commercialFactory.all(urlTypeContract);
-    rpTypeContract.then(function(data) {
-        $scope.type_contract = data.type_contracts;
-    });
+    function getDataDuty(){
+        var rpTypeContract = commercialFactory.all(urlTypeContract);
+        rpTypeContract.then(function(data) {
+            $scope.type_contract = data.type_contracts;
+        });
 
-    var rpBroadcast = commercialFactory.all(urlBroadcastList);
-    rpBroadcast.then(function(data) {
-        debugger
-        $scope.broadcasts = data.broadcasts;
-    });
+        var rpBroadcast = commercialFactory.all(urlBroadcastList);
+        rpBroadcast.then(function(data) {
+            $scope.broadcasts = data.broadcasts;
+        });
 
 
-    var rpCountry = commercialFactory.all(urlCountryList);
-    rpCountry.then(function(data) {
-        $scope.countries = data.countries;
-    });
+        var rpCountry = commercialFactory.all(urlCountryList);
+        rpCountry.then(function(data) {
+            $scope.countries = data.countries;
+            $scope.detailLoader = false;
+        });
+    }
 
     var rpCommercial = commercialFactory.all(urlCommercial);
     rpCommercial.then(function(data) {
         $scope.commercials = data.commercial;
-        $scope.detailLoader = false;
+        getDataDuty();
     });
 
     var rpClient = clientFactory.all(urlClient);
@@ -254,13 +262,13 @@ controllers.projectController = function($scope,
         //Detail Staff
         angular.forEach($scope.project_service.detailStaff, function(value, key) {
             angular.forEach($scope.realizers, function(value_realizer, key_realizer) {
-                if(value.employee.id == value_realizer.id_emp) {
+                if(value.employee.id_emp == value_realizer.id_emp) {
                     $scope.project_service.detailStaff[key].employee.last_name = value_realizer.last_name;
                     $scope.project_service.detailStaff[key].employee.name = value_realizer.name;
                 }
             });
             angular.forEach($scope.productors, function(value_productor, key_productor) {
-                if(value.employee.id == value_productor.id_emp) {
+                if(value.employee.id_emp == value_productor.id_emp) {
                     $scope.project_service.detailStaff[key].employee.last_name = value_productor.last_name;
                     $scope.project_service.detailStaff[key].employee.name = value_productor.name;
                 }
@@ -281,7 +289,6 @@ controllers.projectController = function($scope,
                 $scope.project_service.type =  value;
             }
         });
-        debugger
         angular.forEach($scope.photoUses, function(value_list, key_list) {
             angular.forEach(result.use, function(value, key) {
                 if(value.id == value_list.id) {
@@ -318,6 +325,28 @@ controllers.projectController = function($scope,
             });
         }
 
+        //Duty
+        if(result.duty != undefined) {
+            angular.forEach($scope.countries, function(value_country, key) {
+                angular.forEach(result.duty.countries, function(value, key) {
+                    if(value.id == value_country.id) {
+                        $scope.project_service.duty.countries.push(value_country);
+                    }
+                });
+            });
+            angular.forEach($scope.broadcasts, function(value_broadcast, key) {
+                angular.forEach(result.duty.broadcasts, function(value, key) {
+                    if(value.id == value_broadcast.id) {
+                        $scope.project_service.duty.broadcasts.push(value_broadcast);
+                    }
+                });
+            });
+            angular.forEach($scope.type_contract, function(value, key) {
+                if(result.duty.type_contract.id == value.id) {
+                    $scope.project_service.duty.type_contract =  value;
+                }
+            });
+        }
     }
 
     /*---------------------------------------
@@ -408,9 +437,25 @@ controllers.projectController = function($scope,
     };
 
     //actualizar registrro de staff
-    $scope.updateStaffDetail = function(detail){
+    $scope.updateStaffDetail = function(detail) {
         $scope.detailStaff = detail;
         $scope.setStatusSave(false);
+
+        if($scope.detailStaff.role != undefined) {
+            angular.forEach($scope.roles, function(value, key) {
+                if($scope.detailStaff.role.id == value.id) {
+                    $scope.detailStaff.role =  value;
+                    $scope.changeEmployeeRole($scope.detailStaff.role);
+                }
+            });
+        }
+        if($scope.detailStaff.employee != undefined){
+            angular.forEach($scope.employees, function(value, key) {
+                if($scope.detailStaff.employee.id == value.id) {
+                    $scope.detailStaff.employee =  value;
+                }
+            });
+        }
     };
 
     //-----------------------------------------------

@@ -226,13 +226,15 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def save_duty(self, project):
         duty_detail = DutyDetail()
         duty_detail.project = project
-        duty_detail.type_contract_id = self.data_duty('type_contract').get('id')
-        duty_detail.duration_month = self.data_duty('duration_month')
+        if self.data_duty.get('type_contract', None) is not None:
+            duty_detail.type_contract_id = self.data_duty.get('type_contract').get('id')
+        if self.data_duty.get('duration_month', None) is not None:
+            duty_detail.duration_month = self.data_duty.get('duration_month')
         duty_detail.save()
-        for broadcast in self.data_duty('broadcasts'):
-            duty_detail.country.add(Broadcast.objects.get(pk=broadcast.get('id')))
+        for broadcast in self.data_duty.get('broadcasts', []):
+            duty_detail.broadcast.add(Broadcast.objects.get(pk=broadcast.get('id')))
 
-        for country in self.data_duty('countries'):
+        for country in self.data_duty.get('countries', []):
             duty_detail.country.add(Country.objects.get(pk=country.get('id')))
 
     def format_date(self, date):
@@ -393,6 +395,10 @@ class ProjectUpdateJsonView(ProjectSaveJsonView):
     def save_delivery_dates(self, project):
         ProjectDetailDeliveries.objects.filter(project=project).delete()
         return super(ProjectUpdateJsonView, self).save_delivery_dates(project)
+
+    def save_duty(self, project):
+        DutyDetail.objects.filter(project=project).delete()
+        return super(ProjectUpdateJsonView, self).save_duty(project)
 
     def save_resources(self, project):
         ProjectDetailStaff.objects.filter(project=project).delete()
@@ -625,9 +631,11 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_duty(self):
         duty_detail = DutyDetail.objects.get(project=self.project)
         return {
+            'duration_month': duty_detail.duration_month,
+            'broadcasts': self.get_types(duty_detail.broadcast.all()),
             'type_contract': {
-                'id':  duty_detail.type_contract.id,
-                'name':  duty_detail.type_contract.name
+                'id': duty_detail.type_contract.id,
+                'name': duty_detail.type_contract.name
             },
             'countries': self.get_types(duty_detail.country.all())
 
@@ -659,8 +667,8 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 "typeCasting": self.get_types(self.line_project.type_casting.all()),
                 "ppi": self.line_project.ppi.strftime("%d/%m/%Y") if self.line_project.ppi is not None else None,
                 "ppg": self.line_project.ppg.strftime("%d/%m/%Y") if self.line_project.ppg is not None else None,
-                "internalBudget": float(self.project.budget),
-                "budget": float(self.project.budget_cost)
+                "internalBudget": float(self.project.budget_cost),
+                "budget": float(self.project.budget)
             })
         if self.line.get('id') == Project.LINE_PHOTO:
             project.update({

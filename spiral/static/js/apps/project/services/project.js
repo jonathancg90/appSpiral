@@ -6,6 +6,7 @@ projectApp.service('projectService', function() {
     self.conditions = [];
     self.detailStaff = [];
     self.payment = {};
+    self.duty = {};
 
 
     self.set_result = function(result){
@@ -27,8 +28,10 @@ projectApp.service('projectService', function() {
         self.typeCasting = result.typeCasting;
         self.ppi = result.ppi;
         self.ppg = result.ppg;
+        self.duty = result.duty;
         self.budget = result.budget;
         self.internalBudget = result.internalBudget;
+        self.duty = result.duty;
 
         //Photo
         self.type = result.type;
@@ -43,6 +46,7 @@ projectApp.service('projectService', function() {
         self.detailModel = [];
         self.detailStaff = [];
         self.conditions = [];
+        self.duty = {};
         self.payment = {};
         self.line = line;
         self.productor = {};
