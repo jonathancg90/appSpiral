@@ -1,0 +1,56 @@
+<span ng-show=" project_service.line.name == 'Foto'">
+    <form class="form-horizontal" id="sample-form">
+        <div class="control-group success">
+            <label class="control-label" for="inputInfo">Facturacion</label>
+            <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select chosen="clients" class="form-control span12"
+                        ng-model="project_service.payment.client"
+                        ng-options="client.name for client in clients">
+                    <option value="">-- Elige el cliente --</option>
+                </select>
+            </span>
+            </div>
+        </div>
+
+        <div class="control-group success">
+            <label class="control-label" for="inputInfo">Condiciones de pago</label>
+            <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="text" id="inputCondition" placeholder="Condicion de pago" ng-model="newCondition"/>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button ng-click="addCondition(newCondition)" class="btn btn-info btn-small" id="bootbox-options">Agregar</button>
+            </span>
+            </div>
+            <div class="controls" ng-repeat="condition in project_service.conditions">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="text" id="inputInfo" ng-model="condition" placeholder="Condicion de pago"/>
+            </span>
+            <span class="span6">
+            </span>
+            </div>
+
+        </div>
+        <div class="control-group success">
+            <label class="control-label" for="inputInfo">Moneda</label>
+            <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <select chosen="clients" class="form-control span12"
+                            ng-model="project_service.payment.currency"
+                            ng-options="coin.symbol for coin in coins">
+                        <option value="">-- Elige la moneda --</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+        <div class="control-group success">
+            <label class="control-label" for="inputInfo">Presupuesto al Cliente</label>
+            <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <input class="span12" type="text" id="inputBudget" placeholder="$" ng-model="project_service.budget"  />
+                </span>
+            </div>
+        </div>
+    </form>
+</span>

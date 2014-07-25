@@ -118,7 +118,6 @@ controllers.searchController = function($scope, ModelFactory,
                 'mode': $scope.mode,
                 'features': angular.toJson(get_feature_params())
             };
-            debugger
             var response = ModelFactory.Search(searchUrl, data);
             response.then(function(models) {
                 $scope.models = models;

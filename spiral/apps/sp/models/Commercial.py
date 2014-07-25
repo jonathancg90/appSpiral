@@ -7,12 +7,13 @@ from apps.sp.models.Project import Project
 
 
 class Commercial(models.Model):
-
+    STATUS_TERMINATE = 2
     STATUS_ACTIVE = 1
     STATUS_INACTIVE = 0
     CHOICE_STATUS = (
-        (STATUS_INACTIVE,_(u'inactivo')),
-        (STATUS_ACTIVE, _(u'activo'))
+        (STATUS_INACTIVE,_(u'Inactivo')),
+        (STATUS_TERMINATE,_(u'Terminado')),
+        (STATUS_ACTIVE, _(u'Activo'))
     )
 
     name = models.CharField(

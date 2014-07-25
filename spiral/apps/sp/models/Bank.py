@@ -7,9 +7,9 @@ class Bank(models.Model):
     STATUS_DELETE = 2
     STATUS_INACTIVE = 3
     CHOICE_STATUS = (
-        (STATUS_ACTIVE, 'extra'),
-        (STATUS_INACTIVE, 'casting'),
-        (STATUS_DELETE, 'casting')
+        (STATUS_ACTIVE, 'Activo'),
+        (STATUS_INACTIVE, 'Inactivo'),
+        (STATUS_DELETE, 'Eliminado')
     )
 
     name = models.CharField(

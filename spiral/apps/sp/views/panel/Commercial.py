@@ -3,10 +3,12 @@
 import json
 
 import datetime
-from django.core.cache import cache
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.core.cache import cache
+from django.views.generic import View
+from django.core.urlresolvers import reverse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 
 from apps.common.view import SearchFormMixin
@@ -16,6 +18,7 @@ from apps.common.view import JSONResponseMixin
 from apps.sp.models.Project import Project
 from apps.sp.cache.CleanCache import CleanCache
 from apps.sp.models.Entry import Entry
+from apps.sp.models.Brand import Brand
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -253,3 +256,83 @@ class CommercialByBrandIdJson(LoginRequiredMixin, PermissionRequiredMixin,
         brand = self.get_queryset().values('id', 'name')
         data['commercial'] = [item for item in brand]
         return data
+
+
+class CommercialDataListView(LoginRequiredMixin, PermissionRequiredMixin,
+                              JSONResponseMixin, ListView):
+    model = Commercial
+
+    def get_queryset(self):
+        data = []
+        commercials = Commercial.objects.filter(status=Commercial.STATUS_ACTIVE)
+        for commercial in commercials:
+            data.append({
+                'id': commercial.id,
+                'name':  commercial.name,
+                'dates': self.get_details(commercial)
+            })
+        return data
+
+    def get_details(self, commercial):
+        data = []
+        for detail in commercial.commercial_date_detail_set.all():
+            data.append({
+                'id': detail.id,
+                'date': detail.date.strftime('%d/%m/%Y')
+            })
+        return data
+
+    def get_context_data(self, **kwargs):
+        data = {}
+        commercials = self.get_queryset()
+        data['commercial'] = [item for item in commercials]
+        return data
+
+
+class CommercialCreateDataJson(LoginRequiredMixin, PermissionRequiredMixin,
+                               JSONResponseMixin, View):
+    permissions = {
+        "permission": ('sp.add_commercial', ),
+    }
+    SAVE_SUCCESSFUL = 'Comercial registrado'
+    SAVE_ERROR = 'Ocurrio un error al registrar el comercial'
+
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(CommercialCreateDataJson, self).dispatch(request, *args, **kwargs)
+
+    def save_commercial(self, data):
+        try:
+            commercial = Commercial()
+            commercial.name = data.get('name')
+            commercial.brand = Brand.objects.get(pk=data.get('brand'))
+            commercial.save()
+            return commercial, self.SAVE_SUCCESSFUL
+        except Exception, e:
+            return None, self.SAVE_ERROR
+
+    def get_details(self, commercial):
+        data = []
+        for detail in commercial.commercial_date_detail_set.all():
+            data.append({
+                'id': detail.id,
+                'date': detail.date.strftime('%d/%m/%Y')
+            })
+        return data
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        commercial, msg = self.save_commercial(data)
+        context['status'] = 'success'
+        context['message'] = msg
+        if commercial is None:
+            context['status'] = 'warning'
+        else:
+            context['result'] = {
+                'name': commercial.name,
+                'id': commercial.id,
+                'dates':  self.get_details(commercial)
+            }
+        return self.render_to_response(context)

@@ -1,4 +1,4 @@
-var projectApp = angular.module('projectApp', [], function($httpProvider)
+var projectApp = angular.module('projectApp', ['chosen', 'datePicker', 'msgApp'], function($httpProvider)
 {
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

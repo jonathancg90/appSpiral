@@ -14,6 +14,7 @@ from apps.sp.views.panel.Dashboard import SettingsTemplateView
 
 
 class UsersTest(TestCase):
+
     def setUp(self):
         self.request_factory = RequestFactory()
         self.client = Client()

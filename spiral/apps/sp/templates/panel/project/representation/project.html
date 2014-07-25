@@ -1,0 +1,37 @@
+<div id="lineCasting" ng-show="lineRepresentacion">
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Tipo de evento</label>
+        <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <select id="chosenBrand" class="form-control"
+                            ng-model="project_service.event"
+                            ng-options="event.name for event in events">
+                        <option value="">-- Elige un tipo de evento --</option>
+                    </select>
+                </span>
+                <span class="span6">
+                </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">PPI</label>
+        <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <input class="span12" type="text" date-picker id="inputPpi"  ng-model="project_service.ppi" placeholder="dd/mm/yy"/>
+                </span>
+                <span class="span6">
+                </span>
+        </div>
+    </div>
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">PPG</label>
+        <div class="controls">
+                <span class="span6 input-icon input-icon-right">
+                    <input class="span12" type="text" date-picker id="inputPpg"  ng-model="project_service.ppg" placeholder="dd/mm/yy"/>
+                </span>
+                <span class="span6">
+                </span>
+        </div>
+    </div>
+</div>

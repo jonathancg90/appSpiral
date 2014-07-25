@@ -9,7 +9,7 @@ projectApp.directive('projectSteps', function(projectService) {
         priority: 1,
         replace: true,
         link: function(scope, elm, attrs) {
-//            updateStep();
+            scope.statusline = false;
 
             scope.$watch(function() {
                 updateStep();
@@ -29,7 +29,7 @@ projectApp.directive('projectSteps', function(projectService) {
                     angular.element('#step1').addClass('active');
                     angular.element('#step2').addClass('active');
                     angular.element('#step3').addClass('active');
-                    angular.element('#step4').removeClass ('active');
+                    angular.element('#step4').removeClass('active');
                 }
                 if(projectService.step == 4){
                     angular.element('#step1').addClass('active');
@@ -45,20 +45,48 @@ projectApp.directive('projectSteps', function(projectService) {
 projectApp.directive('projectActionSteps', function(projectService) {
     return {
         restrict: 'E',
-        template: "<div class=\"row-fluid wizard-actions\">\n    <button class=\"btn btn-prev\" ng-click=\"prev()\">\n        <i class=\"icon-arrow-left\"></i>\n        Prev\n    </button>\n\n    <button class=\"btn btn-success btn-next\" data-last=\"Finish \" ng-click=\"next()\">\n        Next\n        <i class=\"icon-arrow-right icon-on-right\"></i>\n    </button>\n</div>",
+        template: "<div class=\"row-fluid wizard-actions\">\n    <button class=\"btn btn-info btn-save\" ng-click=\"save()\">\n        <i class=\"icon-ok bigger-150\"></i>\n        Grabar\n    </button>\n    <button class=\"btn btn-prev\" ng-click=\"prev()\" ng-show=\"step>1\">\n        <i class=\"icon-arrow-left\"></i>\n        Prev\n    </button>\n\n    <button class=\"btn btn-success btn-next\" data-last=\"Finish \" ng-click=\"next()\" ng-show=\"step<4\">\n        Next\n        <i class=\"icon-arrow-right icon-on-right\"></i>\n    </button>\n</div>",
         priority: 1,
         replace: true,
         link: function(scope, elm, attrs) {
+            scope.statusLine = false;
+            scope.step = projectService.step;
+            scope.project_code = undefined;
+
+            scope.$watch('projectService.project_code', function(newValue) {
+                if (newValue) {
+                    scope.project_code = newValue;
+                }
+            });
+
+            scope.$on('setLine', function(event, args) {
+                scope.statusLine = true;
+            });
             scope.next = function() {
-                if(projectService.step <4){
-                    projectService.step += 1;
+                if(projectService.step <4) {
+                    if( scope.statusLine) {
+                        projectService.step += 1;
+                        scope.step = projectService.step;
+                    } else {
+                        scope.$emit("setMessage", {
+                            'type':  'warning',
+                            'message': 'Debe escoger un tipo de proyecto antes de continuar'
+                        });
+                    }
                 }
             };
             scope.prev = function() {
                 if(projectService.step > 1){
-                    projectService.step -= 1;
+                    if( scope.statusLine) {
+                        projectService.step -= 1;
+                        scope.step = projectService.step;
+                    }
                 }
             };
+
+            scope.save =  function() {
+                scope.$emit('saveProject', { });
+            }
         }
     }
 });

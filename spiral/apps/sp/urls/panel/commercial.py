@@ -1,6 +1,7 @@
 from django.conf.urls import url, patterns
 from apps.sp.views.panel.Commercial import CommercialListView, CommercialCreateView,\
-    CommercialUpdateView, CommercialDeleteView, CommercialByBrandIdJson
+    CommercialUpdateView, CommercialDeleteView, CommercialByBrandIdJson,\
+    CommercialDataListView, CommercialCreateDataJson
 
 urlpatterns = patterns('',
 
@@ -20,4 +21,10 @@ urlpatterns = patterns('',
     url(r'^commercial-by-brand/(?P<brand>\d+)/$',
         CommercialByBrandIdJson.as_view(),
         name='commercial_by_brand_json'),
-    )
+    url(r'^data-list/$',
+        CommercialDataListView.as_view(),
+        name='commercial_data_list'),
+    url(r'^json-create/$',
+        CommercialCreateDataJson.as_view(),
+        name='commercial_json_create'),
+)

@@ -41,7 +41,8 @@
             <thead>
                 <tr>
                     <th>{% trans 'Nombre' %}</th>
-                    <th>{% trans 'Rubro' %}</th>
+                    <th>{% trans 'RUC' %}</th>
+                    <th>{% trans 'Tipo' %}</th>
                     <th>{% trans 'Modificado' %}</th>
                     <th>{% trans 'Opciones' %}</th>
                 </tr>
@@ -50,7 +51,11 @@
                 {% for client in object_list %}
                 <tr>
                     <td>{{ client.name }}</td>
-                    <td>{{ client.entry }}</td>
+                    <td>{{ client.ruc }}</td>
+                    <td>
+                        {% for type in client.type_client.all %}
+                            {{ type }}<br/>
+                        {% endfor %}</td>
                     <td>{{ client.modified }}</td>
                     <td><a href="{% url "client_edit" client.pk %}">{% trans 'Update' %}</a> |
                         <a href="{% url "client_delete" client.pk %}">{% trans 'Delete' %}</a>

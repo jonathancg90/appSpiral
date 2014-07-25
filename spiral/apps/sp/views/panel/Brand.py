@@ -88,3 +88,4 @@ class BrandByEntryIdJson(LoginRequiredMixin, PermissionRequiredMixin,
         brand = self.get_queryset().values('id', 'name')
         data['brand'] = [item for item in brand]
         return data
+

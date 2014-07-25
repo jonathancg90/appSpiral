@@ -1,15 +1,17 @@
 import datetime
 
+
 from django.test import TestCase
 from django.utils.timezone import utc
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.test.utils import override_settings
 
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
-from apps.sp.models.Commercial import Commercial
+from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Project import Project
 from apps.sp.views.panel.Commercial import CommercialListView, CommercialCreateView, \
     CommercialUpdateView, CommercialDeleteView
@@ -36,6 +38,7 @@ class CommercialViewTest(TestCase):
         self.assertTrue(Project.objects.all().count() > 0)
         self.assertTrue(Commercial.objects.all().count() > 0)
 
+    @override_settings(APPLICATION_CACHE=False)
     def test_list_view_commercial(self):
         """
         Tests List
@@ -48,13 +51,12 @@ class CommercialViewTest(TestCase):
         request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context_data['object_list'].count(), 4)
+        self.assertEqual(len(response.context_data['object_list']), 4)
         commercial = Commercial()
         commercial.brand = Brand.objects.latest('id')
-        commercial.realized = self.date
         commercial.save()
         response = view(request)
-        self.assertEqual(response.context_data['object_list'].count(), 5)
+        self.assertEqual(len(response.context_data['object_list']), 5)
 
     def test_list_view_commercial_filter(self):
         """
@@ -78,10 +80,9 @@ class CommercialViewTest(TestCase):
         self.insert_test_data()
         self.assertEqual(Commercial.objects.all().count(), 4)
         data = {
-            'name': 'Brand test',
+            'name': 'Commercial test',
             'brand': Brand.objects.filter(name='Sprite')[0].id,
-            'realized':'2013-08-06',
-            'project': '13-08M120'
+            'id_realized': '02/07/2014'
         }
         view = CommercialCreateView.as_view()
         request = self.request_factory.post(
@@ -91,6 +92,7 @@ class CommercialViewTest(TestCase):
         response = view(request)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Commercial.objects.all().count(), 5)
+        self.assertEqual(CommercialDateDetail.objects.all().count(), 1)
 
     def test_update_view_commercial(self):
         """
@@ -117,7 +119,6 @@ class CommercialViewTest(TestCase):
             'name': "actualizado",
             'brand': Brand.objects.get(id=1).id,
             'realized': '2014-08-08',
-            'project': commercial.project.project_code
         }
 
         url_kwargs = {'pk': commercial.id}

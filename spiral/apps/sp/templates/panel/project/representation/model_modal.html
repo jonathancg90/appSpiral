@@ -1,0 +1,76 @@
+<!-- Modal Representation Model-->
+<div class="modal fade" id="modalCreateRepresentationDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Detalle</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!--PAGE CONTENT BEGINS-->
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Perfil</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="Perfil" ng-model="castDetailModel.profile"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1" >Modelo</label>
+                                <div class="controls">
+                                    <span class="">
+                                        <input type="text" id="form-field-model" name="form-field-model"  placeholder="Modelo" ng-model="castDetailModel.model_name"  list="models"/>
+                                        <datalist id="models">
+                                            <option ng-repeat="model in models" value="{[{ model.id }]}">{[{ model.name }]} | {[{ model.document }]}</option>
+                                        </datalist>
+                                    </span>
+                                    <span class="">
+                                        <button class="btn btn-success btn-small" id="bootbox-options" ng-click="searchModel(castDetailModel.model_name)">Buscar</button>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Personaje</label>
+
+                                <div class="controls">
+                                    <select id="chosenEntry" chosen="characters" class="form-control"
+                                            ng-model="castDetailModel.character"
+                                            ng-options="character.name for character in characters"
+                                            required>
+                                        <option value="">-- Elige un personaje --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Moneda</label>
+
+                                <div class="controls">
+                                    <select id="chosenBrand" class="form-control"
+                                            ng-model="castDetailModel.currency"
+                                            ng-options="coin.symbol for coin in coins">
+                                        <option value="">-- Elige tipo de moneda --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Monto de pago</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="Monto de pago" ng-model="castDetailModel.budget_cost" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" ng-show="saveDetail" ng-click="addDetailModel(castDetailModel)">Grabar</button>
+            </div>
+        </div>
+    </div>
+</div>

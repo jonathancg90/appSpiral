@@ -1,19 +1,53 @@
+{#project: {[{  project_service }]}#}
 <form class="form-horizontal" id="sample-form">
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Comercial</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <select class="form-control span12">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select id="chosen1" chosen="commercials" class="form-control span12"
+                        ng-model="project_service.commercial"
+                        ng-options="commercial.name for commercial in commercials"
+                        required>
+                    <option value="">-- Elige un comercial --</option>
                 </select>
-
             </span>
             <span class="span6 input-icon input-icon-right">
-                <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+                <button data-toggle="modal" data-target="#modalCommercial" class="btn btn-success btn-small" id="bootbox-options">Nuevo</button>
+            </span>
+        </div>
+    </div>
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Clientes</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select chosen="clientsProductor" class="form-control span12"
+                        ng-model="project_service.productor"
+                        ng-options="client.name for client in clientsProductor">
+                    <option value="">-- Elige la productora --</option>
+                </select>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button data-toggle="modal" data-target="#modalClient" class="btn btn-success btn-small" id="bootbox-options">Nuevo</button>
+            </span>
+        </div>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select chosen="clientsAgency" class="form-control span12"
+                        ng-model="project_service.agency"
+                        ng-options="client.name for client in clientsAgency">
+                    <option value="">-- Elige la Agencia --</option>
+                </select>
+            </span>
+             <span class="span6">
+            </span>
+        </div>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select chosen="clientsDirector" class="form-control span12"
+                        ng-model="project_service.director"
+                        ng-options="client.name for client in clientsDirector">
+                    <option value="">-- Elige la Realizadora --</option>
+                </select>
             </span>
         </div>
     </div>
@@ -21,70 +55,195 @@
         <label class="control-label" for="inputInfo">Fecha de comercial</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                <input id="newCommercialdate" class="span12" type="text" id="inputInfo"
+                       placeholder="dd/mm/yy" readonly/>
             </span>
             <span class="span6 input-icon input-icon-right">
-                <button class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+                <button class="btn btn-success btn-small" id="bootbox-options" ng-click="addCommercialDate()">Agregar</button>
+            </span>
+        </div>
+
+        <div class="controls" ng-repeat="date in project_service.commercial.dates">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="text" placeholder="dd/mm/yy" ng-model="date.date" date-picker />
+            </span>
+            <span class="span6">
             </span>
         </div>
     </div>
-
-    <div class="control-group info">
-        <label class="control-label" for="inputInfo">Clientes</label>
-        <div class="controls">
-            <span class="span6 input-icon input-icon-right">
-                <select class="form-control span12">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-
-            </span>
-            <span class="span6 input-icon input-icon-right">
-                <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
-            </span>
-        </div>
-    </div>
-
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Fecha de produccion</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                <input class="span12" type="text" date-picker id="inputStartProd"  ng-model="project_service.startProduction" placeholder="dd/mm/yy"/>
             </span>
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                <input class="span12" type="text" date-picker id="inputEndProd"  ng-model="project_service.finishProduction" placeholder="dd/mm/yy"/>
             </span>
         </div>
     </div>
-
     <div class="control-group info">
         <label class="control-label" for="inputInfo">Fecha de entrega</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="date" id="inputInfo" placeholder="dd/mm/yy"/>
+                <input class="span12" type="text" placeholder="dd/mm/yy" readonly/>
             </span>
             <span class="span6 input-icon input-icon-right">
-                <button class="btn btn-success btn-small" id="bootbox-options">Agregar</button>
+                <button class="btn btn-success btn-small" id="bootbox-options" ng-click="addDeliveryDate(newDeliveryDate)">Agregar</button>
+            </span>
+        </div>
+        <div class="controls" ng-repeat="date in project_service.deliveries">
+            <span class="span6 input-icon input-icon-right">
+                <input class="span12" type="text" placeholder="dd/mm/yy" ng-model="date.date" date-picker />
+            </span>
+            <span class="span6">
+            </span>
+        </div>
+    </div>
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Observaciones</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <textarea id="form-field-11" class="autosize-transition span12"  ng-model="project_service.observation"></textarea>
+            </span>
+        </div>
+    </div>
+
+    {% include 'panel/project/casting/project.html' %}
+
+    {% include 'panel/project/extras/project.html' %}
+
+    {% include 'panel/project/representation/project.html' %}
+
+    {% include 'panel/project/photo/project.html' %}
+
+    <hr/>
+    <h4>Derechos</h4>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Tiempo de contrato</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <input id="periodContract" class="span12" type="number" id="inputInfo" ng-model="project_service.duty.duration_month">
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                Meses
             </span>
         </div>
     </div>
 
     <div class="control-group info">
-        <label class="control-label" for="inputInfo">Observaciones</label>
+        <label class="control-label" for="inputInfo">Paises</label>
         <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <textarea id="form-field-11" class="autosize-transition span12"></textarea>
+                <select id="chosenCommercial" chosen="countries" multiple class="form-control span12"
+                        ng-model="project_service.duty.countries"
+                        ng-options="country.name for country in countries"
+                        required>
+                    <option value="">-- Elige los paises --</option>
+                </select>
+            </span>
+            <span class="span6 input-icon input-icon-right">
             </span>
         </div>
     </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Difusion</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select id="chosenBroadcast" chosen="broadcasts" multiple class="form-control span12"
+                        ng-model="project_service.duty.broadcasts"
+                        ng-options="broadcast.name for broadcast in broadcasts"
+                        required>
+                    <option value="">-- Elige los medios  --</option>
+                </select>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group info">
+        <label class="control-label" for="inputInfo">Tipo de Contrato</label>
+        <div class="controls">
+            <span class="span6 input-icon input-icon-right">
+                <select id="chosen1" chosen="commercials" class="form-control span12"
+                        ng-model="project_service.duty.type_contract"
+                        ng-options="contract.name for contract in type_contract"
+                        required>
+                    <option value="">-- Elige un tipo --</option>
+                </select>
+            </span>
+            <span class="span6 input-icon input-icon-right">
+                <button data-toggle="modal" data-target="#modalCommercial" class="btn btn-success btn-small" id="bootbox-options">Nuevo</button>
+            </span>
+        </div>
+    </div>
+
 </form>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<!-- Modal Client -->
+<div class="modal fade" id="modalClient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Comercial</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!--PAGE CONTENT BEGINS-->
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Nombre</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-1" placeholder="Razon Social" ng-model="newClient.name"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">RUC</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-2" placeholder="RUC" ng-model="newClient.ruc"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Direccion</label>
+
+                                <div class="controls">
+                                    <input type="text" id="form-field-3" placeholder="Direccion" ng-model="newClient.address"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="form-field-1">Tipo</label>
+
+                                <div class="controls">
+                                    <select id="form-field-select-2" multiple="multiple"
+                                            ng-model="newClient.type"
+                                            ng-options="type.name for type in typeClients">
+                                        <option value="">-- Seleccione el tipo de cliente --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" ng-click="saveClient(newClient)">Grabar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal commercial-->
+<div class="modal fade" id="modalCommercial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -100,7 +259,11 @@
                                 <label class="control-label" for="form-field-1">Rubro</label>
 
                                 <div class="controls">
-                                    <select class="">
+                                    <select id="chosenEntry" chosen="entries" class="form-control"
+                                            ng-model="entrySelected"
+                                            ng-options="entry.name for entry in entries"
+                                            ng-change="changeEntry(entrySelected)">
+                                        <option value="">-- Elige un rubro --</option>
                                     </select>
                                 </div>
                             </div>
@@ -108,7 +271,10 @@
                                 <label class="control-label" for="form-field-1">Marca</label>
 
                                 <div class="controls">
-                                    <select class="">
+                                    <select id="chosenBrand" chosen="brands" class="form-control"
+                                            ng-model="newCommercial.brandSelected"
+                                            ng-options="brand.name for brand in brands">
+                                        <option value="">-- Elige un rubro --</option>
                                     </select>
                                 </div>
                             </div>
@@ -116,7 +282,7 @@
                                 <label class="control-label" for="form-field-1">Nombre</label>
 
                                 <div class="controls">
-                                    <input type="text" id="form-field-1" placeholder="Username" />
+                                    <input type="text" id="form-field-1" ng-model="newCommercial.name" placeholder="Nombre del comercial" />
                                 </div>
                             </div>
                         </form>
@@ -125,7 +291,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Grabar</button>
+                <button type="button" class="btn btn-primary" ng-click="saveCommercial(newCommercial)">Grabar</button>
             </div>
         </div>
     </div>

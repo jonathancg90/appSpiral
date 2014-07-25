@@ -5,7 +5,7 @@ msgApp.directive('messageFlash', function () {
         restrict: 'E',
         scope: {
             message: '@',
-            type: '@'
+            type: '='
         },
         replace: true,
         template: "<div>\n    <div class=\'alert alert-block alert-success\' ng-show=\'success\'>\n        <button type=\'button\' class=\'close\'  ng-click=\"remove($event)\">\n            <i class=\'icon-remove\'></i>\n        </button>\n        <i class=\'icon-ok green\' ng-show=\'success\'></i>\n            {[{ message }]}\n    </div>\n\n    <div class=\'alert alert-block alert-warning\' ng-show=\'warning\'>\n        <button type=\'button\' class=\'close\'  ng-click=\"remove($event)\">\n            <i class=\'icon-remove\'></i>\n        </button>\n            <i class=\'icon-bullhorn yellow\' ng-show=\'warning\'></i>\n            {[{ message }]}\n    </div>\n\n    <div class=\'alert alert-block alert-error\' ng-show=\'error\'>\n        <button type=\'button\' class=\'close\' ng-click=\"remove($event)\">\n            <i class=\'icon-remove\'></i>\n        </button>\n            <i class=\'icon-ban-circle red\' ng-show=\'error\'></i>\n            {[{ message }]}\n    </div>\n</div>",
@@ -35,11 +35,13 @@ msgApp.directive('messageFlash', function () {
                 }
                 scope.remove = function(e){
                     e.preventDefault();
+                    scope.type = '';
                     scope.error = false;
                     scope.success = false;
                     scope.warning = false;
                     scope.$emit("Remove_Message");
                 };
+
             });
         }
     };
