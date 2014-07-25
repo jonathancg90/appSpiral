@@ -16,30 +16,31 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'proyspiral',                   # Or path to database file if using sqlite3.
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                             # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                             # Set to empty string for default.
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'spiral',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
     },
     'employee': {
         'NAME': 'asistencia2',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'USER': 'postgres',
         'PASSWORD': 'sp1r4ls4c',
-        'HOST': '192.168.1.3',                  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '5432',                         # Set to empty string for default.
+        'HOST': '192.168.1.3',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '5432',                      # Set to empty string for default.
     }
-}
 
+}
 
 PANEL_PAGE_SIZE = 10
 DEFAULT_PAGE_SIZE = 10
 LOGIN_URL = '/login/'
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -147,7 +148,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'apps.common',
     'apps.fileupload',
-    'easy_thumbnails'
+    'easy_thumbnails',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -185,14 +186,24 @@ LOGGING = {
 #Redis configuration
 CACHES = {
     "default": {
-        "BACKEND": "redis_cache.cache.RedisCache",
-        "LOCATION": "127.0.0.1:6379:1",
+        # "BACKEND": "redis_cache.cache.RedisCache",
+        "BACKEND": "redis_cache.RedisCache",
+        "LOCATION": "127.0.0.1:6379",
         "OPTIONS": {
             "CLIENT_CLASS": "redis_cache.client.DefaultClient",
             }
     }
 }
 
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'test_spiral',
+            }
+    }
+    SOUTH_TESTS_MIGRATE = False
+    FIREBUG = True
 
 EMAIL_HOST_USER = 'app@spiral.com.pe'
 EMAIL_HOST_PASSWORD = 'sp1r4l4pp'
