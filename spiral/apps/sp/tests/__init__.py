@@ -11,3 +11,6 @@ from apps.sp.tests.admin.users import UsersTest
 from apps.sp.tests.tasks.facebook import FacebookTaskTest
 from apps.sp.tests.website.home import HomeTest
 from apps.sp.tests.admin.groups import GroupsTest
+from apps.sp.tests.studio.StudioView import StudioViewTest
+from apps.sp.tests.client.ClientView import ClientViewTest
+from apps.sp.tests.project.ProjectView import ProjectViewTest

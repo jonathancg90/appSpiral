@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 import uuid
+import json
+
 from django.shortcuts import redirect
 from django.contrib import auth, messages
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.views.generic import FormView, RedirectView, View
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from apps.common.view import JSONResponseMixin
 
 from apps.sp.forms.User import LoginForm
 from apps.common.email import Email
@@ -144,6 +148,30 @@ class LoginAuthView(FormView):
 
     def get_success_url(self):
         return reverse('home')
+
+
+class LoginMobile(View):
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        self.token = request.POST.get('rp_token', None)
+        return super(LoginMobile, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        response = {}
+        response['status'] = 'fail'
+        user = request.POST.get('user')
+        password = request.POST.get('password')
+
+        user = auth.authenticate(
+            username=user,
+            password=password
+        )
+        if user is not None and user.is_active:
+            response['status'] = 'ok'
+        response = HttpResponse(json.dumps(response))
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
 
 
 class LogoutView(RedirectView):

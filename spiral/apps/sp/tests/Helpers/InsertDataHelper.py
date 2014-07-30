@@ -10,6 +10,8 @@ from apps.sp.tests.Helpers.data_helpers.model import ModelHelper
 from apps.sp.tests.Helpers.data_helpers.model import ModelFeatureHelper
 from apps.sp.tests.Helpers.data_helpers.user import SuperAdminHelper
 from apps.sp.tests.Helpers.data_helpers.group import GroupHelper
+from apps.sp.tests.Helpers.data_helpers.type_client import TypeClientHelper
+from apps.sp.tests.Helpers.data_helpers.client import ClientHelper
 
 
 class InsertDataHelper(object):
@@ -26,6 +28,8 @@ class InsertDataHelper(object):
         self.model_feature_helper = ModelFeatureHelper()
         self.super_admin_helper = SuperAdminHelper()
         self.group_helper = GroupHelper()
+        self.type_client_helper = TypeClientHelper()
+        self.client_helper = ClientHelper()
 
     def run(self):
         self.entry_helper.set_data()
@@ -55,3 +59,9 @@ class InsertDataHelper(object):
 
         self.group_helper.set_data()
         self.group_helper.insert_data()
+
+        self.type_client_helper.set_data()
+        self.type_client_helper.insert_data()
+
+        self.client_helper.set_data()
+        self.client_helper.insert_data()

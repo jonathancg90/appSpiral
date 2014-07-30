@@ -1,3 +1,5 @@
+from apps.sp.models.Client import Client
+
 class InsertHelperMixin(object):
     """
     Mixin for provide initial data to the given entity.

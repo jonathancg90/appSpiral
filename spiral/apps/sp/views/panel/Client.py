@@ -3,6 +3,7 @@ import json
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
@@ -15,6 +16,7 @@ from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.forms.Client import ClientFiltersForm, ClientForm
 from apps.sp.models.Client import Client, TypeClient
+from apps.sp.models.Project import ProjectClientDetail
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -74,6 +76,15 @@ class ClientDeleteView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super(ClientDeleteView,self).get_context_data(**kwargs)
         return context
+
+    def delete(self, request, *args, **kwargs):
+        client_detail = ProjectClientDetail.objects.filter(client=self.get_object())
+        if client_detail:
+            self.get_object().status = Client.STATUS_INACTIVE
+            self.get_object().save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return super(ClientDeleteView, self).delete(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse('client_list')
