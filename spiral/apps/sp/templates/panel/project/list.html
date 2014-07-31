@@ -51,7 +51,7 @@
                 <tr>
                     <td>{{ project.get_code }}</td>
                     <td>{{ project.commercial.name }}</td>
-                    <td>{{ project.modified }}</td>
+                    <td>{{ project.start_productions }}</td>
                     <td><a href="{% url "project_crud" project.pk %}">{% trans 'Actualizar' %}</a> |
                         <a href="{% url "brand_delete" project.pk %}">{% trans 'Eliminar' %}</a>
                     </td>

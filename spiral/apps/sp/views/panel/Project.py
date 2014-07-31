@@ -39,27 +39,27 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
     search_form_class = ProjectFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
-        'start_date_date': ['gte'],
-        'finish_date_date': ['lte'],
+        'start_date': ['gte'],
+        'finish_date': ['lte'],
         'line_productions': SearchFormMixin.ALL
     }
 
     def build_filters(self, filters=None):
         bf = super(ProjectListView, self).build_filters(filters=filters)
-        column_name = 'start_productions__exact'
+        column_name = 'start_productions'
         input_formats = '%d/%m/%Y'
-        ini = 'initial_date'
-        end = 'end_date'
+        ini = 'start_date'
+        end = 'finish_date'
         ini_sufix = self.LOOKUP_SEP + 'gte'
         end_sufix = self.LOOKUP_SEP + 'lte'
-        if bf.get(column_name) is not None:
-            column = bf.pop(column_name)
-            if bf.get(ini + ini_sufix) is not None:
-                bf[column + ini_sufix] = datetime.strptime(
-                    bf.pop(ini + ini_sufix), input_formats)
-            if bf.get(end + end_sufix) is not None:
-                bf[column + end_sufix] = datetime.strptime(
-                    bf.pop(end + end_sufix), input_formats)
+
+        if bf.get(ini + ini_sufix) is not None:
+            bf[column_name + ini_sufix] = datetime.strptime(
+                bf.pop(ini + ini_sufix), input_formats)
+        if bf.get(end + end_sufix) is not None:
+            bf[column_name + end_sufix] = datetime.strptime(
+                bf.pop(end + end_sufix), input_formats)
+
         return bf
 
 

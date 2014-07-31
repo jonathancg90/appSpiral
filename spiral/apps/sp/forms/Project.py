@@ -32,7 +32,7 @@ class ProjectFiltersForm(forms.Form):
         required=False
     )
 
-    finish_date__lte  = forms.DateTimeField(
+    finish_date__lte = forms.DateTimeField(
         input_formats=(FORMAT_DATE,),
         label='Hasta',
         required=False
