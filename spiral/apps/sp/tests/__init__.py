@@ -14,3 +14,4 @@ from apps.sp.tests.admin.groups import GroupsTest
 from apps.sp.tests.studio.StudioView import StudioViewTest
 from apps.sp.tests.client.ClientView import ClientViewTest
 from apps.sp.tests.project.ProjectView import ProjectViewTest
+from apps.sp.tests.project.casting.casting_view import CastingViewTest
