@@ -13,6 +13,7 @@ from apps.sp.tests.Helpers.data_helpers.group import GroupHelper
 from apps.sp.tests.Helpers.data_helpers.type_client import TypeClientHelper
 from apps.sp.tests.Helpers.data_helpers.client import ClientHelper
 from apps.common.insert_helper import TypeCastingHelper
+from apps.common.insert_helper import CurrencyHelper
 
 
 class InsertDataHelper(object):
@@ -32,6 +33,7 @@ class InsertDataHelper(object):
         self.type_client_helper = TypeClientHelper()
         self.client_helper = ClientHelper()
         self.type_casting = TypeCastingHelper()
+        self.currency = CurrencyHelper()
 
     def run(self):
         self.entry_helper.set_data()
@@ -69,3 +71,5 @@ class InsertDataHelper(object):
         self.client_helper.insert_data()
 
         self.type_casting.insert_data()
+
+        self.currency.insert_data()
