@@ -44,7 +44,7 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
         'line_productions': SearchFormMixin.ALL
     }
 
-    def _build_filters(self, filters=None):
+    def build_filters(self, filters=None):
         bf = super(ProjectListView, self).build_filters(filters=filters)
         column_name = 'start_productions__exact'
         input_formats = '%d/%m/%Y'
