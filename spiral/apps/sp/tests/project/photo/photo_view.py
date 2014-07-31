@@ -13,7 +13,7 @@ from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.views.panel.PhotoCasting import TypePhotoCastingDataList, UsePhotoDataList, PhotoCastingSaveProcess
 
 
-class ExtraViewTest(TestCase):
+class PhotoCastingViewTest(TestCase):
 
     def setUp(self):
         self.request_factory = RequestFactory()
@@ -53,19 +53,56 @@ class ExtraViewTest(TestCase):
         content = json.loads(response._container[0])
         self.assertEqual(len( content.get('types')), 2)
 
-    def _test_save_casting_method(self):
+    def test_use_photo_list(self):
+        """
+        Tests List
+        """
+        view = UsePhotoDataList.as_view()
+        request = self.request_factory.get(
+            reverse('photo_casting_use_photos')
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response._container[0])
+        self.assertEqual(len( content.get('uses')), 10)
+
+    def test_save_photo_casting_method(self):
         self.assertEqual(len(PhotoCasting.objects.all()), 0)
-        extra_save_process = ExtraSaveProcess()
+        photo_casting_save_process = PhotoCastingSaveProcess()
         project = self.insert_project()
-        extra_save_process.extras = extra_save_process.get_extras()
-        extra_save_process.data_line = {
+        photo_casting_save_process.photo_casting = photo_casting_save_process.get_photo_casting()
+        photo_casting_save_process.data_line = {
+            'type_casting': 2,
+            'uses': [
+                {'id': 1, 'name': 'Todo Uso'},
+                {'id': 2, 'name': 'Paneles'}
+            ]
         }
 
-        extra_save_process.data_models = [
+        photo_casting_save_process.data_models = [
+            {
+                'profile': 'perfil',
+                'budget_cost': '100',
+                'character': {'id': 1, 'name': 'Principal'},
+                'feature': 'carracteristicas',
+                'currency': {'symbol': '$', 'id': 2},
+                'cant': 2,
+                'observations': 'observacio es'
+            },
+            {
+                'profile': 'test',
+                'budget_cost': '200',
+                'character': {'id': 1, 'name': 'Principal'},
+                'feature': 'features',
+                'currency': {'symbol': '$', 'id': 2},
+                'cant': 1
+            }
         ]
 
-        extra = extra_save_process.save_extra(project)
-        extra_save_process.save_detail_model_extra(extra)
+
+        photo = photo_casting_save_process.save_photo(project)
+        photo_casting_save_process.save_detail_model_photo(photo)
 
         self.assertEqual(len(PhotoCasting.objects.all()), 1)
-        self.assertEqual(len(PhotoCastingDetailModel.objects.filter(extras=extra)), 2)
+        self.assertEqual(len(PhotoCastingDetailModel.objects.filter(photo_casting=photo)), 2)
