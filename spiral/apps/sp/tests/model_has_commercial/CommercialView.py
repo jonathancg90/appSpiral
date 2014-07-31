@@ -14,7 +14,7 @@ from apps.sp.models.Entry import Entry
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Project import Project
 from apps.sp.views.panel.Commercial import CommercialListView, CommercialCreateView, \
-    CommercialUpdateView, CommercialDeleteView
+    CommercialUpdateView, CommercialDeleteView, CommercialDataListView
 
 
 class CommercialViewTest(TestCase):
@@ -147,3 +147,23 @@ class CommercialViewTest(TestCase):
         response = CommercialDeleteView.as_view()(request, **kwargs)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Commercial.objects.all().count(), 3)
+
+    def test_data_list(self):
+        """
+       Tests List
+       """
+        self.insert_test_data()
+        view = CommercialDataListView.as_view()
+        request = self.request_factory.get(
+            reverse('commercial_data_list')
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        import pdb;pdb.set_trace()
+        self.assertEqual(len(response.context_data['object_list']), 4)
+        commercial = Commercial()
+        commercial.brand = Brand.objects.latest('id')
+        commercial.save()
+        response = view(request)
+        self.assertEqual(len(response.context_data['object_list']), 5)
