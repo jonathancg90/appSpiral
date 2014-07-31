@@ -1,3 +1,6 @@
+import json
+from json import dumps
+
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
@@ -7,7 +10,7 @@ from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.models.Client import TypeClient
 from apps.sp.models.Client import Client
 from apps.sp.views.panel.Client import ClientListView, ClientCreateView, \
-    ClientUpdateView, ClientDeleteView
+    ClientUpdateView, ClientDeleteView, ClientDataListView, ClientCreateDataJson
 
 
 class ClientViewTest(TestCase):
@@ -134,3 +137,50 @@ class ClientViewTest(TestCase):
         response = ClientDeleteView.as_view()(request, **kwargs)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Client.objects.all().count(), 2)
+
+    def test_data_list(self):
+        """
+        Tests List
+        """
+        self.insert_test_data()
+        view = ClientDataListView.as_view()
+        request = self.request_factory.get(
+            reverse('client_data_list')
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response._container[0])
+        self.assertEqual(len( content.get('client')), 3)
+        client = Client()
+        client.name = 'Client Test'
+        client.ruc = '2345654321'
+        client.address = 'Direccion'
+        client.save()
+        response = view(request)
+        content = json.loads(response._container[0])
+        self.assertEqual(len( content.get('client')), 4)
+
+    def test_create_json(self):
+        self.insert_test_data()
+        self.assertEqual(Client.objects.all().count(), 3)
+        type_client = TypeClient.objects.get(pk=1)
+        data = {
+            'ruc': '1233212334',
+            'type': [
+                {'id': type_client.id, u'name': type_client.name}
+            ],
+            'name': 'razon',
+            'address': 'direccion'
+        }
+
+        view = ClientCreateDataJson.as_view()
+        request = self.request_factory.post(
+            reverse('client_json_create'), data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response._container[0])
+        self.assertEqual(content.get('status'), "success")
+        self.assertEqual(Client.objects.all().count(), 4)

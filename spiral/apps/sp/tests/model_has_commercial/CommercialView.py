@@ -1,6 +1,7 @@
 import datetime
+import json
 
-
+from json import dumps
 from django.test import TestCase
 from django.utils.timezone import utc
 from django.test.client import RequestFactory
@@ -14,7 +15,7 @@ from apps.sp.models.Entry import Entry
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Project import Project
 from apps.sp.views.panel.Commercial import CommercialListView, CommercialCreateView, \
-    CommercialUpdateView, CommercialDeleteView, CommercialDataListView
+    CommercialUpdateView, CommercialDeleteView, CommercialDataListView, CommercialCreateDataJson
 
 
 class CommercialViewTest(TestCase):
@@ -160,10 +161,30 @@ class CommercialViewTest(TestCase):
         request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
-        import pdb;pdb.set_trace()
-        self.assertEqual(len(response.context_data['object_list']), 4)
+        content = json.loads(response._container[0])
+        self.assertEqual(len( content.get('commercial')), 4)
         commercial = Commercial()
         commercial.brand = Brand.objects.latest('id')
         commercial.save()
         response = view(request)
-        self.assertEqual(len(response.context_data['object_list']), 5)
+        content = json.loads(response._container[0])
+        self.assertEqual(len( content.get('commercial')), 5)
+
+    def test_create_json(self):
+        self.insert_test_data()
+        self.assertEqual(Commercial.objects.all().count(), 4)
+        data = {
+            'brand': 1,
+            'name': u'test'
+        }
+
+        view = CommercialCreateDataJson.as_view()
+        request = self.request_factory.post(
+            reverse('panel_model_save_profile'), data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response._container[0])
+        self.assertEqual(content.get('status'), "success")
+        self.assertEqual(Commercial.objects.all().count(), 5)

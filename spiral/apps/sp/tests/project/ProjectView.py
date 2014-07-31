@@ -34,8 +34,8 @@ class ProjectViewTest(TestCase):
         project.code = '1'
         project.commercial = Commercial.objects.latest('created')
         project.version = '0'
-        project.start_productions = '2014-08-12'
-        project.end_productions = '2014-08-20'
+        project.start_productions = '2014-08-1'
+        project.end_productions = '2014-08-2'
         project.save()
         return project
 
@@ -76,6 +76,21 @@ class ProjectViewTest(TestCase):
         self.insert_project()
         request = self.request_factory.get(reverse('project_list'),
                                            data={'line_productions': Project.LINE_PHOTO})
+        request.user = self.user
+        view = ProjectListView.as_view()
+        response = view(request)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(len(response.context_data['project_list']), 1)
+
+    def test_list_view_project_filter_range_dates(self):
+        """
+        Tests data: Filter
+        """
+        self.insert_project()
+        request = self.request_factory.get(reverse('project_list'),
+                                           data={'start_date__gte': '01/08/2014',
+                                                 'finish_date__lte': '02/08/2014'})
         request.user = self.user
         view = ProjectListView.as_view()
         response = view(request)
