@@ -189,7 +189,6 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def save_payment(self, project):
         client_id = self.data_payment.get('client')
-
         payment = self.get_payment()
         payment.client = Client.objects.get(pk=client_id) if client_id is not None else None
         payment.conditions = json.dumps(self.data_payment.get('conditions'))
@@ -450,7 +449,10 @@ class ProjectUpdateJsonView(ProjectSaveJsonView):
         return super(ProjectUpdateJsonView, self).save_resources(project)
 
     def get_payment(self, **kwargs):
-        return Payment.objects.get(project=self.project)
+        try:
+            return Payment.objects.get(project=self.project)
+        except:
+            return Payment()
 
     def process_validate(self):
         commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
