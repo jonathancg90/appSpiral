@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from apps.sp.models.Project import Project
 from apps.sp.models.PhotoCasting import PhotoCastingDetailModel, PhotoCasting, UsePhotos, TypePhotoCasting
 from apps.sp.models.Commercial import Commercial
-from apps.sp.models.Currency import Currency
 from apps.sp.tests.Helpers.InsertDataHelper import InsertDataHelper
 from apps.sp.views.panel.PhotoCasting import TypePhotoCastingDataList, UsePhotoDataList, PhotoCastingSaveProcess
 

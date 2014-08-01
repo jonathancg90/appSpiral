@@ -17,3 +17,4 @@ from apps.sp.tests.project.ProjectView import ProjectViewTest
 from apps.sp.tests.project.casting.casting_view import CastingViewTest
 from apps.sp.tests.project.extra.extra_view import ExtraViewTest
 from apps.sp.tests.project.photo.photo_view import PhotoCastingViewTest
+from apps.sp.tests.project.representation.representation_view import RepresentationViewTest

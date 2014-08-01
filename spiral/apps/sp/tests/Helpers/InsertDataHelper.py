@@ -16,6 +16,8 @@ from apps.common.insert_helper import TypeCastingHelper
 from apps.common.insert_helper import CurrencyHelper
 from apps.common.insert_helper import TypePhotoCastingHelper
 from apps.common.insert_helper import PhotoUseHelper
+from apps.common.insert_helper import TypeEventHelper
+from apps.common.insert_helper import BroadcastHelper
 
 
 class InsertDataHelper(object):
@@ -38,6 +40,8 @@ class InsertDataHelper(object):
         self.currency_helper = CurrencyHelper()
         self.type_photo_casting_helper = TypePhotoCastingHelper()
         self.photo_use_helper = PhotoUseHelper()
+        self.type_event_helper = TypeEventHelper()
+        self.broadcast_helper = BroadcastHelper()
 
     def run(self):
         self.entry_helper.set_data()
@@ -73,6 +77,7 @@ class InsertDataHelper(object):
 
         self.client_helper.set_data()
         self.client_helper.insert_data()
+        self.client_helper.insert_type()
 
         self.type_casting_helper.insert_data()
 
@@ -81,3 +86,7 @@ class InsertDataHelper(object):
         self.type_photo_casting_helper.insert_data()
 
         self.photo_use_helper.insert_data()
+
+        self.type_event_helper.insert_data()
+
+        self.broadcast_helper.insert_data()

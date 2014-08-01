@@ -24,3 +24,13 @@ class ClientHelper(InsertHelperMixin):
                 "address": 'Productora'
             }
         ]
+
+    def insert_type(self):
+        client_productor = Client.objects.get(name='Productora')
+        client_productor.type_client.add(TypeClient.objects.get(name='Productora'))
+
+        client_agency = Client.objects.get(name='Agencia')
+        client_agency.type_client.add(TypeClient.objects.get(name='Agencia'))
+
+        client_director = Client.objects.get(name='Realizadora')
+        client_director.type_client.add(TypeClient.objects.get(name='Realizadora'))

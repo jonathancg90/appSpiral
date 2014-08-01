@@ -110,7 +110,7 @@ class Project(models.Model):
         try:
             return self.commercial.name
         except:
-            pass
+            return ''
 
     class Meta:
         app_label = 'sp'

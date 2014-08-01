@@ -14,5 +14,4 @@ urlpatterns = patterns('',
                        url(r'^data-character/$',
                            RepresentationCharacterDataList.as_view(),
                            name='representation_data_character'),
-
                        )
