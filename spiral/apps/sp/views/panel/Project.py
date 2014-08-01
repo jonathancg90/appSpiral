@@ -39,27 +39,26 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
     search_form_class = ProjectFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
-        'start_date_date': ['gte'],
-        'finish_date_date': ['lte'],
+        'start_date': ['gte'],
+        'finish_date': ['lte'],
         'line_productions': SearchFormMixin.ALL
     }
 
-    def _build_filters(self, filters=None):
+    def build_filters(self, filters=None):
         bf = super(ProjectListView, self).build_filters(filters=filters)
-        column_name = 'start_productions__exact'
+        column_name = 'start_productions'
         input_formats = '%d/%m/%Y'
-        ini = 'initial_date'
-        end = 'end_date'
+        ini = 'start_date'
+        end = 'finish_date'
         ini_sufix = self.LOOKUP_SEP + 'gte'
         end_sufix = self.LOOKUP_SEP + 'lte'
-        if bf.get(column_name) is not None:
-            column = bf.pop(column_name)
-            if bf.get(ini + ini_sufix) is not None:
-                bf[column + ini_sufix] = datetime.strptime(
-                    bf.pop(ini + ini_sufix), input_formats)
-            if bf.get(end + end_sufix) is not None:
-                bf[column + end_sufix] = datetime.strptime(
-                    bf.pop(end + end_sufix), input_formats)
+
+        if bf.get(ini + ini_sufix) is not None:
+            bf[column_name + ini_sufix] = datetime.strptime(
+                bf.pop(ini + ini_sufix), input_formats)
+        if bf.get(end + end_sufix) is not None:
+            bf[column_name + end_sufix] = datetime.strptime(
+                bf.pop(end + end_sufix), input_formats)
         return bf
 
 
@@ -116,7 +115,11 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     model = ProjectDetailStaff
     MESSAGE_ERROR_SAVE = 'Ha ocurrido un error al tratar de registrar el proyecto'
+    MESSAGE_ERROR_PROJECT = 'Ha ocurrido un error al validar el comercial seleccionado'
     MESSAGE_ERROR_COMMERCIAL = 'El comercial ingresado ya se encuentra registrado en otro proyecto'
+    MESSAGE_ERROR_CLIENT = 'Se produjo un error al grabar los clientes'
+    MESSAGE_ERROR_DELIVERY = 'Se produjo un error al grabar las fechas de entrega'
+    MESSAGE_ERROR_DUTY = 'Se produjo un error al grabar los derechos'
     MESSAGE_SUCCESS = 'Projecto registrado correctamente'
 
     @csrf_exempt
@@ -128,13 +131,16 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         try:
             validate, msg = self.process_validate()
             if validate:
-                project = self.save_project()
-                self.save_line(project)
-                self.save_commercial_dates(project)
-                self.save_resources(project)
-                self.save_payment(project)
-                transaction.commit()
-                return project, self.MESSAGE_SUCCESS
+                project, msg = self.save_project()
+                if project is not None:
+                    self.save_line(project)
+                    self.save_commercial_dates(project)
+                    self.save_resources(project)
+                    self.save_payment(project)
+                    transaction.commit()
+                    return project, self.MESSAGE_SUCCESS
+                else:
+                    return None, self.MESSAGE_ERROR_SAVE
             else:
                 transaction.rollback()
                 return None, msg
@@ -143,7 +149,10 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             return None, self.MESSAGE_ERROR_SAVE
 
     def process_validate(self):
-        commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
+        try:
+            commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
+        except:
+            return False, self.MESSAGE_ERROR_PROJECT
         if Project.objects.filter(
                 commercial=commercial,
                 line_productions=self.data_project.get('line_productions')
@@ -180,7 +189,6 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def save_payment(self, project):
         client_id = self.data_payment.get('client')
-
         payment = self.get_payment()
         payment.client = Client.objects.get(pk=client_id) if client_id is not None else None
         payment.conditions = json.dumps(self.data_payment.get('conditions'))
@@ -218,24 +226,36 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         project.observations = self.data_project.get('observations')
         project.line_productions = self.data_project.get('line_productions')
         project.save()
-        self.save_clients(project)
-        self.save_delivery_dates(project)
-        self.save_duty(project)
-        return project
+        save_client = self.save_clients(project)
+        if not save_client:
+            return None, self.MESSAGE_ERROR_CLIENT
+        save_deliveries = self.save_delivery_dates(project)
+        if not save_deliveries:
+            return None, self.MESSAGE_ERROR_DELIVERY
+        save_duty = self.save_duty(project)
+        if not save_duty:
+            return None, self.MESSAGE_ERROR_DUTY
+        return project, None
 
     def save_duty(self, project):
         duty_detail = DutyDetail()
         duty_detail.project = project
-        if self.data_duty.get('type_contract', None) is not None:
-            duty_detail.type_contract_id = self.data_duty.get('type_contract').get('id')
-        if self.data_duty.get('duration_month', None) is not None:
-            duty_detail.duration_month = self.data_duty.get('duration_month')
-        duty_detail.save()
-        for broadcast in self.data_duty.get('broadcasts', []):
-            duty_detail.broadcast.add(Broadcast.objects.get(pk=broadcast.get('id')))
+        try:
+            if self.data_duty.get('type_contract', None) is not None:
+                duty_detail.type_contract_id = self.data_duty.get('type_contract').get('id')
 
-        for country in self.data_duty.get('countries', []):
-            duty_detail.country.add(Country.objects.get(pk=country.get('id')))
+            if self.data_duty.get('duration_month', None) is not None:
+                duty_detail.duration_month = self.data_duty.get('duration_month')
+            duty_detail.save()
+
+            for broadcast in self.data_duty.get('broadcasts', []):
+                duty_detail.broadcast.add(Broadcast.objects.get(pk=broadcast.get('id')))
+
+            for country in self.data_duty.get('countries', []):
+                duty_detail.country.add(Country.objects.get(pk=country.get('id')))
+            return True
+        except:
+            return False
 
     def format_date(self, date):
         if date is not None:
@@ -260,10 +280,21 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def save_delivery_dates(self, project):
         for delivery in self.data_deliveries:
             if delivery.get('date') is not None:
-                project_delivery = ProjectDetailDeliveries()
-                project_delivery.project = project
-                project_delivery.delivery_date = self.format_date(delivery.get('date'))
-                project_delivery.save()
+                try:
+                    project_delivery = ProjectDetailDeliveries()
+                    project_delivery.project = project
+                    project_delivery.delivery_date = self.format_date(delivery.get('date'))
+                    project_delivery.save()
+                except:
+                    return False
+        return True
+
+    def validate_type_client(self,client, type_validate):
+        types = client.type_client.all()
+        for type in types:
+            if type == type_validate:
+                return True
+        return False
 
     def save_clients(self, project):
         type_director = TypeClient.objects.get(name='Realizadora')
@@ -275,28 +306,41 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         id_productor = self.data_client.get('productor', None)
 
         if id_director is not None:
-            client_detail = ProjectClientDetail(
-                project=project,
-                client=Client.objects.get(pk=id_director),
-                type=type_director
-            )
-            client_detail.save()
+            client_director = Client.objects.get(pk=id_director)
+            if self.validate_type_client(client_director, type_director):
+                client_detail = ProjectClientDetail(
+                    project=project,
+                    client=client_director,
+                    type=type_director
+                )
+                client_detail.save()
+            else:
+                return False
 
         if id_agency is not None:
-            client_detail = ProjectClientDetail(
-                project=project,
-                client=Client.objects.get(pk=id_agency),
-                type=type_agency
-            )
-            client_detail.save()
+            client_agency = Client.objects.get(pk=id_agency)
+            if self.validate_type_client(client_agency, type_agency):
+                client_detail = ProjectClientDetail(
+                    project=project,
+                    client=client_agency,
+                    type=type_agency
+                )
+                client_detail.save()
+            else:
+                return False
 
         if id_productor is not None:
-            client_detail = ProjectClientDetail(
-                project=project,
-                client=Client.objects.get(pk=id_productor),
-                type=type_productor
-            )
-            client_detail.save()
+            client_productor = Client.objects.get(pk=id_productor)
+            if self.validate_type_client(client_productor, type_productor):
+                client_detail = ProjectClientDetail(
+                    project=project,
+                    client=client_productor,
+                    type=type_productor
+                )
+                client_detail.save()
+            else:
+                return False
+        return True
 
     def set_attributes(self, data):
         self.data_duty = data.get('duty')
@@ -405,7 +449,10 @@ class ProjectUpdateJsonView(ProjectSaveJsonView):
         return super(ProjectUpdateJsonView, self).save_resources(project)
 
     def get_payment(self, **kwargs):
-        return Payment.objects.get(project=self.project)
+        try:
+            return Payment.objects.get(project=self.project)
+        except:
+            return Payment()
 
     def process_validate(self):
         commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))

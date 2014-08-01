@@ -50,7 +50,7 @@ class CountryListView(ListView):
     template = ''
 
 
-class CountryJsonView(LoginRequiredMixin, JSONResponseMixin, View):
+class CountryJsonView(JSONResponseMixin, View):
 
     def get_countries(self):
         data = []

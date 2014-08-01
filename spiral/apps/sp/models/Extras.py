@@ -55,7 +55,8 @@ class ExtrasDetailModel(models.Model):
     budget = models.DecimalField(
         verbose_name='Presupuesto',
         max_digits=10,
-        decimal_places=2
+        decimal_places=2,
+        null=True
     )
 
     budget_cost = models.DecimalField(

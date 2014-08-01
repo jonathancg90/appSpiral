@@ -1,6 +1,7 @@
 import datetime
+import json
 
-
+from json import dumps
 from django.test import TestCase
 from django.utils.timezone import utc
 from django.test.client import RequestFactory
@@ -14,7 +15,7 @@ from apps.sp.models.Entry import Entry
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Project import Project
 from apps.sp.views.panel.Commercial import CommercialListView, CommercialCreateView, \
-    CommercialUpdateView, CommercialDeleteView
+    CommercialUpdateView, CommercialDeleteView, CommercialDataListView, CommercialCreateDataJson
 
 
 class CommercialViewTest(TestCase):
@@ -147,3 +148,43 @@ class CommercialViewTest(TestCase):
         response = CommercialDeleteView.as_view()(request, **kwargs)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Commercial.objects.all().count(), 3)
+
+    def test_data_list(self):
+        """
+       Tests List
+       """
+        self.insert_test_data()
+        view = CommercialDataListView.as_view()
+        request = self.request_factory.get(
+            reverse('commercial_data_list')
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response._container[0])
+        self.assertEqual(len( content.get('commercial')), 4)
+        commercial = Commercial()
+        commercial.brand = Brand.objects.latest('id')
+        commercial.save()
+        response = view(request)
+        content = json.loads(response._container[0])
+        self.assertEqual(len( content.get('commercial')), 5)
+
+    def test_create_json(self):
+        self.insert_test_data()
+        self.assertEqual(Commercial.objects.all().count(), 4)
+        data = {
+            'brand': 1,
+            'name': u'test'
+        }
+
+        view = CommercialCreateDataJson.as_view()
+        request = self.request_factory.post(
+            reverse('panel_model_save_profile'), data=dumps(data), content_type='application/json'
+        )
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response._container[0])
+        self.assertEqual(content.get('status'), "success")
+        self.assertEqual(Commercial.objects.all().count(), 5)

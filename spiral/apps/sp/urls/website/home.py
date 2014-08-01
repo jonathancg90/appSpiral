@@ -4,6 +4,7 @@ from apps.sp.views.website.Home import LoginAuthView
 from apps.sp.views.website.Home import LogoutView
 from apps.sp.views.website.Home import RecoverPasswordFormView
 from apps.sp.views.website.Home import RegisterUser
+from apps.sp.views.website.Home import LoginMobile
 from apps.sp.views.panel.Email import EmailListView
 
 urlpatterns = patterns('',
@@ -14,6 +15,10 @@ urlpatterns = patterns('',
     url(r'^login/$',
         LoginAuthView.as_view(),
         name='login'),
+
+    url(r'^login-mobil/$',
+        LoginMobile.as_view(),
+        name='login_mobile'),
 
     url(r'^logout/$',
         LogoutView.as_view(),

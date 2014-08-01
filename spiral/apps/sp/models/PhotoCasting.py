@@ -56,6 +56,7 @@ class UsePhotos(models.Model):
     class Meta:
         app_label = 'sp'
 
+
 class TypePhotoCasting(models.Model):
 
     STATUS_ACTIVE = 1
