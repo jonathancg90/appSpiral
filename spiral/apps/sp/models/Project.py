@@ -44,7 +44,7 @@ class Project(models.Model):
         default=0
     )
 
-    commercial = models.ForeignKey(
+    commercial = models.OneToOneField(
         'Commercial',
         verbose_name='Comercial',
         related_name='project_set',

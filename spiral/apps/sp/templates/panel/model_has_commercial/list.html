@@ -64,7 +64,7 @@
                     <td>{{ model_commercial.commercial.brand.entry }}</td>
                     <td>{{ model_commercial.commercial.brand }}</td>
                     <td>{{ model_commercial.commercial }}</td>
-                    <td>{{ model_commercial.commercial.realized |date:"d/M/Y " }}</td>
+                    <td>{{ model_commercial.commercial.realized }}</td>
                     <td><a href="{% url 'model_has_commercial_delete' model_commercial.pk %}">{% trans 'Delete' %}</a> |
                         <a href="{% url 'contract_list' model_commercial.pk %}">{% trans 'Contrato' %}</a>
                     </td>

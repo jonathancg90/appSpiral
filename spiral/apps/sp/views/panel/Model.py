@@ -129,7 +129,7 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         for com in commercial:
             data.append({
                 'name': com.commercial.name,
-                'code': com.commercial.project.project_code
+                'code': com.commercial.project
             })
         return data
 

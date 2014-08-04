@@ -54,7 +54,7 @@ class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
         qs = ModelHasCommercial.objects.filter(model=self.model)
         qs = self._set_filter_brand(qs)
         qs = self._set_filter_entry(qs)
-        qs = qs.order_by('-commercial__realized')
+        qs = qs.order_by('-created')
         return qs
 
     def get_search_form(self, form_class):

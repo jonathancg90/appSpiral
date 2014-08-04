@@ -154,8 +154,7 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         except:
             return False, self.MESSAGE_ERROR_PROJECT
         if Project.objects.filter(
-                commercial=commercial,
-                line_productions=self.data_project.get('line_productions')
+                commercial=commercial
         ).exists():
             return False, self.MESSAGE_ERROR_COMMERCIAL
 
