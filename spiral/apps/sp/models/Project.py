@@ -20,12 +20,14 @@ class Project(models.Model):
     STATUS_START = 1
     STATUS_FINISH = 2
     STATUS_EXTEND = 3
+    STATUS_DELETE = 4
 
     CHOICE_STATUS = (
         (STATUS_START, _(u'Iniciado')),
         (STATUS_FINISH, _(u'Terminado')),
         (STATUS_STAND_BY, _(u'Stand By')),
-        (STATUS_EXTEND, _(u'Extendido'))
+        (STATUS_EXTEND, _(u'Extendido')),
+        (STATUS_DELETE, _(u'Eliminado'))
     )
 
     line_productions = models.SmallIntegerField(
@@ -44,7 +46,7 @@ class Project(models.Model):
         default=0
     )
 
-    commercial = models.OneToOneField(
+    commercial = models.ForeignKey(
         'Commercial',
         verbose_name='Comercial',
         related_name='project_set',

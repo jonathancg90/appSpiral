@@ -1,19 +1,25 @@
 # -*- coding: utf-8 -*-
+import xlwt
 
 from django.conf import settings
+from django.db import transaction
 from django.views.generic import ListView, RedirectView, View
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
-from apps.common.view import  SearchFormMixin
-from apps.common.view import LoginRequiredMixin
+
+from apps.common.view import SearchFormMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Model import Model
+from apps.sp.models.Project import Project
+from apps.sp.models.Casting import CastingDetailParticipate, CastingDetailModel
+from apps.sp.models.Extras import ExtraDetailParticipate, ExtrasDetailModel
+from apps.sp.models.PhotoCasting import PhotoCastingDetailParticipate, PhotoCastingDetailModel
+from apps.common.view import JSONResponseMixin
 from apps.sp.forms.ModelHasCommercial import ModelHasCommercialFilterForm
 from apps.sp.forms.Commercial import CommercialFiltersForm
 from apps.sp.models.Commercial import Commercial
-import datetime
-import xlwt
 
 
 class ModelHasCommercialListView(LoginRequiredMixin, SearchFormMixin, ListView):
@@ -178,25 +184,100 @@ class ModelHasCommercialRedirectView(LoginRequiredMixin, RedirectView):
         })
 
 
-class ModelHasCommercialAddRedirectView(LoginRequiredMixin, RedirectView):
-    permanent = False
+class ModelHasCommercialAddRedirectView(LoginRequiredMixin, PermissionRequiredMixin,
+                                        JSONResponseMixin, View):
+    MESSAGE_SUCCESS = 'Registrado'
+    MESSAGE_ERR = 'Ha ocurrido un erro al tratar de agregar el comercial al modelo'
+    MESSAGE_ERR_QUANTITY = 'Alerta: ya se encuentra completo la cantidad de modelos participantes dentro de este perfil'
     permissions = {
         "permission": ('sp.add_modelhascommercial', ),
     }
 
+
     def get(self, request, *args, **kwargs):
         model_id = kwargs.get('model_id')
         commercial_id = kwargs.get('commercial_id')
-        self.save_model_has_commercial(model_id, commercial_id)
-        return super(ModelHasCommercialAddRedirectView, self).get(request, *args, **kwargs)
+        detail_id = kwargs.get('detail_id')
 
-    def save_model_has_commercial(self, model_id, commercial_id):
-        model_has_commercial = ModelHasCommercial()
-        model_has_commercial.model = get_object_or_404(Model, id=model_id)
-        model_has_commercial.commercial = get_object_or_404(Commercial, id=commercial_id)
-        model_has_commercial.save()
+        result, msg = self.save_model_has_commercial(model_id, commercial_id, detail_id)
+        if result:
+            data = {
+                "status": "success",
+                "url": self.get_redirect_url()
+            }
+        else:
+            data = {
+                "status": "warning",
+                "message": msg
+            }
 
-    def get_redirect_url(self, model_id, commercial_id):
+        return self.render_to_response(data)
+
+    @transaction.commit_manually
+    def save_model_has_commercial(self, model_id, commercial_id, detail_id):
+        try:
+            save = True
+            commercial = get_object_or_404(Commercial, id=commercial_id)
+            model = get_object_or_404(Model, id=model_id)
+
+            model_has_commercial = ModelHasCommercial()
+            model_has_commercial.model = model
+            model_has_commercial.commercial = commercial
+            model_has_commercial.save()
+            if detail_id != None and detail_id != '0':
+                save = self.save_participate(commercial, model, detail_id)
+            if save:
+                transaction.commit()
+                return True, self.MESSAGE_SUCCESS
+            else:
+                transaction.rollback()
+                return False, self.MESSAGE_ERR_QUANTITY
+        except:
+            transaction.rollback()
+            return False, self.MESSAGE_ERR
+
+    def save_participate(self, commercial, model, detail_id):
+        project = Project.objects.get(commercial=commercial)
+
+        if project.line_productions == Project.LINE_EXTRA:
+            extra_detail_model = ExtrasDetailModel.objects.get(pk=detail_id)
+            quantity = extra_detail_model.quantity
+            quantity_participate = ExtraDetailParticipate.objects.filter(detail_model=extra_detail_model).count()
+
+            if quantity > quantity_participate:
+                extra_detail_participate = ExtraDetailParticipate()
+                extra_detail_participate.detail_model = extra_detail_model
+                extra_detail_participate.model = model
+                extra_detail_participate.save()
+            else:
+                return False
+
+        if project.line_productions == Project.LINE_PHOTO:
+            photo_casting_detail_model = PhotoCastingDetailModel.objects.get(pk=detail_id)
+            quantity = photo_casting_detail_model.quantity
+            quantity_participate = PhotoCastingDetailParticipate.objects.filter(detail_model=photo_casting_detail_model).count()
+            if quantity > quantity_participate:
+                photo_casting_detail_participate = PhotoCastingDetailParticipate()
+                photo_casting_detail_participate.detail_model = photo_casting_detail_model
+                photo_casting_detail_participate.model = model
+                photo_casting_detail_participate.save()
+            else:
+                return False
+
+        if project.line_productions == Project.LINE_CASTING:
+            casting_detail_model = CastingDetailModel.objects.get(pk=detail_id)
+            quantity = casting_detail_model.quantity
+            quantity_participate = CastingDetailParticipate.objects.filter(detail_model=casting_detail_model).count()
+            if quantity > quantity_participate:
+                casting_detail_participate = CastingDetailParticipate()
+                casting_detail_participate.detail_model = casting_detail_model
+                casting_detail_participate.model = model
+                casting_detail_participate.save()
+            else:
+                return False
+        return True
+
+    def get_redirect_url(self):
         return reverse('model_commercial_create', kwargs={
             'pk':self.kwargs["model_id"]
         })

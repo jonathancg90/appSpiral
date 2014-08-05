@@ -15,10 +15,24 @@
         .control-group {
             margin-bottom: 1px;
         }
+        input[type=radio] {
+            opacity: 1 !important;
+        }
+        .badge{
+            float: right !important;
+        }
+        .text-detail{
+            padding-left: 5%;
+        }
+        ul{
+            list-style:none;
+        }
     </style>
 {% endblock  %}
 
 {% block content %}
+<div ng-app="myApp" ng-controller="addCommercialController">
+    <message-flash message="{[{ flashMessage }]}" type="flashType" class="message-float"></message-flash>
     <div class="page-header">
         <div class="tools">
             <a href="{% url "model_has_commercial_model_list" pk=model.id %}" class="btn btn-primary">
@@ -61,18 +75,55 @@
                     <td>{{ commercial.brand.entry }}</td>
                     <td>{{ commercial.project }}</td>
                     <td>{{ commercial.realized }}</td>
-                    <td><a href="{% url "model_commercial_add" model_id=model.pk commercial_id=commercial.pk %}">{% trans 'agregar' %}</a></td>
+                    <td><a href="" ng-click="addCommercial({{ commercial.id }}, {{ model.id }})">{% trans 'agregar' %}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+
+
     {% url 'model_has_commercial_add' as page_url %}
     {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar comercial</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="myForm">
+                        <ul >
+                            <li class="li-detail" ng-repeat="detail in details">
+                                <input type="radio" name="detail" ng-click="selected(detail.id)">
+                                <span class="badge">{[{ detail.avaible }]}</span>
+                                <span class="text-detail">
+                                    {[{ detail.profile }]} | {[{ detail.model }]} |  {[{ detail.character }]}
+                                </span>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveCommercialDetail()">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/commons/directives/messages.js"></script>
+    <script>
+
+    </script>
     <script type="text/javascript">
         url_brand_by_entry = '{% url 'brand_by_entry_json' entry=0 %}'
 
@@ -84,5 +135,71 @@
             });
         });
     </script>
+    <script>
+        var myApp = angular.module('myApp',['msgApp']);
+
+        myApp.config(function ($interpolateProvider) {
+            $interpolateProvider.startSymbol('{[{');
+            $interpolateProvider.endSymbol('}]}');
+
+        });
+
+        myApp.controller('addCommercialController', ['$scope','$http', function($scope, $http) {
+
+            $scope.addCommercial = function(commercial, model){
+                $scope.details = [];
+                $scope.commercial_id = commercial;
+                $scope.model_id = model;
+
+                var urlSearch = "{% url 'detail_model_json' pk=':pk' %}";
+                urlSearch = urlSearch.replace(':pk', commercial);
+                $http.get(urlSearch)
+                    .then(function(response) {
+                        if(response.status == 200) {
+                            $scope.details =  response.data.details;
+                            if($scope.details.length == 0) {
+                                $scope.detailSelected = 0;
+                                $scope.saveCommercialDetail();
+                            } else {
+                                $('#myModal').modal('show');
+                            }
+
+                        }
+                });
+            };
+
+            $scope.selected = function(detail){
+                $scope.detailSelected = detail;
+            };
+
+            $scope.saveCommercialDetail = function() {
+
+                var urlSave = "{% url 'model_commercial_add' model_id=':model_id' commercial_id=':commercial_id' detail_id=':detail_id' %}";
+
+                urlSave = urlSave.replace(':commercial_id', $scope.commercial_id );
+                urlSave = urlSave.replace(':model_id', $scope.model_id );
+                urlSave = urlSave.replace(':detail_id', $scope.detailSelected );
+                debugger
+
+                $http.get(urlSave)
+                        .then(function(response) {
+                            if(response.status == 200) {
+                                $('#myModal').modal('hide');
+                                var url = response.data.url;
+                                debugger
+                                if(url != undefined)
+                                    window.location.href = url;
+
+                                $scope.flashMessage = response.data.message;
+                                $scope.flashType = response.data.status;
+                            }
+                        });
+
+            }
+        }]);
+
+    </script>
+
     <script type="text/javascript" src="{{ STATIC_URL }}panel/js/filter/entry_brand_commercial.select.js"></script>
 {% endblock %}
+

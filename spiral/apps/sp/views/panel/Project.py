@@ -3,10 +3,12 @@ import json
 import calendar
 
 from django.conf import settings
+from django.contrib import messages
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, RedirectView
 from datetime import datetime
+from django.core.urlresolvers import reverse
 from django.views.generic import View
 
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
@@ -26,9 +28,9 @@ from apps.sp.models.Project import Project, ProjectDetailStaff, ProjectClientDet
     ProjectDetailDeliveries
 from apps.sp.forms.Project import ProjectFiltersForm
 from apps.sp.models.Project import DutyDetail
-from apps.sp.models.Casting import Casting, CastingDetailModel
-from apps.sp.models.Extras import Extras, ExtrasDetailModel
-from apps.sp.models.PhotoCasting import PhotoCasting, PhotoCastingDetailModel
+from apps.sp.models.Casting import Casting, CastingDetailModel, CastingDetailParticipate
+from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticipate
+from apps.sp.models.PhotoCasting import PhotoCasting, PhotoCastingDetailModel, PhotoCastingDetailParticipate
 from apps.sp.models.Representation import Representation, RepresentationDetailModel
 
 
@@ -60,6 +62,90 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
             bf[column_name + end_sufix] = datetime.strptime(
                 bf.pop(end + end_sufix), input_formats)
         return bf
+
+    def get_queryset(self):
+        qs = super(ProjectListView, self).get_queryset()
+        qs = qs.exclude(status=Project.STATUS_DELETE)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        context['terminate'] = Project.STATUS_FINISH
+        return context
+
+
+class ProjectFinishRedirectView(LoginRequiredMixin, PermissionRequiredMixin, RedirectView):
+    permanent = False
+    permissions = {
+        "permission": ('sp.change_project', ),
+        }
+
+    def get(self, request, *args, **kwargs):
+        project = Project.objects.get(pk=kwargs.get('pk'))
+        try:
+            project.status = Project.STATUS_FINISH
+            project.save()
+            commercial = project.commercial
+            commercial.status = Commercial.STATUS_TERMINATE
+            commercial.save()
+            msg = '%s %s %s' %('Proyecto: ', project.get_code(), 'Finalizado')
+            messages.success(self.request, msg)
+        except:
+
+            messages.error(self.request, 'No se pudo finalizar el proyecto')
+        return super(ProjectFinishRedirectView, self).get(request, *args, **kwargs)
+
+    def get_redirect_url(self, **kwargs):
+        return reverse('project_list')
+
+
+class ProjectStartRedirectView(LoginRequiredMixin, PermissionRequiredMixin, RedirectView):
+    permanent = False
+    permissions = {
+        "permission": ('sp.change_project', ),
+        }
+
+    def get(self, request, *args, **kwargs):
+        project = Project.objects.get(pk=kwargs.get('pk'))
+        try:
+            project.status = Project.STATUS_START
+            project.save()
+            commercial = project.commercial
+            commercial.status = Commercial.STATUS_ACTIVE
+            commercial.save()
+            msg = '%s %s %s' %('Proyecto: ', project.get_code(), 'Re Abierto')
+            messages.success(self.request, msg)
+        except:
+            messages.error(self.request, 'No se pudo re abrir el proyecto')
+        return super(ProjectStartRedirectView, self).get(request, *args, **kwargs)
+
+    def get_redirect_url(self, **kwargs):
+        return reverse('project_list')
+
+
+class ProjectDeleteRedirectView(LoginRequiredMixin, PermissionRequiredMixin, RedirectView):
+    permanent = False
+    permissions = {
+        "permission": ('sp.delete_project', ),
+    }
+
+    def get(self, request, *args, **kwargs):
+        project = Project.objects.get(pk=kwargs.get('pk'))
+        try:
+            code = project.get_code()
+            commercial = project.commercial
+            project.status = Project.STATUS_DELETE
+            project.save()
+            commercial.status = Commercial.STATUS_ACTIVE
+            commercial.save()
+            msg = '%s %s %s' %('Proyecto: ', code, 'Eliminado')
+            messages.success(self.request, msg)
+        except:
+            messages.error(self.request, 'No se pudo re abrir el proyecto')
+        return super(ProjectDeleteRedirectView, self).get(request, *args, **kwargs)
+
+    def get_redirect_url(self, **kwargs):
+        return reverse('project_list')
 
 
 class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -113,13 +199,15 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                            ExtraSaveProcess, RepresentationSaveProcess,
                            PhotoCastingSaveProcess, View):
 
-    model = ProjectDetailStaff
+    permissions = {
+        "permission": ('sp.add_project', ),
+    }
     MESSAGE_ERROR_SAVE = 'Ha ocurrido un error al tratar de registrar el proyecto'
-    MESSAGE_ERROR_PROJECT = 'Ha ocurrido un error al validar el comercial seleccionado'
+    MESSAGE_ERROR_PROJECT = 'Alerta: No se pudo registrar porque no se validar el comercial seleccionado'
     MESSAGE_ERROR_COMMERCIAL = 'El comercial ingresado ya se encuentra registrado en otro proyecto'
-    MESSAGE_ERROR_CLIENT = 'Se produjo un error al grabar los clientes'
-    MESSAGE_ERROR_DELIVERY = 'Se produjo un error al grabar las fechas de entrega'
-    MESSAGE_ERROR_DUTY = 'Se produjo un error al grabar los derechos'
+    MESSAGE_ERROR_CLIENT = 'alerta: cliente ingresado no son validos'
+    MESSAGE_ERROR_DELIVERY = 'alerta: fecha de entregas no validos'
+    MESSAGE_ERROR_DUTY = 'alerta: derechos del proyecto no son validos'
     MESSAGE_SUCCESS = 'Projecto registrado correctamente'
 
     @csrf_exempt
@@ -153,9 +241,12 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
         except:
             return False, self.MESSAGE_ERROR_PROJECT
-        if Project.objects.filter(
-                commercial=commercial
-        ).exists():
+
+        validate = Project.objects.filter(commercial=commercial)
+        validate = validate.exclude(status=Project.STATUS_DELETE)
+        validate = validate.exists()
+
+        if validate:
             return False, self.MESSAGE_ERROR_COMMERCIAL
 
         return True, None
@@ -382,6 +473,9 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
 class ProjectUpdateJsonView(ProjectSaveJsonView):
     MESSAGE_SUCCESS = 'Projecto actualizado correctamente'
+    permissions = {
+        "permission": ('sp.change_project', ),
+        }
 
     def get_representation(self, **kwargs):
         if kwargs.get('line') == Project.LINE_REPRESENTATION:
@@ -454,12 +548,17 @@ class ProjectUpdateJsonView(ProjectSaveJsonView):
             return Payment()
 
     def process_validate(self):
-        commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
-        if Project.objects.filter(
-                commercial=commercial,
-                line_productions=self.data_project.get('line_productions')
-        ).exclude(id__in=[self.project.id]).exists():
-            return False, self.MESSAGE_ERROR_COMMERCIAL
+        try:
+            commercial = Commercial.objects.get(pk=self.data_project.get('commercial'))
+            validate = Project.objects.filter(commercial=commercial)
+            validate = validate.exclude(status=Project.STATUS_DELETE)
+            validate = validate.exclude(id__in=[self.project.id])
+            validate = validate.exists()
+            if validate:
+                return False, self.MESSAGE_ERROR_COMMERCIAL
+        except:
+            return False, self.MESSAGE_ERROR_PROJECT
+
         return True, None
 
     def post(self, request, *args, **kwargs):
@@ -814,4 +913,40 @@ class ProjectLinesJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def get(self, request, *args, **kwargs):
         context = {}
         context['lines'] = self.get_lines()
+        return self.render_to_response(context)
+
+
+class DetailModelJsonView(LoginRequiredMixin, PermissionRequiredMixin,
+                          JSONResponseMixin, View):
+
+    model = Project
+
+    def get_details(self, details, detail_model_participate):
+        data = []
+        for detail in details:
+            quantity_participate = detail_model_participate.objects.filter(detail_model_id=detail.id).count()
+            data.append({
+                'id': detail.id,
+                'cant': detail.quantity,
+                'avaible': detail.quantity - quantity_participate,
+                'profile': detail.profile,
+                'model': detail.feature,
+                'character': detail.get_character_display()
+            })
+        return data
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        project = Project.objects.get(pk=kwargs.get('pk'))
+        detail = []
+        if project.line_productions == Project.LINE_CASTING:
+            detail = Casting.get_detail_data(project)
+
+        if project.line_productions == Project.LINE_PHOTO:
+            detail = PhotoCasting.get_detail_data(project)
+
+        if project.line_productions == Project.LINE_EXTRA:
+            detail = Extras.get_detail_data(project)
+
+        context['details'] = detail
         return self.render_to_response(context)

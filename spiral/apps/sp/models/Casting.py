@@ -26,6 +26,23 @@ class Casting(models.Model):
     class Meta:
         app_label = 'sp'
 
+    @classmethod
+    def get_detail_data(self, project):
+        casting = Casting.objects.get(project=project)
+        detail_model = CastingDetailModel.objects.filter(casting=casting)
+        data = []
+        for detail in detail_model:
+            quantity_participate = CastingDetailParticipate.objects.filter(detail_model_id=detail.id).count()
+            data.append({
+                'id': detail.id,
+                'cant': detail.quantity,
+                'avaible': detail.quantity - quantity_participate,
+                'profile': detail.profile,
+                'model': detail.feature,
+                'character': detail.get_character_display()
+            })
+        return data
+
 
 class TypeCasting(models.Model):
 
@@ -122,6 +139,34 @@ class CastingDetailModel(models.Model):
 
     def __unicode__(self):
         return '%s %s' %(self.quantity, self.profile)
+
+    class Meta:
+        app_label = 'sp'
+
+
+class CastingDetailParticipate(models.Model):
+
+    detail_model = models.ForeignKey(
+        'CastingDetailModel',
+        related_name='casting_detail_participate_set',
+    )
+
+    model = models.ForeignKey(
+        'Model',
+        related_name='casting_detail_participate_set',
+    )
+
+    created = models.DateTimeField(
+        auto_now_add=True,
+        editable=False
+    )
+
+    modified = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __unicode__(self):
+        return self.model.name_complete
 
     class Meta:
         app_label = 'sp'
