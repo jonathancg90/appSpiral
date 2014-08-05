@@ -89,8 +89,13 @@ class Commercial(models.Model):
     @property
     def project(self):
         project = Project.objects.filter(commercial=self).exists()
-        project = Project.objects.get(commercial=self).project_code if project else 'Ninguno'
-        return project
+        project = Project.objects.filter(commercial=self).exclude(status=Project.STATUS_DELETE) if project else 'Ninguno'
+        if project == 'Ninguno':
+            return project
+        if len(project) == 1:
+            return project[0].get_code()
+        else:
+            return None
 
 
 class CommercialDateDetail(models.Model):

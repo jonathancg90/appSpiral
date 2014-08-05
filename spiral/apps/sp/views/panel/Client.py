@@ -30,6 +30,11 @@ class ClientListView(LoginRequiredMixin, PermissionRequiredMixin,
         'name': SearchFormMixin.ALL,
         }
 
+    def get_queryset(self):
+        qs = super(ClientListView, self).get_queryset()
+        qs  = qs.filter(status=Client.STATUS_ACTIVE)
+        return qs
+
 
 class ClientCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     model = Client

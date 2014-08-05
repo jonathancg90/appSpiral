@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load common_tags %}
+{% load commercial_tags %}
 {% load crispy_forms_tags %}
 
 {% block extra_style %}
@@ -29,7 +30,7 @@
                 <i class="icon-question-sign icon-white"></i>Ayuda
             </button>
         </div>
-        <h2>{%  trans 'Comerciales realizados: ' %}{{ model_name.modelo }}</h2>
+        <h2>{%  trans 'Comerciales realizados ' %}</h2>
     </div>
     <ul class="nav nav-pills">
       <li class="active" id="step3">
@@ -55,6 +56,7 @@
                     <th>{% trans 'Marca' %}</th>
                     <th>{% trans 'Comercial' %}</th>
                     <th>{% trans 'Realizado' %}</th>
+                    <th>{% trans 'Perfil' %}</th>
                     <th>{% trans 'Opciones' %}</th>
                 </tr>
             </thead>
@@ -64,7 +66,8 @@
                     <td>{{ model_commercial.commercial.brand.entry }}</td>
                     <td>{{ model_commercial.commercial.brand }}</td>
                     <td>{{ model_commercial.commercial }}</td>
-                    <td>{{ model_commercial.commercial.realized |date:"d/M/Y " }}</td>
+                    <td>{{ model_commercial.commercial.realized }}</td>
+                    <td>{{  model_commercial.commercial|project_model_participate:model }}</td>
                     <td><a href="{% url 'model_has_commercial_delete' model_commercial.pk %}">{% trans 'Delete' %}</a> |
                         <a href="{% url 'contract_list' model_commercial.pk %}">{% trans 'Contrato' %}</a>
                     </td>

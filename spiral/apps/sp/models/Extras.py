@@ -11,6 +11,23 @@ class Extras(models.Model):
     class Meta:
         app_label = 'sp'
 
+    @classmethod
+    def get_detail_data(self, project):
+        extra =  Extras.objects.get(project=project)
+        detail_model = ExtrasDetailModel.objects.filter(extra=extra)
+        data = []
+        for detail in detail_model:
+            quantity_participate = ExtraDetailParticipate.objects.filter(detail_model_id=detail.id).count()
+            data.append({
+                'id': detail.id,
+                'cant': detail.quantity,
+                'avaible': detail.quantity - quantity_participate,
+                'profile': detail.profile,
+                'model': detail.feature,
+                'character': detail.get_character_display()
+            })
+        return data
+
 
 class ExtrasDetailModel(models.Model):
 
@@ -82,6 +99,34 @@ class ExtrasDetailModel(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        app_label = 'sp'
+
+
+class ExtraDetailParticipate(models.Model):
+
+    detail_model = models.ForeignKey(
+        'ExtrasDetailModel',
+        related_name='extra_detail_participate_set',
+        )
+
+    model = models.ForeignKey(
+        'Model',
+        related_name='extra_detail_participate_set',
+        )
+
+    created = models.DateTimeField(
+        auto_now_add=True,
+        editable=False
+    )
+
+    modified = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __unicode__(self):
+        return self.model.name_complete
 
     class Meta:
         app_label = 'sp'

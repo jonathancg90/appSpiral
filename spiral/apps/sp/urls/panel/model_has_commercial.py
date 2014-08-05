@@ -27,7 +27,7 @@ urlpatterns = patterns('',
         ModelHasCommercialAddListView.as_view(),
         name='model_commercial_create'),
 
-    url(r'^model/(?P<model_id>\d+)/commercial/(?P<commercial_id>\d+)/add/$',
+    url(r'^model/(?P<model_id>[^/]+)/commercial/(?P<commercial_id>[^/]+)/add/(?P<detail_id>[^/]+)$',
         ModelHasCommercialAddRedirectView.as_view(),
         name='model_commercial_add'),
 

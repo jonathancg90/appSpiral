@@ -20,13 +20,16 @@ from apps.sp.models.Payment import Payment
 from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Project import DutyDetail
 from apps.sp.models.Company import Company, CompanyDetailAccount
-from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel
-from apps.sp.models.Extras import Extras, ExtrasDetailModel
-from apps.sp.models.PhotoCasting import PhotoCasting, TypePhotoCasting
+from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel, CastingDetailParticipate
+from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticipate
+from apps.sp.models.PhotoCasting import PhotoCasting, TypePhotoCasting, PhotoCastingDetailParticipate
 from apps.sp.models.Representation import Representation, RepresentationDetailModel, TypeEvent
 
 __all__ = [
+    'CastingDetailParticipate',
     'Broadcast',
+    'PhotoCastingDetailParticipate',
+    'ExtraDetailParticipate',
     'PhotoCasting',
     'TypePhotoCasting',
     'Representation',
