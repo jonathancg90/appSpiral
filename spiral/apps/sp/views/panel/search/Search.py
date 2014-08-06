@@ -14,6 +14,11 @@ from apps.sp.logic.search import Search
 class ModelSearchTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'panel/search/model/search.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ModelSearchTemplateView, self).get_context_data(**kwargs)
+        context['menu'] = 'search'
+        return context
+
 
 class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
 

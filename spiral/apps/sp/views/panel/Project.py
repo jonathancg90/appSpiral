@@ -71,6 +71,7 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_context_data(self, **kwargs):
         context = super(ProjectListView, self).get_context_data(**kwargs)
         context['terminate'] = Project.STATUS_FINISH
+        context['menu'] = 'project'
         return context
 
 
@@ -163,6 +164,7 @@ class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super(ProjectCreateView, self).get_context_data(**kwargs)
+        context['menu'] = 'project'
         project = self.get_project()
         if project is not None:
             context['code'] = project.get_code()

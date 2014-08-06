@@ -23,6 +23,7 @@ class EntryCreateView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super(EntryCreateView,self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):
@@ -41,6 +42,7 @@ class EntryUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super(EntryUpdateView,self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):
@@ -74,6 +76,12 @@ class EntryListView(LoginRequiredMixin, PermissionRequiredMixin,
     filtering = {
         'name': SearchFormMixin.ALL,
     }
+
+    def get_context_data(self, **kwargs):
+        context = super(EntryListView, self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
+        return context
+
 
 
 class EntryDataListView(LoginRequiredMixin, PermissionRequiredMixin,

@@ -28,6 +28,7 @@ class ModelControlTemplateView(LoginRequiredMixin, PermissionRequiredMixin,
         context = super(ModelControlTemplateView, self).get_context_data(**kwargs)
         context['doc_types'] = json.dumps(Model.get_types())
         context['genders'] = json.dumps(Model.get_genders())
+        context['menu'] = 'model'
         context['features'] = json.dumps(Feature.get_data_features())
         if self.request.GET.get('pk') is not None:
             context['pk'] = self.request.GET.get('pk')
