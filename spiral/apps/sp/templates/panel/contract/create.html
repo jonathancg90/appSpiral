@@ -6,12 +6,19 @@
 
 {% block extra_style %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    <style>
+        input {
+            height: 30px !important;
+        }
+
+    </style>
 {% endblock extra_style %}
 
 {% block content %}
 
     <div class="page-header">
-            <h2>{% trans "Nuevo Contrato:" %}</h2>
+        <h2>{% trans "Nuevo Contrato:" %}</h2>
     </div>
 
     <form method="post" action="" class="form-horizontal">
@@ -23,5 +30,67 @@
             <input type="submit" class="btn btn-inverse" value="{% trans 'Crear' %}" />
         </div>
 
-        </form>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
+
+    <script>
+        $(document).on('ready', function(){
+            $("#id_country").chosen({});
+            $("#id_broadcast").chosen({});
+            $('#id_end_contract').attr('readonly', true);
+            $('#id_start_contract').datepicker({
+                dateFormat: 'dd/mm/yy',
+                onSelect: function (text) {
+                    var period = $('#id_period_date').val();
+                    setEndDate(text, period);
+                }
+            });
+            $("#id_period_date" ).keypress(function( event ) {
+                var period = String.fromCharCode(event.which);
+                period = $('#id_period_date').val() + period;
+                var initial = $('#id_start_contract').val();
+                setEndDate(initial, period);
+            });
+
+            $("#id_period_date" ).keyup(function(e){
+                if(e.keyCode == 8){
+                    var period = $('#id_period_date').val();
+                    var initial = $('#id_start_contract').val();
+                    setEndDate(initial, period);
+                }
+            });
+
+            function setEndDate(initial, period) {
+                if(initial != undefined && initial != ''  && period !=undefined && period != ''){
+                    var date = initial.split("/");
+                    if(period == undefined || period == ''){
+                        period = 0;
+                    }
+                    date = date[1] + '/' + date[0] + '/' + date[2];
+                    date = new Date(date);
+
+                    var endDate = new Date(new Date(date).setMonth(date.getMonth()+parseInt(period)));
+
+
+                    dia = ""+ endDate.getDate();
+                    mes = ""+ (endDate.getMonth() + 1);
+                    anio = endDate.getFullYear();
+                    if(dia.length == 1){
+                        dia =  '0' + dia;
+                    }
+                    if(mes.length == 1){
+                        mes =  '0' + mes;
+                    }
+                    var newDate = dia + '/' +  mes + '/' + anio;
+
+                    $('#id_end_contract').val(newDate);
+                }
+            }
+        })
+    </script>
 {% endblock %}

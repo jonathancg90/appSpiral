@@ -83,16 +83,10 @@ class ContractListView(LoginRequiredMixin, SearchFormMixin, PermissionRequiredMi
         'character': SearchFormMixin.ALL,
     }
 
-
     def get_context_data(self, **kwargs):
         context = super(ContractListView, self).get_context_data(**kwargs)
         context['model_has_commercial'] = get_object_or_404(ModelHasCommercial, id=self.kwargs.get('fk'))
         return context
-
-    def get_queryset(self):
-        qs = super(ContractListView, self).get_queryset()
-        qs =  qs.filter(model_has_commercial_id=self.kwargs.get('fk'))
-        return qs
 
 
 class ContractTypeDataList(LoginRequiredMixin, PermissionRequiredMixin,
