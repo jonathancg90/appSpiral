@@ -35,6 +35,11 @@ class ClientListView(LoginRequiredMixin, PermissionRequiredMixin,
         qs  = qs.filter(status=Client.STATUS_ACTIVE)
         return qs
 
+    def get_context_data(self, **kwargs):
+        context = super(ClientListView, self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
+        return context
+
 
 class ClientCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     model = Client
@@ -47,6 +52,7 @@ class ClientCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(ClientCreateView,self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):
@@ -64,6 +70,7 @@ class ClientUpdateView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(ClientUpdateView, self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):
@@ -80,6 +87,7 @@ class ClientDeleteView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(ClientDeleteView,self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def delete(self, request, *args, **kwargs):
