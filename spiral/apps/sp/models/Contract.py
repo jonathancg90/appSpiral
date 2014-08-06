@@ -1,4 +1,5 @@
 from django.db import models
+from apps.sp.models.Country import Country
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -26,33 +27,47 @@ class Contract(models.Model):
 
     period_date = models.CharField(
         max_length=50,
-        verbose_name=_(u'periodo de contrato'),
-    )
-    country = models.CharField(
-        max_length=50,
-        verbose_name=_(u'Pais'),
+        verbose_name=_(u'periodo de contrato (meses)'),
     )
 
-    type = models.SmallIntegerField(
-        choices=CHOICE_TYPE,
-        verbose_name=_(u'Tipo'),
+
+    start_contract = models.DateField(
+        verbose_name=_(u'Inicio del contrato'),
+        null=False,
     )
 
-    character = models.CharField(
-        max_length=45,
-        verbose_name=_(u'Personaje'),
+    end_contract = models.DateField (
+        verbose_name=_(u'Final del contrato'),
+        null=False,
+    )
+
+    country = models.ManyToManyField(Country)
+
+    type_contract =  models.ForeignKey(
+        'TypeContract',
+        verbose_name='tipo de contrato',
+        related_name='contract_set',
+        null=True
+    )
+
+    duration_month = models.IntegerField(
+        editable=False,
+        null=False,
+        default=0
+    )
+    broadcast = models.ManyToManyField(
+        'Broadcast',
+        verbose_name='Medios',
+        null=True
     )
 
     created = models.DateTimeField(
-    	auto_now_add=True,
+        auto_now_add=True,
         editable=False
     )
+
     modified = models.DateTimeField(
         auto_now_add=True
-    )
-
-    model_has_commercial = models.ForeignKey(
-        'ModelHasCommercial'
     )
 
     class Meta:

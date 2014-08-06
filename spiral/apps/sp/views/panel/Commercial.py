@@ -89,6 +89,12 @@ class CommercialListView(LoginRequiredMixin, PermissionRequiredMixin,
             form.set_brand(entry_id)
         return form
 
+    def get_context_data(self, **kwargs):
+        context = super(CommercialListView, self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
+        return context
+
+
 
 class CommercialCreateView(LoginRequiredMixin, PermissionRequiredMixin,
                            CreateView):
@@ -103,6 +109,7 @@ class CommercialCreateView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_context_data(self, **kwargs):
         context = super(CommercialCreateView,self).get_context_data(**kwargs)
         context['action'] = 'create'
+        context['menu'] = 'maintenance'
         return context
 
     def form_valid(self, form):
@@ -214,6 +221,7 @@ class CommercialUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_context_data(self, **kwargs):
         context = super(CommercialUpdateView, self).get_context_data(**kwargs)
         context['dates'] = json.dumps(self.get_details())
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):
@@ -231,6 +239,7 @@ class CommercialDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super(CommercialDeleteView,self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):

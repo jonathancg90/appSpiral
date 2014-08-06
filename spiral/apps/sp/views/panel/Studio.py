@@ -17,6 +17,11 @@ class StudioListView(LoginRequiredMixin, PermissionRequiredMixin,
     template_name = 'panel/studio/studio_list.html'
     paginate_by = settings.PANEL_PAGE_SIZE
 
+    def get_context_data(self, **kwargs):
+        context = super(StudioListView, self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
+        return context
+
 
 class StudioCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     model = Studio
@@ -29,6 +34,7 @@ class StudioCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(StudioCreateView,self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):
@@ -46,6 +52,7 @@ class StudioUpdateView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(StudioUpdateView, self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):
@@ -62,6 +69,7 @@ class StudioDeleteView(LoginRequiredMixin,PermissionRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super(StudioDeleteView,self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
         return context
 
     def get_success_url(self):

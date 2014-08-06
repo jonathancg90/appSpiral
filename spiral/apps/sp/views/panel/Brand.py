@@ -23,6 +23,11 @@ class BrandListView(LoginRequiredMixin, PermissionRequiredMixin,
         'name': SearchFormMixin.ALL,
     }
 
+    def get_context_data(self, **kwargs):
+        context = super(BrandListView, self).get_context_data(**kwargs)
+        context['menu'] = 'maintenance'
+        return context
+
 
 class BrandCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     model = Brand
