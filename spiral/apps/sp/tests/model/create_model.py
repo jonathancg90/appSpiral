@@ -31,6 +31,7 @@ class ModelCreateTest(TestCase):
         self.user = User.objects.get(is_superuser=True)
 
     def test_template_model_create(self):
+        self.assertEqual(Model.objects.all().count(), 4)
         view = ModelControlTemplateView.as_view()
         model = Model.objects.latest('created')
         request = self.request_factory.get(
@@ -39,7 +40,7 @@ class ModelCreateTest(TestCase):
         request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context_data), 5)
+        self.assertEqual(len(response.context_data), 6)
         self.assertTrue('doc_types' in response.context_data)
         self.assertTrue('features' in response.context_data)
         self.assertTrue('genders' in response.context_data)

@@ -139,14 +139,14 @@
                                 <label class="control-label" for="form-field-1" >Porcentaje</label>
 
                                 <div class="controls">
-                                    <input type="text" id="form-field-1" placeholder="%" ng-model="detailStaff.percentage"/>
+                                    <input type="number"  min="1"  id="form-field-1" placeholder="%" ng-model="detailStaff.percentage"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="form-field-1">Monto</label>
 
                                 <div class="controls">
-                                    <input type="text" id="form-field-1" placeholder="Monto" ng-model="detailStaff.budget"/>
+                                    <input type="number"  min="1"  id="form-field-1" placeholder="Monto" ng-model="detailStaff.budget"/>
 
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-show="saveDetail" ng-click="addDetailStaff(detailStaff)">Grabar</button>
+                <button type="button" class="btn btn-success" ng-show="saveDetail" ng-click="addDetailStaff(detailStaff)">Grabar</button>
             </div>
         </div>
     </div>
