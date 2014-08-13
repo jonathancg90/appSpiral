@@ -22,7 +22,8 @@ class Brand(models.Model):
         editable=False
         )
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
 
     status = models.SmallIntegerField(

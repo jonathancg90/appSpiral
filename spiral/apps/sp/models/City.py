@@ -30,7 +30,8 @@ class City(models.Model):
         editable=False
     )
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
 
     def __unicode__(self):

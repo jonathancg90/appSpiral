@@ -62,7 +62,8 @@ class TypeCasting(models.Model):
         editable=False
     )
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
     status = models.SmallIntegerField(
         choices=CHOICE_STATUS,
@@ -134,7 +135,8 @@ class CastingDetailModel(models.Model):
     )
 
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
 
     def __unicode__(self):
@@ -162,7 +164,8 @@ class CastingDetailParticipate(models.Model):
     )
 
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
 
     def __unicode__(self):

@@ -115,26 +115,22 @@ class CommercialCreateView(LoginRequiredMixin, PermissionRequiredMixin,
     def form_valid(self, form):
         self.object = form.save(commit=False)
         dataPost = self.request.POST
-        if dataPost.get('id_realized') is not None and dataPost.get('id_realized') != '':
-            self.object.save()
-            for data in dataPost:
-                if 'realized' in data:
-                    try:
-                        realized = datetime.datetime.strptime(dataPost.get(data), '%d/%m/%Y').strftime('%Y-%m-%d')
-                        detail = CommercialDateDetail()
-                        detail.date = realized
-                        self.object.commercial_date_detail_set.add(detail)
-                    except:
-                        pass
-            if settings.APPLICATION_CACHE:
-                clean_cache = CleanCache()
-                clean_cache.set_cache_result_tag(Commercial.get_commercial_tag())
-                clean_cache.set_model(Commercial)
-                clean_cache.update_cache_by_id([self.object.id], CleanCache.MODE_INSERT)
-            return super(CommercialCreateView, self).form_valid(form)
-        else:
-            messages.error(self.request, 'Ingrese una fecha de grabacion.')
-            return self.form_invalid(form)
+        self.object.save()
+        for data in dataPost:
+            if 'realized' in data:
+                try:
+                    realized = datetime.datetime.strptime(dataPost.get(data), '%d/%m/%Y').strftime('%Y-%m-%d')
+                    detail = CommercialDateDetail()
+                    detail.date = realized
+                    self.object.commercial_date_detail_set.add(detail)
+                except:
+                    pass
+        if settings.APPLICATION_CACHE:
+            clean_cache = CleanCache()
+            clean_cache.set_cache_result_tag(Commercial.get_commercial_tag())
+            clean_cache.set_model(Commercial)
+            clean_cache.update_cache_by_id([self.object.id], CleanCache.MODE_INSERT)
+        return super(CommercialCreateView, self).form_valid(form)
 
     def validate_project_code(self, project_code):
         try:
