@@ -19,7 +19,7 @@ controllers.projectController = function($scope,
     $scope.line = false;
     $scope.castDetailModel = {};
     $scope.newCommercial = {};
-    $scope.newCondition = '';
+    $scope.newCondition = {};
     $scope.saveDetail = true;
     $scope.clientsProductor = [];
     $scope.clientsAgency = [];
@@ -67,10 +67,7 @@ controllers.projectController = function($scope,
         } else {
             $scope.flashMessage = 'Campos requeridos incompletos: '+ validate.msg;
             $scope.flashType = 'warning';
-            $('html, body').animate({
-                    scrollTop: '0px'
-                },
-                1000);
+            msg_animate();
         }
     });
 
@@ -182,17 +179,17 @@ controllers.projectController = function($scope,
     });
 
     var rpCurrency = projectFactory.searchUrl(urlCurrency);
-    rpCurrency.then(function(data) {
+    rpCurrency.success(function(data) {
         $scope.coins = data.currency;
     });
 
     var rpRoles = projectFactory.searchUrl(urlRoles);
-    rpRoles.then(function(data) {
+    rpRoles.success(function(data) {
         $scope.roles = data.roles;
     });
 
     var rpEmployee = projectFactory.searchUrl(urlEmployee);
-    rpEmployee.then(function(data) {
+    rpEmployee.success(function(data) {
         $scope.productors = data.productors;
         $scope.realizers = data.realized;
     });
@@ -215,7 +212,7 @@ controllers.projectController = function($scope,
             return;
         var url = urlDataUpdateProject.replace(':pk', idUpdate);
         var rpUpdateProject = projectFactory.searchUrl(url);
-        rpUpdateProject.then(function(data) {
+        rpUpdateProject.success(function(data) {
             $rootScope.$broadcast('updateLine', {'line':data.result.line});
 
             data.result.codeUpdate = codeUpdate;
@@ -227,6 +224,14 @@ controllers.projectController = function($scope,
                 }
             });
         });
+        rpUpdateProject.error(function() {
+            $scope.flashMessage = "Ha ocurrido un error, No se puede actualizar el proyecto";
+            $scope.flashType ="error";
+            msg_animate();
+            $scope.detailLoader = true;
+        });
+
+
     }
 
     function processUpdate(result){
@@ -342,8 +347,10 @@ controllers.projectController = function($scope,
                 });
             });
             angular.forEach($scope.type_contract, function(value, key) {
-                if(result.duty.type_contract.id == value.id) {
-                    $scope.project_service.duty.type_contract =  value;
+                if(result.duty.type_contract != undefined){
+                    if(result.duty.type_contract.id == value.id) {
+                        $scope.project_service.duty.type_contract =  value;
+                    }
                 }
             });
         }
@@ -380,6 +387,7 @@ controllers.projectController = function($scope,
         } else {
             $scope.flashMessage = 'Elija un comercial antes de agregar fechas';
             $scope.flashType = 'warning';
+            msg_animate();
         }
     };
 
@@ -395,12 +403,14 @@ controllers.projectController = function($scope,
     $scope.addCondition =  function(condition) {
         if(condition != undefined && condition != '') {
             if ($scope.project_service.conditions.indexOf(condition) == -1) {
-                $scope.project_service.conditions.push(condition);
-                $scope.newCondition = '';
-                angular.element('#inputCondition').val('');
+                var cond = {'name': condition};
+                $scope.project_service.conditions.push(cond);
+                $scope.newCondition.name = '';
+
             } else {
                 $scope.flashMessage = 'Condicion de pago repetido';
                 $scope.flashType = 'warning';
+                msg_animate();
             }
         }
     };
@@ -431,9 +441,18 @@ controllers.projectController = function($scope,
 
     //Agrega detalle de staff
     $scope.addDetailStaff = function(addDetailStaff){
-        addDetailStaff.total = addDetailStaff.percent * addDetailStaff.budget;
-        $scope.project_service.detailStaff.push(addDetailStaff);
-        $scope.detailStaff = {}
+        if(addDetailStaff.percentage !=undefined &&
+            addDetailStaff.budget !=undefined &&
+            addDetailStaff.employee !=undefined){
+            addDetailStaff.total = addDetailStaff.percent * addDetailStaff.budget;
+            $scope.project_service.detailStaff.push(addDetailStaff);
+            $scope.detailStaff = {}
+            $('#modalStaffDetail').modal('hide');
+        } else {
+            $scope.flashMessage = 'Campos imcompletos';
+            $scope.flashType = 'warning';
+            msg_animate();
+        }
     };
 
     //actualizar registrro de staff
@@ -518,6 +537,7 @@ controllers.projectController = function($scope,
         } else {
             $scope.flashMessage = 'No se ha creaco al cliente: Falta llenar campos para crear al cliente';
             $scope.flashType = 'warning';
+            msg_animate();
         }
     };
 
@@ -527,7 +547,7 @@ controllers.projectController = function($scope,
 
     function getTypeCastingPhotoCasting(){
         var rpTypePhotoCasting = projectFactory.searchUrl(urlPhotoCastingType);
-        rpTypePhotoCasting.then(function(data) {
+        rpTypePhotoCasting.success(function(data) {
             $scope.types = data.types;
             getUsePhotoCasting();
         });
@@ -535,7 +555,7 @@ controllers.projectController = function($scope,
 
     function getUsePhotoCasting(){
         var rpUsePhotos= projectFactory.searchUrl(urlUsePhoto);
-        rpUsePhotos.then(function(data) {
+        rpUsePhotos.success(function(data) {
             $scope.photoUses = data.uses;
             $scope.loadDetail = true;
         });
@@ -546,13 +566,13 @@ controllers.projectController = function($scope,
     //-----------------------------------------------
 
     var rpEventRepresentation = projectFactory.searchUrl(urlEventRepresentation);
-    rpEventRepresentation.then(function(data) {
+    rpEventRepresentation.success(function(data) {
         $scope.events = data.events;
     });
 
     function getCharacterRepresentation(){
         var rpCharacterRepresentation = projectFactory.searchUrl(urlCharacterRepresentation);
-        rpCharacterRepresentation.then(function(data) {
+        rpCharacterRepresentation.success(function(data) {
             $scope.characters = data.character;
             $scope.loadDetail = true;
         });
@@ -589,7 +609,7 @@ controllers.projectController = function($scope,
 
     function getCharacterExtra(){
         var rpCharacterExtra = projectFactory.searchUrl(urlCharacterExtra);
-        rpCharacterExtra.then(function(data) {
+        rpCharacterExtra.success(function(data) {
             $scope.characters = data.character;
             $scope.loadDetail = true;
         });
@@ -600,14 +620,14 @@ controllers.projectController = function($scope,
     //-----------------------------------------------
     function getCharacterCasting(){
         var rpCharacter = projectFactory.searchUrl(urlCharacter);
-        rpCharacter.then(function(data) {
+        rpCharacter.success(function(data) {
             $scope.characters = data.character;
         });
     }
 
     function getTypeCasting(){
         var rpTypeCasting = projectFactory.searchUrl(urlTypeCasting);
-        rpTypeCasting.then(function(data) {
+        rpTypeCasting.success(function(data) {
             $scope.typeCasting = data.type;
             $scope.loadDetail = true;
         });
@@ -844,6 +864,13 @@ controllers.projectController = function($scope,
             'client': client,
             'conditions': $scope.project_service.conditions
         }
+    }
+
+    function msg_animate(){
+        $('html, body').animate({
+                scrollTop: '0px'
+            },
+            1000);
     }
 };
 

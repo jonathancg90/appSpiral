@@ -17,15 +17,15 @@
             <label class="control-label" for="inputInfo">Condiciones de pago</label>
             <div class="controls">
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="text" id="inputCondition" placeholder="Condicion de pago" ng-model="newCondition"/>
+                <input class="span12" type="text" id="inputCondition" placeholder="Condicion de pago" ng-model="newCondition.name"/>
             </span>
             <span class="span6 input-icon input-icon-right">
-                <button ng-click="addCondition(newCondition)" class="btn btn-info btn-small" id="bootbox-options">Agregar</button>
+                <button ng-click="addCondition(newCondition.name)" class="btn btn-info btn-small" id="bootbox-options">Agregar</button>
             </span>
             </div>
             <div class="controls" ng-repeat="condition in project_service.conditions">
             <span class="span6 input-icon input-icon-right">
-                <input class="span12" type="text" id="inputInfo" ng-model="condition" placeholder="Condicion de pago"/>
+                <input class="span12" type="text" id="inputInfo" ng-model="condition.name" placeholder="Condicion de pago"/>
             </span>
             <span class="span6">
             </span>

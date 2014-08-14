@@ -21,6 +21,7 @@ from apps.common.insert_helper import CurrencyHelper
 from apps.common.insert_helper import TypeEventHelper
 from apps.common.insert_helper import PhotoUseHelper
 from apps.common.insert_helper import TypeContractHelper
+from apps.sp.management.migration.Model import ModelProcessMigrate
 
 
 class Command(BaseCommand):
@@ -51,6 +52,9 @@ class Command(BaseCommand):
             self.insert_photo_use()
             self.insert_broadcast()
             self.insert_type_contract()
+
+        if entity == 'migration':
+            self.migration_process()
 
         if entity == 'country':
             self.insert_countries()
@@ -212,3 +216,8 @@ class Command(BaseCommand):
             data_test_helper = DataTestHelper()
             data_test_helper.insert_data()
             self.stdout.write('Successfully inserted data: test data. \n')
+
+
+    def migration_process(self):
+        model_process_migrate = ModelProcessMigrate()
+        model_process_migrate.start_migration()

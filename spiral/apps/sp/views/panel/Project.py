@@ -777,16 +777,24 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get_duty(self):
         duty_detail = DutyDetail.objects.get(project=self.project)
-        return {
+        duty = {
             'duration_month': duty_detail.duration_month,
             'broadcasts': self.get_types(duty_detail.broadcast.all()),
-            'type_contract': {
-                'id': duty_detail.type_contract.id,
-                'name': duty_detail.type_contract.name
-            },
             'countries': self.get_types(duty_detail.country.all())
 
         }
+        if duty_detail.type_contract is not None:
+            duty.update({
+                'type_contract': {
+                    'id': duty_detail.type_contract.id,
+                    'name': duty_detail.type_contract.name
+                }
+            })
+        else:
+            duty.update({
+                'type_contract': {}
+            })
+        return duty
 
     def get_data_project(self):
         project = {
@@ -939,16 +947,20 @@ class DetailModelJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get(self, request, *args, **kwargs):
         context = {}
-        project = Project.objects.get(pk=kwargs.get('pk'))
         detail = []
-        if project.line_productions == Project.LINE_CASTING:
-            detail = Casting.get_detail_data(project)
+        commercial = Commercial.objects.get(pk=kwargs.get('pk'))
+        try:
+            project = Project.objects.get(commercial=commercial, status=Project.STATUS_FINISH)
+            if project.line_productions == Project.LINE_CASTING:
+                detail = Casting.get_detail_data(project)
 
-        if project.line_productions == Project.LINE_PHOTO:
-            detail = PhotoCasting.get_detail_data(project)
+            if project.line_productions == Project.LINE_PHOTO:
+                detail = PhotoCasting.get_detail_data(project)
 
-        if project.line_productions == Project.LINE_EXTRA:
-            detail = Extras.get_detail_data(project)
+            if project.line_productions == Project.LINE_EXTRA:
+                detail = Extras.get_detail_data(project)
+        except:
+            pass
 
         context['details'] = detail
         return self.render_to_response(context)

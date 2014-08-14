@@ -25,6 +25,12 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         }
     });
 
+    $scope.changeModel = function(){
+        $scope.model = {};
+        $('#commercial').html('');
+        $scope.created = false;
+    };
+
     ModelFactory.getCountries(urlCountries).then(function(counries) {
         $scope.countries = counries;
     });
@@ -46,6 +52,9 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
             response.then(function(data){
                 if(data.status == 'success'){
                     $scope.model.profile.code= data.code;
+                    var url = urlCommercial.replace(':key', data.id);
+                    $('#commercial').html('');
+                    $('#commercial').html('<iframe src="'+url+'" scrolling="yes" height="100%" width="100% frameborder=0"></iframe>');
                 }
                 $scope.flashType = data.status;
                 $scope.flashMessage = data.message;

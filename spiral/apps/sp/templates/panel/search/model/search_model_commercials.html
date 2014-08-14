@@ -1,0 +1,26 @@
+<div class="span12">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>
+                Comercial
+            </th>
+
+            <th>
+                Realizado
+            </th>
+            <th>
+                Contrato
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="commercial in detail.commercial">
+            <td>{[{ commercial.name }]}({[{ commercial.code }]})</td>
+            <td>{[{ commercial.realized }]}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

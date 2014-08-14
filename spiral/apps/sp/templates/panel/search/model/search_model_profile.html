@@ -99,12 +99,12 @@
             </div>
         </div>
 
-        <div class="profile-info-row">
+        <div class="profile-info-row" ng-if="detail.profile.facebook !='#'">
             <div class="profile-info-name">
                 <i class="middle icon-facebook-sign bigger-150 blue"></i>
             </div>
 
-            <div class="profile-info-value">
+            <div class="profile-info-value"  >
                 <a href="{[{ detail.profile.facebook }]}" target="_BLANK">Ver perfil Facebook</a>
             </div>
         </div>

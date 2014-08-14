@@ -94,7 +94,8 @@ class ExtrasDetailModel(models.Model):
     )
 
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
 
     def __unicode__(self):
@@ -122,7 +123,8 @@ class ExtraDetailParticipate(models.Model):
     )
 
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
 
     def __unicode__(self):

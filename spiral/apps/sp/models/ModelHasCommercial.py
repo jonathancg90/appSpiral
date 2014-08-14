@@ -19,7 +19,8 @@ class ModelHasCommercial(models.Model):
     )
 
     modified = models.DateTimeField(
-        auto_now_add=True
+        editable=False,
+        auto_now=True
     )
 
     class Meta:

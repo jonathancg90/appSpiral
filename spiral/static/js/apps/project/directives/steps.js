@@ -72,6 +72,10 @@ projectApp.directive('projectActionSteps', function(projectService) {
                             'type':  'warning',
                             'message': 'Debe escoger un tipo de proyecto antes de continuar'
                         });
+                        $('html, body').animate({
+                                scrollTop: '0px'
+                            },
+                            1000);
                     }
                 }
             };

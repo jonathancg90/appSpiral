@@ -3,12 +3,14 @@ projectApp.factory('projectFactory',['$http', function($http) {
 
     factory.searchUrl = function(urlSearch){
         return $http.get(urlSearch)
-            .then(function(response) {
+            .success(function(response) {
                 if(response.status == 200) {
                     return response.data;
                 } else {
                     return [];
                 }
+            }).error(function (err, status) {
+
             });
     };
     factory.save = function(urlSave, data){

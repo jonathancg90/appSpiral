@@ -25,6 +25,9 @@
         "type": "1",
         "values" : [
             {
+                "name": "Calvo"
+            },
+            {
                 "name": "Corto"
             },
             {
@@ -32,6 +35,30 @@
             },
             {
                 "name": "Largo"
+            }
+        ]
+    },
+    {
+        "name": "Color de cabello",
+        "type": "1",
+        "values" : [
+            {
+                "name": "CANO"
+            },
+            {
+                "name": "TEÑIDO"
+            },
+            {
+                "name": "RUBIO"
+            },
+            {
+                "name": "NEGRO"
+            },
+            {
+                "name": "PELIRROJO"
+            },
+            {
+                "name": "CASTAÑO"
             }
         ]
     },
@@ -62,6 +89,9 @@
             },
             {
                 "name": "Negro"
+            },
+            {
+                "name": "Celestes"
             }
         ]
     },
@@ -100,6 +130,42 @@
         "type": "1",
         "values" : [
             {
+                "name": "6"
+            },
+            {
+                "name": "2"
+            },
+            {
+                "name": "4"
+            },
+            {
+                "name": "8"
+            },
+            {
+                "name": "10"
+            },
+            {
+                "name": "12"
+            },
+            {
+                "name": "14"
+            },
+            {
+                "name": "16"
+            },
+            {
+                "name": "18"
+            },
+            {
+                "name": "20"
+            },
+            {
+                "name": "22"
+            },
+            {
+                "name": "24"
+            },
+            {
                 "name": "26"
             },
             {
@@ -128,6 +194,15 @@
             },
             {
                 "name": "40"
+            },
+            {
+                "name": "42"
+            },
+            {
+                "name": "44"
+            },
+            {
+                "name": "46"
             }
         ]
     },
@@ -179,7 +254,144 @@
     {
         "name": "Hobbies",
         "type": "0",
-        "values" : []
+        "values" : [
+            {
+                "name":"Bailar"
+            },
+            {
+                "name":"Caminar"
+            },
+            {
+                "name":"Cantar"
+            },
+            {
+                "name":"Hi5"
+            },
+            {
+                "name":"Leer"
+            },
+            {
+                "name":"Navegacion por internet"
+            },
+            {
+                "name":"Escribir canciones"
+            },
+            {
+                "name":"Juegos de red"
+            },
+            {
+                "name":"Piano"
+            },
+            {
+                "name":"Guitarra"
+            },
+            {
+                "name":"Dibujar"
+            },
+            {
+                "name":"Pintar"
+            },
+            {
+                "name":"Escuchar musica"
+            },
+            {
+                "name":"Escribir"
+            },
+            {
+                "name":"Manejar sancos"
+            },
+            {
+                "name":"Cocinar"
+            },
+            {
+                "name":"Carpinteria"
+            },
+            {
+                "name":"Trotar"
+            },
+            {
+                "name":"Componer canciones"
+            },
+            {
+                "name":"Manejo de armas"
+            },
+            {
+                "name":"Instrumentos musicales"
+            },
+            {
+                "name":"Imitacion"
+            },
+            {
+                "name":"Dormir"
+            },
+            {
+                "name":"Ver TV"
+            },
+            {
+                "name":"Ir al cine"
+            },
+            {
+                "name":"Coleccionista"
+            },
+            {
+                "name":"Chatear"
+            },
+            {
+                "name":"Modelaje"
+            },
+            {
+                "name":"Pescar"
+            },
+            {
+                "name":"Actuacion"
+            },
+            {
+                "name":"Reposteria"
+            },
+            {
+                "name":"Manejar"
+            },
+            {
+                "name":"Crucigramas"
+            },
+            {
+                "name":"Billar"
+            },
+            {
+                "name":"Juegos de azar"
+            },
+            {
+                "name":"Ajedrez"
+            },
+            {
+                "name":"Fotografia"
+            },
+            {
+                "name":"Malabarista"
+            },
+            {
+                "name":"Escribir poemas"
+            },
+            {
+                "name":"Correr"
+            },
+            {
+                "name":"Manualidades"
+            },
+            {
+                "name":"Otros"
+            },
+            {
+                "name":"Juegos de meza"
+            },
+            {
+                "name":"Pasarela"
+            },
+            {
+                "name":"Fotografico"
+            }
+
+        ]
     },
     {
         "name": "Ocupacion",
@@ -283,9 +495,6 @@
             },
             {
                 "name": "Coleccionista"
-            },
-            {
-                "name": "Cantante"
             },
             {
                 "name": "Comerciante"
@@ -422,7 +631,7 @@
                 "name": "Psicologia"
             },
             {
-                "name": "Publisista"
+                "name": "Publicista"
             },
             {
                 "name": "Recepcionista"
@@ -474,6 +683,412 @@
             },
             {
                 "name": "Google Plus"
+            }
+        ]
+    },
+    {
+        "name": "Deportes",
+        "type": "0",
+        "values" : [
+            {
+                "name": "VOLLEY"
+            },
+            {
+                "name": "FUTBOL"
+            },
+            {
+                "name": "NATACION"
+            },
+            {
+                "name": "GIMNASIA"
+            },
+            {
+                "name": "CAZAR"
+            },
+            {
+                "name": "CICLISMO"
+            },
+            {
+                "name": "FRONTON"
+            },
+            {
+                "name": "BASQUETBOL"
+            },
+            {
+                "name": "PIMPON"
+            },
+            {
+                "name": "TIRO AL BLANCO"
+            },
+            {
+                "name": "SURF"
+            },
+            {
+                "name": "TENNIS"
+            },
+            {
+                "name": "GYM"
+            },
+            {
+                "name": "ATLETISMO"
+            },
+            {
+                "name": "PATINAJE"
+            },
+            {
+                "name": "MONTAR BICICLETA"
+            },
+            {
+                "name": "SKATE DOWNHILL"
+            },
+            {
+                "name": "KARATE"
+            },
+            {
+                "name": "ARTES MARCIALES"
+            },
+            {
+                "name": "MOTOCICLISMO"
+            },
+            {
+                "name": "PESAS"
+            },
+            {
+                "name": "ARQUERIA"
+            },
+            {
+                "name": "RUGBY"
+            },
+            {
+                "name": "PATINAJE ARTISTICO"
+            },
+            {
+                "name": "BUCEAR"
+            },
+            {
+                "name": "SQUASH"
+            },
+            {
+                "name": "CANOTAJE"
+            },
+            {
+                "name": "ESGRIMA"
+            },
+            {
+                "name": "BOXEO"
+            },
+            {
+                "name": "LEVANTADOR DE PESAS"
+            },
+            {
+                "name": "YOGA"
+            },
+            {
+                "name": "MONTAR A CABALLO"
+            },
+            {
+                "name": "BADMINTON"
+            },
+            {
+                "name": "OTROS"
+            }
+        ]
+    },
+    {
+        "name": "Color de Piel/Raza",
+        "type": "1",
+        "values" : [
+
+            {
+                "name": "Blanca"
+            },
+            {
+                "name": "Oriental"
+            },
+            {
+                "name": "Afro peruana"
+            },
+            {
+                "name": "Trigueña"
+            },
+            {
+                "name": "Mestizo"
+            },
+            {
+                "name": "Indio"
+            }
+        ]
+    },
+    {
+        "name": "Distrito",
+        "type": "1",
+        "values" : [
+                {
+                    "name": "ANCON",
+                    "code": "LIMA 2"
+                },
+
+                {
+                    "name": "ATE",
+                    "code": "LIMA 3"
+                },
+
+                {
+                    "name": "BARRANCO",
+                    "code": "LIMA 4"
+                },
+
+                {
+                    "name": "BELLAVISTA",
+                    "code": "CALLAO 2"
+                },
+
+                {
+                    "name": "BREÑA",
+                    "code": "LIMA 5"
+                },
+
+                {
+                    "name": "CALLAO",
+                    "code": "CALLAO 1"
+                },
+
+                {
+                    "name": "CARABAYLLO",
+                    "code": "LIMA 6"
+                },
+
+                {
+                    "name": "CARMEN DE LA LEGUA",
+                    "code": "CALLAO 3"
+                },
+
+                {
+                    "name": "CERCADO",
+                    "code": "LIMA 1"
+                },
+
+                {
+                    "name": "CHACLACAYO",
+                    "code": "LIMA 8"
+                },
+
+                {
+                    "name": "CHORRILLOS",
+                    "code": "LIMA 9"
+                },
+
+                {
+                    "name": "CIENEGUILLA",
+                    "code": "LIMA 40"
+                },
+
+                {
+                    "name": "COMAS",
+                    "code": "LIMA 7"
+                },
+
+                {
+                    "name": "EL AGUSTINO",
+                    "code": "LIMA 10"
+                },
+
+                {
+                    "name": "INDEPENDENCIA",
+                    "code": "LIMA 28"
+                },
+
+                {
+                    "name": "JESUS MARIA",
+                    "code": "LIMA 11"
+                },
+
+                {
+                    "name": "LA MOLINA",
+                    "code": "LIMA 12"
+                },
+
+                {
+                    "name": "LA PERLA",
+                    "code": "CALLAO 4"
+                },
+
+                {
+                    "name": "LA PUNTA",
+                    "code": "CALLAO 5"
+                },
+
+                {
+                    "name": "LA VICTORIA",
+                    "code": "LIMA 13"
+                },
+
+                {
+                    "name": "LINCE",
+                    "code": "LIMA 14"
+                },
+
+                {
+                    "name": "LOS OLIVOS",
+                    "code": "LIMA 39"
+                },
+
+                {
+                    "name": "LURIGANCHO",
+                    "code": "LIMA 15"
+                },
+
+                {
+                    "name": "LURIN",
+                    "code": "LIMA 16"
+                },
+
+                {
+                    "name": "MAGDALENA",
+                    "code": "LIMA 17"
+                },
+
+                {
+                    "name": "MIRAFLORES",
+                    "code": "LIMA 18"
+                },
+
+                {
+                    "name": "PACHACAMAC",
+                    "code": "LIMA 19"
+                },
+
+                {
+                    "name": "PUCUSANA",
+                    "code": "LIMA 20"
+                },
+
+                {
+                    "name": "PUEBLO LIBRE",
+                    "code": "LIMA 21"
+                },
+
+                {
+                    "name": "PUENTE PIEDRA",
+                    "code": "LIMA 22"
+                },
+
+                {
+                    "name": "PUNTA HERMOSA",
+                    "code": "LIMA 24"
+                },
+
+                {
+                    "name": "PUNTA NEGRA",
+                    "code": "LIMA 23"
+                },
+
+                {
+                    "name": "RIMAC",
+                    "code": "LIMA 25"
+                },
+
+                {
+                    "name": "SAN BARTOLO",
+                    "code": "LIMA 26"
+                },
+
+                {
+                    "name": "SAN BORJA",
+                    "code": "LIMA 41"
+                },
+
+                {
+                    "name": "SAN ISIDRO",
+                    "code": "LIMA 27"
+                },
+
+                {
+                    "name": "SAN JUAN DE LURIGANCHO",
+                    "code": "LIMA 36"
+                },
+
+                {
+                    "name": "SAN JUAN DE MIRAFLORES",
+                    "code": "LIMA 29"
+                },
+
+                {
+                    "name": "SAN LUIS",
+                    "code": "LIMA 30"
+                },
+
+                {
+                    "name": "SAN MARTIN DE PORRES",
+                    "code": "LIMA 31"
+                },
+
+                {
+                    "name": "SAN MIGUEL",
+                    "code": "LIMA 32"
+                },
+
+                {
+                    "name": "SANTA ANITA",
+                    "code": "LIMA 43"
+                },
+
+                {
+                    "name": "SANTA MARIA DEL MAR",
+                    "code": "LIMA 37"
+                },
+
+                {
+                    "name": "SANTA ROSA",
+                    "code": "LIMA 38"
+                },
+
+                {
+                    "name": "SANTIAGO DE SURCO",
+                    "code": "LIMA 33"
+                },
+
+                {
+                    "name": "SURQUILLO",
+                    "code": "LIMA 34"
+                },
+
+                {
+                    "name": "VENTANILLA",
+                    "code": "CALLAO 6"
+                },
+
+                {
+                    "name": "VILLA EL SALVADOR",
+                    "code": "LIMA 42"
+                },
+
+                {
+                    "name": "VILLA MARIA DEL TRIUNFO",
+                    "code": "LIMA 35"
+                },
+
+                {
+                    "name": "CHOSICA",
+                    "code": ""
+                }
+        ]
+    },
+    {
+        "name": "Contextura",
+        "type": "1",
+        "values" : [
+            {
+                "name": "Delgada"
+            },
+            {
+                "name": "Gruesa"
+            },
+            {
+                "name": "Obeso"
+            },
+            {
+                "name": "Normal"
             }
         ]
     }

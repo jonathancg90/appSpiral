@@ -312,7 +312,7 @@
     <span class="menu-text"></span>
 </a>
 
-<div class="sidebar menu-min" id="sidebar">
+<div class="sidebar" id="sidebar">
 <div class="sidebar-shortcuts" id="sidebar-shortcuts">
     <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
         <button class="btn btn-small btn-success">
@@ -349,11 +349,11 @@
     {% else %}
         <li>
     {% endif %}
-    <a href="{% url "panel_model_control_list" %}">
-        <i class="icon-dashboard"></i>
-        <span class="menu-text"> Modelos </span>
-    </a>
-</li>
+        <a href="{% url "panel_model_control_list" %}">
+            <i class="icon-dashboard"></i>
+            <span class="menu-text"> Modelos </span>
+        </a>
+    </li>
     {% if menu == 'search' %}
         <li class="active">
     {% else %}
