@@ -38,6 +38,7 @@ class Client(models.Model):
     address = models.CharField(
         max_length=70,
         verbose_name='Direccion',
+        null=True
     )
 
     type_client = models.ManyToManyField(TypeClient)
