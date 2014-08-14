@@ -130,7 +130,9 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         for com in commercial:
             data.append({
                 'name': com.commercial.name,
-                'code': com.commercial.project
+                'code': com.commercial.project,
+                'realized': com.commercial.realized,
+                'contact': ''
             })
         return data
 
@@ -222,6 +224,7 @@ class ModelCreateView(LoginRequiredMixin, PermissionRequiredMixin,
             context['status'] = 'warning'
         else:
             context['code'] = model.model_code
+            context['id'] = model.id
         return self.render_to_response(context)
 
 
