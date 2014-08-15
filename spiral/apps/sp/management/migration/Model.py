@@ -64,15 +64,15 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def start_migration(self):
         self.set_attributes()
         self.delete()
-        self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
-        data_model = self.get_list_model()
-        data_model = self.get_detail_feature(data_model)
-        self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
-        # self.data_client = self.insert_data_client()
+        # self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
+        # data_model = self.get_list_model()
+        # data_model = self.get_detail_feature(data_model)
+        # self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
+        self.data_client = self.insert_data_client()
 
         #Insert Data
-        # self.insert_entry_brand_commercial()
-        # data_projects = self.insert_project()
+        self.insert_entry_brand_commercial()
+        data_projects = self.insert_project()
         # data_commercial = self.get_data_commercial()
 
     def insert_entry_brand_commercial(self):
@@ -214,8 +214,11 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         commercial.save()
         return commercial
 
-    def get_extra_budget_cost(self):
-        pass
+    def get_extra_budget_cost(self, detail_models):
+        cost = 0
+        for detail in detail_models:
+            cost += float(detail.get(''))
+        return cost
 
     def insert_project(self):
         projects = self.json_reader('projects')

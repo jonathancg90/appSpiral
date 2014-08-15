@@ -31,6 +31,22 @@ DATABASES = {
         'PASSWORD': 'sp1r4ls4c',
         'HOST': '192.168.1.3',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '5432',                      # Set to empty string for default.
+    },
+    'model': {
+        'NAME': 'spiral',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': 'postgres',
+        'PASSWORD': 'sp1r4ls4c',
+        'HOST': '192.168.1.3',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '5432',                      # Set to empty string for default.
+    },
+    'commercial': {
+        'NAME': 'spiral',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'root',
+        'PASSWORD': 'erud73ju',
+        'HOST': '192.168.1.2',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
     }
 
 }
