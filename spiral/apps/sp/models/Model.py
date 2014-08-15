@@ -32,6 +32,7 @@ class Model(models.Model):
     TYPE_DNI = 1
     TYPE_CARNET = 2
     TYPE_PASSPORT = 3
+    TYPE_FAKE = 4
 
     TYPE_DOCUMENTS = (
         (TYPE_CARNET, 'Carnet de extranjeria'),
