@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 import json
 import urllib2
+import logging
 
 from django.conf import settings
 from django.utils.encoding import smart_str
@@ -23,11 +24,13 @@ from apps.sp.models.Feature import Feature, FeatureValue
 
 
 class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
+    LOGGER = 'migration'
     url_sisadmini_api = "http://192.168.1.3/sistemas/sisadmini/api/data_complete.php"
     url_bco_api = "http://192.168.1.3/sistemas/sisadmini/api/data_bco.php"
 
     def set_attributes(self):
         url_base = os.getcwd()
+        self.log = logging.getLogger('migration')
         self.url_media = '%s/%s/%s' %(url_base, 'static', 'media')
 
         self.setTypeDoc()
@@ -35,6 +38,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setStatusModel()
         self.setTypeClients()
         self.setStatusClie()
+        self.setGenericComercial()
 
     def json_reader(self, json_file):
         ROOT_PATH = settings.ROOT_PATH
@@ -44,6 +48,15 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         file.close()
         return json_data
 
+    def setGenericComercial(self):
+        entry = Entry()
+        entry.name = 'Rubro Generico'
+        entry.save()
+        self.brand = Brand()
+        self.brand.entry = entry
+        self.brand.name = 'Marca Generica'
+        self.brand.save()
+
     def delete(self):
         Client.objects.all().delete()
         Entry.objects.all().delete()
@@ -51,13 +64,13 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def start_migration(self):
         self.set_attributes()
         self.delete()
-        # data_model = self.get_list_model()
-        # data_model = self.get_detail_feature(data_model)
-        # import pdb;pdb.set_trace()
-        self.data_client = self.insert_data_client()
+
+        data_model = self.get_list_model()
+        data_model = self.get_detail_feature(data_model)
+        # self.data_client = self.insert_data_client()
 
         #Insert Data
-        self.insert_entry_brand_commercial()
+        # self.insert_entry_brand_commercial()
         # data_projects = self.insert_project()
         # data_commercial = self.get_data_commercial()
 
@@ -190,32 +203,47 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             '2': Client.STATUS_INACTIVE
         }
 
-    def get_commercial(self):
-        commercial
+    def get_commercial(self, cod_project, name):
+        for relation in self.relation_commercial_project:
+            if relation.get('project_code') == cod_project:
+                return relation.get('commercial')
+        commercial = Commercial()
+        commercial.name = name
+        commercial.brand = self.brand
+        commercial.save()
+        return commercial
+
+    def get_extra_budget_cost(self):
+        pass
 
     def insert_project(self):
         projects = self.json_reader('projects')
         extras = projects.get('extras')
         for extra in extras:
-            commercial = self.get_commercial(extra.get('cod_ordext'))
             project = Project()
-            extra.get('cod_ordext')
-            extra.get('nom_proyect')
-            extra.get('inicio')
+            project.commercial = self.get_commercial(extra.get('cod_ordext'), extra.get('nom_proyect'))
+            project.line_productions = Project.LINE_EXTRA
+            project.start_productions = extra.get('inicio')
+            project.end_productions = extra.get('fecha_final')
+            project.currency = ''
+            project.budget = extra.get('presupuesto')
+            project.budget_cost = self.get_extra_budget_cost(extra.get('modelos'))
+            project.observations = extra.get('observaciones')
+            project.status = extra.get('estado')
+            project.save()
+            if project.get_code() == extra.get('cod_ordext'):
+                self.insert_coordinator(extra.get('coordinadores'))
+                self.inset_extra_models(extra.get('modelos'))
+                self.insert_client(extra.get('clientes'))
+
+
             extra.get('filmacion')
             extra.get('fpago')
-            extra.get('presupuesto')
             extra.get('cambio')
             extra.get('fact_a')
             extra.get('condiciones')
-            extra.get('observaciones')
-            extra.get('estado')
-            extra.get('fecha_final')
 
 
-            self.insert_coordinator(extra.get('coordinadores'))
-            self.inset_extra_models(extra.get('modelos'))
-            self.insert_client(extra.get('clientes'))
         photos = projects.get('photo')
         representations = projects.get('representation')
         import pdb;pdb.set_trace()
@@ -273,6 +301,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             return 'Bailar'
         if value in ['CRESPO', 'RIZO']:
             return 'Rizado'
+        if value == 'LOCUTOR DE RADIO, TV':
+            return 'Locutor'
 
         return value
 
@@ -329,9 +359,12 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 if value_name in ignore_values:
                     pass
                 else:
-                    import pdb;pdb.set_trace()
+                    original = str(feature_name) + ' - ' + str(value_name)
+                    change = str(_feature_name) + ' - ' + str(_value_name)
+                    self.log.debug('feature_value multiple o nulo: '+str(feature_value)+ ' | ' + original + ' | ' + change)
         except Exception, e:
-            import pdb;pdb.set_trace()
+            original = str(feature_name) + ' - ' + str(value_name)
+            self.log.debug(e.message + ' | ' + original)
         return None
 
     def get_query_feature_detail(self, model_code):
@@ -487,7 +520,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos where td_cod != '00' and td_cod != '04' "
+                  "from modelos where td_cod != '00' and td_cod != '04' order by mod_cod limit 1000 offset 0"
+
+            #Limit:  cantidad a mostrar
+            #Offset: a partir de que posicion
             model_cursor = connections['model'].cursor()
             model_cursor.execute(sql)
             for row in model_cursor.fetchall():
@@ -511,7 +547,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 data.append(data_models)
             return data
         except Exception, e:
-            import pdb;pdb.set_trace()
+            self.log.debug(e.message + ': get_list_model')
             return data
 
     def get_photos(self, model_code):
