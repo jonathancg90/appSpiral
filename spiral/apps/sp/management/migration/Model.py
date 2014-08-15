@@ -16,6 +16,7 @@ from apps.common.view import JSONResponseMixin
 from apps.sp.models.Model import Model
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Country import Country
+from apps.sp.models.Currency import Currency
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Client import Client, TypeClient
@@ -33,6 +34,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         url_base = os.getcwd()
         self.log = logging.getLogger('migration')
         self.url_media = '%s/%s/%s' %(url_base, 'static', 'media')
+        self.relation_commercial_project = []
 
         self.setTypeDoc()
         self.setConditions()
@@ -61,67 +63,76 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def delete(self):
         Client.objects.all().delete()
         Entry.objects.all().delete()
+        Project.objects.all().delete()
 
     def start_migration(self):
-        self.set_attributes()
         self.delete()
+        self.set_attributes()
         self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
         data_model = self.get_list_model()
         data_model = self.get_detail_feature(data_model)
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
-        # self.data_client = self.insert_data_client()
+        #self.data_client = self.insert_data_client()
 
         #Insert Data
-        # self.insert_entry_brand_commercial()
-        # data_projects = self.insert_project()
+        #self.insert_entry_brand_commercial()
+        #data_projects = self.insert_project()
         # data_commercial = self.get_data_commercial()
 
     def insert_entry_brand_commercial(self):
-        query = "select id, name, status from sp_entry"
-        model_cursor = connections['commercial'].cursor()
-        model_cursor.execute(query)
-        for row in model_cursor.fetchall():
-            entry = Entry()
-            entry.name = row[1]
-            entry.status = row[2]
-            entry.save()
-            print('add entry: ' + row[1])
-            self.insert_brand_by_entry(row[0], entry)
+        try:
+            query = "select id, name, status from sp_entry"
+            model_cursor = connections['commercial'].cursor()
+            model_cursor.execute(query)
+            for row in model_cursor.fetchall():
+                entry = Entry()
+                entry.name = row[1]
+                entry.status = row[2]
+                entry.save()
+                print('add entry: ' + row[1])
+                self.insert_brand_by_entry(row[0], entry)
+        except:
+            self.log.debug('Fallo entry')
 
     def insert_brand_by_entry(self, old_entry_id, new_entry):
-        query = "select id, name, status from sp_brand where entry_id='"+str(old_entry_id)+"'"
-        brand_cursor = connections['commercial'].cursor()
-        brand_cursor.execute(query)
-        for row in brand_cursor.fetchall():
-            brand = Brand()
-            brand.name = row[1]
-            brand.status = row[2]
-            brand.entry = new_entry
-            brand.save()
-            print('add brand: ' + row[1])
-            self.insert_commercial_by_brand(row[0], brand)
+        try:
+            query = "select id, name, status from sp_brand where entry_id='"+str(old_entry_id)+"'"
+            brand_cursor = connections['commercial'].cursor()
+            brand_cursor.execute(query)
+            for row in brand_cursor.fetchall():
+                brand = Brand()
+                brand.name = row[1]
+                brand.status = row[2]
+                brand.entry = new_entry
+                brand.save()
+                print('add brand: ' + row[1])
+                self.insert_commercial_by_brand(row[0], brand)
+        except:
+            self.log.debug('Fallo Brand')
 
     def insert_commercial_by_brand(self, old_brand_id, new_brand):
-        self.relation_commercial_project = []
-        query = "select c.id, c.name, c.status, p.project_code, c.realized from sp_commercial c inner join sp_project p on p.id=c.project_id where c.brand_id='"+str(old_brand_id)+"'"
-        commercial_cursor = connections['commercial'].cursor()
-        commercial_cursor.execute(query)
-        for row in commercial_cursor.fetchall():
-            commercial = Commercial()
-            commercial.name = row[1]
-            commercial.status = row[2]
-            commercial.brand =new_brand
-            commercial.save()
-            print('add commercial: ' + row[1])
-            if row[4] is not None:
-                commercial_date_detail = CommercialDateDetail()
-                commercial_date_detail.commercial = commercial
-                commercial_date_detail.date = row[4]
-                commercial_date_detail.save()
-            self.relation_commercial_project.append({
-                'commercial': commercial,
-                'project_code': row[3]
-            })
+        try:
+            query = "select c.id, c.name, c.status, p.project_code, c.realized from sp_commercial c inner join sp_project p on p.id=c.project_id where c.brand_id='"+str(old_brand_id)+"'"
+            commercial_cursor = connections['commercial'].cursor()
+            commercial_cursor.execute(query)
+            for row in commercial_cursor.fetchall():
+                commercial = Commercial()
+                commercial.name = row[1]
+                commercial.status = row[2]
+                commercial.brand =new_brand
+                commercial.save()
+                print('add commercial: ' + row[1])
+                if row[4] is not None:
+                    commercial_date_detail = CommercialDateDetail()
+                    commercial_date_detail.commercial = commercial
+                    commercial_date_detail.date = row[4]
+                    commercial_date_detail.save()
+                self.relation_commercial_project.append({
+                    'commercial': commercial,
+                    'project_code': row[3]
+                })
+        except:
+            self.log.debug('Fallo Commercial')
 
     def get_clients_json(self):
         try:
@@ -205,7 +216,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             '2': Client.STATUS_INACTIVE
         }
 
-    def get_commercial(self, cod_project, name):
+    def get_commercial(self, cod_project, name, filmacion):
         for relation in self.relation_commercial_project:
             if relation.get('project_code') == cod_project:
                 return relation.get('commercial')
@@ -213,40 +224,84 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         commercial.name = name
         commercial.brand = self.brand
         commercial.save()
+        filmacion = self.format_date(filmacion)
+        if filmacion is not None:
+            comercial_date_detail = CommercialDateDetail()
+            comercial_date_detail.commercial = commercial
+            comercial_date_detail.date = filmacion
+            comercial_date_detail.save()
         return commercial
+
+    def format_date(self, date):
+        try:
+            if date is not None:
+                date = datetime.strptime(date, "%d/%m/%Y")
+                return "%s-%s-%s" % (date.year, date.month, date.day)
+            return date
+        except:
+            return None
 
     def get_extra_budget_cost(self, detail_models):
         cost = 0
         for detail in detail_models:
-            cost += float(detail.get(''))
+            cost += float(detail.get('pago_real'))
         return cost
+
+    def get_currency(self, currency):
+        if currency == 'D':
+            return Currency.objects.get(symbol='S/.')
+        elif currency == 'S':
+            return Currency.objects.get(symbol='$')
+        return None
+
+
+    def get_extra_currency(self, details):
+        for detail in details:
+            if detail.get('moneda') is not None:
+                return self.get_currency(detail.get('moneda'))
+        return None
+
+    def get_status_project(self, status):
+        if str(status) == "1":
+            return Project.STATUS_START
+        if str(status) == "2":
+            return Project.STATUS_STAND_BY
+        if str(status) == "3":
+            return Project.STATUS_FINISH
 
     def insert_project(self):
         projects = self.json_reader('projects')
         extras = projects.get('extras')
         for extra in extras:
-            project = Project()
-            project.commercial = self.get_commercial(extra.get('cod_ordext'), extra.get('nom_proyect'))
-            project.line_productions = Project.LINE_EXTRA
-            project.start_productions = extra.get('inicio')
-            project.end_productions = extra.get('fecha_final')
-            project.currency = ''
-            project.budget = extra.get('presupuesto')
-            project.budget_cost = self.get_extra_budget_cost(extra.get('modelos'))
-            project.observations = extra.get('observaciones')
-            project.status = extra.get('estado')
-            project.save()
-            if project.get_code() == extra.get('cod_ordext'):
-                self.insert_coordinator(extra.get('coordinadores'))
-                self.inset_extra_models(extra.get('modelos'))
-                self.insert_client(extra.get('clientes'))
+            if extra.get('nom_proyect') is not None:
+                start_production = extra.get('fecha_cod')
+                if extra.get('inicio') is not None:
+                    if extra.get('fecha_cod').split('/')[1] == extra.get('inicio').split('/')[1]:
+                        start_production = extra.get('inicio')
 
+                end_productions = extra.get('fecha_final')
+                if end_productions is None:
+                    end_productions = extra.get('filmacion')
 
-            extra.get('filmacion')
-            extra.get('fpago')
-            extra.get('cambio')
-            extra.get('fact_a')
-            extra.get('condiciones')
+                project = Project()
+                project.commercial = self.get_commercial(extra, extra.get('nom_proyect'), extra.get('filmacion'))
+                project.line_productions = Project.LINE_EXTRA
+                project.start_productions = self.format_date(start_production)
+                project.end_productions = self.format_date(end_productions)
+                project.currency = self.get_extra_currency(extra.get('modelos'))
+                project.budget = extra.get('presupuesto')
+                project.budget_cost = self.get_extra_budget_cost(extra.get('modelos'))
+                project.observations = extra.get('observaciones')
+                project.status = self.get_status_project(extra.get('estado'))
+                project.save()
+                project = Project.objects.get(pk=project.id)
+                import pdb;pdb.set_trace()
+                if project.get_code() == extra.get('cod_ordext'):
+                    self.insert_coordinator(extra.get('coordinadores'))
+                    self.inset_extra_models(extra.get('modelos'))
+                    self.insert_client(extra.get('clientes'))
+                else:
+                    import pdb;pdb.set_trace()
 
 
         photos = projects.get('photo')
@@ -409,12 +464,14 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                                 'gender': Model.GENDER_FEM
                             })
                     if row[2] == 'CONDICIONES':
-                        if value[0] == 'EXCLUSIVO':
+                        if value[0] in ['EXCLUSIVO', 'ACEPTO', 'WEB']:
                             model.update({
                                 'terms':  True
                             })
-                        else:
-                            self.log.debug('termino no encontrado ' + row[2])
+                        if value[0] == 'RECHAZO':
+                            model.update({
+                                'terms':  False
+                            })
                     if row[2] == 'LUGAR NACIMIENTO':
                         try:
                             country = Country.objects.get(name=value[0])
