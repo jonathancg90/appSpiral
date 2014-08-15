@@ -534,15 +534,16 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             model_cursor.execute(sql)
             for row in model_cursor.fetchall():
                 type_doc= self.get_type_doc(row[2])
+                document = row[3]
                 if type_doc is None:
                     type_doc = Model.TYPE_FAKE
                     self.numberdoc += 1
-                    row[3] = str(self.numberdoc)
+                    document = str(self.numberdoc)
                 data_models = {
                     'name_complete': row[0],
                     'model_code': row[1],
                     'type_doc': type_doc,
-                    'number_doc': row[3],
+                    'number_doc': document,
                     'status': self.get_status(row[4]),
                     'birth': self.convert_date_birth(row[5]),
                     'address': row[6],
