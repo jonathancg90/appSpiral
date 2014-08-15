@@ -64,9 +64,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def start_migration(self):
         self.set_attributes()
         self.delete()
-
+        self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
         data_model = self.get_list_model()
         data_model = self.get_detail_feature(data_model)
+        self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
         # self.data_client = self.insert_data_client()
 
         #Insert Data
@@ -409,7 +410,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                                 'terms':  True
                             })
                         else:
-                            import pdb;pdb.set_trace()
+                            self.log.debug('termino no encontrado ' + row[2])
                     if row[2] == 'LUGAR NACIMIENTO':
                         try:
                             country = Country.objects.get(name=value[0])
@@ -417,7 +418,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                                 'nationality': country
                             })
                         except:
-                            import pdb;pdb.set_trace()
+                            self.log.debug('pais no encontrado ' + value[0])
 
             print('add detail: ' + model.get('model_code'))
 
