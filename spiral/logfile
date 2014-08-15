@@ -1,2 +1,13 @@
-[15/Aug/2014 12:00:13] DEBUG [migration:67] comenzo: 15/08/2014 12:00
-[15/Aug/2014 12:00:13] DEBUG [migration:70] termino: 15/08/2014 12:00
+[15/Aug/2014 12:08:25] DEBUG [migration:67] comenzo: 15/08/2014 12:08
+[15/Aug/2014 12:08:25] DEBUG [migration:551] The connection model doesn't exist: get_list_model
+[15/Aug/2014 12:08:25] DEBUG [migration:70] termino: 15/08/2014 12:08
+[15/Aug/2014 12:45:35] DEBUG [migration:67] comenzo: 15/08/2014 12:45
+[15/Aug/2014 12:45:35] DEBUG [migration:551] The connection model doesn't exist: get_list_model
+[15/Aug/2014 12:45:35] DEBUG [migration:70] termino: 15/08/2014 12:45
+[15/Aug/2014 12:48:50] DEBUG [migration:67] comenzo: 15/08/2014 12:48
+[15/Aug/2014 12:48:50] DEBUG [migration:551] The connection model doesn't exist: get_list_model
+[15/Aug/2014 12:48:50] DEBUG [migration:70] termino: 15/08/2014 12:48
+[15/Aug/2014 12:49:47] DEBUG [migration:67] comenzo: 15/08/2014 12:49
+[15/Aug/2014 12:49:55] DEBUG [migration:1] The connection model doesn't exist: get_list_model
+[15/Aug/2014 12:50:24] DEBUG [migration:552] The connection model doesn't exist: get_list_model
+[15/Aug/2014 12:50:24] DEBUG [migration:70] termino: 15/08/2014 12:50
