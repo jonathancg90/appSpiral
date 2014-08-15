@@ -27,6 +27,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     LOGGER = 'migration'
     url_sisadmini_api = "http://192.168.1.3/sistemas/sisadmini/api/data_complete.php"
     url_bco_api = "http://192.168.1.3/sistemas/sisadmini/api/data_bco.php"
+    numberdoc = 0
 
     def set_attributes(self):
         url_base = os.getcwd()
@@ -524,17 +525,23 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos where td_cod != '00' and td_cod != '04' order by mod_cod limit 1000 offset 0"
+                  "from modelos where td_cod != '00' and td_cod != '04' order by mod_cod"
 
-            #Limit:  cantidad a mostrar
+            # limit 1000 offset 0
+            # Limit:  cantidad a mostrar
             #Offset: a partir de que posicion
             model_cursor = connections['model'].cursor()
             model_cursor.execute(sql)
             for row in model_cursor.fetchall():
+                type_doc= self.get_type_doc(row[2])
+                if type_doc is None:
+                    type_doc = Model.TYPE_FAKE
+                    self.numberdoc += 1
+                    row[3] = str(self.numberdoc)
                 data_models = {
                     'name_complete': row[0],
                     'model_code': row[1],
-                    'type_doc': self.get_type_doc(row[2]),
+                    'type_doc': type_doc,
                     'number_doc': row[3],
                     'status': self.get_status(row[4]),
                     'birth': self.convert_date_birth(row[5]),
