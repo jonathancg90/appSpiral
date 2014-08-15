@@ -19,9 +19,11 @@ class Client(models.Model):
 
     STATUS_ACTIVE = 1
     STATUS_INACTIVE = 0
+    STATUS_ABROAD = 2
     CHOICE_STATUS = (
         (STATUS_INACTIVE, 'inactivo'),
-        (STATUS_ACTIVE, 'activo')
+        (STATUS_ACTIVE, 'activo'),
+        (STATUS_ACTIVE, 'extranjero')
     )
 
     name = models.CharField(
@@ -38,6 +40,7 @@ class Client(models.Model):
     address = models.CharField(
         max_length=70,
         verbose_name='Direccion',
+        null=True
     )
 
     type_client = models.ManyToManyField(TypeClient)

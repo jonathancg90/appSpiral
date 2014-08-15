@@ -4,25 +4,33 @@ from datetime import datetime
 import os
 import json
 import urllib2
+import logging
 
-from django.utils.encoding import smart_str, smart_unicode
+from django.conf import settings
+from django.utils.encoding import smart_str
 from django.views.generic import View
 from django.db import connections
 
 from apps.common.view import LoginRequiredMixin
 from apps.common.view import JSONResponseMixin
 from apps.sp.models.Model import Model
+from apps.sp.models.Entry import Entry
 from apps.sp.models.Country import Country
+from apps.sp.models.Brand import Brand
+from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Client import Client, TypeClient
+from apps.sp.models.Project import Project
 from apps.sp.models.Feature import Feature, FeatureValue
 
 
 class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
+    LOGGER = 'migration'
     url_sisadmini_api = "http://192.168.1.3/sistemas/sisadmini/api/data_complete.php"
     url_bco_api = "http://192.168.1.3/sistemas/sisadmini/api/data_bco.php"
 
     def set_attributes(self):
         url_base = os.getcwd()
+        self.log = logging.getLogger('migration')
         self.url_media = '%s/%s/%s' %(url_base, 'static', 'media')
 
         self.setTypeDoc()
@@ -30,84 +38,150 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setStatusModel()
         self.setTypeClients()
         self.setStatusClie()
+        self.setGenericComercial()
+
+    def json_reader(self, json_file):
+        ROOT_PATH = settings.ROOT_PATH
+        file_path = ROOT_PATH + '/apps/common/db_data/json/%s.json' %json_file
+        file = open(file_path, 'r')
+        json_data = json.load(file)
+        file.close()
+        return json_data
+
+    def setGenericComercial(self):
+        entry = Entry()
+        entry.name = 'Rubro Generico'
+        entry.save()
+        self.brand = Brand()
+        self.brand.entry = entry
+        self.brand.name = 'Marca Generica'
+        self.brand.save()
+
+    def delete(self):
+        Client.objects.all().delete()
+        Entry.objects.all().delete()
 
     def start_migration(self):
         self.set_attributes()
+        self.delete()
+        self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
         data_model = self.get_list_model()
         data_model = self.get_detail_feature(data_model)
-        import pdb;pdb.set_trace()
-        data_client = self.get_data_client()
-        data_projects = self.get_data_project()
-        data_commercial = self.get_data_commercial()
+        self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
+        # self.data_client = self.insert_data_client()
 
-        self.insert_client(data_client)
+        #Insert Data
+        # self.insert_entry_brand_commercial()
+        # data_projects = self.insert_project()
+        # data_commercial = self.get_data_commercial()
+
+    def insert_entry_brand_commercial(self):
+        query = "select id, name, status from sp_entry"
+        model_cursor = connections['commercial'].cursor()
+        model_cursor.execute(query)
+        for row in model_cursor.fetchall():
+            entry = Entry()
+            entry.name = row[1]
+            entry.status = row[2]
+            entry.save()
+            print('add entry: ' + row[1])
+            self.insert_brand_by_entry(row[0], entry)
+
+    def insert_brand_by_entry(self, old_entry_id, new_entry):
+        query = "select id, name, status from sp_brand where entry_id='"+str(old_entry_id)+"'"
+        brand_cursor = connections['commercial'].cursor()
+        brand_cursor.execute(query)
+        for row in brand_cursor.fetchall():
+            brand = Brand()
+            brand.name = row[1]
+            brand.status = row[2]
+            brand.entry = new_entry
+            brand.save()
+            print('add brand: ' + row[1])
+            self.insert_commercial_by_brand(row[0], brand)
+
+    def insert_commercial_by_brand(self, old_brand_id, new_brand):
+        self.relation_commercial_project = []
+        query = "select c.id, c.name, c.status, p.project_code, c.realized from sp_commercial c inner join sp_project p on p.id=c.project_id where c.brand_id='"+str(old_brand_id)+"'"
+        commercial_cursor = connections['commercial'].cursor()
+        commercial_cursor.execute(query)
+        for row in commercial_cursor.fetchall():
+            commercial = Commercial()
+            commercial.name = row[1]
+            commercial.status = row[2]
+            commercial.brand =new_brand
+            commercial.save()
+            print('add commercial: ' + row[1])
+            if row[4] is not None:
+                commercial_date_detail = CommercialDateDetail()
+                commercial_date_detail.commercial = commercial
+                commercial_date_detail.date = row[4]
+                commercial_date_detail.save()
+            self.relation_commercial_project.append({
+                'commercial': commercial,
+                'project_code': row[3]
+            })
 
     def get_clients_json(self):
         try:
             #Miraflores
             url = '%s?type=%s' %(self.url_sisadmini_api, "C")
             result = urllib2.urlopen(url)
-            sis_client = json.loads(result.read())
+            self.sis_client = json.loads(result.read())
             #Barranco
             url = '%s?type=%s' %(self.url_bco_api, "C")
             result = urllib2.urlopen(url)
-            bco_client = json.loads(result.read())
+            self.bco_client = json.loads(result.read())
             #Match
-            clients = sis_client
-            for client in bco_client:
+            clients = self.sis_client
+            for client in self.bco_client:
                 clients.append(client)
             return clients
         except Exception, e:
             return []
 
-    def get_project_json(self):
-        data = {}
-        #Miraflores
-        url = '%s?type=%s' %(self.url_sisadmini_api, "M")
-        result = urllib2.urlopen(url)
-        data_sis = json.loads(result.read())
-        #Barranco
-        url = '%s?type=%s' %(self.url_bco_api, "B")
-        result = urllib2.urlopen(url)
-        data_bco = json.loads(result.read())
-        data.update({
-            'casting':data_sis,
-            'extras': data_bco.get('extras'),
-            'photo': data_bco.get('photo'),
-            'representation': data_bco.get('representation')
-        })
-        return data
-
-    def get_data_client(self):
+    def insert_data_client(self):
         def get_client_by_ruc(data_client, ruc):
             for client in data_client:
                 if client.get('ruc') == ruc:
                     return data_client.index(client)
 
-        data= []
+        clients= []
         rucs = []
         client_json = self.get_clients_json()
         for client in client_json:
             #Falta validar clientes sin RUC
             old_codes = []
+            if client.get('ruc') in ['CL001'] or client.get('ruc') is None:
+               continue
             if client.get('ruc') in rucs:
-                index = get_client_by_ruc(data, client.get('ruc'))
-                codes = data[index].get('old_code')
+                index = get_client_by_ruc(clients, client.get('ruc'))
+                codes = clients[index].get('old_code')
                 codes.append(client.get('cod_cliente'))
-                data[index].update({
+                clients[index].update({
                     'old_code': codes
                 })
             else:
                 rucs.append(client.get('ruc'))
                 old_codes.append(client.get('id'))
-                data.append({
+                clients.append({
                     'old_code': old_codes,
                     'ruc': client.get('ruc'),
+                    'sis': client.get('sis'),
                     'name': client.get('nombre'),
                     'types': self.types_clie.get(str(client.get('tipo_cli'))),
                     'status': self.status_clie.get(str(client.get('estado'))),
                 })
-        return data
+        for new_client in clients:
+            client = Client()
+            client.ruc = new_client.get('ruc')
+            client.name = new_client.get('name')
+            client.status = new_client.get('status')
+            client.save()
+            for type in new_client.get('types'):
+                client.type_client.add(type)
+            print('add client: ' + client.name)
+        return clients
 
     def setTypeClients(self):
         productor = TypeClient.objects.get(name='Productora')
@@ -130,9 +204,50 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             '2': Client.STATUS_INACTIVE
         }
 
+    def get_commercial(self, cod_project, name):
+        for relation in self.relation_commercial_project:
+            if relation.get('project_code') == cod_project:
+                return relation.get('commercial')
+        commercial = Commercial()
+        commercial.name = name
+        commercial.brand = self.brand
+        commercial.save()
+        return commercial
 
-    def get_data_project(self):
-        projects = self.get_project_json()
+    def get_extra_budget_cost(self):
+        pass
+
+    def insert_project(self):
+        projects = self.json_reader('projects')
+        extras = projects.get('extras')
+        for extra in extras:
+            project = Project()
+            project.commercial = self.get_commercial(extra.get('cod_ordext'), extra.get('nom_proyect'))
+            project.line_productions = Project.LINE_EXTRA
+            project.start_productions = extra.get('inicio')
+            project.end_productions = extra.get('fecha_final')
+            project.currency = ''
+            project.budget = extra.get('presupuesto')
+            project.budget_cost = self.get_extra_budget_cost(extra.get('modelos'))
+            project.observations = extra.get('observaciones')
+            project.status = extra.get('estado')
+            project.save()
+            if project.get_code() == extra.get('cod_ordext'):
+                self.insert_coordinator(extra.get('coordinadores'))
+                self.inset_extra_models(extra.get('modelos'))
+                self.insert_client(extra.get('clientes'))
+
+
+            extra.get('filmacion')
+            extra.get('fpago')
+            extra.get('cambio')
+            extra.get('fact_a')
+            extra.get('condiciones')
+
+
+        photos = projects.get('photo')
+        representations = projects.get('representation')
+        import pdb;pdb.set_trace()
 
     def insert_client(self, clients):
         for _client in clients:
@@ -187,6 +302,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             return 'Bailar'
         if value in ['CRESPO', 'RIZO']:
             return 'Rizado'
+        if value == 'LOCUTOR DE RADIO, TV':
+            return 'Locutor'
 
         return value
 
@@ -243,9 +360,12 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 if value_name in ignore_values:
                     pass
                 else:
-                    import pdb;pdb.set_trace()
+                    original = str(feature_name) + ' - ' + str(value_name)
+                    change = str(_feature_name) + ' - ' + str(_value_name)
+                    self.log.debug('feature_value multiple o nulo: '+str(feature_value)+ ' | ' + original + ' | ' + change)
         except Exception, e:
-            import pdb;pdb.set_trace()
+            original = str(feature_name) + ' - ' + str(value_name)
+            self.log.debug(e.message + ' | ' + original)
         return None
 
     def get_query_feature_detail(self, model_code):
@@ -290,7 +410,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                                 'terms':  True
                             })
                         else:
-                            import pdb;pdb.set_trace()
+                            self.log.debug('termino no encontrado ' + row[2])
                     if row[2] == 'LUGAR NACIMIENTO':
                         try:
                             country = Country.objects.get(name=value[0])
@@ -298,7 +418,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                                 'nationality': country
                             })
                         except:
-                            import pdb;pdb.set_trace()
+                            self.log.debug('pais no encontrado ' + value[0])
 
             print('add detail: ' + model.get('model_code'))
 
@@ -401,7 +521,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos where td_cod != '00' and td_cod != '04' "
+                  "from modelos where td_cod != '00' and td_cod != '04' order by mod_cod limit 1000 offset 0"
+
+            #Limit:  cantidad a mostrar
+            #Offset: a partir de que posicion
             model_cursor = connections['model'].cursor()
             model_cursor.execute(sql)
             for row in model_cursor.fetchall():
@@ -425,7 +548,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 data.append(data_models)
             return data
         except Exception, e:
-            import pdb;pdb.set_trace()
+            self.log.debug(e.message + ': get_list_model')
             return data
 
     def get_photos(self, model_code):
