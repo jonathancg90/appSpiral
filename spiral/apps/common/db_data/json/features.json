@@ -100,6 +100,9 @@
         "type": "1",
         "values" : [
             {
+                "name": "0"
+            },
+            {
                 "name": "XXS"
             },
             {
@@ -129,6 +132,9 @@
         "name": "Talla de pantalon",
         "type": "1",
         "values" : [
+            {
+                "name": "0"
+            },
             {
                 "name": "6"
             },
