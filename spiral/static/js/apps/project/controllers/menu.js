@@ -9,7 +9,7 @@ controllers.menuController = function($scope,
     var urlLine = factoryUrl.projectLineUrl;
 
     var rpLine = projectFactory.searchUrl(urlLine);
-    rpLine.then(function(data) {
+    rpLine.success(function(data) {
         $scope.lines  = data.lines;
     });
 

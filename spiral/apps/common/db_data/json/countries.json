@@ -1643,6 +1643,12 @@
         "cities": []
     },
     {
+        "name": "Suecia",
+        "nationality": "suecio",
+        "currency": "$",
+        "cities": []
+    },
+    {
         "name": "Surinam",
         "nationality": "Surinamesa",
         "currency": "$",

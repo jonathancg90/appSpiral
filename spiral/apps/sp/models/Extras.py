@@ -31,11 +31,11 @@ class Extras(models.Model):
 
 class ExtrasDetailModel(models.Model):
 
-    CHARACTER_PRINCIPAL = 1
-    CHARACTER_SECONDARY = 0
+    CHARACTER_EXTRA = 1
+    CHARACTER_SPECIAL_EXTRA = 0
     CHOICE_CHARACTER = (
-        (CHARACTER_PRINCIPAL, 'Extra'),
-        (CHARACTER_SECONDARY, 'Extra especial')
+        (CHARACTER_EXTRA, 'Extra'),
+        (CHARACTER_SPECIAL_EXTRA, 'Extra especial')
     )
 
     extras = models.ForeignKey(
@@ -58,7 +58,7 @@ class ExtrasDetailModel(models.Model):
 
     character = models.SmallIntegerField(
         choices=CHOICE_CHARACTER,
-        default=CHARACTER_PRINCIPAL,
+        default=CHARACTER_EXTRA,
         null=True
     )
 

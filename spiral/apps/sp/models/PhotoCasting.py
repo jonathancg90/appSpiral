@@ -8,6 +8,11 @@ class PhotoCasting(models.Model):
         primary_key=True
     )
 
+    realized = models.DateField(
+        verbose_name='Realizacion',
+        null=True,
+    )
+
     use_photo = models.ManyToManyField(
         'UsePhotos',
         verbose_name='Uso de las fotos',
