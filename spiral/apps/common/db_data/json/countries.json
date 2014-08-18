@@ -425,6 +425,12 @@
         "cities": []
     },
     {
+        "name": "Países bajos",
+        "nationality": "Afgana",
+        "currency": "$",
+        "cities": []
+    },
+    {
         "name": "Albania",
         "nationality": "Albanesa",
         "currency": "$",
@@ -545,7 +551,7 @@
         "cities": []
     },
     {
-        "name": "Bélgica",
+        "name": "Belgica",
         "nationality": "Belga",
         "currency": "$",
         "cities": []
@@ -653,7 +659,7 @@
         "cities": []
     },
     {
-        "name": "Canadá",
+        "name": "Canada",
         "nationality": "Canadiense",
         "currency": "$",
         "cities": []
@@ -839,8 +845,14 @@
         "cities": []
     },
     {
-        "name": "French Polynesia",
+        "name": "Polinesia Francesa",
         "nationality": "Francopolinesia",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Senegal",
+        "nationality": "Senegalés",
         "currency": "$",
         "cities": []
     },
@@ -1097,7 +1109,7 @@
         "cities": []
     },
     {
-        "name": "Japón",
+        "name": "Japon",
         "nationality": "Japonesa",
         "currency": "$",
         "cities": []
@@ -1469,7 +1481,7 @@
         "cities": []
     },
     {
-        "name": "República Checa",
+        "name": "Republica Checa",
         "nationality": "Checa",
         "currency": "$",
         "cities": []
@@ -1505,7 +1517,7 @@
         "cities": []
     },
     {
-        "name": "Rusian",
+        "name": "Rusia",
         "nationality": "Rusa",
         "currency": "$",
         "cities": []
@@ -1625,7 +1637,7 @@
         "cities": []
     },
     {
-        "name": "Suecia",
+        "name": "Suiza",
         "nationality": "Sueca",
         "currency": "$",
         "cities": []
@@ -1769,7 +1781,7 @@
         "cities": []
     },
     {
-        "name": "Western Sahara",
+        "name": "Sáhara occidental",
         "nationality": "Sahariana",
         "currency": "$",
         "cities": []

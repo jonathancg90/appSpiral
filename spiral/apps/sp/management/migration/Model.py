@@ -319,7 +319,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 client.type_client.add(type)
 
     def parse_data_feature_value(self, feature_name, value):
-        if feature_name == 'DISTRITO':
+        if feature_name == 'DISTRITO' and value != 'CHOSICA':
             return value[:-3]
         if feature_name == 'ANFITRIONAJE':
             return 'Anfitriona'
