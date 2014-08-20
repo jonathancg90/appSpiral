@@ -13,6 +13,11 @@ class Casting(models.Model):
         null=True,
     )
 
+    realized = models.DateField(
+        verbose_name='Realizacion',
+        null=True,
+    )
+
     ppg = models.DateField(
         verbose_name='PPG',
         null=True,

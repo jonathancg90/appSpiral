@@ -1,6 +1,7 @@
 .idea
 spiral/settings.py
 static/js/apps/node_modules
+static/media
 media/pictures
 static/media
 logfile*

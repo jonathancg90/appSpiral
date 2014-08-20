@@ -641,7 +641,7 @@
         "cities": []
     },
     {
-        "name": "Cabo Verda",
+        "name": "Cabo Verde",
         "nationality": "Caboverdiana",
         "currency": "$",
         "cities": []
@@ -1307,6 +1307,12 @@
         "cities": []
     },
     {
+        "name": "Serbia",
+        "nationality": "Serbia",
+        "currency": "$",
+        "cities": []
+    },
+    {
         "name": "Montserrat",
         "nationality": "Montserratense",
         "currency": "$",
@@ -1639,6 +1645,12 @@
     {
         "name": "Suiza",
         "nationality": "Sueca",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Suecia",
+        "nationality": "suecio",
         "currency": "$",
         "cities": []
     },

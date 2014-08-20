@@ -138,7 +138,7 @@ class PhotoUseHelper(object):
 class TypePhotoCastingHelper(object):
 
     def insert_data(self):
-        names = ['Archico Fotografico', 'Archivo Fotografico con Callback']
+        names = ['Fotografico','Archico Fotografico', 'Archivo Fotografico con Callback']
         for name in names:
             type_photo_casting = TypePhotoCasting()
             type_photo_casting.name = name
