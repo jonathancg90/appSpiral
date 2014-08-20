@@ -129,33 +129,36 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
         #Insert Data
         # self.insert_entry_brand_commercial()
-        #data_projects = self.insert_project()
+        # data_projects = self.insert_project()
         # data_commercial = self.get_data_commercial()
 
     def insert_model(self, data_model):
 
         for model in data_model:
-            _model = Model()
-            _model.model_code = model.get('model_code')
-            _model.type_doc = model.get('type_doc')
-            _model.number_doc = model.get('number_doc')
-            _model.status = model.get('status')
-            _model.name_complete = model.get('name_complete')
-            _model.birth = model.get('birth')
-            _model.gender = model.get('gender')
-            _model.address = model.get('address')
-            _model.email = model.get('email')
-            _model.nationality = model.get('nationality')
-            _model.phone_fixed = model.get('phone_fixed', '').replace('NINGUNA','').replace('NA','')
-            _model.phone_mobil = model.get('phone_mobil', '').replace('NINGUNA','').replace('NA','')
-            _model.height = model.get('height')
-            _model.weight = model.get('weight')
-            _model.terms = model.get('terms', False)
-            _model.save()
+            try:
+                _model = Model()
+                _model.model_code = model.get('model_code')
+                _model.type_doc = model.get('type_doc')
+                _model.number_doc = model.get('number_doc')
+                _model.status = model.get('status')
+                _model.name_complete = model.get('name_complete')
+                _model.birth = model.get('birth')
+                _model.gender = model.get('gender')
+                _model.address = model.get('address')
+                _model.email = model.get('email')
+                _model.nationality = model.get('nationality')
+                _model.phone_fixed = model.get('phone_fixed', '').replace('NINGUNA','').replace('NA','')
+                _model.phone_mobil = model.get('phone_mobil', '').replace('NINGUNA','').replace('NA','')
+                _model.height = model.get('height')
+                _model.weight = model.get('weight')
+                _model.terms = model.get('terms', False)
+                _model.save()
 
-            self.insert_photos(_model, model.get('photos'))
-            self.insert_feature_value(_model, model.get('features'))
-            print('save model: ' + _model.name_complete)
+                self.insert_photos(_model, model.get('photos'))
+                self.insert_feature_value(_model, model.get('features'))
+                print('save model: ' + _model.name_complete)
+            except Exception,e:
+                self.log.debug(e.message + ' | ' + model.get('model_code'))
 
     def insert_feature_value(self, model, features):
         for feature in features:
