@@ -20,6 +20,7 @@ class Client(models.Model):
     STATUS_ACTIVE = 1
     STATUS_INACTIVE = 0
     STATUS_ABROAD = 2
+    STATUS_FAKE = 3
     CHOICE_STATUS = (
         (STATUS_INACTIVE, 'inactivo'),
         (STATUS_ACTIVE, 'activo'),
