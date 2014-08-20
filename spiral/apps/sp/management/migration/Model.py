@@ -7,13 +7,18 @@ import urllib2
 import logging
 
 from django.conf import settings
+from PIL import Image
 from django.utils.encoding import smart_str
 from django.views.generic import View
 from django.db import connections
 
+from django.contrib.contenttypes.models import ContentType
 from apps.common.view import LoginRequiredMixin
 from apps.common.view import JSONResponseMixin
-from apps.sp.models.Model import Model
+from apps.fileupload.models import Picture, PictureThumbnail
+from apps.fileupload.serialize import serialize
+from django.core.files import File
+from apps.sp.models.Model import Model, ModelFeatureDetail
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Country import Country
 from apps.sp.models.Currency import Currency
@@ -39,7 +44,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def set_attributes(self):
         url_base = os.getcwd()
         self.log = logging.getLogger('migration')
-        self.url_media = '%s/%s/%s' %(url_base, 'static', 'media')
+        self.url_media = '%s/%s/%s/%s' %(url_base, 'static', 'media', '000000')
         self.relation_commercial_project = []
 
         self.setTypeDoc()
@@ -109,21 +114,94 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def delete(self):
         # Client.objects.all().delete()
         # Entry.objects.all().delete()
+        Model.objects.all().delete()
         Project.objects.all().delete()
 
     def start_migration(self):
         self.delete()
         self.set_attributes()
-        # self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
-        # data_model = self.get_list_model()
-        # data_model = self.get_detail_feature(data_model)
+        self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
+        data_model = self.get_list_model()
+        data_model = self.get_detail_feature(data_model)
+        self.insert_model(data_model)
         # self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
         # self.data_client = self.insert_data_client()
 
         #Insert Data
         # self.insert_entry_brand_commercial()
-        data_projects = self.insert_project()
+        #data_projects = self.insert_project()
         # data_commercial = self.get_data_commercial()
+
+    def insert_model(self, data_model):
+
+        for model in data_model:
+            _model = Model()
+            _model.model_code = model.get('model_code')
+            _model.type_doc = model.get('type_doc')
+            _model.number_doc = model.get('number_doc')
+            _model.status = model.get('status')
+            _model.name_complete = model.get('name_complete')
+            _model.birth = model.get('birth')
+            _model.gender = model.get('gender')
+            _model.address = model.get('address')
+            _model.email = model.get('email')
+            _model.nationality = model.get('nationality')
+            _model.phone_fixed = model.get('phone_fixed', '').replace('NINGUNA','').replace('NA','')
+            _model.phone_mobil = model.get('phone_mobil', '').replace('NINGUNA','').replace('NA','')
+            _model.height = model.get('height')
+            _model.weight = model.get('weight')
+            _model.terms = model.get('terms', False)
+            _model.save()
+
+            self.insert_photos(_model, model.get('photos'))
+            self.insert_feature_value(_model, model.get('features'))
+            print('save model: ' + _model.name_complete)
+
+    def insert_feature_value(self, model, features):
+        for feature in features:
+            model_feature_detail = ModelFeatureDetail()
+            model_feature_detail.model = model
+            model_feature_detail.feature_value = feature.get('feature_value')
+            model_feature_detail.description = feature.get('description') if feature.get('description') != 'NINGUNA' else None
+            model_feature_detail.save()
+
+    def insert_photos(self, model, photos):
+        for photo in photos:
+            slug = photo.split('/')[-1]
+            f = open(photo)
+            file =  File(f)
+            file.name = slug
+
+            picture = Picture()
+            picture.content_type = ContentType.objects.get_for_model(model)
+            picture.object_id = model.id
+            picture.file = file
+            picture.save()
+            files = [serialize(picture)]
+            thumbnails = PictureThumbnail.save_all_thumbnails(picture)
+            if thumbnails is not None:
+                for file in files:
+                    file.update({'thumbnailUrl': thumbnails.get('file')})
+                self.save_main_image(model, picture)
+            else:
+                import pdb;pdb.set_trace()
+
+    def save_main_image(self, model, picture):
+        main_image = None
+        picture = Picture.objects.filter(
+            content_type = picture.content_type,
+            object_id =picture.object_id
+
+        ).latest('created')
+
+        thumbnails = picture.get_all_thumbnail()
+
+        for thumbnail in thumbnails:
+            if thumbnail.get('type') == 'Small':
+                main_image = thumbnail.get('url')
+
+        model.main_image = main_image
+        model.save()
 
     def insert_entry_brand_commercial(self):
         try:
@@ -662,7 +740,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 name=_value_name
             )
             if len(feature_value) == 1:
-                return feature_value[0].id
+                return feature_value[0]
             else:
                 ignore_values = ['HI5', 'OTROS', 'OTROS SITIOS WEB']
                 if value_name in ignore_values:
@@ -677,13 +755,11 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         return None
 
     def get_query_feature_detail(self, model_code):
-        return "select m.mod_cod, m.cri_cod, c.cri_desc, m.cri_item, d.cd_desc, m.mc_obs from mod_cri m " \
+        return "select m.mod_cod, m.cri_cod, c.cri_desc, m.cri_item, m.mc_obs from mod_cri m " \
                "inner join criterios_cabecera c " \
                "on c.cri_cod = m.cri_cod " \
-               "inner join criterios_detalles d " \
-               "on d.cri_item=m.cri_item " \
                "where mod_cod='"+model_code+"' " \
-               "group by m.mod_cod, m.cri_cod, c.cri_desc, m.cri_item, d.cd_desc, m.mc_obs"
+               "group by m.mod_cod, m.cri_cod, c.cri_desc, m.cri_item, m.mc_obs"
 
     def get_detail_feature(self, data_model):
         for model in data_model:
@@ -699,7 +775,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     feature_value = self.get_feature_value(row[2], value[0])
                     if feature_value is not None:
                         model.get('features').append({
-                            'description': row[5],
+                            'description': row[4],
                             'feature_value': feature_value
                         })
 
@@ -831,7 +907,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos order by mod_cod"
+                  "from modelos order by mod_cod limit 1 offset 0"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
@@ -859,7 +935,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     'height': row[10],
                     'weight': row[11],
                     'features': [],
-                    'photos': self.get_photos(row[0])
+                    'photos': self.get_photos(row[1])
                 }
                 print('add: ' + row[1])
                 data.append(data_models)
@@ -878,22 +954,3 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             return photos
         except:
             return photos
-
-    def insert_model(self, data):
-        model = Model()
-        model.name_complete = data.get('name_complete')
-        model.model_code = data.get('model_code')
-        model.type_doc = data.get('type_doc')
-        model.number_doc = data.get('number_doc')
-        model.status = data.get('status')
-        model.birth = data.get('birth')
-        model.gender = data.get('gender')
-        model.address = data.get('address')
-        model.email = data.get('email')
-        model.nationality = data.get('nationality')
-        model.city = data.get('city')
-        model.phone_fixed = data.get('phone_fixed')
-        model.phone_mobil = data.get('phone_mobil')
-        model.height = data.get('height')
-        model.weight = data.get('weight')
-        model.terms = data.get('terms')

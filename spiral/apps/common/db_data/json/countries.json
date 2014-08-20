@@ -641,7 +641,7 @@
         "cities": []
     },
     {
-        "name": "Cabo Verda",
+        "name": "Cabo Verde",
         "nationality": "Caboverdiana",
         "currency": "$",
         "cities": []
@@ -1303,6 +1303,12 @@
     {
         "name": "Mongolia",
         "nationality": "Mongola",
+        "currency": "$",
+        "cities": []
+    },
+    {
+        "name": "Serbia",
+        "nationality": "Serbia",
         "currency": "$",
         "cities": []
     },
