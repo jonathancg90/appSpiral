@@ -62,7 +62,7 @@ class Model(models.Model):
 
     name_complete = models.CharField(
         verbose_name=_('Nombre completo'),
-        max_length=45
+        max_length=65
     )
 
     birth = models.DateField(
@@ -102,14 +102,14 @@ class Model(models.Model):
 
     phone_fixed = models.CharField(
         verbose_name=_(u'Telefono fijo'),
-        max_length=20,
+        max_length=40,
         null=True,
         blank=True,
     )
 
     phone_mobil = models.CharField(
         verbose_name=_(u'Telefono mobil'),
-        max_length=20,
+        max_length=40,
         null=True,
         blank=True,
     )

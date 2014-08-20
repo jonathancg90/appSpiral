@@ -57,6 +57,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setTypeCasting()
         self.setTypeEventRepresentation()
         self.setTypePhotoCasting()
+        self.setClientCastingAbroad()
+        self.setClientExtraAbroad()
 
     def json_reader(self, json_file):
         ROOT_PATH = settings.ROOT_PATH
@@ -65,6 +67,15 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         json_data = json.load(file)
         file.close()
         return json_data
+
+    def setClientCastingAbroad(self):
+        self.casting_abroad = ["CL078", "CL079", "CL214", "CL226",
+                             "CL228", "CL245", "CL265", "CL267",
+                             "CL269", "CL270", "CL271", "CL284",
+                             "CL286"]
+
+    def setClientExtraAbroad(self):
+        self.extra_abroad = []
 
     def setTypePhotoCasting(self):
         self.type_photo_casting = {
@@ -124,7 +135,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         data_model = self.get_list_model()
         data_model = self.get_detail_feature(data_model)
         self.insert_model(data_model)
-        # self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
+        self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
         # self.data_client = self.insert_data_client()
 
         #Insert Data
@@ -274,6 +285,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             #Match
             clients = self.sis_client
             for client in self.bco_client:
+                client.update({'type': 'b'})
                 clients.append(client)
             return clients
         except Exception, e:
@@ -288,29 +300,62 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         clients= []
         rucs = []
         client_json = self.get_clients_json()
+        ruc = 0
         for client in client_json:
-            #Falta validar clientes sin RUC
+            status = None
+
+            type = client.get('type', None)
+            if type is None:
+                #Sisadmini
+                if client.get('id') in self.casting_abroad:
+                    status = Client.STATUS_ABROAD
+
+            else:
+                #Sisbco
+                if client.get('id') in self.extra_abroad:
+                    status = Client.STATUS_ABROAD
+
+
             old_codes = []
-            if client.get('ruc') in ['CL001'] or client.get('ruc') is None:
-               continue
+            #Ignore client
+            if client.get('id') in ['CL001']:
+                continue
+            if client.get('ruc') is None:
+                status = Client.STATUS_FAKE
+
+
             if client.get('ruc') in rucs:
                 index = get_client_by_ruc(clients, client.get('ruc'))
                 codes = clients[index].get('old_code')
-                codes.append(client.get('cod_cliente'))
+                codes.append(client.get('id'))
+                import pdb;pdb.set_trace()
                 clients[index].update({
                     'old_code': codes
                 })
             else:
-                rucs.append(client.get('ruc'))
                 old_codes.append(client.get('id'))
-                clients.append({
+                import pdb;pdb.set_trace()
+                temp = {
                     'old_code': old_codes,
                     'ruc': client.get('ruc'),
                     'sis': client.get('sis'),
+                    'type': client.get('type', 'm'),
                     'name': client.get('nombre'),
                     'types': self.types_clie.get(str(client.get('tipo_cli'))),
                     'status': self.status_clie.get(str(client.get('estado'))),
-                })
+                }
+                if status is not None:
+                    ruc += 1
+                    temp.update({
+                        'status':status,
+                        'ruc': str(ruc)
+                    })
+                else:
+                    rucs.append(client.get('ruc'))
+
+                clients.append(temp)
+
+        import pdb;pdb.set_trace()
         for new_client in clients:
             client = Client()
             client.ruc = new_client.get('ruc')
