@@ -184,24 +184,28 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
     def insert_photos(self, model, photos):
         for photo in photos:
-            slug = photo.split('/')[-1]
-            f = open(photo)
-            file =  File(f)
-            file.name = slug
+            try:
+                slug = photo.split('/')[-1]
+                f = open(photo)
+                file =  File(f)
+                file.name = slug
 
-            picture = Picture()
-            picture.content_type = ContentType.objects.get_for_model(model)
-            picture.object_id = model.id
-            picture.file = file
-            picture.save()
-            files = [serialize(picture)]
-            thumbnails = PictureThumbnail.save_all_thumbnails(picture)
-            if thumbnails is not None:
-                for file in files:
-                    file.update({'thumbnailUrl': thumbnails.get('file')})
-                self.save_main_image(model, picture)
-            else:
-                print('Foto no registrada'+ ' | '+ photo)
+                picture = Picture()
+                picture.content_type = ContentType.objects.get_for_model(model)
+                picture.object_id = model.id
+                picture.file = file
+                picture.save()
+                files = [serialize(picture)]
+                thumbnails = PictureThumbnail.save_all_thumbnails(picture)
+                if thumbnails is not None:
+                    for file in files:
+                        file.update({'thumbnailUrl': thumbnails.get('file')})
+                    self.save_main_image(model, picture)
+                else:
+                    import pdb;pdb.set_trace()
+                    self.log.debug('Foto no registrada'+ ' | '+ photo)
+            except Exception, e:
+                import pdb;pdb.set_trace()
 
     def save_main_image(self, model, picture):
         main_image = None
