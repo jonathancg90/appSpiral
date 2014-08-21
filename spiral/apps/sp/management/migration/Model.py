@@ -1068,7 +1068,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             for row in model_cursor.fetchall():
                 type_doc= self.get_type_doc(row[2])
                 document = row[3]
-                if type_doc is None or document == "NINGUNA":
+                if type_doc is None or document == "NINGUNA" or len(document) < 8 :
                     type_doc = Model.TYPE_FAKE
                     self.numberdoc += 1
                     document = str(self.numberdoc)
