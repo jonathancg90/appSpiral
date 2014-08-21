@@ -169,6 +169,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 self.insert_feature_value(_model, model.get('features'))
                 print('save model: ' + _model.name_complete)
             except Exception,e:
+                import pdb;pdb.set_trace()
                 self.log.debug(e.message + ' | ' + model.get('model_code'))
 
     def insert_feature_value(self, model, features):
@@ -955,7 +956,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos order by mod_cod limit 500 offset 0"
+                  "from modelos where mod_cod >= '023558' and mod_cod<= '023950' order by mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
