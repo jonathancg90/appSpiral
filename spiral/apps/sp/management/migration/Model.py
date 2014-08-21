@@ -76,7 +76,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                              "CL286"]
 
     def setClientExtraAbroad(self):
-        self.extra_abroad = ['']
+        self.extra_abroad = ['CL228']
 
     def setTypePhotoCasting(self):
         self.type_photo_casting = {
@@ -1065,7 +1065,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             for row in model_cursor.fetchall():
                 type_doc= self.get_type_doc(row[2])
                 document = row[3]
-                if type_doc is None:
+                if type_doc is None or document == "NINGUNA":
                     type_doc = Model.TYPE_FAKE
                     self.numberdoc += 1
                     document = str(self.numberdoc)
