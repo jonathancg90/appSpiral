@@ -86,11 +86,13 @@ class RepresentationDetailModel(models.Model):
 
     profile = models.CharField(
         verbose_name='Perfil',
-        max_length=100
+        max_length=100,
+        null=True,
     )
 
     model = models.ForeignKey(
         'Model',
+        null=True,
         verbose_name='Modelo',
         related_name='representation_detail_model_set',
     )
