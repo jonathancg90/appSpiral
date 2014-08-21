@@ -1058,7 +1058,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos order by mod_cod"
+                  "from modelos where mod_cod >= '018301' mod_cod <= '023536' order by mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
