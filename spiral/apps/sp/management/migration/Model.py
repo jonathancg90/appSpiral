@@ -802,6 +802,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             return value[:-3]
         if feature_name == 'ANFITRIONAJE':
             return 'Anfitriona'
+        if feature_name == 'CORREOGRAFIAS (BAILES)':
+            return 'Bailarin'
         if feature_name in ['TALLA - CAMISA', 'TALLA - BLUSA']:
             if value == '2':
                 return 'XXS'
@@ -828,8 +830,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             return 'Marron'
         if value == 'NEGROS':
             return 'Negro'
-        if value in ['ANFITRIONAJE', 'FOTOGRAFICO', 'PASARELA', 'CORREOGRAFIAS (BAILES)', 'COMERCIALES']:
-            return 'Modelaje'
+        if value in [ 'FOTOGRAFICO', 'PASARELA', 'COMERCIALES']:
+            return 'Modelo'
         if value == 'VERDES':
             return 'verde'
         if value == 'AZULES':
@@ -857,9 +859,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         if feature_name == 'TALLA - PANTALON':
             return 'Talla de pantalon'
 
-        if feature_name == 'MODELAJE':
-            return 'Hobbies'
-
         if feature_name == 'TALLA - BLUSA':
             return 'Talla de ropa'
 
@@ -872,7 +871,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         if feature_name == 'PAGINAS WEB':
             return 'Redes sociales'
 
-        if feature_name in ['ANFITRIONAJE', 'PROFESION']:
+        if feature_name in ['MODELAJE', 'ANFITRIONAJE', 'PROFESION']:
             return 'Ocupacion'
         return feature_name
 
