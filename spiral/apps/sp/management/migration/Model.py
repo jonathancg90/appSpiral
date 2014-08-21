@@ -167,7 +167,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.weight = model.get('weight')
                 _model.terms = model.get('terms', False)
                 _model.save()
-                # self.insert_photos(_model, model.get('photos'))
+                self.insert_photos(_model, model.get('photos'))
                 self.insert_feature_value(_model, model.get('features'))
                 print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
             except Exception,e:
