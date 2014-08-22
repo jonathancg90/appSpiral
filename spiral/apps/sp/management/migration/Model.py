@@ -60,6 +60,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setTypePhotoCasting()
         self.setClientCastingAbroad()
         self.setClientExtraAbroad()
+        self.setCharacterPhoto()
+        self.setCharacterCasting()
+        self.setDNI()
 
     def json_reader(self, json_file):
         ROOT_PATH = settings.ROOT_PATH
@@ -74,6 +77,26 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                              "CL228", "CL245", "CL265", "CL267",
                              "CL269", "CL270", "CL271", "CL284",
                              "CL286"]
+
+    def setCharacterCasting(self):
+        self.character_casting = {
+            '1': CastingDetailModel.CHARACTER_PRINCIPAL,
+            '2': CastingDetailModel.CHARACTER_SECONDARY,
+            '3': CastingDetailModel.CHARACTER_SECONDARY,
+            '4': CastingDetailModel.CHARACTER_SECONDARY
+        }
+
+    def setCharacterPhoto(self):
+        self.character_photo = {
+            '1':  PhotoCastingDetailModel.CHARACTER_PRINCIPAL,
+            '2':  PhotoCastingDetailModel.CHARACTER_SECONDARY
+        }
+
+    def setDNI(self):
+        self.dni_model = {
+            '': Model.GENDER_FEM,
+            '': Model.GENDER_MASC,
+        }
 
     def setClientExtraAbroad(self):
         self.extra_abroad = ['CL228']
@@ -139,6 +162,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         data_model = self.get_detail_feature(data_model)
         self.insert_model(data_model)
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
+
         # self.data_client = self.insert_data_client()
 
         #Insert Data
@@ -150,6 +174,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
         for model in data_model:
             try:
+                if Model.objects.filter(number_doc=model.get('number_doc')).exists():
+                    self.log.debug('DNI duplicado: ' + model.get('number_doc'))
                 _model = Model()
                 _model.model_code = model.get('model_code')
                 _model.type_doc = model.get('type_doc')
@@ -467,8 +493,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
         self.insert_representation(representations)
         self.insert_photo_casting(photos)
-        # self.insert_extras(extras)
-        # self.insert_casting(castings)
+        self.insert_extras(extras)
+        self.insert_casting(castings)
 
     def insert_photo_casting(self, photos):
         for photo in photos:
@@ -525,13 +551,32 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     data_payment = {
                         'condiciones': [{'name': photo.get('condiciones')}],
                         'fact_a': photo.get('fact_a'),
-                        'type': 'b'
+                        'type': 'b',
+                        'alternative': 'm'
                     }
                     self.insert_payment(project, data_payment)
-                    self.insert_detail_model_photo()
+                    self.insert_detail_model_photo(_photo_casting, photo.get('modelos'))
                     print('add photo casting: ' + photo.get('cod_ordcsfot'))
                 else:
                     import pdb;pdb.set_trace()
+
+    def insert_detail_model_photo(self, photo_project, models):
+        for model in models:
+            try:
+                photo_Casting_detail_model = PhotoCastingDetailModel()
+                photo_Casting_detail_model.photo_casting = photo_project
+                photo_Casting_detail_model.quantity = model.get('cant')
+                photo_Casting_detail_model.profile = model.get('modelo') if  model.get('modelo') is not None else "Sin perfil"
+                photo_Casting_detail_model.feature = model.get('caracteristicas')
+                photo_Casting_detail_model.character = self.character_photo.get(model.get('personaje'))
+                photo_Casting_detail_model.currency = self.get_currency(model.get('moneda'))
+                photo_Casting_detail_model.budget_cost = model.get('presupuesto')
+                photo_Casting_detail_model.observations = model.get('observaciones')
+                photo_Casting_detail_model.save()
+            except Exception, e:
+                import pdb;pdb.set_trace()
+
+
 
     def insert_project_client(self, cod, project, details):
         type_project = 'm'
@@ -550,12 +595,13 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 except Exception, e:
                     import pdb;pdb.set_trace()
 
-    def get_client_old_code(self, code, type):
+    def get_client_old_code(self, code, type, validate=True):
         for client in self.data_client:
             for old_code in client.get('old_code'):
                 if code == old_code.get('cod_cliente') and old_code.get('type') == type:
                     return client.get('client')
-        import pdb;pdb.set_trace()
+        if validate:
+            import pdb;pdb.set_trace()
         return None
 
     def get_type_client(self, detail):
@@ -619,7 +665,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     data_payment = {
                         'condiciones': [{'name': representation.get('condiciones')}],
                         'fact_a': representation.get('fact_a'),
-                        'type': 'b'
+                        'type': 'b',
+                        'alternative': 'm'
                     }
                     self.insert_payment(project, data_payment)
                     print('add representation: ' + representation.get('cod_ordrep'))
@@ -637,9 +684,11 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             payment.conditions = data.get('condiciones')
             if data.get('fact_a') is not None and data.get('fact_a') != 'CL001':
                 if len(data.get('fact_a')) == 5 :
-                    paymnet_client = self.get_client_old_code(data.get('fact_a'), data.get('type'))
+                    paymnet_client = self.get_client_old_code(data.get('fact_a'), data.get('type'), False)
                     if paymnet_client is not None:
-                        payment.client = paymnet_client
+                        paymnet_client = self.get_client_old_code(data.get('fact_a'), data.get('alternative'), False)
+                        if paymnet_client is not None:
+                            payment.client = paymnet_client
             payment.save()
         except Exception, e:
             import pdb;pdb.set_trace()
@@ -714,6 +763,14 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                         for type in self.type_casting.get(str(casting.get('tipo_cas'))):
                             _casting.type_casting.add(type)
                     self.insert_project_client(casting.get('cod_ordcast'), project, casting.get('clients'))
+                    data_payment = {
+                        'condiciones': [{'name': casting.get('condiciones')}],
+                        'fact_a': casting.get('fact_a'),
+                        'type': 'm',
+                        'alternative': 'm'
+                    }
+                    self.insert_payment(project, data_payment)
+                    self.insert_detail_models(_casting, casting.get('models'))
                     print('add casting: ' + casting.get('cod_ordcast'))
                 else:
                     import pdb;pdb.set_trace()
@@ -764,24 +821,47 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
                 if project.get_code() == extra.get('cod_ordext'):
                     self.insert_project_client(extra.get('cod_ordext'), project, extra.get('clientes'))
-                    print('add extra: ' + extra.get('cod_ordext'))
+                    data_payment = {
+                        'condiciones': [{'name': extra.get('condiciones')}],
+                        'fact_a': extra.get('fact_a'),
+                        'type': 'b',
+                        'alternative': 'm'
+                    }
+                    self.insert_payment(project, data_payment)
                     # self.insert_coordinator(extra.get('coordinadores'), extra)
-                    # self.inset_extra_models(extra.get('modelos'), extra)
+                    self.inset_extra_models(extra.get('modelos'), _extra)
+                    print('add extra: ' + extra.get('cod_ordext'))
                 else:
                     import pdb;pdb.set_trace()
 
+    def insert_detail_models(self, casting, models):
+        for model in models:
+            casting_detail_model = CastingDetailModel()
+            casting_detail_model.casting = casting
+            casting_detail_model.quantity = model.get('cant')
+            casting_detail_model.profile = model.get('modelo')
+            casting_detail_model.feature = model.get('carac')
+            casting_detail_model.character = self.character_casting.get(str(model.get('cod_pers')))
+            casting_detail_model.scene = model.get('observaciones')
+            casting_detail_model.save()
+
+            for type in self.type_casting.get(str(model.get('cod_tipocast'))):
+                casting_detail_model.type_casting.add(type)
+
+
     def insert_coordinator(self, coordinators, extra):
-        pass
+        for coordinator in coordinators:
+            pass
 
     def inset_extra_models(self, models, extra):
         for model in models:
             extra_detail_model = ExtrasDetailModel()
             extra_detail_model.extras = extra
             extra_detail_model.quantity = model.get('cant')
-            extra_detail_model.profile = model.get('modelo')
+            extra_detail_model.profile = model.get('modelo') if model.get('modelo') is not None else 'Sin perfil'
             extra_detail_model.feature = model.get('caracteristicas')
-            extra_detail_model.character = self.extra_character.get(model.get('personaje'))
-            extra_detail_model.currency = self.get_extra_currency(model.get('moneda'))
+            extra_detail_model.character = self.extra_character.get(str(model.get('personaje')))
+            extra_detail_model.currency = self.get_currency(model.get('moneda'))
             extra_detail_model.budget = model.get('presupuesto')
             extra_detail_model.budget_cost = model.get('pago_real')
             extra_detail_model.schedule = model.get('observaciones')
@@ -1058,7 +1138,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos where mod_cod >= '018301' and mod_cod <= '023536' order by mod_cod"
+                  "from modelos where mod_cod >= '023536' order by mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
