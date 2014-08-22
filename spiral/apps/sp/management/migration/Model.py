@@ -197,7 +197,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 self.insert_feature_value(_model, model.get('features'))
                 print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
             except Exception,e:
-                import pdb;pdb.set_trace()
                 self.log.debug(e.message + ' | ' + model.get('model_code'))
 
     def insert_feature_value(self, model, features):
