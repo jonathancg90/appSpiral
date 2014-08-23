@@ -1,76 +1,97 @@
-[21/Aug/2014 10:07:51] DEBUG [migration:139] termino: 21/08/2014 10:07
-[21/Aug/2014 10:10:48] DEBUG [migration:135] comenzo: 21/08/2014 10:10
-[21/Aug/2014 10:14:54] DEBUG [migration:173]  | 000005
-[21/Aug/2014 10:16:11] DEBUG [migration:172]  | 000012
-[21/Aug/2014 10:16:26] DEBUG [migration:173]  | 000101
-[21/Aug/2014 10:18:08] DEBUG [migration:172]  | 000102
-[21/Aug/2014 10:18:09] DEBUG [migration:173]  | 000104
-[21/Aug/2014 10:18:11] DEBUG [migration:172]  | 000106
-[21/Aug/2014 10:18:12] DEBUG [migration:173]  | 000107
-[21/Aug/2014 10:18:13] DEBUG [migration:172]  | 000108
-[21/Aug/2014 10:18:14] DEBUG [migration:173]  | 000109
-[21/Aug/2014 10:22:29] DEBUG [migration:137] comenzo: 21/08/2014 10:22
-[21/Aug/2014 10:22:29] DEBUG [migration:141] termino: 21/08/2014 10:22
-[21/Aug/2014 10:22:33] DEBUG [migration:276] Fallo Commercial
-[21/Aug/2014 10:22:33] DEBUG [migration:276] Fallo Commercial
-[21/Aug/2014 10:22:36] DEBUG [migration:276] Fallo Commercial
-[21/Aug/2014 10:22:36] DEBUG [migration:236] Fallo entry
-[21/Aug/2014 10:46:35] DEBUG [migration:137] comenzo: 21/08/2014 10:46
-[21/Aug/2014 10:46:36] DEBUG [migration:141] termino: 21/08/2014 10:46
-[21/Aug/2014 10:46:46] DEBUG [migration:252] Fallo Brand
-[21/Aug/2014 10:46:47] DEBUG [migration:276] Fallo Commercial
-[21/Aug/2014 10:46:47] DEBUG [migration:276] Fallo Commercial
-[21/Aug/2014 10:46:47] DEBUG [migration:276] Fallo Commercial
-[21/Aug/2014 10:46:54] DEBUG [migration:137] comenzo: 21/08/2014 10:46
-[21/Aug/2014 10:46:54] DEBUG [migration:141] termino: 21/08/2014 10:46
-[21/Aug/2014 10:48:38] DEBUG [migration:137] comenzo: 21/08/2014 10:48
-[21/Aug/2014 10:51:14] DEBUG [migration:137] comenzo: 21/08/2014 10:51
-[21/Aug/2014 10:51:15] DEBUG [migration:141] termino: 21/08/2014 10:51
-[21/Aug/2014 11:01:04] DEBUG [migration:137] comenzo: 21/08/2014 11:01
-[21/Aug/2014 11:01:04] DEBUG [migration:141] termino: 21/08/2014 11:01
-[21/Aug/2014 11:05:50] DEBUG [migration:137] comenzo: 21/08/2014 11:05
-[21/Aug/2014 11:05:51] DEBUG [migration:141] termino: 21/08/2014 11:05
-[21/Aug/2014 11:11:14] DEBUG [migration:137] comenzo: 21/08/2014 11:11
-[21/Aug/2014 11:11:15] DEBUG [migration:141] termino: 21/08/2014 11:11
-[21/Aug/2014 11:11:27] DEBUG [migration:137] comenzo: 21/08/2014 11:11
-[21/Aug/2014 11:12:08] DEBUG [migration:175]  | 023621
-[21/Aug/2014 11:12:08] DEBUG [migration:141] termino: 21/08/2014 11:12
-[21/Aug/2014 11:16:45] DEBUG [migration:137] comenzo: 21/08/2014 11:16
-[21/Aug/2014 11:16:46] DEBUG [migration:141] termino: 21/08/2014 11:16
-[21/Aug/2014 11:17:40] DEBUG [migration:137] comenzo: 21/08/2014 11:17
-[21/Aug/2014 11:17:41] DEBUG [migration:141] termino: 21/08/2014 11:17
-[21/Aug/2014 11:18:19] DEBUG [migration:137] comenzo: 21/08/2014 11:18
-[21/Aug/2014 11:18:20] DEBUG [migration:141] termino: 21/08/2014 11:18
-[21/Aug/2014 11:19:21] DEBUG [migration:137] comenzo: 21/08/2014 11:19
-[21/Aug/2014 11:19:24] DEBUG [migration:141] termino: 21/08/2014 11:19
-[21/Aug/2014 11:20:41] DEBUG [migration:137] comenzo: 21/08/2014 11:20
-[21/Aug/2014 11:20:43] DEBUG [migration:141] termino: 21/08/2014 11:20
-[21/Aug/2014 11:21:28] DEBUG [migration:137] comenzo: 21/08/2014 11:21
-[21/Aug/2014 11:21:28] DEBUG [migration:141] termino: 21/08/2014 11:21
-[21/Aug/2014 11:22:42] DEBUG [migration:137] comenzo: 21/08/2014 11:22
-[21/Aug/2014 11:22:43] DEBUG [migration:899] feature_value multiple o nulo: [] | TALLA - PANTALON - 0 | Talla de pantalon - 0
-[21/Aug/2014 11:22:43] DEBUG [migration:141] termino: 21/08/2014 11:22
-[21/Aug/2014 11:23:10] DEBUG [migration:137] comenzo: 21/08/2014 11:23
-[21/Aug/2014 11:23:10] DEBUG [migration:141] termino: 21/08/2014 11:23
-[21/Aug/2014 11:23:21] DEBUG [migration:137] comenzo: 21/08/2014 11:23
-[21/Aug/2014 11:24:03] DEBUG [migration:137] comenzo: 21/08/2014 11:24
-[21/Aug/2014 11:24:03] DEBUG [migration:141] termino: 21/08/2014 11:24
-[21/Aug/2014 11:25:52] DEBUG [migration:137] comenzo: 21/08/2014 11:25
-[21/Aug/2014 11:25:53] DEBUG [migration:141] termino: 21/08/2014 11:25
-[21/Aug/2014 11:27:09] DEBUG [migration:137] comenzo: 21/08/2014 11:27
-[21/Aug/2014 11:27:09] DEBUG [migration:141] termino: 21/08/2014 11:27
-[21/Aug/2014 11:27:36] DEBUG [migration:137] comenzo: 21/08/2014 11:27
-[21/Aug/2014 11:27:37] DEBUG [migration:141] termino: 21/08/2014 11:27
-[21/Aug/2014 11:28:02] DEBUG [migration:137] comenzo: 21/08/2014 11:28
-[21/Aug/2014 11:28:02] DEBUG [migration:141] termino: 21/08/2014 11:28
-[21/Aug/2014 11:28:21] DEBUG [migration:137] comenzo: 21/08/2014 11:28
-[21/Aug/2014 11:28:22] DEBUG [migration:141] termino: 21/08/2014 11:28
-[21/Aug/2014 11:29:37] DEBUG [migration:137] comenzo: 21/08/2014 11:29
-[21/Aug/2014 11:29:37] DEBUG [migration:141] termino: 21/08/2014 11:29
-[21/Aug/2014 11:31:24] DEBUG [migration:137] comenzo: 21/08/2014 11:31
-[21/Aug/2014 11:31:25] DEBUG [migration:141] termino: 21/08/2014 11:31
-[21/Aug/2014 18:17:35] DEBUG [migration:305] Fallo Commercial
-[21/Aug/2014 18:17:35] DEBUG [migration:305] Fallo Commercial
-[21/Aug/2014 18:17:35] DEBUG [migration:305] Fallo Commercial
-[21/Aug/2014 18:17:35] DEBUG [migration:305] Fallo Commercial
-[21/Aug/2014 18:17:35] DEBUG [migration:265] Fallo entry
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 015195 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 008296 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004339 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 008537 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 005590 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003646 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002026 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 010955 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 013504 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004071 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 016700 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 017754 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 026097 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 012579 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 014967 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 005433 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 016895 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 027757 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 017992 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 010161 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004780 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 020650 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 006794 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 007125 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 018715 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 011879 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004497 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003374 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 000728 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 000961 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 015068 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 015069 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 017455 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004384 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 017612 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 013686 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 011880 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003609 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 017512 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004886 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 005480 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002443 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002410 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002554 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002646 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 008181 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 017014 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 000063 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 001665 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 016599 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003802 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004693 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 009297 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002287 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 001310 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 011549 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003267 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 005480 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 001582 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 014490 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 005150 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 011811 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 006156 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 009881 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003737 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 004934 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 013069 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003300 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002331 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 007824 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002519 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 005073 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 008584 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 007083 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 001830 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 001879 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 002579 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 001313 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 014910 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 013904 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003248 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003913 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 006585 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 012357 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 018195 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 012400 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 018182 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 007418 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 006275 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 015251 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 006655 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 014239 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 001377 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 009605 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 014567 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 009605 | 10-04M150
+[22/Aug/2014 15:35:08] DEBUG [migration:274] relacion commercial: 003741 | 10-04M150

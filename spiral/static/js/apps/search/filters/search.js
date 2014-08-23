@@ -31,7 +31,6 @@ angular.module('searchApp').filter('textFilter', function($rootScope) {
                         palabras[y] = omitirAcentos(palabras[y]);
 
                         validate = words[x].indexOf(palabras[y]) != -1?true:false;
-                        console.log('comparacion: '+ words[x] + ' == '+palabras[y] + '- '+ validate);
                         if(validate){
                             arrayToReturn.push(items[i]);
                             break;

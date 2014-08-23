@@ -10,6 +10,7 @@ from apps.sp.models.Casting import TypeCasting
 from apps.sp.models.Representation import TypeEvent
 from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.Client import Client
+from apps.sp.models.PictureDetail import MediaFeature, MediaFeatureValue
 from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Contract import TypeContract
 from apps.sp.models.Brand import Brand
@@ -120,6 +121,23 @@ class TypeEventHelper(object):
             type_event.name = name
             type_event.save()
 
+
+class MediaFeatureHelper(object):
+
+    def insert_data(self):
+        features = [{
+          'name': 'Ropa',
+          'values': ['Sport', 'Vestir', 'Baño', 'Caracterizado']
+        }]
+        for feature in features:
+            media_feature = MediaFeature()
+            media_feature.name = feature.get('name')
+            media_feature.save()
+            for value in feature.get('values'):
+                media_feature_value = MediaFeatureValue()
+                media_feature_value.media_feature = media_feature
+                media_feature_value.name = value
+                media_feature_value.save()
 
 class PhotoUseHelper(object):
 

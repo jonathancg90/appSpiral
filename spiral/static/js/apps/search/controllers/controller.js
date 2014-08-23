@@ -13,6 +13,7 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.detail = {};
     $scope.urlCrud = profile;
     $scope.size = 0;
+    $scope.paginate = 0;
     $scope.tooltip = '';
     $scope.typeSearch = {
         'simple': true,
@@ -22,10 +23,12 @@ controllers.searchController = function($scope, ModelFactory,
 
     $scope.$watch('search', function(newValue, oldValue) {
         if(newValue != oldValue) {
+            debugger
             if($scope.find != undefined) {
                 if(newValue.length < $scope.find.length ) {
                     $scope.models = [];
                     $scope.find = undefined;
+                    $scope.paginate = 0;
                 }
             }
         }
@@ -64,49 +67,77 @@ controllers.searchController = function($scope, ModelFactory,
 
     $scope.getOccupation = function(summary) {
         var value = '';
-        angular.forEach($scope.occupations, function(occupation, fkey) {
-            if(summary.indexOf(''+occupation.id) > -1){
-                value = occupation.name;
-            }
-        });
-        return value;
+        if(summary != undefined){
+            angular.forEach($scope.occupations, function(occupation, fkey) {
+                if(summary.indexOf(''+occupation.id) > -1){
+                    value = occupation.name;
+                }
+            });
+            return value;
+        }
+        return 'Sin ocupacion';
     };
 
     $scope.searchModel = function(event) {
         if(event.keyCode == 13){
             if($scope.search != undefined) {
-                var type = undefined;
-
-                if($scope.typeSearch.simple)
-                    type = 1;
-
-                $scope.mode = $scope.search.indexOf('"') != -1?true:false;
-                if($scope.mode){
-                    var b = /"/g;
-                    $scope.search = $scope.search.replace(b,"");
-
-                }
-
-                var data = {
-                    'text': $scope.search,
-                    'type': type,
-                    'mode': $scope.mode
-                };
-
-                if($scope.typeSearch.simple) {
-                    $scope.loader = true;
-                    var response = ModelFactory.Search(searchUrl, data);
-                    response.then(function(models) {
-                        $scope.find = $scope.search;
-                        $scope.loader = false;
-                        $scope.models = models;
-                        $rootScope.countInitial =  $scope.find;
-                        console.log($scope.models);
-                    });
-                }
+                search();
             }
         }
     };
+
+    $scope.searchModelPaginate = function(){
+        if($scope.search != undefined) {
+            search();
+        }
+    };
+
+    function search(){
+        var type = undefined;
+
+        if($scope.typeSearch.simple)
+            type = 1;
+
+        $scope.mode = $scope.search.indexOf('"') != -1?true:false;
+        if($scope.mode){
+            var b = /"/g;
+            $scope.search = $scope.search.replace(b,"");
+
+        }
+
+        var data = {
+            'text': $scope.search,
+            'type': type,
+            'paginate': $scope.paginate,
+            'mode': $scope.mode
+        };
+        debugger
+        if($scope.typeSearch.simple) {
+            $scope.loader = true;
+            var response = ModelFactory.Search(searchUrl, data);
+            response.then(function(models) {
+                if(models.length > 0){
+                    $scope.find = $scope.search;
+                    $scope.loader = false;
+                    $rootScope.countInitial =  $scope.find;
+                    if(models.length == 30){
+                        $scope.paginate = $scope.paginate + 1;
+                    } else {
+                        $scope.paginate = -1;
+                    }
+                    if($scope.models == undefined){
+                        $scope.models = models;
+                    } else {
+                        angular.forEach(models, function(model, fkey) {
+                            $scope.models.push(model);
+                        });
+                    }
+                } else {
+                    $scope.paginate = -1;
+                }
+            });
+        }
+    }
 
     $scope.searchAdvance =  function(){
         if($scope.typeSearch.advance &&  $scope.tags.length > 0){

@@ -66,6 +66,7 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_queryset(self):
         qs = super(ProjectListView, self).get_queryset()
         qs = qs.exclude(status=Project.STATUS_DELETE)
+        qs = qs.order_by('-start_productions')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -92,7 +93,6 @@ class ProjectFinishRedirectView(LoginRequiredMixin, PermissionRequiredMixin, Red
             msg = '%s %s %s' %('Proyecto: ', project.get_code(), 'Finalizado')
             messages.success(self.request, msg)
         except:
-
             messages.error(self.request, 'No se pudo finalizar el proyecto')
         return super(ProjectFinishRedirectView, self).get(request, *args, **kwargs)
 
@@ -258,13 +258,13 @@ class ProjectSaveJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         new = CommercialDateDetail.objects.filter(commercial=commercial).exists()
         if new:
             CommercialDateDetail.objects.filter(commercial=commercial).delete()
-
-        for _commercial in self.data_commercial.get('dates'):
-            if _commercial.get('date') != '' and _commercial.get('date')  != None:
-                commercial_detail = CommercialDateDetail()
-                commercial_detail.commercial = commercial
-                commercial_detail.date = self.format_date(_commercial.get('date'))
-                commercial_detail.save()
+        if self.data_commercial.get('dates') is not None:
+            for _commercial in self.data_commercial.get('dates'):
+                if _commercial.get('date') != '' and _commercial.get('date')  != None:
+                    commercial_detail = CommercialDateDetail()
+                    commercial_detail.commercial = commercial
+                    commercial_detail.date = self.format_date(_commercial.get('date'))
+                    commercial_detail.save()
 
     def save_resources(self, project):
         for resources in self.data_resources:
@@ -667,14 +667,10 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         if self.line.get('id') == Project.LINE_REPRESENTATION:
             details = self.line_project.representation_detail_model_set.all()
             for detail in details:
-                data.append({
+                tmp = {
                     'profile': detail.profile,
-                    'model_name': detail.model.name_complete,
-                    'model': {
-                        'document': detail.model.get_type_doc_display() + ' | ' + detail.model.number_doc,
-                        'id': detail.model.id,
-                        'name': detail.model.name_complete,
-                    },
+                    'model_name': '',
+                    'model': {},
                     'character': {
                         'id': detail.character,
                         'name': detail.get_character_display()
@@ -685,7 +681,18 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                     },
                     'budget_cost': float(detail.budget_cost) if detail.budget_cost is not None else None,
                     'budget': float(detail.budget) if detail.budget is not None else None
-                })
+                }
+                if detail.model is not None:
+                    tmp.update({
+                        'model_name': detail.model.name_complete if detail.model is not None else None,
+                        'model': {
+                            'document': detail.model.get_type_doc_display() + ' | ' + detail.model.number_doc,
+                            'id': detail.model.id,
+                            'name': detail.model.name_complete,
+                            },
+                    })
+
+                data.append(tmp)
         return data
 
     def get_types(self, types):
@@ -776,25 +783,28 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             return {}
 
     def get_duty(self):
-        duty_detail = DutyDetail.objects.get(project=self.project)
-        duty = {
-            'duration_month': duty_detail.duration_month,
-            'broadcasts': self.get_types(duty_detail.broadcast.all()),
-            'countries': self.get_types(duty_detail.country.all())
+        try:
+            duty_detail = DutyDetail.objects.get(project=self.project)
+            duty = {
+                'duration_month': duty_detail.duration_month,
+                'broadcasts': self.get_types(duty_detail.broadcast.all()),
+                'countries': self.get_types(duty_detail.country.all())
 
-        }
-        if duty_detail.type_contract is not None:
-            duty.update({
-                'type_contract': {
-                    'id': duty_detail.type_contract.id,
-                    'name': duty_detail.type_contract.name
-                }
-            })
-        else:
-            duty.update({
-                'type_contract': {}
-            })
-        return duty
+            }
+            if duty_detail.type_contract is not None:
+                duty.update({
+                    'type_contract': {
+                        'id': duty_detail.type_contract.id,
+                        'name': duty_detail.type_contract.name
+                    }
+                })
+            else:
+                duty.update({
+                    'type_contract': {}
+                })
+            return duty
+        except:
+            return {}
 
     def get_data_project(self):
         project = {
@@ -820,6 +830,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         if self.line.get('id') == Project.LINE_CASTING:
             project.update({
                 "typeCasting": self.get_types(self.line_project.type_casting.all()),
+                "realized": self.line_project.realized.strftime("%d/%m/%Y") if self.line_project.realized is not None else None,
                 "ppi": self.line_project.ppi.strftime("%d/%m/%Y") if self.line_project.ppi is not None else None,
                 "ppg": self.line_project.ppg.strftime("%d/%m/%Y") if self.line_project.ppg is not None else None,
                 "internalBudget": float(self.project.budget_cost),
@@ -831,6 +842,7 @@ class ProjectDataUpdateJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                     'id': self.line_project.type_casting.id,
                     'name': self.line_project.type_casting.name
                 },
+                "realized": self.line_project.realized.strftime("%d/%m/%Y") if self.line_project.realized is not None else None,
                 "use": self.get_types(self.line_project.use_photo.all()),
                 "budget": float(self.project.budget)
             })

@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, FormView, \
     View, TemplateView, CreateView, UpdateView, RedirectView
 from django.contrib.auth.models import User, Group
-
+from django.http import HttpResponseRedirect
 from apps.common.view import LoginRequiredMixin
 from apps.sp.forms.User import UserGroupForm, UserForm,\
     UserEditForm
@@ -93,11 +93,17 @@ class AdminUserCreateView(LoginRequiredMixin, CreateView):
     form_class = UserForm
 
     def form_valid(self, form):
-        data = form.cleaned_data
+
         user = form.save(commit=False)
-        user.set_password(data.get('password'))
+        password = form.cleaned_data['password']
+        user.set_password(password)
         user.save()
-        return super(AdminUserCreateView, self).form_valid(form)
+        for group in form.cleaned_data['groups']:
+            group.user_set.add(user)
+            permissions = group.permissions.all()
+            for permission in permissions:
+                user.user_permissions.add(permission)
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('admin_user_list')

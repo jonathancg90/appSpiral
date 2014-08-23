@@ -380,1447 +380,2411 @@
         "name": "España",
         "nationality": "Español",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Estados Unidos",
         "nationality": "Estadounidense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Colombia",
         "nationality": "Colombiano",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bolivia",
         "nationality": "Boliviano",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Ucrania",
         "nationality": "Ucraniano",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Argentina",
         "nationality": "Argentino",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Ecuador",
         "nationality": "Ecuatoriano",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Afganistán",
         "nationality": "Afgana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Países bajos",
         "nationality": "Afgana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Albania",
         "nationality": "Albanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Alemania",
         "nationality": "Alemana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "American Samoa",
         "nationality": "de Samoa Americana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Andorra",
         "nationality": "Andorrana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Angola",
         "nationality": "Angolana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Anguila",
         "nationality": "Anguilense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Antártida",
         "nationality": "Antartica",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Antigua and Barbuda",
         "nationality": "Español",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Antillas Holandesas",
         "nationality": "holandesa de las Antillas",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Arabia Saudita",
         "nationality": "Saudi",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Argelia",
         "nationality": "Argelina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Armenia",
         "nationality": "Armenia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Aruba",
         "nationality": "Arubeño",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Australia",
         "nationality": "Australiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Austria",
         "nationality": "Austriaca",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Azerbaijan",
         "nationality": "Azerbaiyana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bahamas",
         "nationality": "Bahameña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bahrein",
         "nationality": "Bareiní",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bangladesh",
         "nationality": "Bangladesí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Barbados",
         "nationality": "Barbadense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Belgica",
         "nationality": "Belga",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Belice",
         "nationality": "Beliceña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Benin",
         "nationality": "Beninesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bermuda",
         "nationality": "Bermudeña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bielorrusia",
         "nationality": "Bielorrusa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bosnia y Herzegovina",
         "nationality": "Bosnia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Botsuana",
         "nationality": "Botsuana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bouvet Island",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Brasil",
         "nationality": "Brasileña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "British Indian Ocean Territory",
         "nationality": "Chaguense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Brunei Darussalam",
         "nationality": "Bruneana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bulgaria",
         "nationality": "Búlgara",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Burkina Faso",
         "nationality": "Burkinesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Burundi",
         "nationality": "Burundesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Bután",
         "nationality": "Butanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Cabo Verde",
         "nationality": "Caboverdiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Camboya",
         "nationality": "Camboyana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Camerún",
         "nationality": "Camerunesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Canada",
         "nationality": "Canadiense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Chad",
         "nationality": "Chadiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Chile",
         "nationality": "Chilena",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "China",
         "nationality": "China",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Chipre",
         "nationality": "Chipriota",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Comores",
         "nationality": "Comorense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Congo",
         "nationality": "Congoleña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Corea del Norte",
         "nationality": "Norcoreana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Corea del Sur",
         "nationality": "Surcoreana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Costa Rica",
         "nationality": "Costarricense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Cote D Ivoire",
         "nationality": "Marfileña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Croacia",
         "nationality": "Croata",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Cuba",
         "nationality": "Cubana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Dinamarca",
         "nationality": "Danesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Djibouti",
         "nationality": "Yibutiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Dominica",
         "nationality": "Dominiquesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "East Timor",
         "nationality": "Timorense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Egipto",
         "nationality": "Egipcia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "El Salvador",
         "nationality": "Salvadoreña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "El Vaticano",
         "nationality": "Vaticana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Emiratos Arabes Unidos",
         "nationality": "Emiratí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Eritrea",
         "nationality": "Eritrea",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Eslovaquia",
         "nationality": "Eslovaca",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Eslovenia",
         "nationality": "Eslovena",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Estonia",
         "nationality": "Estonia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Etiopía",
         "nationality": "Etíope",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Fiyi",
         "nationality": "Fiyiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Filipinas",
         "nationality": "Filipina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Finlandia",
         "nationality": "Finlandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Francia",
         "nationality": "Francesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "French Guiana",
         "nationality": "Francoguayanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Polinesia Francesa",
         "nationality": "Francopolinesia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Senegal",
         "nationality": "Senegalés",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "French Southern Territories",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Gabón",
         "nationality": "Gabonesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Gambia",
         "nationality": "Gambiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Georgia",
         "nationality": "Georgiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Ghana",
         "nationality": "Ghanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Gibraltar",
         "nationality": "Gibraltareña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Granada",
         "nationality": "Granadina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Grecia",
         "nationality": "Griega",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Groenlandia",
         "nationality": "Groenlandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Guadalupe",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Guam",
         "nationality": "Guamesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Guatemala",
         "nationality": "Guatemalteca",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Guinea",
         "nationality": "Guineana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Guinea Ecuatorial",
         "nationality": "Ecuatoguineana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Guinea-Bissau",
         "nationality": "Guineana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Guyana",
         "nationality": "Guyanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Haití",
         "nationality": "Haitiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Heard Island and McDonald Isla",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Holanda",
         "nationality": "Holandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Honduras",
         "nationality": "Hondureña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Hong Kong",
         "nationality": "Hongkonesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Hungría",
         "nationality": "Húngara",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "India",
         "nationality": "India",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Indonesia",
         "nationality": "Indonesia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Iraq",
         "nationality": "Iraquí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Irlanda",
         "nationality": "Irlandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Isalas Cocos",
         "nationality": "de las Islas Cocos",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Isla Christmas",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islandia",
         "nationality": "Islandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Caimán",
         "nationality": "Caimanés",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Cook",
         "nationality": "de las Islas Cook",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Feroe",
         "nationality": "Feroés",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Malvinas",
         "nationality": "Malvinense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Marshall",
         "nationality": "Marshalesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Mauricio",
         "nationality": "Mauriciana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Salomón",
         "nationality": "Salomonense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Sandwhich",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Turks y Caicos",
         "nationality": "de las Islas Turcas y Caicos",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Islas Wallis y Futuna",
         "nationality": "de Wallis y Futuna",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Israel",
         "nationality": "Israelí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Italia",
         "nationality": "Italiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Jamaica",
         "nationality": "Jamaiquina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Japon",
         "nationality": "Japonesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Jordania",
         "nationality": "Jordana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Kazakhstán",
         "nationality": "Kazaja",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Kenia",
         "nationality": "Keniana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Kiribati",
         "nationality": "Kiribatiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Kuwait",
         "nationality": "Kuwaití",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Kyrgyzstán",
         "nationality": "Kirguís",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Laos",
         "nationality": "Laosiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Latvia",
         "nationality": "Letona",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Lesoto",
         "nationality": "Lesotense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Líbano",
         "nationality": "Libanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Liberia",
         "nationality": "Liberiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Libia",
         "nationality": "Libia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Liechtenstein",
         "nationality": "Liechtensteiniana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Lituania",
         "nationality": "Lituana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Luxemburgo",
         "nationality": "Luxemburguesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Macao",
         "nationality": "Macaense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Macedonia",
         "nationality": "Macedonia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Madagascar",
         "nationality": "Malgache",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Malasia",
         "nationality": "Malasia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Malaui",
         "nationality": "Malauí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Maldivas",
         "nationality": "Maldiva",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Malí",
         "nationality": "Maliense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Malta",
         "nationality": "Maltesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Marruecos",
         "nationality": "Marroquí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Martinique",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Mauritania",
         "nationality": "Mauritana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Mayotte",
         "nationality": "Mayotense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "México",
         "nationality": "Mexicana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Micronesia",
         "nationality": "Micronesia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Moldavia",
         "nationality": "Moldava",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Mónaco",
         "nationality": "Monegasca",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Mongolia",
         "nationality": "Mongola",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Serbia",
         "nationality": "Serbia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Montserrat",
         "nationality": "Montserratense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Mozambique",
         "nationality": "Mozambiqueña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Myanmar",
         "nationality": "Birmana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Namibia",
         "nationality": "Namibia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Nauru",
         "nationality": "Nauruana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Nepal",
         "nationality": "Nepalí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Nicaragua",
         "nationality": "Nicaragüense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Níger",
         "nationality": "Nigerina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Nigeria",
         "nationality": "Nigeriana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Niue",
         "nationality": "Niueña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Norfolk Island",
         "nationality": "de la Isla Norfolk",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Northern Mariana Islands",
         "nationality": "de las Islas Marianas del Norte",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Noruega",
         "nationality": "Noruega",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Nueva Caledonia",
         "nationality": "Neocaledonia",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Nueva Zelanda",
         "nationality": "Neozelandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Omán",
         "nationality": "Omaní",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Pakistán",
         "nationality": "Pakistaní",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Palau",
         "nationality": "Palauana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Palestinian Territory",
         "nationality": "Palestina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Panamá",
         "nationality": "Panameña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Papúa Nueva Guinea",
         "nationality": "Papú",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Paraguay",
         "nationality": "Paraguaya",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Pitcairn",
         "nationality": "de las Islas Pitcairn",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Polonia",
         "nationality": "Polaca",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Portugal",
         "nationality": "Portuguesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Puerto Rico",
         "nationality": "Puertorriqueña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Qatar",
         "nationality": "Catarí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Reino Unido",
         "nationality": "Británica",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "República Centroafricana",
         "nationality": "Centroafricana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Republica Checa",
         "nationality": "Checa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "República Democrática del Congo",
         "nationality": "Congoleña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "República Dominicana",
         "nationality": "Dominicana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "República Islámica de Irán",
         "nationality": "Iraní",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Ruanda",
         "nationality": "Ruandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Rumania",
         "nationality": "Rumana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Rusia",
         "nationality": "Rusa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Saint Kitts and Nevis",
         "nationality": "Sancristobaleña",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Saint Pierre y Miquelon",
         "nationality": "de San Pedro y Miquelón",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Samoa",
         "nationality": "Samoana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "San Marino",
         "nationality": "Sanmarinense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "San Vicente y Las Granadinas",
         "nationality": "Sanvicentina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Santa Elena",
         "nationality": "de Santa Elena, Ascensión y Tristán da Cunha",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Santa Lucía",
         "nationality": "Santalucense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Sao Tome and Principe",
         "nationality": "Santotomense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Senegal",
         "nationality": "Senegalesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Serbia y Montenegro",
         "nationality": "Serbio",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Seychelles",
         "nationality": "Seychellense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Sierra Leona",
         "nationality": "Sierraleonesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Singapur",
         "nationality": "Singapurense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Siria",
         "nationality": "Siria",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Somalía",
         "nationality": "Somalí",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Sri Lanka",
         "nationality": "Ceilanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Suazilandia",
         "nationality": "Ssuazi",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Sudáfrica",
         "nationality": "Sudafricana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Sudán",
         "nationality": "Sudanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Suiza",
         "nationality": "Sueca",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Suecia",
         "nationality": "suecio",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Surinam",
         "nationality": "Surinamesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Svalbard and Jan Mayen",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Tailandia",
         "nationality": "Tailandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Taiwan",
         "nationality": "Taiwanesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Tajikistan",
         "nationality": "Tayika",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Tanzania",
         "nationality": "Tanzana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Togo",
         "nationality": "Togolesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Tonga",
         "nationality": "Tongana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Tokelau",
         "nationality": "Tokelauense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Trinidad y Tobago",
         "nationality": "Trinitense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Túnez",
         "nationality": "Tunecina",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Turkmenistán",
         "nationality": "Turkmena",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Turquía",
         "nationality": "Turca",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Tuvalu",
         "nationality": "Tuvaluana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Uganda",
         "nationality": "Ugandesa",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "United States Minor Outlying Islands",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Uruguay",
         "nationality": "Uruguaya",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Uzbekistan",
         "nationality": "Uzbeka",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Vanuatu",
         "nationality": "Vanuatuense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Venezuela",
         "nationality": "Venezolana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Vietnam",
         "nationality": "Vietnamita",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Virgin Islands British",
         "nationality": "Virgenense británica",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Virgin Islands U.S.",
         "nationality": "Virgenense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Sáhara occidental",
         "nationality": "Sahariana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Yemen",
         "nationality": "Yemení",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Zaire",
         "nationality": "-",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Zambia",
         "nationality": "Zambiana",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     },
     {
         "name": "Zimbabue",
         "nationality": "Zimbabuense",
         "currency": "$",
-        "cities": []
+        "cities": [
+            {
+                "name": "Todas las ciudades"
+            }
+        ]
     }
 ]
 

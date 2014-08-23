@@ -5,6 +5,7 @@ angular.module('modelApp').factory('ModelFactory', ['$http', function($http) {
 
 
     factory.setProfile = function(data){
+        debugger
         self.profile.name_complete = data.name_complete;
         self.profile.type_doc = data.type_doc;
         self.profile.num_doc = data.num_doc;

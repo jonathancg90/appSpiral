@@ -7,23 +7,33 @@ from django.contrib.contenttypes.models import ContentType
 from apps.sp.models.Model import Model
 from django.conf import settings
 
+
 class Picture(models.Model):
 
     file = models.ImageField(
         upload_to="pictures"
     )
+
     slug = models.SlugField(
         max_length=80,
         blank=True,
         null=True
     )
+
+    taken_date = models.DateField(
+        verbose_name='Fecha de captura',
+        null=True
+    )
+
     content_type = models.ForeignKey(
         ContentType,
         null=True
     )
+
     object_id = models.PositiveIntegerField(
         null=True
     )
+
     content_object = generic.GenericForeignKey(
         'content_type', 'content_object'
     )

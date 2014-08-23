@@ -10,6 +10,7 @@ from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.PhotoCasting import UsePhotos
 from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Contract import TypeContract
+from apps.sp.models.PictureDetail import MediaFeature, MediaFeatureValue
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import TypeCastingHelper
@@ -19,6 +20,7 @@ from apps.common.insert_helper import DataTestHelper
 from apps.common.insert_helper import BroadcastHelper
 from apps.common.insert_helper import CurrencyHelper
 from apps.common.insert_helper import TypeEventHelper
+from apps.common.insert_helper import MediaFeatureHelper
 from apps.common.insert_helper import PhotoUseHelper
 from apps.common.insert_helper import TypeContractHelper
 from apps.sp.management.migration.Model import ModelProcessMigrate
@@ -52,6 +54,7 @@ class Command(BaseCommand):
             self.insert_photo_use()
             self.insert_broadcast()
             self.insert_type_contract()
+            self.insert_media_feature()
 
         if entity == 'migration':
             self.migration_process()
@@ -88,6 +91,9 @@ class Command(BaseCommand):
 
         if entity == 'test_data':
             self.insert_data_test()
+
+        if entity == 'media_feature':
+            self.insert_media_feature()
 
     def insert_features(self):
         if self.data_delete:
@@ -196,6 +202,18 @@ class Command(BaseCommand):
                 self.stdout.write('Successfully inserted data: type contract. \n')
             else:
                 self.stdout.write('can not insert the data: type contract. \n')
+
+    def insert_media_feature(self):
+        if self.data_delete:
+            MediaFeature.objects.all().delete()
+            self.stdout.write('delete data: media - feature. \n')
+        else:
+            if MediaFeature.objects.all().count() == 0:
+                media_feature_helper = MediaFeatureHelper()
+                media_feature_helper.insert_data()
+                self.stdout.write('Successfully inserted data: media feature. \n')
+            else:
+                self.stdout.write('can not insert the data: media feature. \n')
 
     def insert_broadcast(self):
         if self.data_delete:

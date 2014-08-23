@@ -42,6 +42,7 @@ class CastingSaveProcess(View):
         casting.project = project
         casting.ppi = self.format_date(self.data_line.get('ppi'))
         casting.ppg = self.format_date(self.data_line.get('ppg'))
+        casting.realized = self.format_date(self.data_line.get('realized'))
         casting.save()
         casting.type_casting.clear()
         for type in self.data_line.get('type_casting', []):

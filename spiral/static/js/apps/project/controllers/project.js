@@ -830,6 +830,7 @@ controllers.projectController = function($scope,
             return  {
                 'ppi': $scope.project_service.ppi,
                 'ppg': $scope.project_service.ppg,
+                'realized': $scope.project_service.realized,
                 'type_casting': $scope.project_service.typeCasting
             }
         }
@@ -849,6 +850,7 @@ controllers.projectController = function($scope,
         }
         if($scope.project_service.line.name == 'Foto'){
             return  {
+                'realized': $scope.project_service.realized,
                 'uses': $scope.project_service.use,
                 'type_casting': $scope.project_service.type.id
             }
