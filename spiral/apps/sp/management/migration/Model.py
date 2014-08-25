@@ -382,7 +382,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                         picture_detail_feature.feature_value = self.get_clothes(detail[0])
                         picture_detail_feature.save()
                     except Exception, e:
-                        import pdb;pdb.set_trace()
+                        self.log.debug('Error ropa: '+ detail[0])
 
     def get_clothes(self, id):
         try:
