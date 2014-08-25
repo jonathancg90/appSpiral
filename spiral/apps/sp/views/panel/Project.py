@@ -5,6 +5,7 @@ import calendar
 from django.conf import settings
 from django.contrib import messages
 from django.db import transaction
+from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, RedirectView
 from datetime import datetime
@@ -218,10 +219,17 @@ class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         data_permission = list(set(data_permission))
         return sorted(data_permission)
 
+    def get(self, request, *args, **kwargs):
+        self.set_permissions()
+        self.form_permissions = self.get_permissions()
+        if not(1 in self.form_permissions):
+            messages.error(self.request, 'No tiene permisos para crear proyectos')
+            return HttpResponseRedirect(reverse('project_list'))
+        return super(ProjectCreateView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(ProjectCreateView, self).get_context_data(**kwargs)
-        self.set_permissions()
-        context['permissions'] = self.get_permissions()
+        context['permissions'] = self.form_permissions
         context['menu'] = 'project'
         project = self.get_project()
         if project is not None:

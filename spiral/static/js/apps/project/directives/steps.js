@@ -104,12 +104,9 @@ projectApp.directive('projectActionSteps', function(projectService, $rootScope) 
             scope.$on('setPermissions', function(event, args) {
                 scope.permissions = args.permissions;
                 if(args.create){
-                    if(scope.permissions[0] == 1){
-                        //Si tiene permiso
-                    } else {
-                        // No puede crear proyectos
-                    }
+                    //Modo creacion
                 } else {
+                    //Modo actualizacion
                     projectService.step = scope.permissions[0];
                     scope.step = projectService.step;
                 }
