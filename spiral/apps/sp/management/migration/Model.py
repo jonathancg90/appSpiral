@@ -309,6 +309,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.save()
                 self.insert_photos(_model, model.get('photos'))
                 self.insert_feature_value(_model, model.get('features'))
+                self.update_last_visit()
+
                 print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
             except Exception,e:
                 self.log.debug(e.message + ' | ' + model.get('model_code'))
@@ -1061,12 +1063,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def parse_data_feature_value(self, feature_name, value):
         if feature_name == 'DISTRITO' and value != 'CHOSICA':
             return value[:-3]
-        if feature_name == 'ANFITRIONAJE':
-            return 'Anfitriona'
-        if feature_name == 'CORREOGRAFIAS (BAILES)':
-            return 'Bailarin'
-        if feature_name == 'BAILAR':
-            return 'Bailarin'
         if feature_name in ['TALLA - CAMISA', 'TALLA - BLUSA']:
             if value == '2':
                 return 'XXS'
@@ -1089,6 +1085,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             if value == '15 1/2':
                 return 'M'
 
+        if value == 'ANFITRIONAJE':
+            return 'Anfitriona'
+        if value == ['BAILAR', 'CORREOGRAFIAS (BAILES)']:
+            return 'Bailarin'
         if value in ['MARRONES', 'PARDOS']:
             return 'Marron'
         if value == 'NEGROS':
