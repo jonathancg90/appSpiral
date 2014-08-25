@@ -7,7 +7,6 @@ import urllib2
 import logging
 
 from django.conf import settings
-from PIL import Image
 from django.utils.encoding import smart_str
 from django.views.generic import View
 from django.db import connections
@@ -29,6 +28,7 @@ from apps.sp.models.Project import Project, ProjectDetailDeliveries, ProjectClie
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.models.Casting import TypeCasting
 from apps.sp.models.Payment import Payment
+from apps.sp.models.PictureDetail import MediaFeatureValue, PictureDetailFeature
 from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticipate
 from apps.sp.models.Casting import Casting, CastingDetailModel, CastingDetailParticipate
@@ -66,7 +66,16 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setCharacterPhoto()
         self.setCharacterCasting()
         self.setDNI()
+        self.setClothes()
         self.setEmployees()
+
+    def setClothes(self):
+        self.clothes = {
+            '1': MediaFeatureValue.objects.get(name='Sport'),
+            '2': MediaFeatureValue.objects.get(name='Vestir'),
+            '3': MediaFeatureValue.objects.get(name='Baño'),
+            '4': MediaFeatureValue.objects.get(name='Caracterizado')
+        }
 
     def json_reader(self, json_file):
         ROOT_PATH = settings.ROOT_PATH
@@ -244,11 +253,11 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         data_model = self.get_list_model()
         data_model = self.get_detail_feature(data_model)
         self.insert_model(data_model)
-        self.data_client = self.insert_data_client()
+        # self.data_client = self.insert_data_client()
         #Insert Data
-        self.insert_entry_brand_commercial()
-        self.insert_project()
-        self.insert_history_commercial()
+        # self.insert_entry_brand_commercial()
+        # self.insert_project()
+        # self.insert_history_commercial()
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
 
     def insert_history_commercial(self):
@@ -263,6 +272,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         model_cursor.execute(query)
         for row in model_cursor.fetchall():
             try:
+                import pdb;pdb.set_trace()
                 code = int(row[0])
                 model = Model.objects.get(model_code=code)
                 project = self.project_codes.get(row[1])
@@ -273,7 +283,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 print('save relation: ' + row[0] + ' | ' + row[1])
             except Exception, e:
                 self.log.debug('relacion commercial: '+ row[0] + ' | ' + row[1])
-
 
     def insert_model(self, data_model):
 
@@ -332,10 +341,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                         file.update({'thumbnailUrl': thumbnails.get('file')})
                     self.save_main_image(model, picture)
                 else:
-                    import pdb;pdb.set_trace()
                     self.log.debug('Foto no registrada'+ ' | '+ photo)
             except Exception, e:
-                import pdb;pdb.set_trace()
+                self.log.debug('Ocurrio un error en el ingreso de la foto'+ ' | '+ photo)
 
     def save_main_image(self, model, picture):
         main_image = None
@@ -353,6 +361,29 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
         model.main_image = main_image
         model.save()
+        self.save_features_photo(picture, model)
+
+    def save_features_photo(self, picture, model):
+        slug = picture.slug
+        model_code = model.model_code
+        sql = "select cri_cod, cri_item from mod_media_cri where mod_cod='"+model_code+"' and id_ruta='"+slug+"' and (cri_cod='004' or cri_cod='006')"
+        model_cursor = connections['model'].cursor()
+        model_cursor.execute(sql)
+        for row in model_cursor.fetchall():
+            sql_detail = "select cd_desc from criterios_detalles where cri_cod='"+str(row[0])+"' and crit_item='"+str(row[1])+"'"
+            detail_cursor = connections['model'].cursor()
+            detail_cursor.execute(sql_detail)
+            if row[0] == '004':
+                picture.taken_date = self.format_date_photo()
+                picture.save()
+            if row[0] == '006':
+                picture_detail_feature = PictureDetailFeature()
+                picture_detail_feature.feature_value = ''
+                picture_detail_feature.save()
+
+    def format_date_photo(self, cd_desc):
+        dates = cd_desc.split('/')
+        return "%s-%s-01" % (dates[0], dates[1])
 
     def insert_entry_brand_commercial(self):
         try:
@@ -1149,7 +1180,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             model_cursor = connections['model'].cursor()
             model_cursor.execute(query)
             for row in model_cursor.fetchall():
-                query_value = "select cd_desc from criterios_detalles where cri_cod='"+str(row[1])+ "' and cri_item='" + str(row[3]) + "'"
+                query_value = "select cd_desc from criterios_detalles " \
+                              "where cri_cod='"+str(row[1])+ "' and cri_item='" + str(row[3]) + "'"
                 feature_value_cursor = connections['model'].cursor()
                 feature_value_cursor.execute(query_value)
                 for value in feature_value_cursor.fetchall():

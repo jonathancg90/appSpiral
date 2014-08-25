@@ -100,7 +100,7 @@
         </div>
 
         <hr />
-            <project-action-steps></project-action-steps>
+            <project-action-steps ></project-action-steps>
         </div>
         </div><!--/widget-main-->
             </div><!--/widget-body-->
@@ -169,7 +169,8 @@
         });
         angular.module('projectApp').value("contextData", {
             codeUpdate: '{{ code|safe }}',
-            idUpdate: '{{ id|safe }}'
+            idUpdate: '{{ id|safe }}',
+            permissions: '{{ permissions|safe }}'
         });
     </script>
 

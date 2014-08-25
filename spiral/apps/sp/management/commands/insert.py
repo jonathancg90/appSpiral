@@ -10,7 +10,7 @@ from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.PhotoCasting import UsePhotos
 from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Contract import TypeContract
-from apps.sp.models.PictureDetail import MediaFeature, MediaFeatureValue
+from apps.sp.models.PictureDetail import MediaFeature
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
 from apps.common.insert_helper import TypeCastingHelper

@@ -154,6 +154,23 @@ class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
     model = Project
     template_name = 'panel/project/crud.html'
 
+    def set_permissions(self):
+        self.steps = [
+            {
+                'step': '1',
+                'names': ['sp.add_project']},
+            {
+                'step': '2',
+                'names': ['sp.add_castingdetailmodel', 'add_extrasdetailmodel', 'add_representationdetailmodel', 'add_photocastingdetailmodel']},
+            {
+                'step': '3',
+                'names': ['sp.add_payment']},
+            {
+                'step': '4',
+                'names': ['sp.add_projectdetailstaff']
+            }
+        ]
+
     def get_project(self):
         try:
             project_id = self.kwargs.get('pk')
@@ -162,8 +179,25 @@ class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         except:
             return None
 
+    def get_permissions(self):
+        user = self.request.user
+        data_permission = []
+        if user.is_superuser:
+            return data_permission.append(1,2,3,4)
+        permissions = user.user_permissions.all()
+        for permission in permissions:
+            name = '%s.%s' %(permission.content_type.app_label, permission.codename)
+            for step in self.steps:
+                if name in step.get('names'):
+                    data_permission.append(int(step.get('step')))
+
+        data_permission = list(set(data_permission))
+        return sorted(data_permission)
+
     def get_context_data(self, **kwargs):
         context = super(ProjectCreateView, self).get_context_data(**kwargs)
+        self.set_permissions()
+        context['permissions'] = self.get_permissions()
         context['menu'] = 'project'
         project = self.get_project()
         if project is not None:
