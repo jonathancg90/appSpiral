@@ -1087,7 +1087,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             return 'Anfitriona'
         if feature_name !='HOBBIES' and  value in ['BAILAR', 'COREOGRAFIAS (BAILES)']:
             return 'Bailarin'
-        if value in ['EVENTOS', 'IMPULSADORA)']:
+        if value in ['EVENTOS', 'IMPULSADORA']:
             return 'Impulsador'
         if value in ['MARRONES', 'PARDOS']:
             return 'Marron'
