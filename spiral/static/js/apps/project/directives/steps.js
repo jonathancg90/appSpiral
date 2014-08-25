@@ -103,6 +103,14 @@ projectApp.directive('projectActionSteps', function(projectService, $rootScope) 
 
             scope.$on('setPermissions', function(event, args) {
                 scope.permissions = args.permissions;
+                if(args.create){
+                    //Modo creacion
+                } else {
+                    //Modo actualizacion
+                    projectService.step = scope.permissions[0];
+                    scope.step = projectService.step;
+                }
+
             });
             scope.save =  function() {
                 scope.$emit('saveProject', { });

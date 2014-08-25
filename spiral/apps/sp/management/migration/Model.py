@@ -1063,6 +1063,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             return 'Anfitriona'
         if feature_name == 'CORREOGRAFIAS (BAILES)':
             return 'Bailarin'
+        if feature_name == 'BAILAR':
+            return 'Bailarin'
         if feature_name in ['TALLA - CAMISA', 'TALLA - BLUSA']:
             if value == '2':
                 return 'XXS'

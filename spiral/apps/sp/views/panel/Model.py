@@ -141,12 +141,12 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         return data
 
     def get(self ,request, *args, **kwargs):
-        model_id = kwargs.get('pk')
+        model_code = kwargs.get('pk')
         try:
             model = Model.objects.select_related('country',
                                                  'model_has_commercial_set',
                                                  'model_feature_detail_set'
-            ).get(model_code=model_id)
+            ).get(model_code=model_code)
             profile = self.get_model_profile(model)
             features = self.get_model_features(model)
             commercial = self.get_model_commercial(model)

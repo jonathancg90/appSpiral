@@ -5,6 +5,7 @@ import calendar
 from django.conf import settings
 from django.contrib import messages
 from django.db import transaction
+from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, RedirectView
 from datetime import datetime
@@ -38,6 +39,15 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
                       SearchFormMixin, ListView):
     template_name = 'panel/project/list.html'
     model = Project
+    permissions = {
+        'entity': [
+            Project, Casting, CastingDetailModel,
+            Extras, ExtrasDetailModel,
+            PhotoCasting, PhotoCastingDetailModel,
+            Representation, RepresentationDetailModel,
+            Payment, ProjectDetailStaff
+        ]
+    }
     search_form_class = ProjectFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
@@ -151,17 +161,32 @@ class ProjectDeleteRedirectView(LoginRequiredMixin, PermissionRequiredMixin, Red
 
 class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
                   TemplateView):
-    model = Project
+    permissions = {
+        'entity': [
+            Project, Casting, CastingDetailModel,
+            Extras, ExtrasDetailModel,
+            PhotoCasting, PhotoCastingDetailModel,
+            Representation, RepresentationDetailModel,
+            Payment, ProjectDetailStaff
+        ]
+    }
     template_name = 'panel/project/crud.html'
 
     def set_permissions(self):
         self.steps = [
             {
                 'step': '1',
-                'names': ['sp.add_project']},
+                'names': [
+                    'sp.add_project', 'sp.add_casting',
+                    'sp.add_extras', 'sp.add_photocasting',
+                    'sp.add_representation'
+                ]},
             {
                 'step': '2',
-                'names': ['sp.add_castingdetailmodel', 'add_extrasdetailmodel', 'add_representationdetailmodel', 'add_photocastingdetailmodel']},
+                'names': [
+                    'sp.add_castingdetailmodel', 'add_extrasdetailmodel',
+                    'add_representationdetailmodel', 'add_photocastingdetailmodel'
+                ]},
             {
                 'step': '3',
                 'names': ['sp.add_payment']},
@@ -194,10 +219,17 @@ class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         data_permission = list(set(data_permission))
         return sorted(data_permission)
 
+    def get(self, request, *args, **kwargs):
+        self.set_permissions()
+        self.form_permissions = self.get_permissions()
+        if not(1 in self.form_permissions):
+            messages.error(self.request, 'No tiene permisos para crear proyectos')
+            return HttpResponseRedirect(reverse('project_list'))
+        return super(ProjectCreateView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(ProjectCreateView, self).get_context_data(**kwargs)
-        self.set_permissions()
-        context['permissions'] = self.get_permissions()
+        context['permissions'] = self.form_permissions
         context['menu'] = 'project'
         project = self.get_project()
         if project is not None:

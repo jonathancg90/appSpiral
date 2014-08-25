@@ -59,6 +59,7 @@ class CommercialViewTest(TestCase):
         response = view(request)
         self.assertEqual(len(response.context_data['object_list']), 5)
 
+    @override_settings(APPLICATION_CACHE=False)
     def test_list_view_commercial_filter(self):
         """
         Tests Filter
@@ -74,6 +75,7 @@ class CommercialViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(response.context_data['object_list']), 1)
 
+    @override_settings(APPLICATION_CACHE=False)
     def test_create_view_commercial(self):
         """
         Tests Create
@@ -95,6 +97,7 @@ class CommercialViewTest(TestCase):
         self.assertEqual(Commercial.objects.all().count(), 5)
         self.assertEqual(CommercialDateDetail.objects.all().count(), 1)
 
+    @override_settings(APPLICATION_CACHE=False)
     def test_update_view_commercial(self):
         """
         Tests data: Update
@@ -133,6 +136,7 @@ class CommercialViewTest(TestCase):
         self.assertEqual(commercial.name, 'actualizado')
         self.assertEqual(response.status_code, 302)
 
+    @override_settings(APPLICATION_CACHE=False)
     def test_delete_view_brand(self):
         """
         Tests data: Delete
@@ -149,6 +153,7 @@ class CommercialViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Commercial.objects.all().count(), 3)
 
+    @override_settings(APPLICATION_CACHE=False)
     def test_data_list(self):
         """
        Tests List
@@ -170,6 +175,7 @@ class CommercialViewTest(TestCase):
         content = json.loads(response._container[0])
         self.assertEqual(len( content.get('commercial')), 5)
 
+    @override_settings(APPLICATION_CACHE=False)
     def test_create_json(self):
         self.insert_test_data()
         self.assertEqual(Commercial.objects.all().count(), 4)
