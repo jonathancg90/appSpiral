@@ -71,10 +71,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
     def setClothes(self):
         self.clothes = {
-            '1': MediaFeatureValue.objects.get(name='Sport'),
-            '2': MediaFeatureValue.objects.get(name='Vestir'),
-            '3': MediaFeatureValue.objects.get(name='Baño'),
-            '4': MediaFeatureValue.objects.get(name='Caracterizado')
+            'SPORT': MediaFeatureValue.objects.get(name='Sport'),
+            'VESTIR': MediaFeatureValue.objects.get(name='Vestir'),
+            'OTHER': MediaFeatureValue.objects.get(name='Baño'),
+            'CARACTERIZADO': MediaFeatureValue.objects.get(name='Caracterizado')
         }
 
     def json_reader(self, json_file):
@@ -314,6 +314,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
             except Exception,e:
                 self.log.debug(e.message + ' | ' + model.get('model_code'))
+
+    def update_last_visit(self):
+        pass
 
     def insert_feature_value(self, model, features):
         for feature in features:

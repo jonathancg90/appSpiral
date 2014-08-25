@@ -3,16 +3,17 @@ import json
 
 from django.views.generic import View, TemplateView
 
-from apps.common.view import LoginRequiredMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 from apps.common.view import NewJSONResponseMixin
 from apps.sp.models.Country import Country
-from apps.sp.models.Model import ModelFeatureDetail, Model
+from apps.sp.models.Model import Model
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.logic.search import Search
 
 
-class ModelSearchTemplateView(LoginRequiredMixin, TemplateView):
+class ModelSearchTemplateView(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
     template_name = 'panel/search/model/search.html'
+    model = Model
 
     def get_context_data(self, **kwargs):
         context = super(ModelSearchTemplateView, self).get_context_data(**kwargs)

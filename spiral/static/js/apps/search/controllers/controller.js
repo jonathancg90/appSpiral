@@ -23,7 +23,6 @@ controllers.searchController = function($scope, ModelFactory,
 
     $scope.$watch('search', function(newValue, oldValue) {
         if(newValue != oldValue) {
-            debugger
             if($scope.find != undefined) {
                 if(newValue.length < $scope.find.length ) {
                     $scope.models = [];
@@ -111,7 +110,6 @@ controllers.searchController = function($scope, ModelFactory,
             'paginate': $scope.paginate,
             'mode': $scope.mode
         };
-        debugger
         if($scope.typeSearch.simple) {
             $scope.loader = true;
             var response = ModelFactory.Search(searchUrl, data);
@@ -166,6 +164,7 @@ controllers.searchController = function($scope, ModelFactory,
         response.then(function(data){
             $scope.detailLoader = false;
             $scope.detail =  data;
+            debugger
             $scope.detail.profile.facebook = '#';
             $scope.detail.profile.occupation = 'Sin ocupacion';
             angular.forEach($scope.detail.features, function(feature, fkey) {
