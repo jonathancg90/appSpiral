@@ -379,7 +379,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     try:
                         picture_detail_feature = PictureDetailFeature()
                         picture_detail_feature.picture = picture
-                        picture_detail_feature.feature_value = self.get_clothes(detail[0]))
+                        picture_detail_feature.feature_value = self.get_clothes(detail[0])
                         picture_detail_feature.save()
                     except Exception, e:
                         import pdb;pdb.set_trace()
