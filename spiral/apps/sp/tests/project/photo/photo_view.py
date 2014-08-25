@@ -50,7 +50,7 @@ class PhotoCastingViewTest(TestCase):
         response = view(request)
         self.assertEqual(response.status_code, 200)
         content = json.loads(response._container[0])
-        self.assertEqual(len( content.get('types')), 2)
+        self.assertEqual(len( content.get('types')), 3)
 
     def test_use_photo_list(self):
         """

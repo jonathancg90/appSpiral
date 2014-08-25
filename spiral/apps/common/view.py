@@ -319,7 +319,7 @@ class PermissionRequiredMixin(object):
                 has_permission = request.user.has_perm(permission)
                 verify.append(has_permission)
             has_permission = True if(True in verify) else False
-            if not has_permission:
+            if has_permission:
                 return has_permission
 
         return has_permission

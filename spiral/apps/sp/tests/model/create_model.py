@@ -35,25 +35,27 @@ class ModelCreateTest(TestCase):
         view = ModelControlTemplateView.as_view()
         model = Model.objects.latest('created')
         request = self.request_factory.get(
-            reverse('panel_model_control_list') + '?pk=' + str(model.id)
+            reverse('panel_model_control_list') + '?pk=' + str(model.model_code)
         )
         request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context_data), 6)
+        self.assertEqual(len(response.context_data), 7)
         self.assertTrue('doc_types' in response.context_data)
-        self.assertTrue('features' in response.context_data)
         self.assertTrue('genders' in response.context_data)
+        self.assertTrue('menu' in response.context_data)
+        self.assertTrue('features' in response.context_data)
+        self.assertTrue('id' in response.context_data)
         self.assertTrue('pk' in response.context_data)
 
     def test_get_model(self):
         view = ModelDataJsonView.as_view()
         model = Model.objects.latest('created')
         request = self.request_factory.get(
-            reverse('panel_information_model', kwargs={'pk': model.pk})
+            reverse('panel_information_model', kwargs={'pk': model.model_code})
         )
         request.user = self.user
-        response = view(request, pk=model.pk)
+        response = view(request, pk=model.model_code)
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
 

@@ -38,6 +38,15 @@ class ProjectListView(LoginRequiredMixin, PermissionRequiredMixin,
                       SearchFormMixin, ListView):
     template_name = 'panel/project/list.html'
     model = Project
+    permissions = {
+        'entity': [
+            Project, Casting, CastingDetailModel,
+            Extras, ExtrasDetailModel,
+            PhotoCasting, PhotoCastingDetailModel,
+            Representation, RepresentationDetailModel,
+            Payment, ProjectDetailStaff
+        ]
+    }
     search_form_class = ProjectFiltersForm
     paginate_by = settings.PANEL_PAGE_SIZE
     filtering = {
@@ -151,17 +160,32 @@ class ProjectDeleteRedirectView(LoginRequiredMixin, PermissionRequiredMixin, Red
 
 class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
                   TemplateView):
-    model = Project
+    permissions = {
+        'entity': [
+            Project, Casting, CastingDetailModel,
+            Extras, ExtrasDetailModel,
+            PhotoCasting, PhotoCastingDetailModel,
+            Representation, RepresentationDetailModel,
+            Payment, ProjectDetailStaff
+        ]
+    }
     template_name = 'panel/project/crud.html'
 
     def set_permissions(self):
         self.steps = [
             {
                 'step': '1',
-                'names': ['sp.add_project']},
+                'names': [
+                    'sp.add_project', 'sp.add_casting',
+                    'sp.add_extras', 'sp.add_photocasting',
+                    'sp.add_representation'
+                ]},
             {
                 'step': '2',
-                'names': ['sp.add_castingdetailmodel', 'add_extrasdetailmodel', 'add_representationdetailmodel', 'add_photocastingdetailmodel']},
+                'names': [
+                    'sp.add_castingdetailmodel', 'add_extrasdetailmodel',
+                    'add_representationdetailmodel', 'add_photocastingdetailmodel'
+                ]},
             {
                 'step': '3',
                 'names': ['sp.add_payment']},

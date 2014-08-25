@@ -202,7 +202,15 @@ controllers.projectController = function($scope,
         if(newValue != oldValue){
             var codeUpdate = contextData.codeUpdate,
                 idUpdate = contextData.idUpdate;
-                $rootScope.$broadcast('setPermissions', {'permissions':jQuery.parseJSON(contextData.permissions) });
+            var create = false;
+
+            if($scope.pk == undefined){
+                create = true;
+            }
+            $rootScope.$broadcast('setPermissions', {
+                'permissions':jQuery.parseJSON(contextData.permissions) ,
+                'create': create
+            });
             if(newValue == false)
                 updateProject(idUpdate, codeUpdate);
         }
