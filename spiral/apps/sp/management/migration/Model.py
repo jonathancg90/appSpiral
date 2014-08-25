@@ -65,7 +65,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setClientExtraAbroad()
         self.setCharacterPhoto()
         self.setCharacterCasting()
-        self.setDNI()
         self.setClothes()
         self.setEmployees()
 
@@ -186,12 +185,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             '2':  PhotoCastingDetailModel.CHARACTER_SECONDARY
         }
 
-    def setDNI(self):
-        self.dni_model = {
-            '': Model.GENDER_FEM,
-            '': Model.GENDER_MASC,
-        }
-
     def setClientExtraAbroad(self):
         self.extra_abroad = ['CL228']
 
@@ -253,10 +246,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         data_model = self.get_list_model()
         data_model = self.get_detail_feature(data_model)
         self.insert_model(data_model)
-        # self.data_client = self.insert_data_client()
+        self.data_client = self.insert_data_client()
         #Insert Data
-        # self.insert_entry_brand_commercial()
-        # self.insert_project()
+        self.insert_entry_brand_commercial()
+        self.insert_project()
         # self.insert_history_commercial()
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
 
@@ -375,20 +368,32 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         model_cursor = connections['model'].cursor()
         model_cursor.execute(sql)
         for row in model_cursor.fetchall():
-            sql_detail = "select cd_desc from criterios_detalles where cri_cod='"+str(row[0])+"' and crit_item='"+str(row[1])+"'"
+            sql_detail = "select cd_desc from criterios_detalles where cri_cod='"+str(row[0])+"' and cri_item='"+str(row[1])+"'"
             detail_cursor = connections['model'].cursor()
             detail_cursor.execute(sql_detail)
             if row[0] == '004':
-                picture.taken_date = self.format_date_photo()
-                picture.save()
+                for detail in detail_cursor.fetchall():
+                    picture.taken_date = self.format_date_photo(detail[0])
+                    picture.save()
             if row[0] == '006':
-                picture_detail_feature = PictureDetailFeature()
-                picture_detail_feature.feature_value = ''
-                picture_detail_feature.save()
+                for detail in detail_cursor.fetchall():
+                    try:
+                        picture_detail_feature = PictureDetailFeature()
+                        picture_detail_feature.picture = picture
+                        picture_detail_feature.feature_value = self.get_clothes(detail[0]))
+                        picture_detail_feature.save()
+                    except Exception, e:
+                        import pdb;pdb.set_trace()
+
+    def get_clothes(self, id):
+        try:
+            return self.clothes.get(id)
+        except Exception, e:
+            return self.clothes.get('OTHER')
 
     def format_date_photo(self, cd_desc):
         dates = cd_desc.split('/')
-        return "%s-%s-01" % (dates[0], dates[1])
+        return "%s-%s-01" % (dates[1],dates[0])
 
     def insert_entry_brand_commercial(self):
         try:
@@ -542,7 +547,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     client.type_client.add(type)
                 print('add client: ' + client.name)
             except Exception,e :
-                import pdb;pdb.set_trace()
+                self.log.debug('Cliente:'+new_client.get('ruc'))
         return clients
 
     def setTypeClients(self):
@@ -630,7 +635,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         extras = projects.get('extras')
         representations = projects.get('representation')
         photos = projects.get('photo')
-
         self.insert_representation(representations)
         self.insert_photo_casting(photos)
         self.insert_extras(extras)
@@ -661,7 +665,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_currency(photo.get('soles'))
-                project.budget = photo.get('presupuesto')
+                project.budget = str(photo.get('presupuesto'))
                 project.budget_cost = 0
                 project.observations = photo.get('observaciones')
                 if photo.get('last_version') == '0':
@@ -703,7 +707,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     self.insert_employee_detail(project, photo.get('empleados'))
                     print('add photo casting: ' + photo.get('cod_ordcsfot'))
                 else:
-                    import pdb;pdb.set_trace()
+                    self.log.debug("Photo casting: "+photo.get('cod_ordcsfot'))
 
     def insert_detail_model_photo(self, photo_project, models):
         for model in models:
@@ -715,7 +719,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 photo_Casting_detail_model.feature = model.get('caracteristicas')
                 photo_Casting_detail_model.character = self.character_photo.get(model.get('personaje'))
                 photo_Casting_detail_model.currency = self.get_currency(model.get('moneda'))
-                photo_Casting_detail_model.budget_cost = model.get('presupuesto')
+                photo_Casting_detail_model.budget_cost = str(model.get('presupuesto'))
                 photo_Casting_detail_model.observations = model.get('observaciones')
                 photo_Casting_detail_model.save()
             except Exception, e:
@@ -783,8 +787,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_extra_currency(representation.get('modelos'))
-                project.budget = representation.get('presupuesto')
-                project.budget_cost = self.get_repre_budget_cost(representation.get('modelos'))
+                project.budget = str(representation.get('presupuesto'))
+                project.budget_cost = str(self.get_repre_budget_cost(representation.get('modelos')))
                 project.observations = representation.get('obs')
                 if representation.get('last_version') == '0':
                     project.status = self.get_status_project(representation.get('estado'))
@@ -878,9 +882,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 representation_detail_model.representation = representation
                 representation_detail_model.character = detail.get('personaje')
                 representation_detail_model.profile = detail.get('caracteristicas')
-                representation_detail_model.budget = detail.get('presupuesto')
+                representation_detail_model.budget = str(detail.get('presupuesto'))
                 representation_detail_model.currency = self.get_currency(detail.get('moneda'))
-                representation_detail_model.budget_cost = detail.get('pago')
+                representation_detail_model.budget_cost = str(detail.get('pago'))
                 representation_detail_model.save()
             except Exception, e:
                 import pdb;pdb.set_trace()
@@ -909,8 +913,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_currency(casting.get('moneda'))
-                project.budget = casting.get('presupuesto')
-                project.budget_cost = casting.get('precasting')
+                project.budget = str(casting.get('presupuesto'))
+                project.budget_cost = str(casting.get('precasting'))
                 project.observations = casting.get('observaciones')
                 if casting.get('last_version') == '0':
                     project.status = self.get_status_project(casting.get('estado'))
@@ -981,8 +985,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_extra_currency(extra.get('modelos'))
-                project.budget = extra.get('presupuesto')
-                project.budget_cost = self.get_extra_budget_cost(extra.get('modelos'))
+                project.budget = str(extra.get('presupuesto'))
+                project.budget_cost = str(self.get_extra_budget_cost(extra.get('modelos')))
                 project.observations = extra.get('observaciones')
                 project.status = self.get_status_project(extra.get('estado'))
                 if extra.get('last_version') == '0':
@@ -1048,8 +1052,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             extra_detail_model.feature = model.get('caracteristicas')
             extra_detail_model.character = self.extra_character.get(str(model.get('personaje')))
             extra_detail_model.currency = self.get_currency(model.get('moneda'))
-            extra_detail_model.budget = model.get('presupuesto')
-            extra_detail_model.budget_cost = model.get('pago_real')
+            extra_detail_model.budget = str(model.get('presupuesto'))
+            extra_detail_model.budget_cost = str(model.get('pago_real'))
             extra_detail_model.schedule = model.get('observaciones')
             extra_detail_model.save()
 
@@ -1327,7 +1331,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos where mod_cod >= '020000' and mod_cod <= '020050' order by mod_cod"
+                  "from modelos where mod_cod <= '011962' order by mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar

@@ -5,7 +5,7 @@ from os.path import join, dirname, realpath
 PROJECT_ROOT = realpath(join(dirname(__file__), '../..'))
 ROOT_PATH = realpath(join(dirname(__file__), '..'))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
