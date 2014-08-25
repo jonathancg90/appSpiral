@@ -23,8 +23,12 @@ from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel, Cas
 from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticipate
 from apps.sp.models.PhotoCasting import PhotoCasting, TypePhotoCasting, PhotoCastingDetailParticipate
 from apps.sp.models.Representation import Representation, RepresentationDetailModel, TypeEvent
+from apps.sp.models.PictureDetail import PictureDetailFeature, MediaFeature, MediaFeatureValue
 
 __all__ = [
+    'PictureDetailFeature',
+    'MediaFeature',
+    'MediaFeatureValue',
     'CastingDetailParticipate',
     'Broadcast',
     'PhotoCastingDetailParticipate',

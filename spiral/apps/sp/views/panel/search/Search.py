@@ -24,6 +24,7 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
 
     def set_attributes(self):
         self._type = self.request.POST.get('type')
+        self._paginate = self.request.POST.get('paginate')
         self._text = self.request.POST.get('text', None)
         self._mode = self.request.POST.get('mode')
         self._features = self.request.POST.get('features', None)
@@ -49,9 +50,7 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
             data.update({'features': self._features})
             data.update({'advance': self._advance})
         else:
-            # if "DNI" in self._text:
-            #     data.update({'dni': self._text})
-            # else:
+            search.set_paginate(self._paginate)
             data.update({'text': self._text})
         search.set_params(data)
         result = search.run()

@@ -46,6 +46,9 @@
             border-radius: 4px;
             color: #fff;
         }
+        .content-search{
+            text-align: center;
+        }
     </style>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/ng-tags-input.css">
 {% endblock %}
@@ -100,7 +103,7 @@
             </h1>
         </div><!--/.page-header-->
 
-    <div class="row-fluid">
+    <div class="row-fluid content-search">
 
         <div class="span12">
                 <!--PAGE CONTENT BEGINS-->
@@ -132,7 +135,7 @@
                                         <i class="icon-paper-clip"></i>
                                     </a>
 
-                                    <a href="{[{ urlCrud }]}?pk={[{ model.id }]}">
+                                    <a href="{[{ urlCrud }]}?pk={[{ model.model_code }]}">
                                         <i class="icon-pencil"></i>
                                     </a>
 
@@ -290,8 +293,10 @@
                 </div>
             </div>
         </div>
-
+        <button class="btn btn-success" ng-if="paginate > 0" ng-click="searchModelPaginate(model)" id="bootbox-options">Mas Resultados</button>
     </div>
+
+
 </div>
 
 {% endblock %}

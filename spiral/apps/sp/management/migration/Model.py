@@ -7,7 +7,6 @@ import urllib2
 import logging
 
 from django.conf import settings
-from PIL import Image
 from django.utils.encoding import smart_str
 from django.views.generic import View
 from django.db import connections
@@ -25,14 +24,17 @@ from apps.sp.models.Currency import Currency
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Client import Client, TypeClient
-from apps.sp.models.Project import Project, ProjectDetailDeliveries, ProjectClientDetail
+from apps.sp.models.Project import Project, ProjectDetailDeliveries, ProjectClientDetail, ProjectDetailStaff
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.models.Casting import TypeCasting
 from apps.sp.models.Payment import Payment
+from apps.sp.models.PictureDetail import MediaFeatureValue, PictureDetailFeature
+from apps.sp.models.ModelHasCommercial import ModelHasCommercial
 from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticipate
 from apps.sp.models.Casting import Casting, CastingDetailModel, CastingDetailParticipate
 from apps.sp.models.PhotoCasting import PhotoCasting, PhotoCastingDetailModel, \
     PhotoCastingDetailParticipate, TypePhotoCasting
+from apps.sp.models.Project import DutyDetail
 from apps.sp.models.Representation import Representation, RepresentationDetailModel, TypeEvent
 
 
@@ -47,6 +49,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.log = logging.getLogger('migration')
         self.url_media = '%s/%s/%s/%s' %(url_base, 'static', 'media', '000000')
         self.relation_commercial_project = []
+        self.project_codes = {}
 
         self.setTypeDoc()
         self.setConditions()
@@ -62,7 +65,16 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setClientExtraAbroad()
         self.setCharacterPhoto()
         self.setCharacterCasting()
-        self.setDNI()
+        self.setClothes()
+        self.setEmployees()
+
+    def setClothes(self):
+        self.clothes = {
+            'SPORT': MediaFeatureValue.objects.get(name='Sport'),
+            'VESTIR': MediaFeatureValue.objects.get(name='Vestir'),
+            'BA\xd1O': MediaFeatureValue.objects.get(name='Baño'),
+            'CARACTERIZADO': MediaFeatureValue.objects.get(name='Caracterizado')
+        }
 
     def json_reader(self, json_file):
         ROOT_PATH = settings.ROOT_PATH
@@ -78,6 +90,87 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                              "CL269", "CL270", "CL271", "CL284",
                              "CL286"]
 
+    def setEmployees(self):
+
+        self.employees_casting = {
+            'EM001': '', #ignorar
+            'EM002': '75',
+            'EM003': '35',
+            'EM004': '78',
+            'EM005': '27',
+            'EM006': '', #Ignorar
+            'EM007': '14',
+            'EM008': '79',
+            'EM009': '80',
+            'EM010': '29',
+            'EM011': '',
+            'EM012': '',
+            'EM013': '',
+            'EM014': '',
+            'EM015': '',
+            'EM016': '',
+            'EM017': '',
+            'EM018': '',
+            'EM019': '',
+            'EM020': '',
+            'EM021': '',
+            'EM022': '',
+            'EM023': '',
+            'EM024': '',
+            'EM025': '',
+            'EM026': '',
+            'EM027': '',
+            'EM028': '',
+            'EM029': '',
+            'EM030': '',
+            'EM031': '',
+            'EM032': '',
+            'EM033': '',
+            'EM034': '',
+            'EM035': '',
+            'EM036': '',
+            'EM037': '',
+            'EM038': '',
+            'EM039': '',
+            'EM040': '',
+            'EM041': '',
+            'EM042': '',
+            'EM043': '',
+            'EM044': '',
+            'EM045': '',
+            'EM046': '',
+            'EM047': '',
+            'EM048': '',
+            'EM049': '',
+            'EM050': '',
+            'EM051': '',
+            'EM052': '',
+            'EM053': '',
+            'EM054': '',
+            'EM055': '',
+            'EM056': '',
+            'EM057': '',
+            'EM058': '',
+            'EM059': '',
+            'EM060': '',
+            'EM061': '',
+            'EM062': '',
+            'EMP01':'',
+            'EMP02':'',
+            'EMP03':'',
+            'EMP04':'',
+            'EMP05':'',
+            'EMP06':'',
+            'EMP07':'',
+            'EMP08':'',
+            'EMP09':'',
+            'EMP10':'',
+            'EMP11':'',
+            'EMP12':'',
+            'EMP13':'',
+            'EMP14':''
+        }
+
     def setCharacterCasting(self):
         self.character_casting = {
             '1': CastingDetailModel.CHARACTER_PRINCIPAL,
@@ -90,12 +183,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.character_photo = {
             '1':  PhotoCastingDetailModel.CHARACTER_PRINCIPAL,
             '2':  PhotoCastingDetailModel.CHARACTER_SECONDARY
-        }
-
-    def setDNI(self):
-        self.dni_model = {
-            '': Model.GENDER_FEM,
-            '': Model.GENDER_MASC,
         }
 
     def setClientExtraAbroad(self):
@@ -155,20 +242,40 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def start_migration(self):
         self.delete()
         self.set_attributes()
-
-
         self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
         data_model = self.get_list_model()
         data_model = self.get_detail_feature(data_model)
         self.insert_model(data_model)
+        self.data_client = self.insert_data_client()
+        #Insert Data
+        self.insert_entry_brand_commercial()
+        self.insert_project()
+        # self.insert_history_commercial()
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
 
-        # self.data_client = self.insert_data_client()
-
-        #Insert Data
-        # self.insert_entry_brand_commercial()
-        # data_projects = self.insert_project()
-        # data_commercial = self.get_data_commercial()
+    def insert_history_commercial(self):
+        query = "select m.model_code, p.project_code from sp_modelhascommercial h " \
+                "inner join sp_model m " \
+                "on m.id = h.model_id " \
+                "inner join sp_commercial c " \
+                "on c.id = h.commercial_id " \
+                "inner join sp_project p " \
+                "on c.project_id - p.id"
+        model_cursor = connections['commercial'].cursor()
+        model_cursor.execute(query)
+        for row in model_cursor.fetchall():
+            try:
+                import pdb;pdb.set_trace()
+                code = int(row[0])
+                model = Model.objects.get(model_code=code)
+                project = self.project_codes.get(row[1])
+                model_has_commercial = ModelHasCommercial()
+                model_has_commercial.model = model
+                model_has_commercial.commercial = project.commercial
+                model_has_commercial.save()
+                print('save relation: ' + row[0] + ' | ' + row[1])
+            except Exception, e:
+                self.log.debug('relacion commercial: '+ row[0] + ' | ' + row[1])
 
     def insert_model(self, data_model):
 
@@ -227,10 +334,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                         file.update({'thumbnailUrl': thumbnails.get('file')})
                     self.save_main_image(model, picture)
                 else:
-                    import pdb;pdb.set_trace()
                     self.log.debug('Foto no registrada'+ ' | '+ photo)
             except Exception, e:
-                import pdb;pdb.set_trace()
+                self.log.debug('Ocurrio un error en el ingreso de la foto'+ ' | '+ photo)
 
     def save_main_image(self, model, picture):
         main_image = None
@@ -248,6 +354,35 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
         model.main_image = main_image
         model.save()
+        self.save_features_photo(picture, model)
+
+    def save_features_photo(self, picture, model):
+        slug = picture.slug
+        model_code = model.model_code
+        sql = "select cri_cod, cri_item from mod_media_cri where mod_cod='"+model_code+"' and id_ruta='"+slug+"' and (cri_cod='004' or cri_cod='006')"
+        model_cursor = connections['model'].cursor()
+        model_cursor.execute(sql)
+        for row in model_cursor.fetchall():
+            sql_detail = "select cd_desc from criterios_detalles where cri_cod='"+str(row[0])+"' and cri_item='"+str(row[1])+"'"
+            detail_cursor = connections['model'].cursor()
+            detail_cursor.execute(sql_detail)
+            if row[0] == '004':
+                for detail in detail_cursor.fetchall():
+                    picture.taken_date = self.format_date_photo(detail[0])
+                    picture.save()
+            if row[0] == '006':
+                for detail in detail_cursor.fetchall():
+                    try:
+                        picture_detail_feature = PictureDetailFeature()
+                        picture_detail_feature.picture = picture
+                        picture_detail_feature.feature_value = self.clothes.get(detail[0])
+                        picture_detail_feature.save()
+                    except Exception, e:
+                        import pdb;pdb.set_trace()
+
+    def format_date_photo(self, cd_desc):
+        dates = cd_desc.split('/')
+        return "%s-%s-01" % (dates[1],dates[0])
 
     def insert_entry_brand_commercial(self):
         try:
@@ -401,7 +536,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     client.type_client.add(type)
                 print('add client: ' + client.name)
             except Exception,e :
-                import pdb;pdb.set_trace()
+                self.log.debug('Cliente:'+new_client.get('ruc'))
         return clients
 
     def setTypeClients(self):
@@ -489,7 +624,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         extras = projects.get('extras')
         representations = projects.get('representation')
         photos = projects.get('photo')
-
         self.insert_representation(representations)
         self.insert_photo_casting(photos)
         self.insert_extras(extras)
@@ -520,7 +654,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_currency(photo.get('soles'))
-                project.budget = photo.get('presupuesto')
+                project.budget = str(photo.get('presupuesto'))
                 project.budget_cost = 0
                 project.observations = photo.get('observaciones')
                 if photo.get('last_version') == '0':
@@ -541,6 +675,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     project_detail_delivery.save()
 
                 if project.get_code() == photo.get('cod_ordcsfot'):
+                    self.save_duty_detail(project)
+                    self.project_codes.update({
+                        photo.get('cod_ordcsfot'): project
+                    })
                     _photo_casting = PhotoCasting()
                     _photo_casting.project = project
                     _photo_casting.type_casting = self.type_photo_casting.get(str(photo.get('tipo_cast')))
@@ -555,9 +693,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     }
                     self.insert_payment(project, data_payment)
                     self.insert_detail_model_photo(_photo_casting, photo.get('modelos'))
+                    self.insert_employee_detail(project, photo.get('empleados'))
                     print('add photo casting: ' + photo.get('cod_ordcsfot'))
                 else:
-                    import pdb;pdb.set_trace()
+                    self.log.debug("Photo casting: "+photo.get('cod_ordcsfot'))
 
     def insert_detail_model_photo(self, photo_project, models):
         for model in models:
@@ -569,7 +708,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 photo_Casting_detail_model.feature = model.get('caracteristicas')
                 photo_Casting_detail_model.character = self.character_photo.get(model.get('personaje'))
                 photo_Casting_detail_model.currency = self.get_currency(model.get('moneda'))
-                photo_Casting_detail_model.budget_cost = model.get('presupuesto')
+                photo_Casting_detail_model.budget_cost = str(model.get('presupuesto'))
                 photo_Casting_detail_model.observations = model.get('observaciones')
                 photo_Casting_detail_model.save()
             except Exception, e:
@@ -637,8 +776,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_extra_currency(representation.get('modelos'))
-                project.budget = representation.get('presupuesto')
-                project.budget_cost = self.get_repre_budget_cost(representation.get('modelos'))
+                project.budget = str(representation.get('presupuesto'))
+                project.budget_cost = str(self.get_repre_budget_cost(representation.get('modelos')))
                 project.observations = representation.get('obs')
                 if representation.get('last_version') == '0':
                     project.status = self.get_status_project(representation.get('estado'))
@@ -653,6 +792,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.save()
                 project = Project.objects.get(pk=project.id)
                 if project.get_code() == representation.get('cod_ordrep'):
+                    self.save_duty_detail(project)
+                    self.project_codes.update({
+                        representation.get('cod_ordrep'): project
+                    })
                     _representation = Representation()
                     _representation.project = project
                     _representation.ppg = self.format_date(representation.get('ppg'))
@@ -668,9 +811,37 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                         'alternative': 'm'
                     }
                     self.insert_payment(project, data_payment)
+                    self.insert_employee_detail(project, representation.get('empleados'))
                     print('add representation: ' + representation.get('cod_ordrep'))
                 else:
                     import pdb;pdb.set_trace()
+
+    def save_duty_detail(self, project):
+        duty_detail = DutyDetail()
+        duty_detail.project = project
+        duty_detail.save()
+
+    def get_type_employee(self, type):
+        if type == 'P':
+            return ProjectDetailStaff.ROLE_PRODUCER
+        elif type == 'E':
+            return ProjectDetailStaff.ROLE_EDITOR
+        elif type == 'D':
+            return ProjectDetailStaff.ROLE_DIRECTOR
+        else:
+            return ProjectDetailStaff.ROLE_DIRECTOR
+
+
+    def insert_employee_detail(self,project, details):
+        pass
+        # for detail in details:
+        #     project_detail_staff = ProjectDetailStaff()
+        #     project_detail_staff.project = project
+        #     project_detail_staff.role = self.get_type_employee(detail.get('tipo'))
+        #     project_detail_staff.employee = self.employees_casting.get(detail.get('cod_emp'))
+        #     project_detail_staff.budget = detail.get('pago')
+        #     project_detail_staff.percentage = detail.get('porcentaje')
+        #     project_detail_staff.save()
 
     def close_commercial(self, commercial):
         commercial.status = Commercial.STATUS_TERMINATE
@@ -700,9 +871,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 representation_detail_model.representation = representation
                 representation_detail_model.character = detail.get('personaje')
                 representation_detail_model.profile = detail.get('caracteristicas')
-                representation_detail_model.budget = detail.get('presupuesto')
+                representation_detail_model.budget = str(detail.get('presupuesto'))
                 representation_detail_model.currency = self.get_currency(detail.get('moneda'))
-                representation_detail_model.budget_cost = detail.get('pago')
+                representation_detail_model.budget_cost = str(detail.get('pago'))
                 representation_detail_model.save()
             except Exception, e:
                 import pdb;pdb.set_trace()
@@ -731,8 +902,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_currency(casting.get('moneda'))
-                project.budget = casting.get('presupuesto')
-                project.budget_cost = casting.get('precasting')
+                project.budget = str(casting.get('presupuesto'))
+                project.budget_cost = str(casting.get('precasting'))
                 project.observations = casting.get('observaciones')
                 if casting.get('last_version') == '0':
                     project.status = self.get_status_project(casting.get('estado'))
@@ -753,6 +924,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     project_detail_delivery.save()
 
                 if project.get_code() == casting.get('cod_ordcast'):
+                    self.save_duty_detail(project)
+                    self.project_codes.update({
+                        casting.get('cod_ordcast'): project
+                    })
                     _casting = Casting()
                     _casting.project = project
                     _casting.ppg = self.format_date(casting.get('ppg'))
@@ -770,6 +945,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     }
                     self.insert_payment(project, data_payment)
                     self.insert_detail_models(_casting, casting.get('models'))
+                    self.insert_employee_detail(project, casting.get('employees'))
                     print('add casting: ' + casting.get('cod_ordcast'))
                 else:
                     import pdb;pdb.set_trace()
@@ -798,8 +974,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 project.start_productions = self.format_date(start_production)
                 project.end_productions = self.format_date(end_productions)
                 project.currency = self.get_extra_currency(extra.get('modelos'))
-                project.budget = extra.get('presupuesto')
-                project.budget_cost = self.get_extra_budget_cost(extra.get('modelos'))
+                project.budget = str(extra.get('presupuesto'))
+                project.budget_cost = str(self.get_extra_budget_cost(extra.get('modelos')))
                 project.observations = extra.get('observaciones')
                 project.status = self.get_status_project(extra.get('estado'))
                 if extra.get('last_version') == '0':
@@ -819,6 +995,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _extra.save()
 
                 if project.get_code() == extra.get('cod_ordext'):
+                    self.save_duty_detail(project)
+                    self.project_codes.update({
+                        extra.get('cod_ordext'): project
+                    })
                     self.insert_project_client(extra.get('cod_ordext'), project, extra.get('clientes'))
                     data_payment = {
                         'condiciones': [{'name': extra.get('condiciones')}],
@@ -861,8 +1041,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             extra_detail_model.feature = model.get('caracteristicas')
             extra_detail_model.character = self.extra_character.get(str(model.get('personaje')))
             extra_detail_model.currency = self.get_currency(model.get('moneda'))
-            extra_detail_model.budget = model.get('presupuesto')
-            extra_detail_model.budget_cost = model.get('pago_real')
+            extra_detail_model.budget = str(model.get('presupuesto'))
+            extra_detail_model.budget_cost = str(model.get('pago_real'))
             extra_detail_model.schedule = model.get('observaciones')
             extra_detail_model.save()
 
@@ -998,7 +1178,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             model_cursor = connections['model'].cursor()
             model_cursor.execute(query)
             for row in model_cursor.fetchall():
-                query_value = "select cd_desc from criterios_detalles where cri_cod='"+str(row[1])+ "' and cri_item='" + str(row[3]) + "'"
+                query_value = "select cd_desc from criterios_detalles " \
+                              "where cri_cod='"+str(row[1])+ "' and cri_item='" + str(row[3]) + "'"
                 feature_value_cursor = connections['model'].cursor()
                 feature_value_cursor.execute(query_value)
                 for value in feature_value_cursor.fetchall():
@@ -1137,7 +1318,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos where mod_cod >= '023536' order by mod_cod"
+                  "from modelos where mod_cod <= '011962' order by mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
@@ -1165,7 +1346,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     'height': row[10],
                     'weight': row[11],
                     'features': [],
-                    'photos': self.get_photos(row[1])
+                    'photos': self.get_photos(row[1]),
                 }
                 print('add: ' + row[1])
                 data.append(data_models)

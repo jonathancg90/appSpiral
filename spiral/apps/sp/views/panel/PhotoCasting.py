@@ -65,6 +65,7 @@ class PhotoCastingSaveProcess(View):
             type_casting = TypePhotoCasting.objects.get(pk=self.data_line.get('type_casting'))
         photo_casting = self.photo_casting
         photo_casting.project = project
+        photo_casting.realized = self.format_date(self.data_line.get('realized'))
         photo_casting.type_casting = type_casting
         photo_casting.save()
         photo_casting.use_photo.clear()

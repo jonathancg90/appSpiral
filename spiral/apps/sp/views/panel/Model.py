@@ -30,8 +30,11 @@ class ModelControlTemplateView(LoginRequiredMixin, PermissionRequiredMixin,
         context['genders'] = json.dumps(Model.get_genders())
         context['menu'] = 'model'
         context['features'] = json.dumps(Feature.get_data_features())
-        if self.request.GET.get('pk') is not None:
-            context['pk'] = self.request.GET.get('pk')
+        code = self.request.GET.get('pk')
+        if code is not None:
+            id = Model.objects.get(model_code=code).id
+            context['pk'] = code
+            context['id'] = id
         return context
 
 
@@ -62,7 +65,8 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             "age": date.today().year - model.birth.year,
             "birth": model.birth.strftime("%d/%m/%Y"),
             "last_visit": model.last_visit,
-            "phones": '%s | %s ' %(str(model.phone_mobil), str(model.phone_fixed)),
+            "phone_fixed": model.phone_fixed,
+            "phone_mobil": model.phone_mobil,
             "measures": '%s %s | %s %s' %(str(model.weight), 'Kg',  str(model.height), 'mts')
         }
         if model.nationality is None:
@@ -142,7 +146,7 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             model = Model.objects.select_related('country',
                                                  'model_has_commercial_set',
                                                  'model_feature_detail_set'
-            ).get(pk=model_id)
+            ).get(model_code=model_id)
             profile = self.get_model_profile(model)
             features = self.get_model_features(model)
             commercial = self.get_model_commercial(model)
@@ -156,7 +160,7 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 "message": self.MESSAGE_SUCCESSFUL,
                 "status": "success"
             }
-        except Model.DoesNotExist:
+        except Model.DoesNotExist, e:
             data = {
                 "status": "warning",
                 "message": self.MESSAGE_ERR_NOT_FOUND

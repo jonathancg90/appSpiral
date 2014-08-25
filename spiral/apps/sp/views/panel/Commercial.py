@@ -4,7 +4,6 @@ import json
 
 import datetime
 from django.conf import settings
-from django.contrib import messages
 from django.core.cache import cache
 from django.views.generic import View
 from django.core.urlresolvers import reverse
@@ -93,7 +92,6 @@ class CommercialListView(LoginRequiredMixin, PermissionRequiredMixin,
         context = super(CommercialListView, self).get_context_data(**kwargs)
         context['menu'] = 'maintenance'
         return context
-
 
 
 class CommercialCreateView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -268,6 +266,21 @@ class CommercialDataListView(LoginRequiredMixin, PermissionRequiredMixin,
     model = Commercial
 
     def get_queryset(self):
+        options = {
+            'active': True,
+        }
+        if settings.APPLICATION_CACHE:
+            tag = Commercial.get_commercial_tag()
+            if cache.hexists(tag, options):
+                data = json.loads(cache.hget(tag, options))
+            else:
+                data = self.get_list()
+                cache.hset(Commercial.get_commercial_tag(), options, json.dumps(data))
+        else:
+            data = self.get_list()
+        return data
+
+    def get_list(self):
         data = []
         commercials = Commercial.objects.filter(status=Commercial.STATUS_ACTIVE)
         for commercial in commercials:
@@ -313,6 +326,11 @@ class CommercialCreateDataJson(LoginRequiredMixin, PermissionRequiredMixin,
             commercial.name = data.get('name')
             commercial.brand = Brand.objects.get(pk=data.get('brand'))
             commercial.save()
+            if settings.APPLICATION_CACHE:
+                clean_cache = CleanCache()
+                clean_cache.set_cache_result_tag(Commercial.get_commercial_tag())
+                clean_cache.set_model(Commercial)
+                clean_cache.update_cache_by_id([commercial.id], CleanCache.MODE_INSERT)
             return commercial, self.SAVE_SUCCESSFUL
         except Exception, e:
             return None, self.SAVE_ERROR

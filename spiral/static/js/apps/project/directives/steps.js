@@ -19,11 +19,14 @@ projectApp.directive('projectSteps', function(projectService) {
                 if(projectService.step == 1){
                     angular.element('#step1').addClass('active');
                     angular.element('#step2').removeClass ('active');
+                    angular.element('#step3').removeClass ('active');
+                    angular.element('#step4').removeClass ('active');
                 }
                 if(projectService.step == 2){
                     angular.element('#step1').addClass('active');
                     angular.element('#step2').addClass('active');
                     angular.element('#step3').removeClass ('active');
+                    angular.element('#step4').removeClass ('active');
                 }
                 if(projectService.step == 3){
                     angular.element('#step1').addClass('active');
@@ -42,7 +45,7 @@ projectApp.directive('projectSteps', function(projectService) {
     }
 });
 
-projectApp.directive('projectActionSteps', function(projectService) {
+projectApp.directive('projectActionSteps', function(projectService, $rootScope) {
     return {
         restrict: 'E',
         template: "<div class=\"row-fluid wizard-actions\">\n    <button class=\"btn btn-info btn-save\" ng-click=\"save()\">\n        <i class=\"icon-ok bigger-150\"></i>\n        Grabar\n    </button>\n    <button class=\"btn btn-prev\" ng-click=\"prev()\" ng-show=\"step>1\">\n        <i class=\"icon-arrow-left\"></i>\n        Prev\n    </button>\n\n    <button class=\"btn btn-success btn-next\" data-last=\"Finish \" ng-click=\"next()\" ng-show=\"step<4\">\n        Next\n        <i class=\"icon-arrow-right icon-on-right\"></i>\n    </button>\n</div>",
@@ -52,6 +55,8 @@ projectApp.directive('projectActionSteps', function(projectService) {
             scope.statusLine = false;
             scope.step = projectService.step;
             scope.project_code = undefined;
+            scope.permissions = [];
+            scope.position = 0;
 
             scope.$watch('projectService.project_code', function(newValue) {
                 if (newValue) {
@@ -64,10 +69,15 @@ projectApp.directive('projectActionSteps', function(projectService) {
             });
             scope.next = function() {
                 if(projectService.step <4) {
-                    if( scope.statusLine) {
-                        projectService.step += 1;
-                        scope.step = projectService.step;
-                    } else {
+                    if (scope.statusLine) {
+                        if(scope.permissions[scope.position +1] != undefined){
+                            scope.position += 1;
+                            projectService.step = scope.permissions[scope.position];
+                            scope.step = projectService.step;
+                        }
+
+                    }
+                     else {
                         scope.$emit("setMessage", {
                             'type':  'warning',
                             'message': 'Debe escoger un tipo de proyecto antes de continuar'
@@ -82,12 +92,18 @@ projectApp.directive('projectActionSteps', function(projectService) {
             scope.prev = function() {
                 if(projectService.step > 1){
                     if( scope.statusLine) {
-                        projectService.step -= 1;
-                        scope.step = projectService.step;
+                        if(scope.permissions[scope.position -1] != undefined) {
+                            scope.position -= 1;
+                            projectService.step = scope.permissions[scope.position];
+                            scope.step = projectService.step;
+                        }
                     }
                 }
             };
 
+            scope.$on('setPermissions', function(event, args) {
+                scope.permissions = args.permissions;
+            });
             scope.save =  function() {
                 scope.$emit('saveProject', { });
             }

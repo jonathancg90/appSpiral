@@ -28,7 +28,8 @@ class Search(object):
     def __init__(self):
         self._type_search = self.TYPE_BASIC
         self._params = {}
-        self._limit = 20
+        self._limit = 30
+        self.paginate = 0
         self._mode = self.MODE_INSENSITIVE
         self._debug = False
         self._message = {}
@@ -43,6 +44,9 @@ class Search(object):
             'photos': [],
             'video': []
         }
+
+    def set_paginate(self, paginate):
+        self.paginate = int(paginate) * self._limit
 
     def set_tables_names(self):
         self._table_model = getattr(Model, '_meta').db_table
@@ -243,12 +247,16 @@ class Search(object):
 
         return items, desc
 
+    def limit(self):
+        self._sql = self._sql + 'LIMIT %i OFFSET %i' %(self._limit, self.paginate)
+
     def basic_search(self):
         models = []
         try:
             if 'text' in self._params:
                 self.add_filters()
                 self.order_by()
+                self.limit()
                 items, desc = self._get_cursor_result()
                 for row in items:
                     row = dict(zip([col[0] for col in desc], row))

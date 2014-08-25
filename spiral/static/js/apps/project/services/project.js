@@ -27,6 +27,7 @@ projectApp.service('projectService', function() {
         self.project_code = result.codeUpdate;
         self.typeCasting = result.typeCasting;
         self.ppi = result.ppi;
+        self.realized = result.realized;
         self.ppg = result.ppg;
         self.duty = result.duty;
         self.budget = result.budget;
@@ -61,6 +62,7 @@ projectApp.service('projectService', function() {
         self.project_code = undefined;
         self.typeCasting = {};
         self.ppi = undefined;
+        self.realized = undefined;
         self.ppg = undefined;
         self.budget = undefined;
         self.internalBudget = undefined;

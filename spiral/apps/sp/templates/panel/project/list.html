@@ -53,18 +53,22 @@
                 <tr>
                     <td>{{ project.get_code }}</td>
                     <td>{{ project.commercial.name }}</td>
-                    <td>{{ project.start_productions }}</td>
-                    <td>{{ project.end_productions }}</td>
+                    <td>{{ project.start_productions|date:"d/m/Y" }}</td>
+                    <td>{{ project.end_productions|date:"d/m/Y" }}</td>
                     <td>{{ project.get_status_display }}</td>
                     <td>
                         {% if project.status != terminate %}
-                            <a href="{% url "project_crud" project.pk %}">{% trans 'Actualizar' %}</a> |
-                            <a href="{% url "project_change_finish" project.pk %}">{% trans 'Finalizar' %}</a> |
+                            <a href="{% url "project_change_finish" project.pk %}" class="label label-success">{% trans 'Finalizar' %}</a> |
+                            <a href="{% url "project_crud" project.pk %}" class="btn btn-mini btn-info">
+                                <i class="icon-edit bigger-120"></i>
+                            </a> |
                         {% endif %}
                         {% if project.status == terminate %}
-                            <a href="{% url "project_change_start" project.pk %}">{% trans 'Re abrir' %}</a> |
+                            <a href="{% url "project_change_start" project.pk %}" class="label label-info">{% trans 'Re abrir' %}</a> |
                         {% endif %}
-                        <a href="{% url "project_delete" project.pk %}">{% trans 'Eliminar' %}</a>
+                        <a href="{% url "project_delete" project.pk %}" class="btn btn-mini btn-danger">
+                            <i class="icon-trash bigger-120"></i>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

@@ -17,13 +17,19 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     $scope.optionalInput = false;
     $scope.created = false;
 
-    $scope.$watch('pk', function(newValue) {
-        if (newValue) {
-            $scope.model.profile = {};
-            $scope.model.profile['code']  = newValue;
-            $scope.getModel();
+    $scope.$watch('pk', function(newValue, oldValue){
+        if(newValue){
+            if(modelData.pk != "" && modelData.pk != undefined){
+                $scope.model.profile = {};
+                $scope.model.profile['code']  = modelData.pk;
+                $scope.getModel();
+            }
         }
     });
+
+    $scope.prueba = function(){
+        alert('hola');
+    };
 
     $scope.changeModel = function(){
         $scope.model = {};
@@ -40,7 +46,11 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     };
 
     $scope.saveProfile = function(){
-        if(required()){
+        var data_validate = required();
+        if(data_validate.required){
+            if($scope.model.profile.dir_country.cities.length == 0)
+                $scope.model.profile.city = {city_id: undefined};
+
             ModelFactory.setProfile($scope.model.profile);
             if($scope.pk == undefined || $scope.pk == ""){
                 url = urlSave;
@@ -51,6 +61,7 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
             var response = ModelFactory.saveProfileData(url);
             response.then(function(data){
                 if(data.status == 'success'){
+
                     $scope.model.profile.code= data.code;
                     var url = urlCommercial.replace(':key', data.id);
                     $('#commercial').html('');
@@ -61,7 +72,7 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
             })
         } else {
             $scope.flashType = 'warning';
-            $scope.flashMessage = 'falta llenar campos';
+            $scope.flashMessage = 'falta llenar campos: ' + data_validate.msgValidate;
         }
     };
 
@@ -69,7 +80,7 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         $scope.model.profile.id = $scope.model.profile.code;
         ModelFactory.searchModel(urlSearch.replace(':pk', $scope.model.profile.id)).then(function(model) {
             if(model.status == 'success'){
-                $scope.pk = model.profile.id;
+                $scope.pk = $scope.model.profile.code;
                 $scope.created = true;
                 $scope.$emit("Remove_Message");
                 $scope.model.profile = model.profile;
@@ -81,6 +92,7 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
                 //updateFeature(model.features);
                 $('#modelActive').html(model.profile.name_complete);
                 var url = urlCommercial.replace(':key', $scope.model.profile.id);
+                debugger
                 $('#commercial').html('');
                 $('#commercial').html('<iframe src="'+url+'" scrolling="yes" height="100%" width="100% frameborder=0"></iframe>'
                 );
@@ -103,13 +115,57 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     });
 
     function required(){
-        if( $scope.model.profile.name_complete != undefined &&
-            $scope.model.profile.email != undefined &&
-            $scope.model.profile.num_doc != undefined &&
-            $scope.model.profile.nationality != undefined){
-            return true
+        var data = {};
+        if($scope.model.profile == undefined){
+            data = {
+                msgValidate:'Todos',
+                required: false
+            };
+            return data;
         }
-        return false
+        if( $scope.model.profile.name_complete == undefined){
+            data = {
+                msgValidate:'Nombre del modelo',
+                required: false
+            };
+            return data;
+        }
+        if( $scope.model.profile.phone_mobil == undefined){
+            data = {
+                msgValidate:'Telefono',
+                required: false
+            };
+            return data;
+        }
+        if( $scope.model.profile.birth == undefined){
+            data = {
+                msgValidate:'Fecha de Nacimiento',
+                required: false
+            };
+            return data;
+        }
+        if($scope.model.profile.email == undefined){
+            data = {
+                msgValidate:'Email',
+                required: false
+            };
+            return data;
+        }
+        if($scope.model.profile.num_doc == undefined){
+            data = {
+                msgValidate:'Documento de identidad',
+                required: false
+            };
+            return data;
+        }
+        if($scope.model.profile.nationality == undefined){
+            data = {
+                msgValidate:'Nacionalidad',
+                required: false
+            };
+            return data;
+        }
+        return { required: true};
     }
 
     function updateChoicesProfile(){
