@@ -3,41 +3,23 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$/apps/fileupload" />
-        <option name="settingsModule" value="" />
-        <option name="manageScript" value="" />
+        <option name="rootFolder" value="$MODULE_DIR$" />
+        <option name="settingsModule" value="settings.py" />
+        <option name="manageScript" value="manage.py" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 2.7.5 virtualenv at ~/virtualenv/proyspiral" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/apps/sp/templates" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/brand" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/entry" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/model" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/model/section_create" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/model/section_create/fileupload" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/search" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/search/model" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/country" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/project" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/contract" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/commercial" />
-        <option value="$MODULE_DIR$/apps/sp/templates/panel/model_has_commercial" />
-        <option value="$MODULE_DIR$/apps/sp/templates/website" />
-        <option value="$MODULE_DIR$/apps/sp/templates/templatetags" />
-        <option value="$MODULE_DIR$/apps/fileupload/templates" />
-        <option value="$MODULE_DIR$/apps/fileupload/templates/include" />
-        <option value="$MODULE_DIR$/apps/fileupload/templates/fileupload" />
+        <option value="$APPLICATION_HOME_DIR$/bin" />
       </list>
     </option>
   </component>
