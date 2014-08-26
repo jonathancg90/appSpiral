@@ -301,14 +301,19 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.save()
                 self.insert_photos(_model, model.get('photos'))
                 self.insert_feature_value(_model, model.get('features'))
-                self.update_last_visit()
+                self.update_last_visit(_model)
 
                 print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
             except Exception,e:
                 self.log.debug(e.message + ' | ' + model.get('model_code'))
 
-    def update_last_visit(self):
-        pass
+    def update_last_visit(self, model):
+        picture = Picture.objects.filter(
+            content_type=ContentType.objects.get_for_model(model),
+            object_id=model.id
+        ).order_by('-taken_date')
+        if len(picture) > 0:
+            model.last_visit = picture[0].taken_date
 
     def insert_feature_value(self, model, features):
         for feature in features:
@@ -386,7 +391,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
     def get_clothes(self, id):
         try:
-            return self.clothes.get(id)
+            clothes = self.clothes.get(id)
+            return clothes
         except Exception, e:
             return self.clothes.get('OTHER')
 
@@ -1330,7 +1336,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos where mod_cod <= '011962' order by mod_cod"
+                  "from modelos where mod_cod >= '020000' and mod_cod <= '020050' order by mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar

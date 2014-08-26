@@ -159,22 +159,27 @@ controllers.searchController = function($scope, ModelFactory,
     };
 
     $scope.getDetail = function(model_id){
+        debugger
         var response = detailService.getDetail(detail, model_id);
         $scope.detailLoader = true;
         response.then(function(data){
-            $scope.detailLoader = false;
-            $scope.detail =  data;
-            debugger
-            $scope.detail.profile.facebook = '#';
-            $scope.detail.profile.occupation = 'Sin ocupacion';
-            angular.forEach($scope.detail.features, function(feature, fkey) {
-                if(feature.feature.indexOf("Ocupacion") > -1){
-                    $scope.detail.profile.occupation = feature.value
-                }
-                if(feature.value.indexOf("Facebook") > -1){
-                    $scope.detail.profile.facebook = feature.description
-                }
-            });
+            if(data.status != "warning"){
+                $scope.detailLoader = false;
+                $scope.detail =  data;
+                $scope.detail.profile.facebook = '#';
+                $scope.detail.profile.occupation = 'Sin ocupacion';
+                angular.forEach($scope.detail.features, function(feature, fkey) {
+                    if(feature.feature.indexOf("Ocupacion") > -1){
+                        $scope.detail.profile.occupation = feature.value
+                    }
+                    if(feature.value.indexOf("Facebook") > -1){
+                        $scope.detail.profile.facebook = feature.description
+                    }
+                });
+            } else {
+                $scope.flashType = data.status;
+                $scope.flashMessage = data.message;
+            }
         });
     };
 
