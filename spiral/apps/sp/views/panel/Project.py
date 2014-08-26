@@ -208,7 +208,8 @@ class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         user = self.request.user
         data_permission = []
         if user.is_superuser:
-            return data_permission.append(1,2,3,4)
+            data_permission.extend([1,2,3,4])
+            return data_permission
         permissions = user.user_permissions.all()
         for permission in permissions:
             name = '%s.%s' %(permission.content_type.app_label, permission.codename)
