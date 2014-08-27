@@ -149,6 +149,9 @@ class Model(models.Model):
         blank=True,
     )
 
+    cant_casting = models.SmallIntegerField(default=0)
+    cant_extra = models.SmallIntegerField(default=0)
+
     terms = models.BooleanField(
         verbose_name=_(u'Terminos y condiciones'),
         default=False,

@@ -20,6 +20,7 @@ from apps.sp.models.Model import Model, ModelFeatureDetail
 from apps.sp.models.Entry import Entry
 from apps.sp.models.Country import Country
 from apps.sp.models.Currency import Currency
+from apps.fileupload.models import Picture
 from apps.sp.models.Brand import Brand
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Client import Client, TypeClient
@@ -234,7 +235,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
     def delete(self):
         Client.objects.all().delete()
+        Picture.objects.all().delete()
         Entry.objects.all().delete()
+        # ModelHasCommercial.objects.all().delete()
         Model.objects.all().delete()
         Project.objects.all().delete()
 
@@ -249,32 +252,45 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         #Insert Data
         self.insert_entry_brand_commercial()
         self.insert_project()
-        # self.insert_history_commercial()
+        self.insert_history_commercial()
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
 
     def insert_history_commercial(self):
-        query = "select m.model_code, p.project_code from sp_modelhascommercial h " \
-                "inner join sp_model m " \
-                "on m.id = h.model_id " \
-                "inner join sp_commercial c " \
-                "on c.id = h.commercial_id " \
-                "inner join sp_project p " \
-                "on c.project_id - p.id"
-        model_cursor = connections['commercial'].cursor()
-        model_cursor.execute(query)
-        for row in model_cursor.fetchall():
-            try:
-                import pdb;pdb.set_trace()
-                code = int(row[0])
-                model = Model.objects.get(model_code=code)
-                project = self.project_codes.get(row[1])
-                model_has_commercial = ModelHasCommercial()
-                model_has_commercial.model = model
-                model_has_commercial.commercial = project.commercial
-                model_has_commercial.save()
-                print('save relation: ' + row[0] + ' | ' + row[1])
-            except Exception, e:
-                self.log.debug('relacion commercial: '+ row[0] + ' | ' + row[1])
+        models = Model.objects.all()
+        for model in models:
+            code = str(model.model_code)
+            ceros = "000000"
+            new = ceros[0:6-len(code)] + code
+
+            query = "select p.project_code from sp_modelhascommercial h " \
+                    "inner join sp_model m " \
+                    "on m.id = h.model_id " \
+                    "inner join sp_commercial c " \
+                    "on c.id = h.commercial_id " \
+                    "inner join sp_project p " \
+                    "on c.project_id = p.id where m.model_code='"+str(new)+"'"
+            model_cursor = connections['commercial'].cursor()
+            model_cursor.execute(query)
+            for row in model_cursor.fetchall():
+                try:
+                    project = row[0]
+                    if project != '' and project is not None:
+                        project = self.project_codes.get(row[0])
+                        if project is not None:
+                            model_has_commercial = ModelHasCommercial()
+                            model_has_commercial.model = model
+                            model_has_commercial.commercial = project.commercial
+                            model_has_commercial.save()
+                            if project.line_productions == Project.LINE_EXTRA:
+                                model.cant_extra += 1
+                                model.save()
+                            else:
+                                model.cant_casting += 1
+                                model.save()
+
+                            print('save relation: ' + str(model.model_code) + ' | ' + row[0])
+                except Exception, e:
+                    self.log.debug('relacion commercial: '+ row[0] + ' | ' + str(model.model_code))
 
     def insert_model(self, data_model):
 
@@ -293,8 +309,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.address = model.get('address')
                 _model.email = model.get('email')
                 _model.nationality = model.get('nationality')
-                _model.phone_fixed = model.get('phone_fixed', '').replace('NINGUNA','').replace('NA','')
-                _model.phone_mobil = model.get('phone_mobil', '').replace('NINGUNA','').replace('NA','')
+                _model.phone_fixed = model.get('phone_fixed', '').replace('NINGUNA','').replace('NA','').replace('NE',' ').replace('MO',' ').replace('MR',' ').replace('CL',' ')
+                _model.phone_mobil = model.get('phone_mobil', '').replace('NINGUNA','').replace('NA','').replace('NE',' ').replace('MO',' ').replace('MR',' ').replace('CL',' ')
                 _model.height = model.get('height')
                 _model.weight = model.get('weight')
                 _model.terms = model.get('terms', False)
@@ -314,6 +330,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         ).order_by('-taken_date')
         if len(picture) > 0:
             model.last_visit = picture[0].taken_date
+            model.save()
 
     def insert_feature_value(self, model, features):
         for feature in features:

@@ -108,3 +108,29 @@ class ContractTypeDataList(LoginRequiredMixin, PermissionRequiredMixin,
         context = {}
         context['type_contracts'] = self.get_types()
         return self.render_to_response(context)
+
+
+class SaveContractTypeJsonView(LoginRequiredMixin, PermissionRequiredMixin,
+                           JSONResponseMixin, View):
+
+    model = TypeContract
+    MSG_SAVE = 'Tipo de contrato registrado'
+    MSG_ERROR = 'No se pudo registrar el tipo de contrato'
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        try:
+            type_contract = TypeContract()
+            type_contract.name = ''
+            type_contract.save()
+            context['status'] = 'success'
+            context['status'] = self.MSG_SAVE
+            context['type'] = {
+                'name': type_contract.name,
+                'id': type_contract.id
+            }
+        except:
+            context['status'] = 'warning'
+            context['status'] = self.MSG_ERROR
+            return
+        return self.render_to_response(context)

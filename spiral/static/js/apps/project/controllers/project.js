@@ -6,6 +6,7 @@ controllers.projectController = function($scope,
                                          entryFactory,
                                          brandFactory,
                                          projectFactory,
+                                         typeContractFactory,
                                          projectService,
                                          factoryUrl,
                                          contextData,
@@ -127,6 +128,7 @@ controllers.projectController = function($scope,
         urlDataUpdateProject = factoryUrl.urlDataUpdateProject,
         urlTypeContract = factoryUrl.urlTypeContract,
         urlBroadcastList = factoryUrl.urlBroadcastList,
+        urlSaveTypeContract = factoryUrl.urlSaveTypeContract,
         urlProjectSave = factoryUrl.projectSaveUrl;
 
     //-----------------------------------------------
@@ -504,6 +506,31 @@ controllers.projectController = function($scope,
                 $('#modalCommercial').modal('hide');
                 $scope.newCommercial = {};
                 $scope.commercials.push(data.result)
+            } else {
+                $scope.flashMessage = data.message;
+                $scope.flashType = data.status;
+            }
+        });
+    };
+
+
+    $scope.saveTypeContract = function(type_contract){
+        if(type_contract == undefined){
+            $scope.flashMessage = 'Ingrese los datos del tipo de contrato';
+            $scope.flashType = 'warning';
+            return;
+        }
+        var data = {
+            'name': type_contract.name
+        };
+        var rpSaveTypeContract = typeContractFactory.save(urlSaveTypeContract, data);
+
+        rpSaveTypeContract.then(function (data) {
+            if (data.status == 'success') {
+                $scope.flashMessage = data.message;
+                $scope.flashType = data.status;
+                $('#modalContract').modal('hide');
+                $scope.type_contract.push(data.result.type);
             } else {
                 $scope.flashMessage = data.message;
                 $scope.flashType = data.status;

@@ -3,7 +3,7 @@
 from django.conf.urls import url, patterns
 from apps.sp.views.panel.Contract import ContractCreateView,\
     ContractDeleteView, ContractListView, ContractUpdateView,\
-    ContractTypeDataList
+    ContractTypeDataList, SaveContractTypeJsonView
 
 
 urlpatterns = patterns('',
@@ -24,4 +24,7 @@ urlpatterns = patterns('',
     url(r'^type-contract/$',
         ContractTypeDataList.as_view(),
         name='type_contract_json'),
+    url(r'^save-type-contract/$',
+        SaveContractTypeJsonView.as_view(),
+        name='save_type_contract_json'),
     )

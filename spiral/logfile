@@ -1,6 +1,6 @@
-[26/Aug/2014 12:29:07] DEBUG [migration:244] comenzo: 26/08/2014 12:29
-[26/Aug/2014 12:30:29] DEBUG [migration:244] comenzo: 26/08/2014 12:30
-[26/Aug/2014 12:30:31] DEBUG [migration:1179] feature_value multiple o nulo: [] | TALLA - PANTALON - 0 | Talla de pantalon - 0
-[26/Aug/2014 12:30:31] DEBUG [migration:1179] feature_value multiple o nulo: [] | TALLA - CAMISA - 0 | Talla de ropa - 0
-[26/Aug/2014 12:31:05] DEBUG [migration:308]  | 020006
-[26/Aug/2014 12:35:42] DEBUG [migration:253] termino: 26/08/2014 12:35
+[26/Aug/2014 15:39:55] DEBUG [migration:245] comenzo: 26/08/2014 15:39
+[26/Aug/2014 15:42:29] DEBUG [migration:245] comenzo: 26/08/2014 15:42
+[26/Aug/2014 15:45:02] DEBUG [migration:247] comenzo: 26/08/2014 15:45
+[26/Aug/2014 15:45:44] DEBUG [migration:247] comenzo: 26/08/2014 15:45
+[26/Aug/2014 15:46:09] DEBUG [migration:247] comenzo: 26/08/2014 15:46
+[26/Aug/2014 15:51:21] DEBUG [migration:256] termino: 26/08/2014 15:51

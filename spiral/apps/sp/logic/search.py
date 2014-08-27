@@ -220,7 +220,7 @@ class Search(object):
 
     def order_by(self):
         if self._order_by is not None:
-            self._sql = self._sql + ' order by  ' + self._order_by.get('camp') + ' as ' + self._order_by.get('as')
+            self._sql = self._sql + ' order by  ' + self._order_by.get('camp') + ' ' + self._order_by.get('as')+ ' '
         else:
             self._sql = self._sql + ' order by  ' + self._table_model_modified + ' desc '
 
@@ -284,6 +284,7 @@ class Search(object):
         models = []
         try:
             self.set_filter_advance()
+            self.order_by()
             items, desc = self._get_cursor_result()
             ids = self.get_items()
             for row in items:

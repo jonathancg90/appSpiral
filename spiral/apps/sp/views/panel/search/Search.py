@@ -32,8 +32,25 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
         self._advance = self.request.POST.get('advance', None)
         if self._advance is not None:
             self._advance = json.loads(self._advance)
+            self._order = self.get_order()
         if self._features is not None:
             self._features = json.loads(self._features)
+
+    def get_order(self):
+        for item in self._advance:
+            if item.get('camp') == 'orden':
+                data = {'as': 'desc'}
+                if item.get('id') == 'casting':
+                    data.update({'camp': 'cant_casting'})
+                    self._advance.remove(item)
+                    return data
+                elif item.get('id') == 'extra':
+                    data.update({'camp': 'cant_extra'})
+                    self._advance.remove(item)
+                    return data
+                else:
+                    return None
+        return None
 
     def post(self ,request, *args, **kwargs):
         data = {}
@@ -47,6 +64,8 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
 
         #Default Simple
         if self._type == str(Search.TYPE_ADVANCE):
+            # if self._order is not None:
+            search.set_order_by(self._order)
             search.set_type(Search.TYPE_ADVANCE)
             data.update({'features': self._features})
             data.update({'advance': self._advance})

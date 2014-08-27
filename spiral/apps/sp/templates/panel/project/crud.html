@@ -132,6 +132,7 @@
     <script src="{{ STATIC_URL }}js/apps/project/factories/commercial.js"></script>
     <script src="{{ STATIC_URL }}js/apps/project/factories/client.js"></script>
     <script src="{{ STATIC_URL }}js/apps/project/factories/entry.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/project/factories/type_contract.js"></script>
 
     <script src="{{ STATIC_URL }}js/apps/project/directives/steps.js"></script>
 
@@ -162,6 +163,7 @@
             projectLineUrl: '{% url "project_line_json" %}',
             urlProjectUpdate: '{% url "project_update" %}',
             urlUsePhoto: '{% url "photo_casting_use_photos" %}',
+            urlSaveTypeContract: '{% url "save_type_contract_json" %}',
             urlDataUpdateProject: '{% url "project_update_data_json" pk=':pk' %}'
         });
         angular.module('projectApp').value('csrfToken', {

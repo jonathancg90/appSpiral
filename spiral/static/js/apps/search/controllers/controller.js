@@ -54,6 +54,7 @@ controllers.searchController = function($scope, ModelFactory,
         $rootScope.countInitial = '';
         $scope.typeSearch.simple = !$scope.typeSearch.simple;
         $scope.typeSearch.advance = !$scope.typeSearch.advance;
+        $scope.paginate = 0;
         if($scope.typeSearch.advance){
             angular.element('#simple').hide();
             angular.element('#advance').show();
@@ -80,7 +81,9 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.searchModel = function(event) {
         if(event.keyCode == 13){
             if($scope.search != undefined) {
-                search();
+                var last = search();
+                if(last)
+                    $scope.paginate = -1;
             }
         }
     };
@@ -88,6 +91,12 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.searchModelPaginate = function(){
         if($scope.search != undefined) {
             search();
+        } else {
+            if($scope.typeSearch.advance){
+                var last = addPage();
+                if(last)
+                    $scope.paginate = -1;
+            }
         }
     };
 
@@ -140,6 +149,7 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.searchAdvance =  function(){
         if($scope.typeSearch.advance &&  $scope.tags.length > 0){
             $scope.loader = true;
+            $scope.models = [];
             var data = {
                 'text': '',
                 'advance': angular.toJson(get_advance_params()),
@@ -149,7 +159,11 @@ controllers.searchController = function($scope, ModelFactory,
             };
             var response = ModelFactory.Search(searchUrl, data);
             response.then(function(models) {
-                $scope.models = models;
+                $scope.all = models;
+                var last = addPage();
+                if(last == false){
+                    $scope.paginate = 1;
+                }
                 $scope.loader = false;
             });
         } else {
@@ -158,8 +172,22 @@ controllers.searchController = function($scope, ModelFactory,
         }
     };
 
+    function addPage(){
+       var more = 30,
+           last = false,
+           max = $scope.models.length + more;
+        if(max > $scope.all.length){
+            last = true;
+            max = $scope.all.length;
+        }
+
+        for (var i=$scope.models.length;i<=max;i++) {
+            $scope.models.push($scope.all[i]);
+        }
+        return last;
+    }
+
     $scope.getDetail = function(model_id){
-        debugger
         var response = detailService.getDetail(detail, model_id);
         $scope.detailLoader = true;
         response.then(function(data){
@@ -227,6 +255,7 @@ controllers.searchController = function($scope, ModelFactory,
         });
 
         $scope.tooltip = $scope.tooltip + ' "edad"';
+        $scope.tooltip = $scope.tooltip + ' "orden"';
         $scope.tooltip = $scope.tooltip + ' "estatura"';
         $scope.tooltip = $scope.tooltip + ' "web / casting"';
 
@@ -277,18 +306,28 @@ controllers.searchController = function($scope, ModelFactory,
                         'camp': 'sp_model.height'
                     });
                 }
-                if(tag.text.indexOf("web") > -1){
-                    data.push({
-                        'id': false,
-                        'feature': false,
-                        'camp': 'sp_model.last_visit'
-                    });
+                if(tag.text.split("-").length == 1){
+                    if(tag.text.indexOf("web") > -1){
+                        data.push({
+                            'id': false,
+                            'feature': false,
+                            'camp': 'sp_model.last_visit'
+                        });
+                    }
+                    if(tag.text.indexOf("casting") > -1){
+                        data.push({
+                            'id': true,
+                            'feature': false,
+                            'camp': 'sp_model.last_visit'
+                        });
+                    }
                 }
-                if(tag.text.indexOf("casting") > -1){
+                if(tag.text.indexOf("orden") > -1){
+                    var values= tag.text.split("-");
                     data.push({
-                        'id': true,
+                        'id': values[1],
                         'feature': false,
-                        'camp': 'sp_model.last_visit'
+                        'camp': 'orden'
                     });
                 }
             }
