@@ -22,6 +22,7 @@ from apps.sp.models.Country import Country
 from apps.sp.models.Currency import Currency
 from apps.fileupload.models import Picture
 from apps.sp.models.Brand import Brand
+from apps.sp.models.Pauta import Pauta, DetailPauta
 from apps.sp.models.Commercial import Commercial, CommercialDateDetail
 from apps.sp.models.Client import Client, TypeClient
 from apps.sp.models.Project import Project, ProjectDetailDeliveries, ProjectClientDetail, ProjectDetailStaff
@@ -67,6 +68,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setCharacterCasting()
         self.setClothes()
         self.setEmployees()
+        self.setStatusPauta()
 
     def setClothes(self):
         self.clothes = {
@@ -74,6 +76,15 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             'VESTIR': MediaFeatureValue.objects.get(name='Vestir'),
             'OTHER': MediaFeatureValue.objects.get(name='Baño'),
             'CARACTERIZADO': MediaFeatureValue.objects.get(name='Caracterizado')
+        }
+
+    def setStatusPauta(self):
+        self.status_pauta = {
+            '1': DetailPauta.STATUS_PENDING,
+            '2': DetailPauta.STATUS_ABSENCE,
+            '3': DetailPauta.STATUS_ASSIST,
+            '4': DetailPauta.STATUS_CANCELED,
+            '5': DetailPauta.STATUS_RETIRE,
         }
 
     def json_reader(self, json_file):
@@ -237,9 +248,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         Client.objects.all().delete()
         Picture.objects.all().delete()
         Entry.objects.all().delete()
-        # ModelHasCommercial.objects.all().delete()
         Model.objects.all().delete()
         Project.objects.all().delete()
+        Pauta.objects.all().delete()
 
     def start_migration(self):
         self.delete()
@@ -253,6 +264,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.insert_entry_brand_commercial()
         self.insert_project()
         self.insert_history_commercial()
+
+        # self.insert_model_pauta()
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
 
     def insert_history_commercial(self):
@@ -322,6 +335,41 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
             except Exception,e:
                 self.log.debug(e.message + ' | ' + model.get('model_code'))
+
+    def insert_model_pauta(self):
+        sql = "select fecha_pau, cod_ord, from detalles_pauta_m " \
+              "where mod_cod !='' " \
+              "group by fecha_pau, cod_ord " \
+              "order by fecha_pau"
+
+        model_cursor = connections['model'].cursor()
+        model_cursor.execute(sql)
+        for row in model_cursor.fetchall():
+            date = row[0]
+            code = row[1]
+            commercial = self.get_commercial(code)
+            if commercial is not None:
+                try:
+                    pauta = Pauta()
+                    pauta.date = self.format_date_model(date)
+                    pauta.project = Project.objects.get(commercial=commercial)
+                    pauta.save()
+                    sql_detail = "select hora, mod_cod, obs, estado " \
+                          "from detalles_pauta_m " \
+                          "where fecha_pau='"+date+"' and cod_ord='"+code+"' and mod_cod !=''"
+
+                    detail_cursor = connections['model'].cursor()
+                    detail_cursor.execute(sql_detail)
+                    for detail in detail_cursor.fetchall():
+                        detail_pauta = DetailPauta()
+                        detail_pauta.hour = detail[0]
+                        detail_pauta.model = Model.objects.get(model_code=detail[1])
+                        detail_pauta.observation = detail[2]
+                        detail_pauta.status = self.status_pauta.get(str(detail[3]))
+                        detail_pauta.pauta = pauta
+                        detail_pauta.save()
+                except Exception, e:
+                    import pdb;pdb.set_trace()
 
     def update_last_visit(self, model):
         picture = Picture.objects.filter(
@@ -593,27 +641,40 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             '2': Client.STATUS_INACTIVE
         }
 
-    def get_commercial(self, cod_project, name, filmacion):
+    def get_commercial(self, cod_project, name=None, filmacion=None):
         for relation in self.relation_commercial_project:
             if relation.get('project_code') == cod_project:
                 return relation.get('commercial')
-        commercial = Commercial()
-        commercial.name = name
-        commercial.brand = self.brand
-        commercial.save()
-        filmacion = self.format_date(filmacion)
-        if filmacion is not None:
-            comercial_date_detail = CommercialDateDetail()
-            comercial_date_detail.commercial = commercial
-            comercial_date_detail.date = filmacion
-            comercial_date_detail.save()
-        return commercial
+        if name is not None:
+            commercial = Commercial()
+            commercial.name = name
+            commercial.brand = self.brand
+            commercial.save()
+            filmacion = self.format_date(filmacion)
+            if filmacion is not None:
+                comercial_date_detail = CommercialDateDetail()
+                comercial_date_detail.commercial = commercial
+                comercial_date_detail.date = filmacion
+                comercial_date_detail.save()
+            return commercial
+        return None
 
     def format_date(self, date):
         try:
             if date is not None:
                 date = datetime.strptime(date, "%d/%m/%Y")
                 return "%s-%s-%s" % (date.year, date.month, date.day)
+            return date
+        except:
+            return None
+
+    def format_date_model(self, date):
+        try:
+            if date is not None:
+                year = date[0:4]
+                month = date[4:6]
+                day = date[6:8]
+                return "%s-%s-%s" % (year, month, day)
             return date
         except:
             return None

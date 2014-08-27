@@ -11,8 +11,8 @@ class Pauta(models.Model):
         (STATUS_ACTIVE, _(u'activo'))
     )
     project = models.ForeignKey(
-        'Entry',
-        related_name='brand_set',
+        'Project',
+        related_name='pauta_set',
     )
     date = models.DateField(
         verbose_name='Fecha de pauta',
@@ -43,22 +43,26 @@ class Pauta(models.Model):
 
 class DetailPauta(models.Model):
     STATUS_PENDING = 1
-    STATUS_ASSIST= 0
+    STATUS_ASSIST= 2
     STATUS_CANCELED = 0
+    STATUS_ABSENCE = 3
+    STATUS_RETIRE = 4
     CHOICE_STATUS = (
         (STATUS_PENDING, 'Pendiente'),
         (STATUS_ASSIST, 'Asistio'),
-        (STATUS_CANCELED, 'Cancelado')
+        (STATUS_CANCELED, 'Cancelado'),
+        (STATUS_ABSENCE, 'Falto'),
+        (STATUS_RETIRE, 'Se retiro')
     )
 
     hour = models.TimeField(
         verbose_name='Hora',
-        null=True,
     )
 
     model = models.ForeignKey(
         'Model',
         related_name='detail_pauta_set',
+        null=True
     )
 
     name = models.CharField(

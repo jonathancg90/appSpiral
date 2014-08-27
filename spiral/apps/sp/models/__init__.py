@@ -18,6 +18,7 @@ from apps.sp.models.Currency import Currency
 from apps.sp.models.Payment import Payment
 from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Project import DutyDetail
+from apps.sp.models.Pauta import Pauta, DetailPauta
 from apps.sp.models.Company import Company, CompanyDetailAccount
 from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel, CastingDetailParticipate
 from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticipate
@@ -26,6 +27,8 @@ from apps.sp.models.Representation import Representation, RepresentationDetailMo
 from apps.sp.models.PictureDetail import PictureDetailFeature, MediaFeature, MediaFeatureValue
 
 __all__ = [
+    'Pauta',
+    'DetailPauta',
     'PictureDetailFeature',
     'MediaFeature',
     'MediaFeatureValue',
