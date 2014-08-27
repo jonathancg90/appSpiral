@@ -96,3 +96,6 @@ class DetailPauta(models.Model):
         auto_now=True
     )
 
+    class Meta:
+        app_label = 'sp'
+
