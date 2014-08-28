@@ -19,6 +19,7 @@ controllers.searchController = function($scope, ModelFactory,
         'simple': true,
         'advance': false
     };
+    $scope.cant_result = 0;
     angular.element('#advance').hide();
 
     $scope.$watch('search', function(newValue, oldValue) {
@@ -55,6 +56,7 @@ controllers.searchController = function($scope, ModelFactory,
         $scope.typeSearch.simple = !$scope.typeSearch.simple;
         $scope.typeSearch.advance = !$scope.typeSearch.advance;
         $scope.paginate = 0;
+        $scope.cant_result = 0;
         if($scope.typeSearch.advance){
             angular.element('#simple').hide();
             angular.element('#advance').show();
@@ -127,6 +129,7 @@ controllers.searchController = function($scope, ModelFactory,
                     $scope.find = $scope.search;
                     $scope.loader = false;
                     $rootScope.countInitial =  $scope.find;
+                    $scope.cant_result = models.length;
                     if(models.length == 30){
                         $scope.paginate = $scope.paginate + 1;
                     } else {
@@ -148,6 +151,7 @@ controllers.searchController = function($scope, ModelFactory,
 
     $scope.searchAdvance =  function(){
         if($scope.typeSearch.advance &&  $scope.tags.length > 0){
+            $scope.paginate = -1;
             $scope.loader = true;
             $scope.models = [];
             var data = {
@@ -160,6 +164,7 @@ controllers.searchController = function($scope, ModelFactory,
             var response = ModelFactory.Search(searchUrl, data);
             response.then(function(models) {
                 $scope.all = models;
+                $scope.cant_result = $scope.all.length;
                 var last = addPage();
                 if(last == false){
                     $scope.paginate = 1;

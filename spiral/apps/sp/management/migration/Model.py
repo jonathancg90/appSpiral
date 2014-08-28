@@ -264,9 +264,28 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.insert_entry_brand_commercial()
         self.insert_project()
         self.insert_history_commercial()
+        self.save_history_extra()
 
-        # self.insert_model_pauta()
+        self.insert_model_pauta()
         self.log.debug('termino: '+ datetime.now().strftime('%d/%m/%Y %H:%M'))
+
+    def save_history_extra(self):
+        for detail in self.extra_list:
+            try:
+                project = self.project_codes.get(detail.get('cod_proy'))
+                model = Model.objects.get(model_code=detail.get('mod_cod'))
+                model_has_commercial = ModelHasCommercial()
+                model_has_commercial.model = model
+                model_has_commercial.commercial = project.commercial
+                model_has_commercial.save()
+                if project.line_productions == Project.LINE_EXTRA:
+                    model.cant_extra += 1
+                    model.save()
+                else:
+                    model.cant_casting += 1
+                    model.save()
+            except:
+                self.log.debug('historial extra: '+ detail.get('cod_proy') + ' - ' + detail.get('mod_cod'))
 
     def insert_history_commercial(self):
         models = Model.objects.all()
@@ -337,7 +356,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 self.log.debug(e.message + ' | ' + model.get('model_code'))
 
     def insert_model_pauta(self):
-        sql = "select fecha_pau, cod_ord, from detalles_pauta_m " \
+        sql = "select fecha_pau, cod_ord from detalles_pauta_m " \
               "where mod_cod !='' " \
               "group by fecha_pau, cod_ord " \
               "order by fecha_pau"
@@ -352,7 +371,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 try:
                     pauta = Pauta()
                     pauta.date = self.format_date_model(date)
-                    pauta.project = Project.objects.get(commercial=commercial)
+                    pauta.project = Project.objects.filter(commercial=commercial).order_by('-version')[0]
                     pauta.save()
                     sql_detail = "select hora, mod_cod, obs, estado " \
                           "from detalles_pauta_m " \
@@ -361,15 +380,22 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     detail_cursor = connections['model'].cursor()
                     detail_cursor.execute(sql_detail)
                     for detail in detail_cursor.fetchall():
-                        detail_pauta = DetailPauta()
-                        detail_pauta.hour = detail[0]
-                        detail_pauta.model = Model.objects.get(model_code=detail[1])
-                        detail_pauta.observation = detail[2]
-                        detail_pauta.status = self.status_pauta.get(str(detail[3]))
-                        detail_pauta.pauta = pauta
-                        detail_pauta.save()
+                        try:
+                            model = Model.objects.get(model_code=detail[1])
+                            detail_pauta = DetailPauta()
+                            detail_pauta.hour = detail[0]
+                            detail_pauta.model =model
+                            detail_pauta.observation = detail[2]
+                            detail_pauta.status = self.status_pauta.get(str(detail[3]))
+                            detail_pauta.pauta = pauta
+                            detail_pauta.save()
+                            print('save pauta: ' + self.format_date_model(date) + ' | '+detail[1])
+                        except:
+                            self.log.debug('Detalle de pauta '+detail[1])
                 except Exception, e:
-                    import pdb;pdb.set_trace()
+                    self.log.debug('No se grabo pauta: '+date+' - '+code)
+            else:
+                self.log.debug('Comercial no existe: '+row[1])
 
     def update_last_visit(self, model):
         picture = Picture.objects.filter(
@@ -452,7 +478,13 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                         picture_detail_feature.feature_value = self.get_clothes(detail[0])
                         picture_detail_feature.save()
                     except Exception, e:
-                        self.log.debug('Error ropa: '+ detail[0])
+                        try:
+                            picture_detail_feature = PictureDetailFeature()
+                            picture_detail_feature.picture = picture
+                            picture_detail_feature.feature_value = MediaFeatureValue.objects.get(name='Baño')
+                            picture_detail_feature.save()
+                        except Exception, e:
+                            self.log.debug('Error ropa: '+ detail[0])
 
     def get_clothes(self, id):
         try:
@@ -645,6 +677,13 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         for relation in self.relation_commercial_project:
             if relation.get('project_code') == cod_project:
                 return relation.get('commercial')
+        for relation in self.relation_commercial_project:
+            if relation.get('project_code')[0:8] == cod_project[0:8]:
+                self.relation_commercial_project.append({
+                    'commercial': relation.get('commercial'),
+                    'project_code': cod_project
+                })
+                return relation.get('commercial')
         if name is not None:
             commercial = Commercial()
             commercial.name = name
@@ -656,6 +695,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 comercial_date_detail.commercial = commercial
                 comercial_date_detail.date = filmacion
                 comercial_date_detail.save()
+            self.relation_commercial_project.append({
+                'commercial': commercial,
+                'project_code': cod_project
+            })
             return commercial
         return None
 
@@ -718,6 +761,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         extras = projects.get('extras')
         representations = projects.get('representation')
         photos = projects.get('photo')
+        self.extra_list = projects.get('lista')
         self.insert_representation(representations)
         self.insert_photo_casting(photos)
         self.insert_extras(extras)
