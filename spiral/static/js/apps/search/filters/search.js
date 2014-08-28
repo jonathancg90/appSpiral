@@ -14,7 +14,6 @@ angular.module('searchApp').filter('textFilter', function($rootScope) {
             frase = frase.substr($rootScope.countInitial.length,  frase.length);
             if(frase.length == 0)
                 return items;
-            console.log(frase);
             //Recorre cada uno de los resultados del search
             for (var i=0; i<items.length; i++) {
                 var validate = false;
