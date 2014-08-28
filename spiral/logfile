@@ -4,3 +4,25 @@
 [26/Aug/2014 15:45:44] DEBUG [migration:247] comenzo: 26/08/2014 15:45
 [26/Aug/2014 15:46:09] DEBUG [migration:247] comenzo: 26/08/2014 15:46
 [26/Aug/2014 15:51:21] DEBUG [migration:256] termino: 26/08/2014 15:51
+[28/Aug/2014 12:47:37] DEBUG [migration:259] comenzo: 28/08/2014 12:47
+[28/Aug/2014 12:47:55] DEBUG [migration:259] comenzo: 28/08/2014 12:47
+[28/Aug/2014 12:48:59] DEBUG [migration:270] termino: 28/08/2014 12:48
+[28/Aug/2014 12:49:09] DEBUG [migration:259] comenzo: 28/08/2014 12:49
+[28/Aug/2014 12:49:12] DEBUG [migration:270] termino: 28/08/2014 12:49
+[28/Aug/2014 12:49:55] DEBUG [migration:259] comenzo: 28/08/2014 12:49
+[28/Aug/2014 12:49:59] DEBUG [migration:270] termino: 28/08/2014 12:49
+[28/Aug/2014 12:50:42] DEBUG [migration:258] comenzo: 28/08/2014 12:50
+[28/Aug/2014 12:54:58] DEBUG [migration:258] comenzo: 28/08/2014 12:54
+[28/Aug/2014 12:55:15] DEBUG [migration:625] Cliente:1          
+[28/Aug/2014 15:07:13] DEBUG [migration:258] comenzo: 28/08/2014 15:07
+[28/Aug/2014 15:07:36] DEBUG [migration:625] Cliente:1          
+[28/Aug/2014 15:13:14] DEBUG [migration:258] comenzo: 28/08/2014 15:13
+[28/Aug/2014 15:13:20] DEBUG [migration:626] Cliente:1          
+[28/Aug/2014 15:47:50] DEBUG [migration:258] comenzo: 28/08/2014 15:47
+[28/Aug/2014 15:49:34] DEBUG [migration:258] comenzo: 28/08/2014 15:49
+[28/Aug/2014 15:49:37] DEBUG [migration:650] Cliente:1          
+[28/Aug/2014 15:54:20] DEBUG [migration:258] comenzo: 28/08/2014 15:54
+[28/Aug/2014 15:57:33] DEBUG [migration:258] comenzo: 28/08/2014 15:57
+[28/Aug/2014 15:57:36] DEBUG [migration:651] Cliente:1          
+[28/Aug/2014 16:00:32] DEBUG [migration:258] comenzo: 28/08/2014 16:00
+[28/Aug/2014 16:00:34] DEBUG [migration:651] Cliente:1          

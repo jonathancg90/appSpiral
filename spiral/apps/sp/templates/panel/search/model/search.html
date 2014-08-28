@@ -104,6 +104,7 @@
                         <i class="icon-edit icon-only bigger-150"></i>
                     </button>
                 </div>
+                <span style="font-size: 13px;" ng-if="cant_result>0 && typeSearch.advance == true">Resultados: {[{ cant_result  }]}</span>
             </h1>
         </div><!--/.page-header-->
 
@@ -204,7 +205,8 @@
 
                     </ul>
                 </div><!--PAGE CONTENT ENDS-->
-            </div><!--/.span-->
+
+        </div><!--/.span-->
         <!-- Modal -->
         <div class="modal fade" id="myProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
             <div class="modal-dialog">
