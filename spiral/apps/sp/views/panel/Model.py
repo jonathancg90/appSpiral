@@ -15,6 +15,7 @@ from apps.fileupload.response import JSONResponse, response_mimetype
 
 from apps.sp.models.Model import Model, ModelFeatureDetail
 from apps.sp.models.Feature import Feature, FeatureValue
+from apps.sp.models.Pauta import DetailPauta
 from apps.common.view import JSONResponseMixin
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -67,6 +68,7 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             "last_visit": model.last_visit,
             "phone_fixed": model.phone_fixed,
             "phone_mobil": model.phone_mobil,
+            "pauta": self.get_pauta(model),
             "measures": '%s %s | %s %s' %(str(model.weight), 'Kg',  str(model.height), 'mts')
         }
         if model.nationality is None:
@@ -79,6 +81,11 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 "nationality_id": model.nationality.id,
             })
         return data
+
+    def get_pauta(self, model):
+        detail_pauta = DetailPauta.objects.filter(model=model)
+        detail_pauta= detail_pauta.count()
+        return detail_pauta
 
     def parse_data(self, model):
 

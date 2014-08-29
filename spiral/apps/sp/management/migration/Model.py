@@ -274,6 +274,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             try:
                 project = self.project_codes.get(detail.get('cod_proy'))
                 model = Model.objects.get(model_code=detail.get('mod_cod'))
+
                 model_has_commercial = ModelHasCommercial()
                 model_has_commercial.model = model
                 model_has_commercial.commercial = project.commercial
@@ -364,6 +365,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         model_cursor = connections['model'].cursor()
         model_cursor.execute(sql)
         for row in model_cursor.fetchall():
+            if row[1] in ['ACH-001']:
+                continue
             date = row[0]
             code = row[1]
             commercial = self.get_commercial(code)
@@ -1458,7 +1461,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "mod_cel as phone_mobil, " \
                   "mod_estatura as height, " \
                   "mod_peso as weight " \
-                  "from modelos order by mod_cod"
+                  "from modelos where mod_cod>='020000' and mod_cod<='020050' order by mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
