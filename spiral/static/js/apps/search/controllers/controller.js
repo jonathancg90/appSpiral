@@ -57,6 +57,7 @@ controllers.searchController = function($scope, ModelFactory,
         $scope.typeSearch.advance = !$scope.typeSearch.advance;
         $scope.paginate = 0;
         $scope.cant_result = 0;
+        $scope.search = "";
         if($scope.typeSearch.advance){
             angular.element('#simple').hide();
             angular.element('#advance').show();
@@ -91,7 +92,7 @@ controllers.searchController = function($scope, ModelFactory,
     };
 
     $scope.searchModelPaginate = function(){
-        if($scope.search != undefined) {
+        if($scope.search != undefined && $scope.search.length > 0) {
             search();
         } else {
             if($scope.typeSearch.advance){
@@ -103,6 +104,12 @@ controllers.searchController = function($scope, ModelFactory,
     };
 
     function search(){
+        if($scope.search.length == 0){
+            $scope.flashType = 'warning';
+            $scope.flashMessage = 'Ingrese algun parametro de busqueda';
+            return;
+        }
+
         var type = undefined;
 
         if($scope.typeSearch.simple)
@@ -181,11 +188,12 @@ controllers.searchController = function($scope, ModelFactory,
        var more = 30,
            last = false,
            max = $scope.models.length + more;
+        debugger
         if(max > $scope.all.length){
             last = true;
             max = $scope.all.length;
         }
-
+        debugger
         for (var i=$scope.models.length;i<=max;i++) {
             $scope.models.push($scope.all[i]);
         }

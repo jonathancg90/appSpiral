@@ -6,6 +6,7 @@ import datetime
 from django.db import connection
 from dateutil.relativedelta import relativedelta
 
+from apps.sp.models.Pauta import DetailPauta
 from apps.sp.models.Model import Model, ModelFeatureDetail
 from apps.sp.models.Feature import Feature, FeatureValue
 

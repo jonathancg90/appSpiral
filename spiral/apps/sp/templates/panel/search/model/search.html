@@ -74,6 +74,7 @@
 
 {% block content %}
 <div ng-app="searchApp" ng-controller="searchController" ng-cloak class="ng-cloak" ng-init="getFeatures()">
+    <message-flash message="{[{ flashMessage }]}" type="flashType"></message-flash>
     <div class="page-header position-relative">
             <h1>
                 <button class="btn btn-info btn-simple-hover" ng-show="typeSearch.advance" ng-click="changeType()">
@@ -127,7 +128,6 @@
                                         <span class="label label-success" ng-show="model.web">Web</span>
                                         <span class="label label-info" ng-if="model.cant_extra > 0 ">Extra: {[{ model.cant_extra }]}</span>
                                         <span class="label label-important" ng-if="model.cant_casting > 0">Casting: {[{ model.cant_casting }]}</span>
-{#                                        <span class="label label-success">Web</span>#}
 {#                                        <span class="label label-warning arrowed-in">diet</span>#}
                                     </div>
                                 </a>
@@ -309,6 +309,7 @@
 
 {% block script_bottom %}
     <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/commons/directives/messages.js"></script>
     <script src="{{ STATIC_URL }}js/apps/libs/ng-tags-input.js"></script>
     <script src="{{ STATIC_URL }}js/apps/search/app.js"></script>
     <script src="{{ STATIC_URL }}js/apps/search/controllers/controller.js"></script>
