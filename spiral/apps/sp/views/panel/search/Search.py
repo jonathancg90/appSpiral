@@ -48,6 +48,10 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
                     data.update({'camp': 'cant_extra'})
                     self._advance.remove(item)
                     return data
+                elif item.get('id') == 'visita':
+                    data.update({'camp': 'last_visit'})
+                    self._advance.remove(item)
+                    return data
                 else:
                     return None
         return None

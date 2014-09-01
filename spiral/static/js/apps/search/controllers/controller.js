@@ -121,7 +121,10 @@ controllers.searchController = function($scope, ModelFactory,
             $scope.search = $scope.search.replace(b,"");
 
         }
-
+        if($scope.models != undefined){
+            if ($scope.models.length == 0 && $scope.paginate == -1)
+                $scope.paginate = 0;
+        }
         var data = {
             'text': $scope.search,
             'type': type,
@@ -150,7 +153,9 @@ controllers.searchController = function($scope, ModelFactory,
                         });
                     }
                 } else {
-                    $scope.paginate = -1;
+                    $scope.flashType = 'warning';
+                    $scope.flashMessage = 'No se ha encontrado resultados';
+                    $scope.loader = false;
                 }
             });
         }
@@ -188,12 +193,10 @@ controllers.searchController = function($scope, ModelFactory,
        var more = 30,
            last = false,
            max = $scope.models.length + more;
-        debugger
         if(max > $scope.all.length){
             last = true;
             max = $scope.all.length;
         }
-        debugger
         for (var i=$scope.models.length;i<=max;i++) {
             $scope.models.push($scope.all[i]);
         }
