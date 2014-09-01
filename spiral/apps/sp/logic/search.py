@@ -62,12 +62,14 @@ class Search(object):
         self._table_model_last_visit = self._table_model + "." + getattr(Model, '_meta').get_field('last_visit').column
         self._table_model_modified = self._table_model + "." + getattr(Model, '_meta').get_field('modified').column
         self._table_model_number_doc = self._table_model + "." + getattr(Model, '_meta').get_field('number_doc').column
+        self._table_model_code = self._table_model + "." + getattr(Model, '_meta').get_field('model_code').column
 
         self._table_model_column['text'] = [
             self._table_model_name_complete,
             self._table_model_phone_fixed,
             self._table_model_phone_mobil,
-            self._table_model_number_doc
+            self._table_model_number_doc,
+            self._table_model_code
         ]
         self._table_model_column['between'] = [
             self._table_model_birth,

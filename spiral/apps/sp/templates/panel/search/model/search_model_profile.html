@@ -26,6 +26,13 @@
     </h4>
     <div class="profile-user-info">
         <div class="profile-info-row">
+            <div class="profile-info-name"> Codigo </div>
+
+            <div class="profile-info-value">
+                {[{ detail.profile.code }]}
+            </div>
+        </div>
+        <div class="profile-info-row">
             <div class="profile-info-name"> Direccion </div>
 
             <div class="profile-info-value">
@@ -60,8 +67,11 @@
         <div class="profile-info-row">
             <div class="profile-info-name">Documento </div>
 
-            <div class="profile-info-value">
+            <div class="profile-info-value" ng-if="detail.profile.type_doc != 4">
                 <span>{[{ detail.profile.type_doc }]} : {[{ detail.profile.num_doc }]}</span>
+            </div>
+            <div class="profile-info-value" ng-if="detail.profile.type_doc == 4">
+                <span>Sin validar</span>
             </div>
         </div>
         <div class="profile-info-row">
