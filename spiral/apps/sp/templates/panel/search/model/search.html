@@ -13,8 +13,14 @@
         .dropdown-menu.dropdown-closer.pull-right {
             right: -100px;
         }
+        .container-search {
+            width: 95%;
+        }
         .text-list{
             overflow: hidden;
+        }
+        .search-query {
+            width: inherit !important;
         }
         .featue-title {
             font-weight: bold;
@@ -75,8 +81,47 @@
 {% block content %}
 <div ng-app="searchApp" ng-controller="searchController" ng-cloak class="ng-cloak" ng-init="getFeatures()">
     <message-flash message="{[{ flashMessage }]}" type="flashType"></message-flash>
-    <div class="page-header position-relative">
-            <h1>
+
+{##}
+{#            <div class="page-header position-relative">#}
+{#                <div class="widget-box transparent">#}
+{#                    <div class="widget-header widget-header-flat">#}
+{##}
+{#                            <span class="container-search" ng-show="typeSearch.simple">#}
+{#                                <input type="text" class="span6 search-query" placeholder="Buscar"#}
+{#                                       ng-model="search"#}
+{#                                       ng-keydown="searchModel($event)"#}
+{#                                       autocomplete="off">#}
+{#                            </span>#}
+{#                            <span class="container-search" ng-show="typeSearch.advance">#}
+{##}
+{#                                <tags-input ng-model="tags">#}
+{#                                    <auto-complete source="loadTags($query)"></auto-complete>#}
+{#                                </tags-input>#}
+{#                            </span>#}
+{#                            <div style="display: inline;" ng-show="typeSearch.advance">#}
+{#                                <button class="btn btn-info margin-advance" ng-click="searchAdvance()" title="{[{ tooltip }]}">#}
+{#                                    <i class="icon-edit icon-only bigger-150"></i>#}
+{#                                </button>#}
+{#                            </div>#}
+{#                            <span style="font-size: 13px;" ng-if="cant_result>0 && typeSearch.advance == true">Resultados: {[{ cant_result  }]}</span>#}
+{##}
+{#                        <div class="widget-toolbar">#}
+{#                            <a href="#" data-action="collapse">#}
+{#                                <i class="icon-chevron-up"></i>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <div class="widget-body">#}
+{#                        <div class="widget-main no-padding">#}
+{#                            <span class="label label-info arrowed-in-right arrowed">Info</span>#}
+{#                        </div><!--/widget-main-->#}
+{#                    </div><!--/widget-body-->#}
+{#                </div><!--/widget-box-->#}
+{#            </div><!--/.page-header-->#}
+
+
                 <button class="btn btn-info btn-simple-hover" ng-show="typeSearch.advance" ng-click="changeType()">
                     Simple
                     <i class="icon-group bigger-125 icon-on-right"></i>
@@ -94,6 +139,7 @@
                            ng-keydown="searchModel($event)"
                            autocomplete="off">
                 </small>
+
                 <small  ng-show="typeSearch.advance">
 
                     <tags-input ng-model="tags">
@@ -106,8 +152,6 @@
                     </button>
                 </div>
                 <span style="font-size: 13px;" ng-if="cant_result>0 && typeSearch.advance == true">Resultados: {[{ cant_result  }]}</span>
-            </h1>
-        </div><!--/.page-header-->
 
     <div class="row-fluid content-search">
 

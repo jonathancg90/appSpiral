@@ -67,6 +67,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setCharacterPhoto()
         self.setCharacterCasting()
         self.setClothes()
+        self.setTypePhoto()
         self.setEmployees()
         self.setStatusPauta()
 
@@ -76,6 +77,15 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             'VESTIR': MediaFeatureValue.objects.get(name='Vestir'),
             'OTHER': MediaFeatureValue.objects.get(name='Baño'),
             'CARACTERIZADO': MediaFeatureValue.objects.get(name='Caracterizado')
+        }
+
+    def setTypePhoto(self):
+        self.type_photo = {
+            '1': MediaFeatureValue.objects.get(name='Perfil'),
+            '2': MediaFeatureValue.objects.get(name='Manos'),
+            '3': MediaFeatureValue.objects.get(name='Consumo'),
+            '4': MediaFeatureValue.objects.get(name='Perfil'),
+            '5': MediaFeatureValue.objects.get(name='Web')
         }
 
     def setStatusPauta(self):
@@ -247,6 +257,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def delete(self):
         Client.objects.all().delete()
         Picture.objects.all().delete()
+        PictureDetailFeature.objects.all().delete()
         Entry.objects.all().delete()
         Model.objects.all().delete()
         Project.objects.all().delete()
@@ -454,10 +465,10 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         for thumbnail in thumbnails:
             if thumbnail.get('type') == 'Small':
                 main_image = thumbnail.get('url')
-
-        model.main_image = main_image
-        model.save()
-        self.save_features_photo(picture, model)
+        save_main = self.save_features_photo(picture, model)
+        if save_main:
+            model.main_image = main_image
+            model.save()
 
     def save_features_photo(self, picture, model):
         slug = picture.slug
@@ -488,6 +499,22 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                             picture_detail_feature.save()
                         except Exception, e:
                             self.log.debug('Error ropa: '+ detail[0])
+
+        sql = "select med_tip from mod_media where mod_cod='"+model_code+"' and id_ruta='"+slug+"' "
+        media_cursor = connections['model'].cursor()
+        media_cursor.execute(sql)
+        for row in media_cursor.fetchall():
+            try:
+                type_photo = self.type_photo.get(str(row[0]))
+                picture_detail_feature = PictureDetailFeature()
+                picture_detail_feature.picture = picture
+                picture_detail_feature.feature_value = type_photo
+                picture_detail_feature.save()
+            except:
+                self.log.debug('Error tipo foto: '+ str(row[0]))
+                return False
+        return True
+
 
     def get_clothes(self, id):
         try:
