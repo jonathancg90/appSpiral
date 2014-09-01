@@ -125,10 +125,16 @@ class TypeEventHelper(object):
 class MediaFeatureHelper(object):
 
     def insert_data(self):
-        features = [{
-          'name': 'Ropa',
-          'values': ['Sport', 'Vestir', 'Baño', 'Caracterizado']
-        }]
+        features = [
+            {
+                'name': 'Ropa',
+                'values': ['Sport', 'Vestir', 'Baño', 'Caracterizado']
+            },
+            {
+                'name': 'Tipo',
+                'values': ['Perfil', 'Manos', 'Consumo', 'Web']
+            },
+        ]
         for feature in features:
             media_feature = MediaFeature()
             media_feature.name = feature.get('name')
