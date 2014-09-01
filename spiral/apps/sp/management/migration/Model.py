@@ -257,6 +257,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
     def delete(self):
         Client.objects.all().delete()
         Picture.objects.all().delete()
+        PictureDetailFeature.objects.all().delete()
         Entry.objects.all().delete()
         Model.objects.all().delete()
         Project.objects.all().delete()

@@ -275,8 +275,6 @@ controllers.searchController = function($scope, ModelFactory,
         $scope.tooltip = $scope.tooltip + ' "estatura"';
         $scope.tooltip = $scope.tooltip + ' "web / casting"';
 
-
-
         return result;
     }
 
@@ -323,22 +321,30 @@ controllers.searchController = function($scope, ModelFactory,
                     });
                 }
                 if(tag.text.split("-").length == 1){
-                    if(tag.text.indexOf("web") > -1){
+                    var values= tag.text.split("-");
+                    if(values[1] > "web") {
                         data.push({
                             'id': false,
                             'feature': false,
                             'camp': 'sp_model.last_visit'
                         });
                     }
-                    if(tag.text.indexOf("casting") > -1){
+                    if(values[1] > "extra") {
                         data.push({
-                            'id': true,
+                            'id': values[1],
+                            'feature': false,
+                            'camp': 'sp_model.last_visit'
+                        });
+                    }
+                    if(values[1] > "casting") {
+                        data.push({
+                            'id': values[1],
                             'feature': false,
                             'camp': 'sp_model.last_visit'
                         });
                     }
                 }
-                if(tag.text.indexOf("orden") > -1){
+                if(tag.text.indexOf("orden") > -1) {
                     var values= tag.text.split("-");
                     data.push({
                         'id': values[1],
