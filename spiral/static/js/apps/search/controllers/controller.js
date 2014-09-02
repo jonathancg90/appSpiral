@@ -14,7 +14,7 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.urlCrud = profile;
     $scope.size = 0;
     $scope.paginate = 0;
-    $scope.tooltip = '';
+    $scope.tooltip = [];
     $scope.typeSearch = {
         'simple': true,
         'advance': false
@@ -50,11 +50,17 @@ controllers.searchController = function($scope, ModelFactory,
         return $filter("filter")($scope.listTags, query);
     };
 
-    $scope.changeType = function() {
+    $scope.changeType = function(type) {
         $scope.models = [];
         $rootScope.countInitial = '';
-        $scope.typeSearch.simple = !$scope.typeSearch.simple;
-        $scope.typeSearch.advance = !$scope.typeSearch.advance;
+        if(type == 'simple'){
+            $scope.typeSearch.simple = true;
+            $scope.typeSearch.advance = false;
+        }
+        if(type == 'advance'){
+            $scope.typeSearch.simple = false;
+            $scope.typeSearch.advance = true;
+        }
         $scope.paginate = 0;
         $scope.cant_result = 0;
         $scope.search = "";
@@ -240,7 +246,11 @@ controllers.searchController = function($scope, ModelFactory,
         //Features
         angular.forEach(data.features, function(feature, fkey) {
             text = feature.feature_name;
-            $scope.tooltip = $scope.tooltip + ' "' + text+ '" ';
+            $scope.tooltip.push(
+                {
+                    name: text,
+                    type: 'option'
+                });
             angular.forEach(feature.feature_values, function(value, vkey) {
                 result.push({
                     'id': value.value_id,
@@ -250,7 +260,7 @@ controllers.searchController = function($scope, ModelFactory,
             });
         });
         //Nacionalidad
-        $scope.tooltip = $scope.tooltip + ' "nacionalidad" ';
+        $scope.tooltip.push({ name: "nacionalidad"});
         angular.forEach(data.nationalities, function(value, fkey) {
             result.push({
                 'id': value.id,
@@ -260,7 +270,11 @@ controllers.searchController = function($scope, ModelFactory,
             });
         });
         //Genero
-        $scope.tooltip = $scope.tooltip + ' "genero"';
+        $scope.tooltip.push(
+            {
+                name: "genero",
+                type: "option"
+            });
         angular.forEach(data.genders, function(value, fkey) {
             result.push({
                 'id': value.id,
@@ -270,10 +284,41 @@ controllers.searchController = function($scope, ModelFactory,
             });
         });
 
-        $scope.tooltip = $scope.tooltip + ' "edad"';
-        $scope.tooltip = $scope.tooltip + ' "orden"';
-        $scope.tooltip = $scope.tooltip + ' "estatura"';
-        $scope.tooltip = $scope.tooltip + ' "web / casting"';
+        $scope.tooltip.push(
+            {
+                name: "edad",
+                type: "range"
+            });
+        $scope.tooltip.push(
+            {
+                name: "estatura",
+                type: "range"
+            });
+        $scope.tooltip.push(
+            {
+                name: "orden casting",
+                type: "orden"
+            });
+        $scope.tooltip.push(
+            {
+                name: "orden extra",
+                type: "orden"
+            });
+        $scope.tooltip.push(
+            {
+                name: "orden visita",
+                type: "orden"
+            });
+        $scope.tooltip.push(
+            {
+                name: "solo web",
+                type: "exclude"
+            });
+        $scope.tooltip.push(
+            {
+                name: "solo casting",
+                type: "exclude"
+            });
 
         return result;
     }

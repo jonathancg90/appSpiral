@@ -294,6 +294,7 @@ class Search(object):
                 row = dict(zip([col[0] for col in desc], row))
                 summary = {}
                 row['web'] = True if row['last_visit'] is None else False
+                row['age'] = date.today().year - row['birth'].year
                 if row['summary'] is not None:
                     summary = json.loads(row['summary'])
                 result = all(k in summary for k in ids)
