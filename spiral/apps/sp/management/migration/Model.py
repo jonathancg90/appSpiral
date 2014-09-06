@@ -377,6 +377,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.terms = model.get('terms', False)
                 _model.save()
                 self.insert_photos(_model, model.get('photos'))
+                import pdb;pdb.set_trace()
                 self.insert_feature_value(_model, model.get('features'))
                 import pdb;pdb.set_trace()
                 self.update_last_visit(_model)
