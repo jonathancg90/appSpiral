@@ -376,7 +376,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.weight = model.get('weight')
                 _model.terms = model.get('terms', False)
                 _model.save()
+                import pdb;pdb.set_trace()
                 self.insert_photos(_model, model.get('photos'))
+                import pdb;pdb.set_trace()
                 self.insert_feature_value(_model, model.get('features'))
                 self.update_last_visit(_model)
 
@@ -513,7 +515,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                         date_higher = picture.taken_date
         if main_picture is None and len(data_photos) > 0:
             main_picture = data_photos.itervalues().next()
-        import pdb;pdb.set_trace()
         if main_picture is not None:
             thumbnails = main_picture.get_all_thumbnail()
 
