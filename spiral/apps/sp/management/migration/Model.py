@@ -1557,6 +1557,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     self.numberdoc += 1
                     document = str(self.numberdoc)
                 acting = row[12]
+                import pdb;pdb.set_trace()
                 self.model_participate = self.participations.get(acting[2])
                 self.model_perform = self.realiza.get(str(acting[3]))
                 data_models = {
