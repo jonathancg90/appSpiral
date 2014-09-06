@@ -376,11 +376,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.weight = model.get('weight')
                 _model.terms = model.get('terms', False)
                 _model.save()
-                import pdb;pdb.set_trace()
                 self.insert_photos(_model, model.get('photos'))
-                import pdb;pdb.set_trace()
                 self.insert_feature_value(_model, model.get('features'))
-                import pdb;pdb.set_trace()
                 self.update_last_visit(_model)
 
                 print('save model: ' + str(model.get('model_code')) + ' | '+_model.name_complete)
@@ -476,11 +473,14 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 picture.object_id = model.id
                 picture.file = file
                 picture.save()
+                import pdb;pdb.set_trace()
                 files = [serialize(picture)]
                 thumbnails = PictureThumbnail.save_all_thumbnails(picture)
+                import pdb;pdb.set_trace()
                 if thumbnails is not None:
                     for file in files:
                         file.update({'thumbnailUrl': thumbnails.get('file')})
+                    import pdb;pdb.set_trace()
                     self.save_features_photo(picture, model)
                     number = picture.slug.split('_')[-1].split('.')[0]
                     data_photos.update({
