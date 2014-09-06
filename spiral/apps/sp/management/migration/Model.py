@@ -495,7 +495,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
         date_higher = None
         for key in sorted(data_photos, reverse=True):
-            import pdb;pdb.set_trace()
             picture = data_photos.get(key)
             if picture.taken_date is not None:
                 if date_higher is None:
@@ -512,6 +511,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
                         main_picture = picture
                         date_higher = picture.taken_date
+        import pdb;pdb.set_trace()
         if main_picture is None and len(data_photos) > 0:
             main_picture = data_photos[0]
 
