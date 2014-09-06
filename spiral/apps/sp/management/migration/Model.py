@@ -487,7 +487,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     self.log.debug('Foto no registrada'+ ' | '+ photo)
             except Exception, e:
                 self.log.debug('Ocurrio un error en el ingreso de la foto'+ ' | '+ photo)
-        import pdb;pdb.set_trace()
         self.save_main_image(data_photos, model)
 
     def save_main_image(self, data_photos, model):
@@ -495,9 +494,11 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         main_picture = None
 
         date_higher = None
+        import pdb;pdb.set_trace()
         for key in sorted(data_photos, reverse=True):
             picture = data_photos.get(key)
             if picture.taken_date is not None:
+                import pdb;pdb.set_trace()
                 if date_higher is None:
                     date_higher = picture.taken_date
                     main_picture = picture
@@ -512,6 +513,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
                         main_picture = picture
                         date_higher = picture.taken_date
+        import pdb;pdb.set_trace()
         if main_picture is None and len(data_photos) > 0:
             main_picture = data_photos[0]
 
