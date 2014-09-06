@@ -380,7 +380,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 self.insert_feature_value(_model, model.get('features'))
                 self.update_last_visit(_model)
 
-                print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
+                print('save model: ' + str(model.get('model_code')) + ' | '+_model.name_complete)
             except Exception,e:
                 self.log.debug(e.message + ' | ' + str(model.get('model_code')))
 
