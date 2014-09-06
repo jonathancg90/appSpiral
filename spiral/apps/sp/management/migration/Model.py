@@ -473,14 +473,11 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 picture.object_id = model.id
                 picture.file = file
                 picture.save()
-                import pdb;pdb.set_trace()
                 files = [serialize(picture)]
                 thumbnails = PictureThumbnail.save_all_thumbnails(picture)
-                import pdb;pdb.set_trace()
                 if thumbnails is not None:
                     for file in files:
                         file.update({'thumbnailUrl': thumbnails.get('file')})
-                    import pdb;pdb.set_trace()
                     self.save_features_photo(picture, model)
                     number = picture.slug.split('_')[-1].split('.')[0]
                     data_photos.update({
@@ -490,6 +487,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     self.log.debug('Foto no registrada'+ ' | '+ photo)
             except Exception, e:
                 self.log.debug('Ocurrio un error en el ingreso de la foto'+ ' | '+ photo)
+        import pdb;pdb.set_trace()
         self.save_main_image(data_photos, model)
 
     def save_main_image(self, data_photos, model):
