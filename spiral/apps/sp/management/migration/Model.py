@@ -285,7 +285,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.set_attributes()
         self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
         data_model = self.get_list_model()
-        import pdb;pdb.set_trace()
         data_model = self.get_detail_feature(data_model)
         self.insert_model(data_model)
         self.data_client = self.insert_data_client()
@@ -1559,7 +1558,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     self.numberdoc += 1
                     document = str(self.numberdoc)
                 acting = row[12]
-                if self.model_participate == 'SIN INFORMACION':
+                if acting == 'SIN INFORMACION':
                     self.model_participate = []
                     self.model_perform = []
                 else:
