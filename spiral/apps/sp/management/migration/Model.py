@@ -285,6 +285,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.set_attributes()
         self.log.debug('comenzo: ' + datetime.now().strftime('%d/%m/%Y %H:%M'))
         data_model = self.get_list_model()
+        import pdb;pdb.set_trace()
         data_model = self.get_detail_feature(data_model)
         self.insert_model(data_model)
         self.data_client = self.insert_data_client()
@@ -1543,7 +1544,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "a.ca_desc as acting " \
                   "from modelos m " \
                   "inner join cod_act a on m.ca_cod = a.ca_cod " \
-                  "  order by m.mod_cod"
+                  " order by m.mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
@@ -1584,6 +1585,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 data.append(data_models)
             return data
         except Exception, e:
+            import pdb;pdb.set_trace()
             self.log.debug(e.message + ': get_list_model')
             return data
 
