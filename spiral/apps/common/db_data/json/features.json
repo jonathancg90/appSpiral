@@ -1106,5 +1106,35 @@
                 "name": "Normal"
             }
         ]
+    },
+    {
+        "name": "Participacion",
+        "type": "0",
+        "values" : [
+            {
+                "name": "Extra"
+            },
+            {
+                "name": "Secundario"
+            },
+            {
+                "name": "Principal"
+            }
+        ]
+    },
+    {
+        "name": "Realiza",
+        "type": "0",
+        "values" : [
+            {
+                "name": "Ropa de Baño"
+            },
+            {
+                "name": "Ropa Interior"
+            },
+            {
+                "name": "Desnudos"
+            }
+        ]
     }
 ]

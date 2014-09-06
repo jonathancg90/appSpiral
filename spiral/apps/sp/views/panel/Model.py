@@ -130,7 +130,9 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 'main_id': picture.id,
                 'show': True,
                 'main_picture': picture.file.name,
-                'thumbs': picture.get_all_thumbnail()
+                'thumbs': picture.get_all_thumbnail(),
+                'taken':  '',
+                'features': []
             })
         return data
 

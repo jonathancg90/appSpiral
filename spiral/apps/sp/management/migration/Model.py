@@ -51,7 +51,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.url_media = '%s/%s/%s/%s' %(url_base, 'static', 'media', '000000')
         self.relation_commercial_project = []
         self.project_codes = {}
-
+        self.feature_value_hands = MediaFeatureValue.objects.get(name='Manos')
         self.setTypeDoc()
         self.setConditions()
         self.setStatusModel()
@@ -70,6 +70,23 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         self.setTypePhoto()
         self.setEmployees()
         self.setStatusPauta()
+        self.setParticipation()
+        self.setRealiza()
+
+    def setParticipation(self):
+        self.participations = {
+            '3': [FeatureValue.objects.get(name='Extra'), FeatureValue.objects.get(name='Secundario'), FeatureValue.objects.get(name='Principal')],
+            '2': [FeatureValue.objects.get(name='Secundario'), FeatureValue.objects.get(name='Principal')],
+            '1': [FeatureValue.objects.get(name='Principal')]
+        }
+
+    def setRealiza(self):
+        self.realiza = {
+            '0': [],
+            '3': [FeatureValue.objects.get(name='Ropa de Baño')],
+            '2': [FeatureValue.objects.get(name='Ropa Interior')],
+            '1': [FeatureValue.objects.get(name='Desnudos')]
+        }
 
     def setClothes(self):
         self.clothes = {
@@ -427,8 +444,22 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             model_feature_detail.feature_value = feature.get('feature_value')
             model_feature_detail.description = feature.get('description') if feature.get('description') != 'NINGUNA' else None
             model_feature_detail.save()
+        # Participate
+
+        for participate in self.model_participate:
+            model_feature_detail = ModelFeatureDetail()
+            model_feature_detail.model = model
+            model_feature_detail.feature_value = participate
+            model_feature_detail.save()
+
+        for perform in self.model_perform:
+            model_feature_detail = ModelFeatureDetail()
+            model_feature_detail.model = model
+            model_feature_detail.feature_value = perform
+            model_feature_detail.save()
 
     def insert_photos(self, model, photos):
+        data_photos = {}
         for photo in photos:
             try:
                 slug = photo.split('/')[-1]
@@ -446,29 +477,50 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 if thumbnails is not None:
                     for file in files:
                         file.update({'thumbnailUrl': thumbnails.get('file')})
-                    self.save_main_image(model, picture)
+                    self.save_features_photo(picture, model)
+                    number = picture.slug.split('_')[-1].split('.')[0]
+                    data_photos.update({
+                        int(number): picture
+                    })
                 else:
                     self.log.debug('Foto no registrada'+ ' | '+ photo)
             except Exception, e:
                 self.log.debug('Ocurrio un error en el ingreso de la foto'+ ' | '+ photo)
+        self.save_main_image(data_photos, model)
 
-    def save_main_image(self, model, picture):
+    def save_main_image(self, data_photos, model):
         main_image = None
-        picture = Picture.objects.filter(
-            content_type = picture.content_type,
-            object_id =picture.object_id
+        main_picture = None
 
-        ).latest('created')
+        date_higher = None
+        for key in sorted(data_photos, reverse=True):
+            picture = data_photos.get(key)
+            if picture.taken_date is not None:
+                if date_higher is None:
+                    date_higher = picture.taken_date
+                    main_picture = picture
+                else:
+                    if picture.taken_date > date_higher:
+                        validate = PictureDetailFeature.objects.filter(
+                            picture=picture,
+                            feature_value=self.feature_value_hands
+                        ).exists()
+                        if validate:
+                            continue
 
-        thumbnails = picture.get_all_thumbnail()
+                        main_picture = picture
+                        date_higher = picture.taken_date
+        if main_picture is None and len(data_photos) > 0:
+            main_picture = data_photos[0]
 
-        for thumbnail in thumbnails:
-            if thumbnail.get('type') == 'Small':
-                main_image = thumbnail.get('url')
-        save_main = self.save_features_photo(picture, model)
-        if save_main:
-            model.main_image = main_image
-            model.save()
+        if main_picture is not None:
+            thumbnails = main_picture.get_all_thumbnail()
+
+            for thumbnail in thumbnails:
+                if thumbnail.get('type') == 'Small':
+                    main_image = thumbnail.get('url')
+                model.main_image = main_image
+                model.save()
 
     def save_features_photo(self, picture, model):
         slug = picture.slug
@@ -1475,20 +1527,22 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
         try:
             # 00 -> Documento sin especificar
             # 04 -> Libreta militar
-
-            sql = "select mod_nom ||' '|| mod_ape as name_complete," \
-                  "mod_cod as model_code, " \
-                  "td_cod as type_doc, " \
-                  "mod_dni as number_doc, " \
-                  "cod_est as status, " \
-                  "mod_fec_nac as birth, " \
-                  "mod_dir as address, " \
-                  "mod_email as email, " \
-                  "mod_tel as phone_fixed, " \
-                  "mod_cel as phone_mobil, " \
-                  "mod_estatura as height, " \
-                  "mod_peso as weight " \
-                  "from modelos order by mod_cod"
+            sql = "select m.mod_nom ||' '|| m.mod_ape as name_complete," \
+                  "m.mod_cod as model_code, " \
+                  "m.td_cod as type_doc, " \
+                  "m.mod_dni as number_doc, " \
+                  "m.cod_est as status, " \
+                  "m.mod_fec_nac as birth, " \
+                  "m.mod_dir as address, " \
+                  "m.mod_email as email, " \
+                  "m.mod_tel as phone_fixed, " \
+                  "m.mod_cel as phone_mobil, " \
+                  "m.mod_estatura as height, " \
+                  "m.mod_peso as weight, " \
+                  "a.ca_desc as weight " \
+                  "from modelos m " \
+                  "inner join cod_act a on m.ca_cod = a.ca_cod " \
+                  " order by m.mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
@@ -1502,6 +1556,9 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     type_doc = Model.TYPE_FAKE
                     self.numberdoc += 1
                     document = str(self.numberdoc)
+                acting = row[12]
+                self.model_participate = self.participations.get(acting[2])
+                self.model_perform = self.realiza.get(str(acting[3]))
                 data_models = {
                     'name_complete': row[0],
                     'model_code': row[1],

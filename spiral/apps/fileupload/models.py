@@ -52,12 +52,13 @@ class Picture(models.Model):
         return ('upload-new', )
 
     def save(self, *args, **kwargs):
-        self.slug = self.file.name
-        for field in self._meta.fields:
-            if field.name == 'file':
-                if self.content_type.name == 'model':
-                    model = Model.objects.get(pk=self.object_id)
-                    field.upload_to = 'pictures/model/%s' % str(model.model_code)
+        if not self.id:
+            self.slug = self.file.name
+            for field in self._meta.fields:
+                if field.name == 'file':
+                    if self.content_type.name == 'model':
+                        model = Model.objects.get(pk=self.object_id)
+                        field.upload_to = 'pictures/model/%s' % str(model.model_code)
         super(Picture, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
