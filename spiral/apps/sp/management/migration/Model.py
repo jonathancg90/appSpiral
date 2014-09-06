@@ -377,11 +377,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 _model.terms = model.get('terms', False)
                 _model.save()
                 self.insert_photos(_model, model.get('photos'))
-                import pdb;pdb.set_trace()
                 self.insert_feature_value(_model, model.get('features'))
-                import pdb;pdb.set_trace()
                 self.update_last_visit(_model)
-                import pdb;pdb.set_trace()
                 print('save model: ' + str(model.get('model_code')) + ' | '+_model.name_complete)
             except Exception,e:
                 import pdb;pdb.set_trace()
@@ -448,7 +445,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             model_feature_detail.description = feature.get('description') if feature.get('description') != 'NINGUNA' else None
             model_feature_detail.save()
         # Participate
-
+        import pdb;pdb.set_trace()
         for participate in self.model_participate:
             model_feature_detail = ModelFeatureDetail()
             model_feature_detail.model = model
