@@ -382,7 +382,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
                 print('save model: ' + model.get('model_code') + ' | '+_model.name_complete)
             except Exception,e:
-                self.log.debug(e.message + ' | ' + model.get('model_code'))
+                self.log.debug(e.message + ' | ' + str(model.get('model_code')))
 
     def insert_model_pauta(self):
         sql = "select fecha_pau, cod_ord from detalles_pauta_m " \
