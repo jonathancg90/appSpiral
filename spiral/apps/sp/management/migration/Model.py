@@ -445,18 +445,19 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
             model_feature_detail.description = feature.get('description') if feature.get('description') != 'NINGUNA' else None
             model_feature_detail.save()
         # Participate
-        import pdb;pdb.set_trace()
-        for participate in self.model_participate:
-            model_feature_detail = ModelFeatureDetail()
-            model_feature_detail.model = model
-            model_feature_detail.feature_value = participate
-            model_feature_detail.save()
+        if self.model_participate is not None and len(self.model_participate) > 0:
+            for participate in self.model_participate:
+                model_feature_detail = ModelFeatureDetail()
+                model_feature_detail.model = model
+                model_feature_detail.feature_value = participate
+                model_feature_detail.save()
 
-        for perform in self.model_perform:
-            model_feature_detail = ModelFeatureDetail()
-            model_feature_detail.model = model
-            model_feature_detail.feature_value = perform
-            model_feature_detail.save()
+        if self.model_perform is not None and len(self.model_perform) > 0:
+            for perform in self.model_perform:
+                model_feature_detail = ModelFeatureDetail()
+                model_feature_detail.model = model
+                model_feature_detail.feature_value = perform
+                model_feature_detail.save()
 
     def insert_photos(self, model, photos):
         data_photos = {}
@@ -1539,7 +1540,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "m.mod_cel as phone_mobil, " \
                   "m.mod_estatura as height, " \
                   "m.mod_peso as weight, " \
-                  "a.ca_desc as weight " \
+                  "a.ca_desc as acting " \
                   "from modelos m " \
                   "inner join cod_act a on m.ca_cod = a.ca_cod " \
                   "where m.mod_cod >= '000024'  and m.mod_cod <='000024'  order by m.mod_cod"
@@ -1557,9 +1558,12 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                     self.numberdoc += 1
                     document = str(self.numberdoc)
                 acting = row[12]
-                import pdb;pdb.set_trace()
-                self.model_participate = self.participations.get(acting[2])
-                self.model_perform = self.realiza.get(str(acting[3]))
+                if self.model_participate == 'SIN INFORMACION':
+                    self.model_participate = []
+                    self.model_perform = []
+                else:
+                    self.model_participate = self.participations.get(acting[2])
+                    self.model_perform = self.realiza.get(str(acting[3]))
                 data_models = {
                     'name_complete': row[0],
                     'model_code': row[1],
