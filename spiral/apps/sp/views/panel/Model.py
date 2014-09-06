@@ -124,17 +124,19 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         pictures = Picture.objects.filter(
             object_id=model.id,
             content_type=content_type
-        )
+        ).order_by('-taken_date')
         for picture in pictures:
             data.append({
                 'main_id': picture.id,
                 'show': True,
                 'main_picture': picture.file.name,
                 'thumbs': picture.get_all_thumbnail(),
-                'taken':  '',
+                'taken': picture.taken_date.strftime("%d/%m/%Y") if picture.taken_date is not None else 'Sin fecha',
                 'features': []
             })
         return data
+
+
 
     def get_model_commercial(self, model):
         data = []

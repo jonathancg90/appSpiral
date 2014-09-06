@@ -381,7 +381,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 self.update_last_visit(_model)
                 print('save model: ' + str(model.get('model_code')) + ' | '+_model.name_complete)
             except Exception,e:
-                import pdb;pdb.set_trace()
                 self.log.debug(e.message + ' | ' + str(model.get('model_code')))
 
     def insert_model_pauta(self):
@@ -1584,7 +1583,6 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                 data.append(data_models)
             return data
         except Exception, e:
-            import pdb;pdb.set_trace()
             self.log.debug(e.message + ': get_list_model')
             return data
 

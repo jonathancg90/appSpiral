@@ -260,7 +260,11 @@ controllers.searchController = function($scope, ModelFactory,
             });
         });
         //Nacionalidad
-        $scope.tooltip.push({ name: "nacionalidad"});
+        $scope.tooltip.push(
+            {
+                name: "Nacionalidad",
+                type: "option"
+            });
         angular.forEach(data.nationalities, function(value, fkey) {
             result.push({
                 'id': value.id,

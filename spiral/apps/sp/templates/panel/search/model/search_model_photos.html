@@ -7,12 +7,19 @@
 <ul class="ace-thumbnails" ng-hide="detailLoader">
     <li ng-repeat="image in detail.images">
         {#small#}
-        <a href="{{ MEDIA_URL }}{[{ image.main_picture }]}"  target="_blank" data-rel="colorbox" ng-if="size == 0">
-            <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[0].url }]}"/>
-        </a>
+        <span style="position: relative" ng-if="size == 0">
+            <div style="text-align: center">{[{ image.taken }]}</div>
+            <a href="{{ MEDIA_URL }}{[{ image.main_picture }]}"  target="_blank" data-rel="colorbox">
+                <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[0].url }]}"/>
+            </a>
+
+        </span>
         {#large#}
-        <a href="{{ MEDIA_URL }}{[{ image.main_picture }]}" target="_blank" data-rel="colorbox" ng-if="size == 2" >
-            <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[2].url }]}"/>
-        </a>
+        <span style="position: relative" ng-if="size == 2" >
+            <div style="text-align: center">{[{ image.taken }]}</div>
+            <a href="{{ MEDIA_URL }}{[{ image.main_picture }]}" target="_blank" data-rel="colorbox">
+                <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[2].url }]}"/>
+            </a>
+        </span>
     </li>
 </ul>
