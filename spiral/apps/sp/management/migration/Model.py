@@ -382,6 +382,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
                 print('save model: ' + str(model.get('model_code')) + ' | '+_model.name_complete)
             except Exception,e:
+                import pdb;pdb.set_trace()
                 self.log.debug(e.message + ' | ' + str(model.get('model_code')))
 
     def insert_model_pauta(self):
@@ -1543,7 +1544,7 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "a.ca_desc as weight " \
                   "from modelos m " \
                   "inner join cod_act a on m.ca_cod = a.ca_cod " \
-                  " order by m.mod_cod"
+                  "where m.mod_cod >= '000023'  and m.mod_cod <='000029'  order by m.mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
