@@ -495,13 +495,13 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
 
         date_higher = None
         for key in sorted(data_photos, reverse=True):
+            import pdb;pdb.set_trace()
             picture = data_photos.get(key)
             if picture.taken_date is not None:
                 if date_higher is None:
                     date_higher = picture.taken_date
                     main_picture = picture
                 else:
-                    import pdb;pdb.set_trace()
                     if picture.taken_date > date_higher:
                         validate = PictureDetailFeature.objects.filter(
                             picture=picture,
