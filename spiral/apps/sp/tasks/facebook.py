@@ -211,6 +211,7 @@ class TabFacebookTask(PeriodicTask):
         data = self.get_data()
         data = self.parse_data(data)
         ids = self.save_model(data)
-        status = self.update_status(ids)
+        status = None
+        # status = self.update_status(ids)
         return status
 
