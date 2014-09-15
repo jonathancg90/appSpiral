@@ -1420,6 +1420,12 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                             model.update({
                                 'gender': Model.GENDER_FEM
                             })
+
+                    if row[2] == 'PROCEDENCIA':
+                        if value[0] == 'INTERNET':
+                            model.update({
+                                'status': Model.STATUS_WEBSITE
+                            })
                     if row[2] == 'CONDICIONES':
                         if value[0] in ['EXCLUSIVO', 'ACEPTO', 'WEB']:
                             model.update({

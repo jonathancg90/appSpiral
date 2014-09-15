@@ -11,7 +11,6 @@ from django.views.generic import FormView, RedirectView, View
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from apps.common.view import JSONResponseMixin
 
 from apps.sp.forms.User import LoginForm
 from apps.common.email import Email

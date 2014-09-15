@@ -101,6 +101,7 @@ class TabFacebookTask(PeriodicTask):
                 model = Model()
                 model.name_complete = model_data.get('nom_datos') + ' ' + model_data.get('app_datos') + ' ' + model_data.get('apm_datos')
                 model.model_code = Model.get_code()
+                model.status = Model.STATUS_WEBSITE
                 model.type_doc = self.type_document(model_data.get('tipdoc_datos'))
                 model.number_doc = model_data.get('num_doc_datos')
                 model.address = model_data.get('dir_datos')
