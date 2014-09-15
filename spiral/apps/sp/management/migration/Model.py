@@ -1547,8 +1547,8 @@ class ModelProcessMigrate(LoginRequiredMixin, JSONResponseMixin, View):
                   "m.mod_peso as weight, " \
                   "a.ca_desc as acting " \
                   "from modelos m " \
-                  "inner join cod_act a on m.ca_cod = a.ca_cod " \
-                  " order by m.mod_cod"
+                  "inner join cod_act a on m.ca_cod = a.ca_cod where m.mod_cod >= '029296' and m.mod_cod <= '029496'" \
+                  "order by m.mod_cod"
 
             # limit 1000 offset 0
             # Limit:  cantidad a mostrar
