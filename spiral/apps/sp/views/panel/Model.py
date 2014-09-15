@@ -47,7 +47,7 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     MESSAGE_ERR = 'Ocurrio un error al buscar al modelo'
 
     def get_model_profile(self, model):
-        web = True if model.last_visit is None else False
+        web = True if model.status == Model.STATUS_WEBSITE is None else False
         self.parse_data(model)
         data = {
             "id": model.id,
@@ -272,6 +272,7 @@ class PictureModelCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         form = super(PictureModelCreateView, self).get_form(form_class)
         form.fields['object_id'].required = False
         form.fields['content_type'].required = False
+        form.fields['taken_date'].required = False
         return form
 
     def form_valid(self, form):
