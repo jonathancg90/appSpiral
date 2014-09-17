@@ -78,6 +78,7 @@ class Search(object):
         self._table_model_column['exact'] = [
             self._table_model_nationality,
             self._table_model_gender,
+            self._table_model_status,
         ]
 
         self._table_model_column['null'] = [
@@ -265,7 +266,7 @@ class Search(object):
                     row = dict(zip([col[0] for col in desc], row))
                     row['age'] = date.today().year - row['birth'].year
                     row['birth'] = row['birth'].strftime("%d/%m/%Y")
-                    row['web'] = True if row['last_visit'] is None else False
+                    row['web'] = True if row['status'] == Model.STATUS_WEBSITE is None else False
                     models.append(row)
 
         except ValueError, e:
@@ -293,7 +294,7 @@ class Search(object):
             for row in items:
                 row = dict(zip([col[0] for col in desc], row))
                 summary = {}
-                row['web'] = True if row['last_visit'] is None else False
+                row['web'] = True if row['status'] == Model.STATUS_WEBSITE is None else False
                 row['age'] = date.today().year - row['birth'].year
                 if row['summary'] is not None:
                     summary = json.loads(row['summary'])

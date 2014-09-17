@@ -369,13 +369,13 @@ controllers.searchController = function($scope, ModelFactory,
                         'camp': 'sp_model.height'
                     });
                 }
-                if(tag.text.split("-").length == 1){
+                if(tag.text.split("-").length == 2){
                     var values= tag.text.split("-");
-                    if(values[1] > "web") {
+                    if(values[1] == "web") {
                         data.push({
-                            'id': false,
+                            'id': 3,
                             'feature': false,
-                            'camp': 'sp_model.last_visit'
+                            'camp': 'sp_model.status'
                         });
                     }
                     if(values[1] > "extra") {
