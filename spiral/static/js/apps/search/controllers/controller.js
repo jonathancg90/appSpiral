@@ -6,13 +6,19 @@ controllers.searchController = function($scope, ModelFactory,
     var searchUrl = searchUrls.search,
         detail = searchUrls.detail,
         profile = searchUrls.profile,
+        urlList = searchUrls.list,
+        urlSaveList = searchUrls.saveList,
+        urlSaveModelList = searchUrls.saveModelList,
         features = searchUrls.features;
+
     $scope.loader = false;
     $scope.find = undefined;
     $scope.mode = false;
     $scope.detail = {};
+    $scope.newList = false;
     $scope.urlCrud = profile;
     $scope.size = 0;
+    $scope.myList = [];
     $scope.paginate = 0;
     $scope.tooltip = [];
     $scope.typeSearch = {
@@ -48,6 +54,62 @@ controllers.searchController = function($scope, ModelFactory,
 
     $scope.loadTags = function(query) {
         return $filter("filter")($scope.listTags, query);
+    };
+
+    $scope.getList = function(model){
+        $scope.addModel = {
+            'name': model.name_complete,
+            'id': model.id
+        };
+
+        if($scope.myList.length == 0){
+            $http.get(urlList)
+                .then(function(response) {
+                    if(response.status == 200) {
+                        $scope.myList = response.data.list;
+                    }else {
+                        $scope.myList = [];
+                    }
+                });
+        }
+    };
+
+    $scope.saveList = function(){
+        if($scope.newTitleList != undefined || $scope.newTitleList != ''){
+            var data = {
+                'title': $scope.newTitleList
+            };
+            $http.post(urlSaveList, angular.toJson(data))
+                .then(function(response) {
+                    if(response.status == 200) {
+                        $scope.myList.push(response.data.result);
+                        $scope.newList = false;
+                        $scope.newTitleList ='';
+                    }else {
+                        $scope.myList = [];
+                    }
+                });
+        }
+    };
+
+    $scope.addModelList = function(){
+        if($scope.listSelected != undefined || $scope.listSelected != ''){
+            var data = {
+                'model_id': $scope.addModel.id,
+                'list_id': $scope.listSelected.id
+            };
+
+            $http.post(urlSaveModelList, angular.toJson(data))
+                .then(function(response) {
+                    if(response.status == 200) {
+                        debugger
+                        $scope.flashType = response.data.status;
+                        $scope.flashMessage = response.data.message;
+                    }else {
+                        $scope.myList = [];
+                    }
+                });
+        }
     };
 
     $scope.changeType = function(type) {

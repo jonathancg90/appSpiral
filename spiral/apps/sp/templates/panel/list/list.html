@@ -1,0 +1,137 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    <style>
+        .tools {
+            float: right !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="{%   url "list_create" %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nueva Lista' %}</a>
+        </div>
+        <h2>{%  trans 'Tus Listas' %}</h2>
+    </div>
+
+
+
+    <div class="tabbable">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+                <a data-toggle="tab" href="#home">
+                    <i class="green icon-heart bigger-110"></i>
+                    Mis listas
+                </a>
+            </li>
+
+            <li>
+                <a data-toggle="tab" href="#profile">
+                    <i class="green icon-group bigger-110"></i>
+                    Colaboraciones
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane in active">
+
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a href="#" id="hide-show-search">Mostrar / Ocultar</a>
+                    </li>
+                </ul>
+                <div id="search-form" style="display: none;">
+                    <form method="get" action="" class="form-horizontal well well-small search-form">
+                        <div class="row-fluid">
+                            {% crispy search_form %}
+                            <div class="form-actions">
+                                <input type="submit" class="btn" value="{% trans 'Search' %}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="row-fluid">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>{% trans 'Titulo' %}</th>
+                            <th>{% trans 'Proyecto' %}</th>
+                            <th>{% trans 'Creado' %}</th>
+                            <th>{% trans 'Opciones' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for detail in object_list %}
+                            <tr>
+                                <td>{{ detail.list.title }}</td>
+                                <td>{{ detail.list.project }}</td>
+                                <td>{{ detail.list.created|date:'d/m/Y H:i' }}</td>
+                                <td>
+                                    <a href="{% url "list_collaboration" detail.list.pk %}">{% trans 'Colaboradores' %}</a> |
+                                    <a href="{% url "list_detail" detail.list.pk %}">{% trans 'Modelos' %}</a> |
+                                    <a href="{% url "list_edit" detail.list.pk %}">{% trans 'Update' %}</a> |
+                                    <a href="{% url "list_delete" detail.list.pk %}">{% trans 'Archivar' %}</a> |
+                                    <a href="{% url "list_delete" detail.list.pk %}">{% trans 'Eliminar' %}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% url 'list_list' as page_url %}
+                    {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
+                </div>
+
+
+            </div>
+
+            <div id="profile" class="tab-pane">
+                <div class="row-fluid">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>{% trans 'Titulo' %}</th>
+                            <th>{% trans 'Propietario' %}</th>
+                            <th>{% trans 'Proyecto' %}</th>
+                            <th>{% trans 'Opciones' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for detail in collaboration %}
+                            <tr>
+                                <td>{{ detail.list.title }}</td>
+                                <td>{{ detail.user_owner.username }}</td>
+                                <td>{{ detail.list.project }}</td>
+                                <td><a href="{% url "list_detail" detail.list.pk %}">{% trans 'Modelos' %}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+        $(document).on('ready',function(){
+{#            $('#search-form').hide('fade');#}
+            $('#hide-show-search').click(function(){
+                $('#search-form').toggle('fade');
+            });
+        });
+    </script>
+{% endblock %}

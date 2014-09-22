@@ -198,7 +198,7 @@
                                         <i class="icon-eye-open" data-toggle="modal" data-target="#myProfile"></i>
                                     </a>
 
-                                    <a href="#">
+                                    <a href="#" data-toggle="modal" data-target="#listAdd" ng-click="getList(model)">
                                         <i class="icon-paper-clip"></i>
                                     </a>
 
@@ -269,6 +269,9 @@
                 </div><!--PAGE CONTENT ENDS-->
 
         </div><!--/.span-->
+
+
+
         <!-- Modal -->
         <div class="modal fade" id="myProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
             <div class="modal-dialog">
@@ -361,6 +364,55 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="listAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar a lista &raquo
+                            <button type="submit" class="btn btn-info" ng-click="newList = true" ng-hide="newList">Nuevo</button>
+                            <button type="submit" class="btn btn-default" ng-click="newList = false" ng-show="newList">Cancelar</button>
+
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form role="form" style="text-align: center">
+                            <div ng-hide="newList">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1"></label>
+                                    <select ng-model="listSelected" ng-options="list.name for list in myList">
+                                        <option value="">-- Elija una lista --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div ng-show="newList">
+
+                                <div class="form-group">
+                                    <label for="exampleInput"></label>
+                                    <input type="text" class="form-control" id="exampleInput" ng-model="newTitleList" placeholder="Titulo">
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" style="position: relative ">
+                        <div style="width: 60%; float: left;text-align: left;">
+                            &raquo {[{ addModel.name }]}
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success" ng-show="newList" ng-click="saveList()">Grabar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="newList">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-hide="newList" ng-click="addModelList()">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button class="btn btn-success btn-more" ng-if="paginate > 0" ng-click="searchModelPaginate()" id="bootbox-options">Mas Resultados</button>
     </div>
 
@@ -384,7 +436,10 @@
             search: '{% url "search_basic_model" %}',
             profile: '{% url "panel_model_control_list" %}',
             detail: '{% url "panel_information_model"  pk=':pk' %}',
-            features: '{% url "search_data_feature" %}'
+            features: '{% url "search_data_feature" %}',
+            list: '{% url "list_data_json" %}',
+            saveList: '{% url "list_save_json" %}',
+            saveModelList: '{% url "add_model_list_save_json" %}'
         });
         angular.module('searchApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'

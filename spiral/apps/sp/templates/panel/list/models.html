@@ -1,0 +1,56 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block content %}
+    <div ng-app="listApp" ng-controller="listController">
+        <div class="page-header">
+            <h2><a href="{% url 'list_list' %}">Lista</a> &raquo {{ list.title }}</h2>
+        </div>
+
+        <div class="row-fluid">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>{% trans 'Foto' %}</th>
+                    <th>{% trans 'Nombre completo' %}</th>
+                    <th>{% trans 'DNI' %}</th>
+                    <th>{% trans 'Telefonos' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="detail in details">
+                        <td><img src="{[{ detail.model.photo }]}"></td>
+                        <td>{[{ detail.model.name_complete }]}</td>
+                        <td>{[{ detail.model.DNI }]}</td>
+                        <td>{[{ detail.model.phone }]}</td>
+                        <td>
+                            <a href="#">Agregar a pauta</a> |
+                            <a href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/list/apps.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/list/controller.js"></script>
+
+    <script>
+        angular.module('listApp').value("searchUrls", {
+            listModelUrl: '{% url "list_model" pk=list.id %}'
+
+        });
+
+    </script>
+
+{% endblock %}

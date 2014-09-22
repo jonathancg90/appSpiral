@@ -1,0 +1,34 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <section class="container">
+        <div class="page-header">
+            <h2><a href="{% url "list_list" %}">{% trans 'Volver' %}</a> &raquo {{ list.title }}</h2>
+        </div>
+        <form action="" method="post" class="form-horizontal">
+            {% csrf_token %}
+
+            {% crispy form %}
+            <div class="form-actions">
+                <input type="submit" class="btn btn-primary" value="{% trans 'Add' %}" />
+            </div>
+        </form>
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <thead>
+                <th>Nomnbre</th>
+                <th>Opciones</th>
+                </thead>
+                {% for collaboration in user_collaboration %}
+                    <tr>
+                        <td>{{ collaboration.user.username }}</td>
+                        <td><a href="{% url "list_collaboration_delete" collaboration.id list.id %}">{% trans 'Delete' %}</a></td>
+                    </tr>
+                {% endfor %}
+            </tr>
+        </table>
+    </section>
+{% endblock %}
