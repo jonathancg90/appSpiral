@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="detail in details">
-                        <td><img src="{[{ detail.model.photo }]}"></td>
+                        <td><img src="{{ MEDIA_URL }}{[{ detail.model.photo }]}"></td>
                         <td>{[{ detail.model.name_complete }]}</td>
                         <td>{[{ detail.model.DNI }]}</td>
                         <td>{[{ detail.model.phone }]}</td>
