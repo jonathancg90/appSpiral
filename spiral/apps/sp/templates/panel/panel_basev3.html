@@ -413,21 +413,32 @@
     </ul>
 </li>
 
-<li>
-    <a href="tables.html">
-        <i class="icon-list"></i>
-        <span class="menu-text"> Pautas </span>
-    </a>
-</li>
+    <li>
+        <a href="tables.html">
+            <i class="icon-list"></i>
+            <span class="menu-text"> Pautas </span>
+        </a>
+    </li>
 
     {% if menu == 'project' %}
+    <li class="active">
+        {% else %}
+    <li>
+    {% endif %}
+    <a href="{% url "project_list" %}">
+        <i class="icon-edit"></i>
+        <span class="menu-text"> Proyecto </span>
+    </a>
+    </li>
+
+    {% if menu == 'list' %}
         <li class="active">
-    {% else %}
+            {% else %}
         <li>
     {% endif %}
-        <a href="{% url "project_list" %}">
-            <i class="icon-edit"></i>
-            <span class="menu-text"> Proyecto </span>
+        <a href="{% url "list_list" %}">
+            <i class="icon-list-alt"></i>
+            <span class="menu-text"> Lista </span>
         </a>
     </li>
 

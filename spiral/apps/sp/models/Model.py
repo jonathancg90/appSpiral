@@ -10,6 +10,8 @@ from apps.sp.models.Feature import FeatureValue
 
 class Model(models.Model):
 
+    DEFAULT_IMAGE = 'img/default.png'
+
     STATUS_WEBSITE = 3 #Registrado a traves de la web
     STATUS_DISAPPROVE = 2 #Modelo betado
     STATUS_ACTIVE = 1 #Modelo registrado en spiral(acepto las condiciones)
@@ -138,7 +140,7 @@ class Model(models.Model):
     main_image = models.CharField(
         verbose_name=_(u'Imagen Principal'),
         max_length=100,
-        default='img/default.png',
+        default=DEFAULT_IMAGE,
         null=True,
         blank=True,
     )
