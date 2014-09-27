@@ -12,9 +12,9 @@ class Model(models.Model):
 
     DEFAULT_IMAGE = 'img/default.png'
 
-    STATUS_WEBSITE = 3 #Registrado a traves de la web
+    STATUS_WEBSITE = 3    #Registrado a traves de la web
     STATUS_DISAPPROVE = 2 #Modelo betado
-    STATUS_ACTIVE = 1 #Modelo registrado en spiral(acepto las condiciones)
+    STATUS_ACTIVE = 1     #Modelo registrado en spiral(acepto las condiciones)
     STATUS_INACTIVE = 0
 
     CHOICE_STATUS = (
