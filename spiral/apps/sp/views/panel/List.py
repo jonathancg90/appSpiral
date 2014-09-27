@@ -49,10 +49,17 @@ class ListListView(LoginRequiredMixin, PermissionRequiredMixin,
         collaboration = collaboration.filter(is_owner=False)
         return collaboration
 
+    def get_list_archives(self):
+        collaboration = UserCollaborationDetail.objects.filter(user=self.request.user)
+        collaboration = collaboration.filter(list__status=List.STATUS_ARCHIVE)
+        collaboration = collaboration.filter(is_owner=True)
+        return collaboration
+
     def get_context_data(self, **kwargs):
         context = super(ListListView, self).get_context_data(**kwargs)
         context['menu'] = 'list'
         context['collaboration'] = self.get_list_collaboration()
+        context['archives'] = self.get_list_archives()
         return context
 
 
@@ -157,6 +164,26 @@ class UserCollaborationDelete(LoginRequiredMixin, RedirectView):
         user_collaboration = UserCollaborationDetail.objects.get(id=self.kwargs.get('pk'))
         user_collaboration.delete()
         return reverse('list_collaboration', kwargs={'pk': self.kwargs.get('list_fk')})
+
+
+class UserListArchived(LoginRequiredMixin, RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, **kwargs):
+        list = List.objects.get(id=self.kwargs.get('pk'))
+        list.status = List.STATUS_ARCHIVE
+        list.save()
+        return reverse('list_list')
+
+
+class UserListActive(LoginRequiredMixin, RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, **kwargs):
+        list = List.objects.get(id=self.kwargs.get('pk'))
+        list.status = List.STATUS_ACTIVE
+        list.save()
+        return reverse('list_list')
 
 
 class ListDataListView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -278,14 +305,17 @@ class ListModelView(LoginRequiredMixin, PermissionRequiredMixin,
             return {
                 'photo': Model.DEFAULT_IMAGE,
                 'name_complete': detail.name_complete,
-                'DNI': detail.DNI,
-                'phone': detail.phone
+                'dni': detail.DNI,
+                'phone': detail.phone,
+                'model_code': False
             }
         else:
             return {
+                'model_code': detail.model.model_code,
                 'photo': detail.model.main_image,
+                'measures': 'Altura: %s %s' %(detail.model.height,'' if detail.model.weight is None else ' - peso: '+detail.model.weight),
                 'name_complete': detail.model.name_complete,
-                'DNI': detail.model.number_doc,
+                'dni': detail.model.number_doc,
                 'phone': '%s | %s' %(detail.model.phone_fixed, detail.model.phone_mobil)
             }
 
@@ -297,7 +327,8 @@ class ListModelView(LoginRequiredMixin, PermissionRequiredMixin,
             data.append({
                 'id': detail.id,
                 'model': model,
-                'observacion': detail.observation
+                'observation': detail.observation,
+                'url': reverse('list_detail_delete', kwargs={'pk': detail.id })
             })
         return data
 
@@ -317,3 +348,110 @@ class ListDetailView(LoginRequiredMixin, PermissionRequiredMixin,
         context = super(ListDetailView, self).get_context_data(**kwargs)
         context['list'] = List.objects.get(pk=kwargs.get('pk'))
         return context
+
+
+class ListDetailDelete(LoginRequiredMixin, RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, **kwargs):
+        list_detail = DetailList.objects.get(pk=kwargs.get('pk'))
+        list = list_detail.list
+        list_detail.delete()
+        return reverse('list_detail', kwargs={'pk': list.id})
+
+
+class ListDetailModelSaveView(LoginRequiredMixin, PermissionRequiredMixin,
+                       JSONResponseMixin, View):
+    model = DetailList
+    SAVE_SUCCESSFUL = 'Se agrego el modelo a tu lista'
+    SAVE_ERROR = 'Ocurrio un error al agregar al modelo en la lista'
+    WARNING_ADD = 'El modelo ya se encuentra en la lista'
+
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ListDetailModelSaveView, self).dispatch(request, *args, **kwargs)
+
+    def save_detail_list(self, data):
+        try:
+            detail_list = DetailList()
+            detail_list.list = List.objects.get(pk=self.kwargs.get('pk'))
+            detail_list.name_complete = data.get('model').get('name_complete')
+            detail_list.DNI = data.get('model').get('dni')
+            detail_list.phone = data.get('model').get('phone')
+            detail_list.observation = data.get('observation')
+            detail_list.save()
+            return detail_list, self.SAVE_SUCCESSFUL
+        except Exception, e:
+            return None, self.SAVE_ERROR
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        detail, msg = self.save_detail_list(data)
+        context['status'] = 'success'
+        context['message'] = msg
+        if detail is None:
+            context['status'] = 'warning'
+        else:
+            context['model'] = {
+                'id': detail.id,
+                'model': {
+                    'photo': Model.DEFAULT_IMAGE,
+                    'name_complete': detail.name_complete,
+                    'dni': detail.DNI,
+                    'phone': detail.phone,
+                    'model_code': False
+                },
+                'observation': detail.observation,
+                'url': reverse('list_detail_delete', kwargs={'pk': detail.id })
+            }
+        return self.render_to_response(context)
+
+
+class ListDetailModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
+                              JSONResponseMixin, View):
+    model = DetailList
+    SAVE_SUCCESSFUL = 'Se actualizo modelo'
+    SAVE_ERROR = 'Ocurrio un error al agregar al modelo en la lista'
+    WARNING_ADD = 'El modelo ya se encuentra en la lista'
+
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ListDetailModelUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def update_detail_list(self, data):
+        try:
+            detail_list = DetailList.objects.get(pk=data.get('id'))
+            detail_list.name_complete = data.get('model').get('name_complete')
+            detail_list.DNI = data.get('model').get('dni')
+            detail_list.phone = data.get('model').get('phone')
+            detail_list.observation = data.get('observation')
+            detail_list.save()
+            return detail_list, self.SAVE_SUCCESSFUL
+        except Exception, e:
+            return None, self.SAVE_ERROR
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        detail, msg = self.update_detail_list(data)
+        context['status'] = 'success'
+        context['message'] = msg
+        if detail is None:
+            context['status'] = 'warning'
+        else:
+            context['model'] = {
+                'id': detail.id,
+                'model': {
+                    'photo': Model.DEFAULT_IMAGE,
+                    'name_complete': detail.name_complete,
+                    'dni': detail.DNI,
+                    'phone': detail.phone,
+                    'model_code': False
+                },
+                'observation': detail.observation,
+                'url': reverse('list_detail_delete', kwargs={'pk': detail.id })
+            }
+        return self.render_to_response(context)

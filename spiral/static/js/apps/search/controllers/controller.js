@@ -102,7 +102,6 @@ controllers.searchController = function($scope, ModelFactory,
             $http.post(urlSaveModelList, angular.toJson(data))
                 .then(function(response) {
                     if(response.status == 200) {
-                        debugger
                         $scope.flashType = response.data.status;
                         $scope.flashMessage = response.data.message;
                     }else {

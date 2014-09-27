@@ -39,6 +39,13 @@
                 </a>
             </li>
 
+            <li>
+                <a data-toggle="tab" href="#archivados">
+                    <i class="green icon-group bigger-110"></i>
+                    Archivados
+                </a>
+            </li>
+
         </ul>
 
         <div class="tab-content">
@@ -77,11 +84,21 @@
                                 <td>{{ detail.list.project }}</td>
                                 <td>{{ detail.list.created|date:'d/m/Y H:i' }}</td>
                                 <td>
-                                    <a href="{% url "list_collaboration" detail.list.pk %}">{% trans 'Colaboradores' %}</a> |
-                                    <a href="{% url "list_detail" detail.list.pk %}">{% trans 'Modelos' %}</a> |
-                                    <a href="{% url "list_edit" detail.list.pk %}">{% trans 'Update' %}</a> |
-                                    <a href="{% url "list_delete" detail.list.pk %}">{% trans 'Archivar' %}</a> |
-                                    <a href="{% url "list_delete" detail.list.pk %}">{% trans 'Eliminar' %}</a>
+                                    <a  href="{% url "list_collaboration" detail.list.pk %}" alt="text" class="btn btn-small btn-warning">
+                                        <i class="icon-group"></i>
+                                    </a> |
+                                    <a  href="{% url "list_detail" detail.list.pk %}" alt="text" class="btn btn-small btn-success">
+                                        <i class="icon-eye-open"></i>
+                                    </a> |
+                                    <a href="{% url "list_edit" detail.list.pk %}" class="btn btn-small btn-info">
+                                        <i class="icon-pencil"></i>
+                                    </a> |
+                                    <a href="{% url "list_archived" detail.list.pk %}" class="btn btn-small btn-purple">
+                                        <i class="icon-folder-open"></i>
+                                    </a> |
+                                    <a href="{% url "list_delete" detail.list.pk %}" class="btn btn-small btn-danger">
+                                        <i class="icon-remove"></i>
+                                    </a> |
                                 </td>
                             </tr>
                         {% endfor %}
@@ -96,6 +113,7 @@
 
             <div id="profile" class="tab-pane">
                 <div class="row-fluid">
+
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
@@ -111,13 +129,54 @@
                                 <td>{{ detail.list.title }}</td>
                                 <td>{{ detail.user_owner.username }}</td>
                                 <td>{{ detail.list.project }}</td>
-                                <td><a href="{% url "list_detail" detail.list.pk %}">{% trans 'Modelos' %}</a></td>
+                                <td>
+                                    <a  href="{% url "list_detail" detail.list.pk %}" alt="text" class="btn btn-small btn-success">
+                                        <i class="icon-eye-open"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
+
+
+            <div id="archivados" class="tab-pane">
+                <div class="row-fluid">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>{% trans 'Titulo' %}</th>
+                            <th>{% trans 'Propietario' %}</th>
+                            <th>{% trans 'Proyecto' %}</th>
+                            <th>{% trans 'Opciones' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for archived in archives %}
+                            <tr>
+                                <td>{{ archived.list.title }}</td>
+                                <td>{{ archived.user_owner.username }}</td>
+                                <td>{{ archived.list.project }}</td>
+                                <td>
+                                    <a  href="{% url "list_detail" archived.list.pk %}" alt="text" class="btn btn-small btn-success">
+                                        <i class="icon-eye-open"></i>
+                                    </a>|
+                                    <a href="{% url "list_active" archived.list.pk %}" class="btn btn-small btn-purple">
+                                        <i class="icon-folder-close-alt"></i>
+                                    </a>
+
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
 
         </div>
     </div>

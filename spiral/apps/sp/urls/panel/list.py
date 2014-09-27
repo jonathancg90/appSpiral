@@ -4,7 +4,9 @@ from django.conf.urls import url, patterns
 from apps.sp.views.panel.List import ListListView, ListCreateView, \
     ListUpdateView, ListDeleteView, DetailListCollaborationView, \
     UserCollaborationDelete, ListDataListView, ListDataSaveView, \
-    ListAddModelView, ListModelView, ListDetailView
+    ListAddModelView, ListModelView, ListDetailView, UserListArchived, \
+    UserListActive, ListDetailDelete, ListDetailModelSaveView, \
+    ListDetailModelUpdateView
 
 
 urlpatterns = patterns('',
@@ -22,6 +24,14 @@ urlpatterns = patterns('',
                        url(r'^delete/(?P<pk>\d+)/$',
                            ListDeleteView.as_view(),
                            name='list_delete'),
+
+
+                       url(r'^archived/(?P<pk>\d+)/$',
+                           UserListArchived.as_view(),
+                           name='list_archived'),
+                       url(r'^active/(?P<pk>\d+)/$',
+                           UserListActive.as_view(),
+                           name='list_active'),
 
                        url(r'^collaboration/(?P<pk>\d+)/$',
                            DetailListCollaborationView.as_view(),
@@ -48,5 +58,14 @@ urlpatterns = patterns('',
                        url(r'^(?P<pk>\d+)/list-detail/$',
                            ListDetailView.as_view(),
                            name='list_detail'),
+                       url(r'^list-detail/(?P<pk>\d+)/delete/$',
+                           ListDetailDelete.as_view(),
+                           name='list_detail_delete'),
+                       url(r'^list/(?P<pk>\d+)save-detail/$',
+                           ListDetailModelSaveView.as_view(),
+                           name='save_list_detail_model'),
+                       url(r'^list/update-detail/(?P<pk>[^/]+)/$',
+                           ListDetailModelUpdateView.as_view(),
+                           name='update_list_detail_model'),
 
                        )

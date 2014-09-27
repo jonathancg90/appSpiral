@@ -171,6 +171,11 @@
                     </div><!--/widget-body-->
                 </div><!--/widget-box-->
             </div><!--/.page-header-->
+
+
+
+
+
     <div class="row-fluid content-search">
 
         <div class="span12">
@@ -184,7 +189,7 @@
                                 <a data-rel="colorbox" data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <img alt="150x150" src="{{ MEDIA_URL }}{[{ model.main_image }]}" style="width: 150px; height: 150px"/>
                                     <div class="text">
-                                        <div class="inner">{[{ model.name_complete }]}</div>
+                                        <div class="inner">{[{ model.name_complete }]} - {[{ model.web }]}</div>
                                     </div>
                                     <div class="tags">
                                         <span class="label label-success" ng-show="model.web">Web</span>
@@ -273,97 +278,7 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="myProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Ficha del Modelo</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div >
-                            <div id="user-profile-2" class="user-profile row-fluid">
-                                <div class="tabbable">
-                                    <ul class="nav nav-tabs padding-4">
-                                        <li class="active">
-                                            <a data-toggle="tab" href="#home">
-                                                <i class="green icon-user bigger-120"></i>
-                                                perfil
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a data-toggle="tab" href="#feed">
-                                                <i class="orange icon-edit bigger-120"></i>
-                                                Carracteristicas
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a data-toggle="tab" href="#friends">
-                                                <i class="blue icon-picture bigger-120"></i>
-                                                Fotos
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a data-toggle="tab" href="#pictures">
-                                                <i class="pink icon-camera bigger-120"></i>
-                                                Videos
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a data-toggle="tab" href="#commercial">
-                                                <i class="red icon-group bigger-120"></i>
-                                                Comerciales
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                    <div class="tab-content no-border padding-24">
-                                        <div id="home" class="tab-pane in active">
-                                            <div class="row-fluid">
-
-                                                {% include 'panel/search/model/search_model_profile.html' %}
-
-                                            </div><!--/row-fluid-->
-                                        </div><!--#Perfil-->
-
-                                        <div id="feed" class="tab-pane">
-                                            <div class="profile-feed row-fluid">
-                                                {% include 'panel/search/model/search_model_feature.html' %}
-                                            </div><!--/row-->
-                                        </div><!--/#Carracteristicas-->
-
-                                        <div id="friends" class="tab-pane">
-                                            <div class="profile-users clearfix">
-                                                {% include 'panel/search/model/search_model_photos.html' %}
-                                            </div>
-                                        </div><!--/#Fotos-->
-
-                                        <div id="pictures" class="tab-pane">
-                                            asdsa
-                                        </div><!--/#Videos-->
-
-                                        <div id="commercial" class="tab-pane">
-                                            {% include 'panel/search/model/search_model_commercials.html' %}
-                                        </div><!--/#Comerciales-->
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'panel/search/model/modal_profile.html' %}
 
         <!-- Modal -->
         <div class="modal fade" id="listAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">

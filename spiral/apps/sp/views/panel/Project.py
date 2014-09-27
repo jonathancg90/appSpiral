@@ -160,7 +160,7 @@ class ProjectDeleteRedirectView(LoginRequiredMixin, PermissionRequiredMixin, Red
 
 
 class ProjectCreateView(LoginRequiredMixin, PermissionRequiredMixin,
-                  TemplateView):
+                        TemplateView):
     permissions = {
         'entity': [
             Project, Casting, CastingDetailModel,
