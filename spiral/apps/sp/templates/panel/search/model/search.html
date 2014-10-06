@@ -289,6 +289,9 @@
                         <h4 class="modal-title" id="myModalLabel">Agregar a lista &raquo
                             <button type="submit" class="btn btn-info" ng-click="newList = true" ng-hide="newList">Nuevo</button>
                             <button type="submit" class="btn btn-default" ng-click="newList = false" ng-show="newList">Cancelar</button>
+                            <button type="submit" class="btn btn-warning" ng-click="showParticipate = !showParticipate" ng-show="list_participate.length > 0">
+                                <i class="icon-bell-alt icon-animated-bell"></i>
+                            </button>
 
                         </h4>
                     </div>
@@ -296,6 +299,18 @@
 
                         <form role="form" style="text-align: center">
                             <div ng-hide="newList">
+                                <ul ng-repeat="participate in list_participate" style="list-style:none;" ng-show="showParticipate">
+                                    <li>
+                                        <div class="alert alert-info">
+                                            <button type="button" class="close" data-dismiss="alert">
+                                            </button>
+                                            <strong>{[{ participate.commercial }]}</strong>
+                                            &raquo
+                                            {[{ participate.name }]} ({[{ participate.owner }]})
+                                            <br>
+                                        </div>
+                                    </li>
+                                </ul>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1"></label>
                                     <select ng-model="listSelected" ng-options="list.name for list in myList">
@@ -354,7 +369,8 @@
             features: '{% url "search_data_feature" %}',
             list: '{% url "list_data_json" %}',
             saveList: '{% url "list_save_json" %}',
-            saveModelList: '{% url "add_model_list_save_json" %}'
+            saveModelList: '{% url "add_model_list_save_json" %}',
+            list_participate : '{% url "search_model_participate"  pk=':pk' %}'
         });
         angular.module('searchApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'

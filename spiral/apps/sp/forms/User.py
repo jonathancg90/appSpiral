@@ -83,17 +83,22 @@ class UserGroupForm(forms.Form):
 
 class UserEditForm(forms.ModelForm):
 
+    cod_emp = forms.CharField(
+        max_length=60,
+        required=False,
+        label='Codigo Empleado',
+    )
+
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_show_errors = True
         self.helper.form_tag = False
         super(UserEditForm, self).__init__(*args, **kwargs)
 
-
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name',
-                  'email',  'groups']
+                  'email',  'groups', 'cod_emp']
 
 
 class UserForm(forms.ModelForm):
@@ -110,6 +115,12 @@ class UserForm(forms.ModelForm):
         required=True,
         label='Re - Password',
         widget=forms.PasswordInput,
+    )
+
+    cod_emp = forms.CharField(
+        max_length=60,
+        required=False,
+        label='Codigo Empleado',
     )
 
     def __init__(self, *args, **kwargs):
@@ -136,4 +147,5 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name',
-                  'email', 'password', 're_password',  'groups']
+                  'email', 'password', 're_password',
+                  'groups', 'cod_emp']

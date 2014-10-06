@@ -7,6 +7,8 @@ from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 from apps.common.view import NewJSONResponseMixin
 from apps.sp.models.Country import Country
 from apps.sp.models.Model import Model
+from apps.sp.models.Project import Project
+from apps.sp.models.List import DetailList, UserCollaborationDetail, List
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.logic.search import Search
 
@@ -125,3 +127,32 @@ class ModelFeatureDataJsonView(LoginRequiredMixin, NewJSONResponseMixin, View):
         data.update({"nationalities": self.get_nationalities()})
         data.update({"genders": self.get_genders()})
         return self.render_json_response(data)
+
+
+class ModelParticipateDataJsonView(LoginRequiredMixin, NewJSONResponseMixin, View):
+
+    def get_list_participate(self):
+        data = []
+        detail_list = DetailList.objects.filter(model_id=self.kwargs.get('pk'))
+        detail_list = detail_list.prefetch_related('list')
+        detail_list = detail_list.prefetch_related('list__project')
+        detail_list = detail_list.exclude(list__project=None)
+        detail_list = detail_list.exclude(list__status= List.STATUS_ARCHIVE)
+        detail_list = detail_list.filter(list__project__status=Project.STATUS_START)
+        for detail in detail_list:
+            user_collaboration = UserCollaborationDetail.objects.get(list=detail.list)
+            data.append({
+                'id': detail.id,
+                'commercial': detail.list.project.commercial.name,
+                'name': detail.list.title,
+                'owner': user_collaboration.user_owner.username
+            })
+        return data
+
+    def get(self, request, *args, **kwargs):
+        data = {}
+        list_participate = self.get_list_participate()
+        data.update({"list": list_participate})
+        return self.render_json_response(data)
+
+

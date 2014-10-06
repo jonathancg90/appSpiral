@@ -50,6 +50,7 @@ class List(models.Model):
         app_label = 'sp'
 
 
+
 class UserCollaborationDetail(models.Model):
 
     user = models.ForeignKey(User)
@@ -116,3 +117,5 @@ class DetailList(models.Model):
 
     class Meta:
         app_label = 'sp'
+
+

@@ -2,12 +2,19 @@ from django import forms
 from django.contrib.auth.models import User
 
 from apps.sp.models.List import List
-from apps.sp.models.Entry import Entry
+from apps.sp.models.Project import ProjectDetailStaff
+from apps.sp.models.Project import Project
 from crispy_forms.helper import FormHelper
 from django.utils.translation import ugettext_lazy as _
 
 
 class ListForm(forms.ModelForm):
+
+    project = forms.ModelChoiceField(
+        label=_(u'Proyecto'),
+        queryset=None,
+        required=False
+    )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -20,6 +27,19 @@ class ListForm(forms.ModelForm):
     class Meta:
         model = List
         exclude = ['status', 'collaboration']
+
+    def set_project(self, cod_emp):
+        projects = Project.objects.filter(status=Project.STATUS_START)
+        if cod_emp is not None:
+            project_detail_ids = ProjectDetailStaff.objects.filter(employee=cod_emp).values('project')
+            projects = projects.filter(id__in=project_detail_ids)
+            self.fields['project'].queryset = projects
+                # [('', '--------------')] + \
+                #                                list(projects.values_list('id', 'commercial__name'))
+        else:
+            self.fields['project'].queryset = projects
+                # [('', '--------------')] + \
+                #                              list(projects.values_list('id', 'commercial__name'))
 
 
 class ListFiltersForm(forms.Form):

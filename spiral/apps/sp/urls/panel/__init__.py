@@ -27,4 +27,5 @@ urlpatterns = patterns('',
     url(r'^currency/', include('apps.sp.urls.panel.currency')),
     url(r'^employee/', include('apps.sp.urls.panel.employee')),
     url(r'^list/', include('apps.sp.urls.panel.list')),
+    url(r'^pauta/', include('apps.sp.urls.panel.pauta')),
 )

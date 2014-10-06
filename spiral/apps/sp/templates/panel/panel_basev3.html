@@ -413,17 +413,21 @@
     </ul>
 </li>
 
-    <li>
-        <a href="tables.html">
+    {% if menu == 'pauta' %}
+        <li class="active">
+    {% else %}
+        <li>
+    {% endif %}
+        <a href="{% url "pauta_list" %}">
             <i class="icon-list"></i>
             <span class="menu-text"> Pautas </span>
         </a>
     </li>
 
     {% if menu == 'project' %}
-    <li class="active">
-        {% else %}
-    <li>
+        <li class="active">
+    {% else %}
+        <li>
     {% endif %}
     <a href="{% url "project_list" %}">
         <i class="icon-edit"></i>

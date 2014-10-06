@@ -5,7 +5,7 @@ from apps.sp.views.panel.Project import ProjectListView,\
     ProjectCreateView, ProjectRolesJsonView, ProjectSaveJsonView, \
     ProjectLinesJsonView, ProjectUpdateJsonView, ProjectDataUpdateJsonView, \
     DetailModelJsonView, ProjectFinishRedirectView, ProjectStartRedirectView, \
-    ProjectDeleteRedirectView
+    ProjectDeleteRedirectView, PautaDetailModelJsonView
 
 urlpatterns = patterns('',
                        url(r'^$',
@@ -51,4 +51,9 @@ urlpatterns = patterns('',
                        url(r'^detail-model-json/(?P<pk>[^/]+)/$',
                            DetailModelJsonView.as_view(),
                            name='detail_model_json'),
+
+                       url(r'^pauta-detail-json/(?P<pk>[^/]+)/$',
+                           PautaDetailModelJsonView.as_view(),
+                           name='pauta_detail_model_json'),
+
                        )

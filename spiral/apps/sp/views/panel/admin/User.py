@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, FormView, \
     View, TemplateView, CreateView, UpdateView, RedirectView
 from django.contrib.auth.models import User, Group
+from apps.sp.models.UserProfile import UserProfile
 from django.http import HttpResponseRedirect
 from apps.common.view import LoginRequiredMixin
 from apps.sp.forms.User import UserGroupForm, UserForm,\
@@ -98,6 +99,12 @@ class AdminUserCreateView(LoginRequiredMixin, CreateView):
         password = form.cleaned_data['password']
         user.set_password(password)
         user.save()
+
+        user_profile = UserProfile()
+        user_profile.user = user
+        user_profile.cod_emp = form.cleaned_data['cod_emp']
+        user_profile.save()
+
         for group in form.cleaned_data['groups']:
             group.user_set.add(user)
             permissions = group.permissions.all()
@@ -113,6 +120,24 @@ class AdminUserUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'panel/admin/user/user_edit.html'
     model = User
     form_class = UserEditForm
+
+    def get_form(self, form_class):
+        form = super(AdminUserUpdateView, self).get_form(form_class)
+        try:
+            user_profile = UserProfile.objects.get(user_id=self.kwargs.get('pk'))
+        except:
+            user_profile = UserProfile()
+            user_profile.user = self.object
+            user_profile.save()
+        form.fields['cod_emp'].initial = user_profile.cod_emp
+        return form
+
+    def form_valid(self, form):
+        user_profile = UserProfile.objects.get(user_id=self.kwargs.get('pk'))
+        cod_emp = form.cleaned_data.get('cod_emp')
+        user_profile.cod_emp = cod_emp
+        user_profile.save()
+        return super(AdminUserUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('admin_user_list')

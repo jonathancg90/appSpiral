@@ -18,6 +18,7 @@ from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
 
 from apps.sp.models.Model import Model
+from apps.sp.models.UserProfile import UserProfile
 from apps.sp.forms.List import ListForm, ListFiltersForm, CollaborationForm
 from apps.sp.models.List import List, UserCollaborationDetail, DetailList
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
@@ -71,6 +72,14 @@ class ListCreateView(LoginRequiredMixin,PermissionRequiredMixin, CreateView):
     permissions = {
         "permission": ('sp.add_list', ),
     }
+
+    def get_form(self, form_class):
+        form = super(ListCreateView, self).get_form(form_class)
+        cod_emp = None
+        if not self.request.user.is_superuser:
+            cod_emp = UserProfile.objects.get(user=self.request.user).cod_emp
+        form.set_project(cod_emp)
+        return form
 
     def form_valid(self, form):
         list = form.save()

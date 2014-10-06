@@ -5,6 +5,7 @@ datePicker.directive('datePicker', function() {
         require: 'ngModel',
         restrict: 'A',
         link: function (scope, elem, attrs, ngModel) {
+            debugger
             elem.datepicker({
                 dateFormat: 'dd/mm/yy',
                 onSelect: function (text) {

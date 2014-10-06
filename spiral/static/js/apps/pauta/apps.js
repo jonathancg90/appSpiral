@@ -1,4 +1,4 @@
-var listApp = angular.module('listApp', ['datePicker', 'msgApp'], function($httpProvider)
+var pautaApp = angular.module('pautaApp', ['datePicker'], function($httpProvider)
 {
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -55,7 +55,7 @@ var listApp = angular.module('listApp', ['datePicker', 'msgApp'], function($http
     }];
 });
 
-listApp.config(function ($interpolateProvider) {
+pautaApp.config(function ($interpolateProvider) {
     // So '{{ }}' not overlaps with django syntax template
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');

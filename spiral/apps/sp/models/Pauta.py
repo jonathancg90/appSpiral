@@ -14,16 +14,20 @@ class Pauta(models.Model):
         'Project',
         related_name='pauta_set',
     )
+
     date = models.DateField(
         verbose_name='Fecha de pauta',
     )
+
     users = models.ManyToManyField(
         User
     )
+
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False
     )
+
     modified = models.DateTimeField(
         editable=False,
         auto_now=True
@@ -53,6 +57,11 @@ class DetailPauta(models.Model):
         (STATUS_CANCELED, 'Cancelado'),
         (STATUS_ABSENCE, 'Falto'),
         (STATUS_RETIRE, 'Se retiro')
+    )
+
+    pauta = models.ForeignKey(
+        'Pauta',
+        related_name='detail_pauta_set',
     )
 
     hour = models.TimeField(

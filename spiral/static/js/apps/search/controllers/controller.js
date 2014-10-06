@@ -9,7 +9,8 @@ controllers.searchController = function($scope, ModelFactory,
         urlList = searchUrls.list,
         urlSaveList = searchUrls.saveList,
         urlSaveModelList = searchUrls.saveModelList,
-        features = searchUrls.features;
+        features = searchUrls.features,
+        listParticipate = searchUrls.list_participate;
 
     $scope.loader = false;
     $scope.find = undefined;
@@ -21,6 +22,7 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.myList = [];
     $scope.paginate = 0;
     $scope.tooltip = [];
+    $scope.showParticipate = false;
     $scope.typeSearch = {
         'simple': true,
         'advance': false
@@ -57,6 +59,8 @@ controllers.searchController = function($scope, ModelFactory,
     };
 
     $scope.getList = function(model){
+        $scope.list_participate = [];
+        $scope.showParticipate = false;
         $scope.addModel = {
             'name': model.name_complete,
             'id': model.id
@@ -72,6 +76,16 @@ controllers.searchController = function($scope, ModelFactory,
                     }
                 });
         }
+        var url = listParticipate.replace(":pk", model.id);
+        $http.get(url, { cache: false}).then(function(response) {
+            if(response.status == 200) {
+                $scope.list_participate = response.data.list;
+
+            }else {
+                $scope.list_participate = [];
+            }
+        });
+
     };
 
     $scope.saveList = function(){
