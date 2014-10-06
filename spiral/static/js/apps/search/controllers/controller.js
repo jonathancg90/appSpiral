@@ -10,6 +10,7 @@ controllers.searchController = function($scope, ModelFactory,
         urlSaveList = searchUrls.saveList,
         urlSaveModelList = searchUrls.saveModelList,
         features = searchUrls.features,
+        urlMessage = searchUrls.urlMessage,
         listParticipate = searchUrls.list_participate;
 
     $scope.loader = false;
@@ -19,6 +20,7 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.newList = false;
     $scope.urlCrud = profile;
     $scope.size = 0;
+    $scope.infoMessage = {};
     $scope.myList = [];
     $scope.paginate = 0;
     $scope.tooltip = [];
@@ -41,6 +43,22 @@ controllers.searchController = function($scope, ModelFactory,
             }
         }
     });
+
+    $scope.sendMessage = function(model){
+        $scope.infoMessage.model = model;
+        $('#modalMessage').modal('show');
+        $('#myProfile').modal('hide');
+
+        $http.get(urlMessage)
+            .then(function(response) {
+                if(response.status == 200) {
+                    debugger
+                    $scope.messages = response.data.message;
+                }else {
+                    $scope.listTags = [];
+                }
+            });
+    };
 
     $scope.getFeatures = function() {
         $http.get(features)
