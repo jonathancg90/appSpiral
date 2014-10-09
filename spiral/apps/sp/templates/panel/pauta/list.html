@@ -1,0 +1,88 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div ng-app="pautaApp" ng-controller="pautaController"  ng-cloak class="ng-cloak">
+        <div class="page-header">
+            <h2>Pauta &raquo <span ng-hide="editDate">{[{ pauta.date }]}</span>
+                <input class="span2" type="text" ng-show="editDate" placeholder="dd/mm/yy" ng-model="pauta.date" date-picker />
+                <i class="icon-edit" ng-click="editDate = !editDate"></i>
+            </h2>
+
+        </div>
+        <select ng-model="pauta.project" ng-options="project.name for project in projects">
+            <option value="">-- Elige un proyecto --</option>
+        </select>
+        <input type="text" placeholder="Buscar" ng-model="search"/>
+
+        PAUTA: {[{ pautas }]}
+        <div class="row-fluid">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>{% trans 'Hora' %}</th>
+                    <th>{% trans 'Modelo' %}</th>
+                    <th>{% trans 'Proyecto' %}</th>
+                    <th>{% trans 'Observaciones' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pauta in pautas | filter:search">
+                        <td style="text-align: center;">
+                            <img src="{{ MEDIA_URL }}{[{ detail.model.photo }]}">
+                        </td>
+                        <td>{[{ detail.model.name_complete }]}</td>
+                        <td>{[{ detail.model.measures }]}</td>
+                        <td>{[{ detail.observation }]}</td>
+                        <td>
+                            <span ng-if="detail.model.model_code != false">
+                                <a href="" data-toggle="modal" ng-click="getDetail(detail.model.model_code)" data-target="#myProfile" class="btn btn-small btn-info">
+                                    <i class="icon-eye-open"></i>
+                                </a>|
+                            </span>
+                            <a href="" class="btn btn-small btn-success">
+                                <i class="icon-external-link"></i>
+                            </a>|
+                            <a href="{[{ detail.url }]}" class="btn btn-small btn-danger">
+                                <i class="icon-remove"></i>
+                            </a> |
+                             <span ng-if="detail.model.model_code == false">
+                                <a href="#" data-toggle="modal" data-target="#addModal"  ng-click="showUpdate(detail)" class="btn btn-small btn-purple">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                             </span>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
+
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/commons/directives/datePicker.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/pauta/apps.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/pauta/controller.js"></script>
+    <script>
+        angular.module('pautaApp').value("searchUrls", {
+            projectListUrl: '{% url "project_pauta_list" %}',
+            pautaListUrl: '{% url "pauta_list_json" %}'
+        });
+
+    </script>
+
+{% endblock %}

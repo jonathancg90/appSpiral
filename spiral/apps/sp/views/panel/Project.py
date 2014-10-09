@@ -1043,3 +1043,25 @@ class DetailModelJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
         context['details'] = detail
         return self.render_to_response(context)
+
+
+class PautaDetailModelJsonView(DetailModelJsonView):
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        detail = []
+        try:
+            project = Project.objects.get(pk=kwargs.get('pk'))
+            if project.line_productions == Project.LINE_CASTING:
+                detail = Casting.get_detail_data(project)
+
+            if project.line_productions == Project.LINE_PHOTO:
+                detail = PhotoCasting.get_detail_data(project)
+
+            if project.line_productions == Project.LINE_EXTRA:
+                detail = Extras.get_detail_data(project)
+        except:
+            pass
+
+        context['details'] = detail
+        return self.render_to_response(context)

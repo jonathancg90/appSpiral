@@ -4,7 +4,7 @@ from django.conf.urls import url, patterns
 from apps.sp.views.panel.search.CommercialRealized import CommercialRealizedListView, \
     ModelsPerCommercial, ExportCommercialRealizedView
 from apps.sp.views.panel.search.Search import ModelSearchView, ModelSearchTemplateView, \
-    ModelFeatureDataJsonView
+    ModelFeatureDataJsonView, ModelParticipateDataJsonView
 
 
 urlpatterns = patterns('',
@@ -33,5 +33,7 @@ urlpatterns = patterns('',
         ModelFeatureDataJsonView.as_view(),
         name='search_data_feature'),
 
-
+    url(r'^models/participate/(?P<pk>[^/]+)/$',
+        ModelParticipateDataJsonView.as_view(),
+        name='search_model_participate'),
 )

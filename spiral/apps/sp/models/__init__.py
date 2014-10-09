@@ -20,6 +20,8 @@ from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Project import DutyDetail
 from apps.sp.models.Pauta import Pauta, DetailPauta
 from apps.sp.models.List import List, DetailList
+from apps.sp.models.UserProfile import UserProfile
+from apps.sp.models.Message import Message
 from apps.sp.models.Company import Company, CompanyDetailAccount
 from apps.sp.models.Casting import Casting, TypeCasting, CastingDetailModel, CastingDetailParticipate
 from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticipate
@@ -28,6 +30,7 @@ from apps.sp.models.Representation import Representation, RepresentationDetailMo
 from apps.sp.models.PictureDetail import PictureDetailFeature, MediaFeature, MediaFeatureValue
 
 __all__ = [
+    'Message',
     'List',
     'DetailList',
     'Pauta',
@@ -75,5 +78,6 @@ __all__ = [
     'Studio',
     'Extras',
     'ExtrasDetailModel',
-    'ProjectDetailDeliveries'
+    'ProjectDetailDeliveries',
+    'UserProfile'
 ]

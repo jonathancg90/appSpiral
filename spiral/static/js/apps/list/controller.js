@@ -1,14 +1,22 @@
 var controllers = {};
 
-controllers.listController = function($scope, searchUrls, $http){
+controllers.listController = function($scope, searchUrls, $http, $filter){
     var listModelUrl = searchUrls.listModelUrl,
         saveModellUrl = searchUrls.saveUrl,
+        projectUrl = searchUrls.projectListUrl,
+        characterUrl = searchUrls.projectCharacterUrl,
         updateModellUrl = searchUrls.updateDetailUrl,
+        saveModelPautalUrl = searchUrls.saveModelPautalUrl,
         urlDetail = searchUrls.detailUrl;
+    var dateNow = new Date();
 
     $scope.newDetail = {};
     $scope.isSave = true;
+    $scope.newPauta = {
+        'date': $filter('date')(dateNow, 'dd/MM/yyyy')
+    };
 
+    //List Model
     $http.get(listModelUrl)
         .then(function(response) {
             if(response.status == 200) {
@@ -17,6 +25,59 @@ controllers.listController = function($scope, searchUrls, $http){
                 $scope.details = [];
             }
         });
+
+    //List Project
+    $http.get(projectUrl)
+        .then(function(response) {
+            if(response.status == 200) {
+                $scope.projects = response.data.project
+            }else {
+                $scope.projects = [];
+            }
+        });
+
+    $scope.getCharacter = function(){
+        if($scope.newPauta.project != null){
+            var url = characterUrl.replace(':pk', $scope.newPauta.project.id);
+            $http.get(url)
+                .then(function(response) {
+                    if(response.status == 200) {
+                        $scope.characters = response.data.details
+                    }else {
+                        $scope.characters = [];
+                    }
+                });
+        } else {
+            $scope.characters = [];
+        }
+    };
+
+    $scope.addPauta = function(model){
+        $scope.addModelPauta = model;
+    };
+
+    $scope.saveModelPauta = function(){
+        if($scope.newPauta.project != undefined &&
+            $scope.newPauta.time != undefined &&
+            $scope.newPauta.character != undefined){
+            $scope.newPauta.model = $scope.addModelPauta;
+            $http.post(saveModelPautalUrl, angular.toJson($scope.newPauta))
+                .then(function(response) {
+                    $scope.flashModalType = response.data.status;
+                    $scope.flashModalMessage = response.data.message;
+
+                    if(response.status == 'success') {
+                        $('#addPauta').modal('hide')
+                        $scope.newPauta = {
+                            'date': $filter('date')(dateNow, 'dd/MM/yyyy')
+                        };
+                    }
+                });
+        } else {
+            $scope.flashModalType = 'warning';
+            $scope.flashModalMessage = 'Campos requeridos incompletos';
+        }
+    };
 
     $scope.showSave = function(){
         $scope.isSave =true;
@@ -54,28 +115,11 @@ controllers.listController = function($scope, searchUrls, $http){
                 }
         });
 
-
         $scope.detailLoader = true;
-        response.then(function(data){
-            if(data.status != "warning"){
-                $scope.detailLoader = false;
-                $scope.detail =  data;
-                $scope.detail.profile.facebook = '#';
-                $scope.detail.profile.occupation = 'Sin ocupacion';
-                angular.forEach($scope.detail.features, function(feature, fkey) {
-                    if(feature.feature.indexOf("Ocupacion") > -1){
-                        $scope.detail.profile.occupation = feature.value
-                    }
-                    if(feature.value.indexOf("Facebook") > -1){
-                        $scope.detail.profile.facebook = feature.description
-                    }
-                });
-            } else {
-                $scope.flashType = data.status;
-                $scope.flashMessage = data.message;
-            }
-        });
+
     };
+
+
 
 
     $scope.saveDetail = function(){
@@ -92,10 +136,8 @@ controllers.listController = function($scope, searchUrls, $http){
     };
 
     $scope.updateDetail = function(){
-        debugger
         $http.post(updateModellUrl, angular.toJson($scope.newDetail))
             .then(function(response) {
-                debugger
                 if(response.status == 200) {
                     $scope.newDetail = {};
                 } else {

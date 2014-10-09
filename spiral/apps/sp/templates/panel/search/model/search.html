@@ -275,12 +275,10 @@
 
         </div><!--/.span-->
 
-
-
-        <!-- Modal -->
+        <!-- Modal Model Detail-->
         {% include 'panel/search/model/modal_profile.html' %}
 
-        <!-- Modal -->
+        <!-- Modal List -->
         <div class="modal fade" id="listAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -289,6 +287,9 @@
                         <h4 class="modal-title" id="myModalLabel">Agregar a lista &raquo
                             <button type="submit" class="btn btn-info" ng-click="newList = true" ng-hide="newList">Nuevo</button>
                             <button type="submit" class="btn btn-default" ng-click="newList = false" ng-show="newList">Cancelar</button>
+                            <button type="submit" class="btn btn-warning" ng-click="showParticipate = !showParticipate" ng-show="list_participate.length > 0">
+                                <i class="icon-bell-alt icon-animated-bell"></i>
+                            </button>
 
                         </h4>
                     </div>
@@ -296,6 +297,18 @@
 
                         <form role="form" style="text-align: center">
                             <div ng-hide="newList">
+                                <ul ng-repeat="participate in list_participate" style="list-style:none;" ng-show="showParticipate">
+                                    <li>
+                                        <div class="alert alert-info">
+                                            <button type="button" class="close" data-dismiss="alert">
+                                            </button>
+                                            <strong>{[{ participate.commercial }]}</strong>
+                                            &raquo
+                                            {[{ participate.name }]} ({[{ participate.owner }]})
+                                            <br>
+                                        </div>
+                                    </li>
+                                </ul>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1"></label>
                                     <select ng-model="listSelected" ng-options="list.name for list in myList">
@@ -328,6 +341,27 @@
             </div>
         </div>
 
+        <!-- Modal Message -->
+        <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Enviar Mensaje  &raquo {[{ infoMessage.model.name_complete }]}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <select ng-model="infoMessage.message" ng-options="message.name for message in messages">
+                            <option value="">-- Elige una plantilla --</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button class="btn btn-success btn-more" ng-if="paginate > 0" ng-click="searchModelPaginate()" id="bootbox-options">Mas Resultados</button>
     </div>
 
@@ -353,8 +387,10 @@
             detail: '{% url "panel_information_model"  pk=':pk' %}',
             features: '{% url "search_data_feature" %}',
             list: '{% url "list_data_json" %}',
+            urlMessage: '{% url "message_data_json" %}',
             saveList: '{% url "list_save_json" %}',
-            saveModelList: '{% url "add_model_list_save_json" %}'
+            saveModelList: '{% url "add_model_list_save_json" %}',
+            list_participate : '{% url "search_model_participate"  pk=':pk' %}'
         });
         angular.module('searchApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'

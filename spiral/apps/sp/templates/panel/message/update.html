@@ -1,0 +1,36 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    {% endblock %}
+s
+{% block content %}
+
+    <div class="page-header">
+            <h2>{% trans  'Actualizar marca:'  %} {{ object.name }}</h2>
+    </div>
+
+      <form method="post" action="" class="form-horizontal">
+          {% csrf_token %}
+
+          {% crispy form %}
+
+          <div class="form-actions">
+                    <a class="btn" href="{% url "message_list" %}">{% trans 'Cancelar' %}</a> o
+                    <input type="submit" class="btn btn-inverse" value="{% trans 'Actualizar' %}" />
+          </div>
+
+        </form>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+        $(document).on('ready',function(){
+            $('#id_entry').addClass('chzn-select');
+            $('#id_entry').chosen({});
+        });
+    </script>
+{% endblock %}

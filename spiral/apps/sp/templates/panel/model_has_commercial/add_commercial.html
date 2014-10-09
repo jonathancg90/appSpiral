@@ -179,14 +179,12 @@
                 urlSave = urlSave.replace(':commercial_id', $scope.commercial_id );
                 urlSave = urlSave.replace(':model_id', $scope.model_id );
                 urlSave = urlSave.replace(':detail_id', $scope.detailSelected );
-                debugger
 
                 $http.get(urlSave)
                         .then(function(response) {
                             if(response.status == 200) {
                                 $('#myModal').modal('hide');
                                 var url = response.data.url;
-                                debugger
                                 if(url != undefined)
                                     window.location.href = url;
 
