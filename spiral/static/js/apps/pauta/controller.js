@@ -6,19 +6,19 @@ controllers.pautaController = function($scope, searchUrls, $http, $filter){
 
     var dateNow = new Date();
     $scope.editDate = false;
+    $scope.details = [];
     $scope.pauta = {
         'date': $filter('date')(dateNow, 'dd/MM/yyyy')
     };
-    debugger
     $http.get(listPautaUrl)
         .then(function(response) {
-            debugger
             if(response.status == 200) {
-                debugger
-                $scope.pautas = response.data.pautas
+                $scope.pautas = response.data.pautas;
+                $scope.detail = get_detail_project();
             }else {
-                $scope.pautas = [];
-            }
+                $scope.pautas = []
+            };
+
         });
 
     $http.get(projectUrl)
@@ -29,6 +29,18 @@ controllers.pautaController = function($scope, searchUrls, $http, $filter){
                 $scope.projects = [];
             }
         });
+
+    function get_detail_project(){
+        debugger
+        if ($scope.pauta.id == undefined){
+            $.each( $scope.pautas,function(ind_pauta, value_pauta){
+                $.each(value_pauta.detail,function(i_detail, value_detail){
+                    $scope.details.push(value_detail)
+                })
+
+            });
+        }
+    }
 
 };
 

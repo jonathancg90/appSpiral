@@ -20,8 +20,6 @@
             <option value="">-- Elige un proyecto --</option>
         </select>
         <input type="text" placeholder="Buscar" ng-model="search"/>
-
-        PAUTA: {[{ pautas }]}
         <div class="row-fluid">
             <table class="table table-bordered table-striped">
                 <thead>
@@ -29,18 +27,19 @@
                     <th>{% trans 'Hora' %}</th>
                     <th>{% trans 'Modelo' %}</th>
                     <th>{% trans 'Proyecto' %}</th>
+                    <th>{% trans 'personaje' %}</th>
                     <th>{% trans 'Observaciones' %}</th>
                     <th>{% trans 'Opciones' %}</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="pauta in pautas | filter:search">
-                        <td style="text-align: center;">
-                            <img src="{{ MEDIA_URL }}{[{ detail.model.photo }]}">
-                        </td>
-                        <td>{[{ detail.model.name_complete }]}</td>
-                        <td>{[{ detail.model.measures }]}</td>
+                    <tr ng-repeat="detail in details | filter:search">
+                        <td>{[{ detail.time }]}</td>
+                        <td>{[{ detail.model }]}</td>
+                        <td>{[{ detail.project }]}</td>
+                        <td>{[{ detail.character }]}</td>
                         <td>{[{ detail.observation }]}</td>
+
                         <td>
                             <span ng-if="detail.model.model_code != false">
                                 <a href="" data-toggle="modal" ng-click="getDetail(detail.model.model_code)" data-target="#myProfile" class="btn btn-small btn-info">

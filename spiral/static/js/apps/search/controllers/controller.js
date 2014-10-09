@@ -11,9 +11,11 @@ controllers.searchController = function($scope, ModelFactory,
         urlSaveModelList = searchUrls.saveModelList,
         features = searchUrls.features,
         urlMessage = searchUrls.urlMessage,
+        urlSendMessage = searchUrls.sendMessageUrl,
         listParticipate = searchUrls.list_participate;
 
     $scope.loader = false;
+    $scope.messageLoader = false;
     $scope.find = undefined;
     $scope.mode = false;
     $scope.detail = {};
@@ -44,7 +46,7 @@ controllers.searchController = function($scope, ModelFactory,
         }
     });
 
-    $scope.sendMessage = function(model){
+    $scope.getMessage = function(model){
         $scope.infoMessage.model = model;
         $('#modalMessage').modal('show');
         $('#myProfile').modal('hide');
@@ -52,10 +54,29 @@ controllers.searchController = function($scope, ModelFactory,
         $http.get(urlMessage)
             .then(function(response) {
                 if(response.status == 200) {
-                    debugger
                     $scope.messages = response.data.message;
                 }else {
                     $scope.listTags = [];
+                }
+            });
+    };
+
+    $scope.sendMessage = function(){
+        $scope.messageLoader = true;
+        $http.post(urlSendMessage, angular.toJson($scope.infoMessage))
+            .then(function(response) {
+                debugger
+                if(response.status == 200) {
+                    $scope.flashType = 'success';
+                    $scope.flashMessage = 'Mensaje enviado';
+                    $('#modalMessage').modal('hide');
+                    $('#myProfile').modal('show');
+                    $scope.messages = response.data.message;
+                    $scope.messageLoader = false;
+                }else {
+                    $scope.flashType = 'warning';
+                    $scope.flashMessage = 'No se pudo enviar el mensaje al modelo';
+                    $scope.messageLoade = false;
                 }
             });
     };

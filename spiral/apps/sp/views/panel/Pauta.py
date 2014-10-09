@@ -1,27 +1,19 @@
 # -*- coding: utf-8 -*-
 import json
+from datetime import datetime
 
-from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
 from django.views.generic import TemplateView
-from django.views.generic import DeleteView
-from django.views.generic import ListView
-from django.views.generic import FormView
 from django.views.generic import View
-from django.views.generic import RedirectView
 
-from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
+
 
 from apps.sp.models.Model import Model
 from apps.sp.models.Pauta import Pauta, DetailPauta
 from apps.sp.models.UserProfile import UserProfile
 from apps.sp.models.Project import Project, ProjectDetailStaff
-from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
 
 class PautaTemplateView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -41,7 +33,10 @@ class PautaListJsonView(LoginRequiredMixin, PermissionRequiredMixin,
 
     def get_queryset(self):
         data = []
-        pautas = Pauta.objects.all()
+        today = datetime.now()
+        pautas = Pauta.objects.filter(date=today)
+        pautas = pautas.prefetch_related('project')
+        pautas = pautas.prefetch_related('project__commercial')
         for pauta in pautas:
             data.append({
                 'id': pauta.id,
@@ -53,9 +48,16 @@ class PautaListJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_pauta_detail(self, pauta):
         data = []
         details = pauta.detail_pauta_set.all()
+        project = '%s (%s)' %(pauta.project.commercial.name, pauta.project.get_code())
         for detail in details:
             data.append({
-                'id': detail.id,
+                'id_detail': detail.id,
+                'id_model': detail.model.id,
+                'photo': detail.model.main_image,
+                'project': project,
+                'time': detail.hour.strftime('%H:%M %p'),
+                'character': detail.character,
+                'observation': detail.observation,
                 'model': detail.model.name_complete
             })
         return data

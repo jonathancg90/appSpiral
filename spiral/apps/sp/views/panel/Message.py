@@ -9,11 +9,15 @@ from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import ListView
 from django.views.generic import View
+
+from apps.common.email import Email
+from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 from apps.common.view import SearchFormMixin
 from apps.common.view import JSONResponseMixin
+
 from apps.sp.forms.Message import MessageForm, MessageFiltersForm
 from apps.sp.models.Message import Message
-from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
+from apps.sp.models.Model import Model
 
 
 class MessageListView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -101,14 +105,33 @@ class SendMessageJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                           JSONResponseMixin, View):
     model = Message
 
+    def get_attributes(self, data):
+        self.model_id = data.get('model').get('id')
+        self.message_id = data.get('message').get('id')
+
     def get_messages(self):
         data = []
-
+        email = Model.objects.get(id=self.model_id).email
+        if Model.objects.get(id=self.model_id).email is not None:
+            message = Message.objects.get(pk=self.message_id)
+            data = {
+                'template_name': 'email/invitation/search.html',
+                'subject': 'Spiral -  #'+str(message.subject),
+                'from_email': self.request.user.email,
+                'to': [email],
+                'context': {
+                    'message': message.content
+                }
+            }
+            message = Email.get_html_email_message(**data)
+            message.content_subtype = "html"
+            message.send(fail_silently=True)
         return data
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         context = {}
+        data = json.loads(request.body)
+        self.get_attributes(data)
         context['message'] = self.get_messages()
         return self.render_to_response(context)
-
 

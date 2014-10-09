@@ -349,14 +349,17 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Enviar Mensaje  &raquo {[{ infoMessage.model.name_complete }]}</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="text-align: center;">
                         <select ng-model="infoMessage.message" ng-options="message.name for message in messages">
                             <option value="">-- Elige una plantilla --</option>
                         </select>
+                        <div class="loader" ng-show="messageLoader">
+                            <img src="{{ STATIC_URL }}admin/img/gif-load.gif" alt=""/>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Enviar</button>
+                        <button type="button" class="btn btn-primary" ng-click="sendMessage()">Enviar</button>
                     </div>
                 </div>
             </div>
@@ -390,6 +393,7 @@
             urlMessage: '{% url "message_data_json" %}',
             saveList: '{% url "list_save_json" %}',
             saveModelList: '{% url "add_model_list_save_json" %}',
+            sendMessageUrl: '{% url "send_message_data_json" %}',
             list_participate : '{% url "search_model_participate"  pk=':pk' %}'
         });
         angular.module('searchApp').value('csrfToken', {
