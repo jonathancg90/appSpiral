@@ -9,17 +9,12 @@ from django.conf import settings
 class Email():
 
     @staticmethod
-    @task
-    def send_html_email(*args, **kwargs):
-        try:
-            from_email = kwargs.get('from_email', settings.EMAIL_HOST_USER)
-            context = Context(kwargs.get('context'))
-            template = get_template(kwargs.get('template_name'))
-            body = template.render(context)
-            subject = kwargs.get('subject')
-            message = EmailMultiAlternatives(subject, '', from_email, kwargs.get('to'))
-            message.attach_alternative(body, 'text/html')
-            message.send(fail_silently=True)
-
-        except Exception,e:
-            pass
+    def get_html_email_message(*args, **kwargs):
+        context = Context(kwargs.get('context', {}))
+        template = get_template(kwargs.get('template_name'))
+        html_content = template.render(context)
+        from_email = kwargs.get('from_email', settings.DEFAULT_FROM_EMAIL)
+        message = EmailMultiAlternatives(
+            kwargs.get('subject', ''), kwargs.get('body', ''), from_email, kwargs.get('to', []))
+        message.attach_alternative(html_content, 'text/html')
+        return message
