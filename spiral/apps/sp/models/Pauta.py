@@ -39,7 +39,7 @@ class Pauta(models.Model):
     )
 
     def __unicode__(self):
-        return self.date
+        return self.project
 
     class Meta:
         app_label = 'sp'
@@ -107,4 +107,14 @@ class DetailPauta(models.Model):
 
     class Meta:
         app_label = 'sp'
+
+    @property
+    def character_display(self):
+        project = self.pauta.project
+        project.line_productions
+        project.get_line_productions_display()
+
+
+        self.character
+        return user_collaboration.user
 

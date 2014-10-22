@@ -9,7 +9,10 @@ from django.views.generic import View
 from apps.common.view import JSONResponseMixin
 from apps.common.view import LoginRequiredMixin, PermissionRequiredMixin
 
-
+from apps.sp.models.PhotoCasting import PhotoCastingDetailModel
+from apps.sp.models.Representation import RepresentationDetailModel
+from apps.sp.models.Extras import ExtrasDetailModel
+from apps.sp.models.Casting import CastingDetailModel
 from apps.sp.models.Model import Model
 from apps.sp.models.Pauta import Pauta, DetailPauta
 from apps.sp.models.UserProfile import UserProfile
@@ -21,9 +24,19 @@ class PautaTemplateView(LoginRequiredMixin, PermissionRequiredMixin,
     template_name = 'panel/pauta/list.html'
     model = Pauta
 
+    def get_status_pauta(self):
+        status = []
+        for choice in DetailPauta.CHOICE_STATUS:
+            status.append({
+                "id": choice[0],
+                "name": choice[1]
+            })
+        return status
+
     def get_context_data(self, **kwargs):
         context = super(PautaTemplateView, self).get_context_data(**kwargs)
         context['menu'] = 'pauta'
+        context['status'] = json.dumps(self.get_status_pauta())
         return context
 
 
@@ -31,12 +44,25 @@ class PautaListJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                        JSONResponseMixin, View):
     model = Pauta
 
+    def set_filter(self, pautas):
+        data = self.request.GET
+        if data.get('date') != None:
+            date = data.get('date').split('/')
+            date = '%s-%s-%s' %(date[2], date[1], date[0])
+            pautas = pautas.filter(date=date)
+        else:
+            today = datetime.now()
+            pautas = pautas.filter(date=today)
+        if data.get('project') != None and data.get('project') !='':
+            pautas = pautas.filter(project=Project.objects.get(pk=data.get('project')))
+        return pautas
+
     def get_queryset(self):
         data = []
-        today = datetime.now()
-        pautas = Pauta.objects.filter(date=today)
+        pautas = Pauta.objects.all()
         pautas = pautas.prefetch_related('project')
         pautas = pautas.prefetch_related('project__commercial')
+        pautas = self.set_filter(pautas)
         for pauta in pautas:
             data.append({
                 'id': pauta.id,
@@ -48,6 +74,7 @@ class PautaListJsonView(LoginRequiredMixin, PermissionRequiredMixin,
     def get_pauta_detail(self, pauta):
         data = []
         details = pauta.detail_pauta_set.all()
+        details = details.order_by('hour')
         project = '%s (%s)' %(pauta.project.commercial.name, pauta.project.get_code())
         for detail in details:
             data.append({
@@ -55,12 +82,33 @@ class PautaListJsonView(LoginRequiredMixin, PermissionRequiredMixin,
                 'id_model': detail.model.id,
                 'photo': detail.model.main_image,
                 'project': project,
+                'status': detail.status,
                 'time': detail.hour.strftime('%H:%M %p'),
-                'character': detail.character,
+                'character': self.get_character(detail),
                 'observation': detail.observation,
                 'model': detail.model.name_complete
             })
         return data
+
+    def get_character(self, detail_pauta):
+        project = detail_pauta.pauta.project
+
+        detail_model = None
+        if project.line_productions == Project.LINE_PHOTO:
+            detail_model = PhotoCastingDetailModel.objects.get(pk=detail_pauta.character)
+
+        if project.line_productions == Project.LINE_REPRESENTATION:
+            detail_model = RepresentationDetailModel.objects.get(pk=detail_pauta.character)
+
+        if project.line_productions == Project.LINE_EXTRA:
+            detail_model = ExtrasDetailModel.objects.get(pk=detail_pauta.character)
+
+        if project.line_productions == Project.LINE_CASTING:
+            detail_model = CastingDetailModel.objects.get(pk=detail_pauta.character)
+
+        if detail_model is not None:
+            return '%s - %s' %(detail_model.profile, detail_model.get_character_display())
+        return ''
 
     def get(self, request, *args, **kwargs):
         data = {}
@@ -134,6 +182,36 @@ class PautaAddModelJsonView(LoginRequiredMixin, PermissionRequiredMixin,
         context = {}
         data = json.loads(request.body)
         model, msg = self.save_pauta(data)
+        context['status'] = 'success'
+        context['message'] = msg
+        if model is None:
+            context['status'] = 'warning'
+        return self.render_to_response(context)
+
+
+class DetailPautaStatusUpdate(LoginRequiredMixin, PermissionRequiredMixin,
+                            JSONResponseMixin, View):
+    model = DetailPauta
+    MESSAGE_SUCCESS = 'Pauta Actualizada'
+    MESSAGE_ERROR = 'No se pudo actualizar el estado de la pauta'
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(DetailPautaStatusUpdate, self).dispatch(request, *args, **kwargs)
+
+    def update_status_pauta(self, data):
+        try:
+            detail_pauta = DetailPauta.objects.get(pk=data.get('id'))
+            detail_pauta.status = data.get('status')
+            detail_pauta.save()
+            return detail_pauta, self.MESSAGE_SUCCESS
+        except Exception, e:
+            return None, self.MESSAGE_ERROR
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        model, msg = self.update_status_pauta(data)
         context['status'] = 'success'
         context['message'] = msg
         if model is None:

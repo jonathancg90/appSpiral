@@ -1,4 +1,4 @@
-var pautaApp = angular.module('pautaApp', ['datePicker'], function($httpProvider)
+var pautaApp = angular.module('pautaApp', ['datePicker', 'msgApp'], function($httpProvider)
 {
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

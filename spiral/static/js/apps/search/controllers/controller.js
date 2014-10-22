@@ -7,10 +7,13 @@ controllers.searchController = function($scope, ModelFactory,
         detail = searchUrls.detail,
         profile = searchUrls.profile,
         urlList = searchUrls.list,
+        projectUrl = searchUrls.projectListUrl,
+        characterUrl = searchUrls.projectCharacterUrl,
         urlSaveList = searchUrls.saveList,
         urlSaveModelList = searchUrls.saveModelList,
         features = searchUrls.features,
         urlMessage = searchUrls.urlMessage,
+        saveModelPautalUrl = searchUrls.saveModelPautalUrl,
         urlSendMessage = searchUrls.sendMessageUrl,
         listParticipate = searchUrls.list_participate;
 
@@ -33,6 +36,32 @@ controllers.searchController = function($scope, ModelFactory,
     };
     $scope.cant_result = 0;
     angular.element('#advance').hide();
+
+    //List Project
+    $http.get(projectUrl)
+        .then(function(response) {
+            if(response.status == 200) {
+                $scope.projects = response.data.project
+            }else {
+                $scope.projects = [];
+            }
+        });
+
+    $scope.getCharacter = function(){
+        if($scope.newPauta.project != null){
+            var url = characterUrl.replace(':pk', $scope.newPauta.project.id);
+            $http.get(url)
+                .then(function(response) {
+                    if(response.status == 200) {
+                        $scope.characters = response.data.details
+                    }else {
+                        $scope.characters = [];
+                    }
+                });
+        } else {
+            $scope.characters = [];
+        }
+    };
 
     $scope.$watch('search', function(newValue, oldValue) {
         if(newValue != oldValue) {
@@ -61,11 +90,44 @@ controllers.searchController = function($scope, ModelFactory,
             });
     };
 
+    $scope.getModalPauta = function(model){
+        $scope.addModelPauta = {
+            "model_code": model.profile.code,
+            "name_complete": model.profile.name_complete
+        };
+
+        $('#addPauta').modal('show');
+        $('#myProfile').modal('hide');
+    };
+
+    $scope.saveModelPauta = function(){
+        if($scope.newPauta.project != undefined &&
+            $scope.newPauta.time != undefined &&
+            $scope.newPauta.character != undefined){
+            $scope.newPauta.model = $scope.addModelPauta;
+            $http.post(saveModelPautalUrl, angular.toJson($scope.newPauta))
+                .then(function(response) {
+                    $scope.flashType = response.data.status;
+                    $scope.flashMessage = response.data.message;
+
+                    if(response.data.status == 'success') {
+                        var dateNow = new Date();
+                        $('#addPauta').modal('hide');
+                        $scope.newPauta = {
+                            'date': $filter('date')(dateNow, 'dd/MM/yyyy')
+                        };
+                    }
+                });
+        } else {
+            $scope.flashModalType = 'warning';
+            $scope.flashModalMessage = 'Campos requeridos incompletos';
+        }
+    };
+
     $scope.sendMessage = function(){
         $scope.messageLoader = true;
         $http.post(urlSendMessage, angular.toJson($scope.infoMessage))
             .then(function(response) {
-                debugger
                 if(response.status == 200) {
                     $scope.flashType = 'success';
                     $scope.flashMessage = 'Mensaje enviado';

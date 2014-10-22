@@ -2,7 +2,7 @@
 
 from django.conf.urls import url, patterns
 from apps.sp.views.panel.Pauta import PautaTemplateView, \
-    PautaProjectListJsonView, PautaAddModelJsonView, PautaListJsonView
+    PautaProjectListJsonView, PautaAddModelJsonView, PautaListJsonView, DetailPautaStatusUpdate
 
 urlpatterns = patterns('',
 
@@ -22,5 +22,9 @@ urlpatterns = patterns('',
                        url(r'^add-pauta/$',
                            PautaAddModelJsonView.as_view(),
                            name='project_pauta_add'),
+
+                       url(r'^update-pauta/status/$',
+                           DetailPautaStatusUpdate.as_view(),
+                           name='pauta_status_update_json'),
 
                        )
