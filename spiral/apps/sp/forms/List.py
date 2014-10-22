@@ -34,12 +34,8 @@ class ListForm(forms.ModelForm):
             project_detail_ids = ProjectDetailStaff.objects.filter(employee=cod_emp).values('project')
             projects = projects.filter(id__in=project_detail_ids)
             self.fields['project'].queryset = projects
-                # [('', '--------------')] + \
-                #                                list(projects.values_list('id', 'commercial__name'))
         else:
             self.fields['project'].queryset = projects
-                # [('', '--------------')] + \
-                #                              list(projects.values_list('id', 'commercial__name'))
 
 
 class ListFiltersForm(forms.Form):

@@ -116,7 +116,7 @@ class SendMessageJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             message = Message.objects.get(pk=self.message_id)
             data = {
                 'template_name': 'email/invitation/search.html',
-                'subject': 'Spiral -  #'+str(message.subject),
+                'subject': str(message.subject),
                 'from_email': self.request.user.email,
                 'to': [email],
                 'context': {

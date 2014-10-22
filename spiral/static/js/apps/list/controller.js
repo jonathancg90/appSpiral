@@ -3,6 +3,7 @@ var controllers = {};
 controllers.listController = function($scope, searchUrls, $http, $filter){
     var listModelUrl = searchUrls.listModelUrl,
         saveModellUrl = searchUrls.saveUrl,
+        changeAvailableUrl = searchUrls.changeAvailable,
         projectUrl = searchUrls.projectListUrl,
         characterUrl = searchUrls.projectCharacterUrl,
         updateModellUrl = searchUrls.updateDetailUrl,
@@ -66,8 +67,8 @@ controllers.listController = function($scope, searchUrls, $http, $filter){
                     $scope.flashModalType = response.data.status;
                     $scope.flashModalMessage = response.data.message;
 
-                    if(response.status == 'success') {
-                        $('#addPauta').modal('hide')
+                    if(response.data.status == 'success') {
+                        $('#addPauta').modal('hide');
                         $scope.newPauta = {
                             'date': $filter('date')(dateNow, 'dd/MM/yyyy')
                         };
@@ -119,8 +120,17 @@ controllers.listController = function($scope, searchUrls, $http, $filter){
 
     };
 
+    $scope.changeAvailable = function(detail){
+        detail.available = !detail.available;
+        $http.post(changeAvailableUrl, angular.toJson(detail))
+            .then(function(response) {
+                if(response.status == 200) {
+                    $scope.flashType = response.data.status;
+                    $scope.flashMessage = response.data.message;
+                }
+            });
 
-
+    };
 
     $scope.saveDetail = function(){
         $http.post(saveModellUrl, angular.toJson($scope.newDetail))
@@ -139,6 +149,8 @@ controllers.listController = function($scope, searchUrls, $http, $filter){
         $http.post(updateModellUrl, angular.toJson($scope.newDetail))
             .then(function(response) {
                 if(response.status == 200) {
+                    $scope.flashType = response.data.status;
+                    $scope.flashMessage = response.data.message;
                     $scope.newDetail = {};
                 } else {
                     $scope.details = [];

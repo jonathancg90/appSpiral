@@ -6,7 +6,7 @@ from apps.sp.views.panel.List import ListListView, ListCreateView, \
     UserCollaborationDelete, ListDataListView, ListDataSaveView, \
     ListAddModelView, ListModelView, ListDetailView, UserListArchived, \
     UserListActive, ListDetailDelete, ListDetailModelSaveView, \
-    ListDetailModelUpdateView
+    ListDetailModelUpdateView, ListDetailModelUpdateAvailableView
 
 
 urlpatterns = patterns('',
@@ -55,17 +55,25 @@ urlpatterns = patterns('',
                        url(r'^(?P<pk>[^/]+)/list-model/$',
                            ListModelView.as_view(),
                            name='list_model'),
+
                        url(r'^(?P<pk>\d+)/list-detail/$',
                            ListDetailView.as_view(),
                            name='list_detail'),
+
                        url(r'^list-detail/(?P<pk>\d+)/delete/$',
                            ListDetailDelete.as_view(),
                            name='list_detail_delete'),
+
                        url(r'^list/(?P<pk>\d+)save-detail/$',
                            ListDetailModelSaveView.as_view(),
                            name='save_list_detail_model'),
+
                        url(r'^list/update-detail/(?P<pk>[^/]+)/$',
                            ListDetailModelUpdateView.as_view(),
                            name='update_list_detail_model'),
+
+                       url(r'^list/change-available/$',
+                           ListDetailModelUpdateAvailableView.as_view(),
+                           name='change_available_detail_list_model'),
 
                        )

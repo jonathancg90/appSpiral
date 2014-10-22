@@ -92,7 +92,6 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
                 //updateFeature(model.features);
                 $('#modelActive').html(model.profile.name_complete);
                 var url = urlCommercial.replace(':key', $scope.model.profile.id);
-                debugger
                 $('#commercial').html('');
                 $('#commercial').html('<iframe src="'+url+'" scrolling="yes" height="100%" width="100% frameborder=0"></iframe>'
                 );

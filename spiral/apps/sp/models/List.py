@@ -12,11 +12,13 @@ class List(models.Model):
     )
 
     title = models.CharField(
-        max_length=45
+        max_length=45,
+        verbose_name='Titulo'
     )
 
     description = models.CharField(
-        max_length=200
+        max_length=200,
+        verbose_name='descripcion'
     )
 
     project = models.ForeignKey(
@@ -74,6 +76,10 @@ class UserCollaborationDetail(models.Model):
 class DetailList(models.Model):
 
     list = models.ForeignKey(List)
+
+    available = models.BooleanField(
+        default=True
+    )
 
     model = models.ForeignKey(
         'Model',

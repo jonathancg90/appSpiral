@@ -107,6 +107,14 @@ class ListUpdateView(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
         "permission": ('sp.change_list', ),
     }
 
+    def get_form(self, form_class):
+        form = super(ListUpdateView, self).get_form(form_class)
+        cod_emp = None
+        if not self.request.user.is_superuser:
+            cod_emp = UserProfile.objects.get(user=self.request.user).cod_emp
+        form.set_project(cod_emp)
+        return form
+
     def get_context_data(self, **kwargs):
         context = super(ListUpdateView, self).get_context_data(**kwargs)
         return context
@@ -336,6 +344,7 @@ class ListModelView(LoginRequiredMixin, PermissionRequiredMixin,
             data.append({
                 'id': detail.id,
                 'model': model,
+                'available': detail.available,
                 'observation': detail.observation,
                 'url': reverse('list_detail_delete', kwargs={'pk': detail.id })
             })
@@ -433,9 +442,10 @@ class ListDetailModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
     def update_detail_list(self, data):
         try:
             detail_list = DetailList.objects.get(pk=data.get('id'))
-            detail_list.name_complete = data.get('model').get('name_complete')
-            detail_list.DNI = data.get('model').get('dni')
-            detail_list.phone = data.get('model').get('phone')
+            if detail_list.model is None:
+                detail_list.name_complete = data.get('model').get('name_complete')
+                detail_list.DNI = data.get('model').get('dni')
+                detail_list.phone = data.get('model').get('phone')
             detail_list.observation = data.get('observation')
             detail_list.save()
             return detail_list, self.SAVE_SUCCESSFUL
@@ -463,4 +473,36 @@ class ListDetailModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
                 'observation': detail.observation,
                 'url': reverse('list_detail_delete', kwargs={'pk': detail.id })
             }
+        return self.render_to_response(context)
+
+
+class ListDetailModelUpdateAvailableView(LoginRequiredMixin, PermissionRequiredMixin,
+                                JSONResponseMixin, View):
+    model = DetailList
+    SAVE_SUCCESSFUL = 'Se actualizo modelo'
+    SAVE_ERROR = 'Ocurrio un error al agregar al modelo en la lista'
+    WARNING_ADD = 'El modelo ya se encuentra en la lista'
+
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ListDetailModelUpdateAvailableView, self).dispatch(request, *args, **kwargs)
+
+    def update_available_detail_list(self, data):
+        try:
+            detail_list = DetailList.objects.get(pk=data.get('id'))
+            detail_list.available = not detail_list.available
+            detail_list.save()
+            return detail_list, self.SAVE_SUCCESSFUL
+        except Exception, e:
+            return None, self.SAVE_ERROR
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        data = json.loads(request.body)
+        detail, msg = self.update_available_detail_list(data)
+        context['status'] = 'success'
+        context['message'] = msg
+        if detail is None:
+            context['status'] = 'warning'
         return self.render_to_response(context)

@@ -83,10 +83,8 @@
         .btn-more {
             margin-left: 40%;
         }
-{#        .content-search{#}
-{#            text-align: center;#}
-{#        }#}
     </style>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/ng-tags-input.css">
 {% endblock %}
 
@@ -365,6 +363,80 @@
             </div>
         </div>
 
+
+        <!-- Add Pauta -->
+        <div class="modal fade" id="addPauta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar &raquo {[{ addModelPauta.name_complete }]}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <message-flash message="{[{ flashModalMessage }]}" type="flashModalType"></message-flash>
+                        <form class="form-horizontal" id="sample-form">
+                            <div class="control-group info">
+                                <label class="control-label" for="inputProject">Proyecto</label>
+
+                                <div class="controls">
+								    <span class="span6 input-icon input-icon-right">
+									    <select ng-change="getCharacter()" ng-options="project.name for project in projects" ng-model="newPauta.project">
+                                            <option value="">-- Elige un proyecto --</option>
+                                        </select>
+									</span>
+                                </div>
+                            </div>
+                            <div class="control-group info">
+                                <label class="control-label" for="inputCharacter">Personaje</label>
+
+                                <div class="controls">
+								    <span class="span6 input-icon input-icon-right">
+                                        <select ng-options="(character.profile+' '+character.character) for character in characters" ng-model="newPauta.character">
+                                            <option value="">-- Elige un personaje --</option>
+                                        </select>
+									</span>
+                                </div>
+                            </div>
+                            <div class="control-group info">
+                                <label class="control-label" for="inputTime">Fecha</label>
+
+                                <div class="controls">
+								    <span class="span6 input-icon input-icon-right">
+									    <input class="span12" type="text" id="inputTime" ng-model="newPauta.date" date-picker >
+									</span>
+                                </div>
+                            </div>
+                            <div class="control-group info">
+                                <label class="control-label" for="inputTime">Hora</label>
+
+                                <div class="controls">
+								    <span class="span6 input-icon input-icon-right">
+									    <input class="span12" type="time" id="inputTime" ng-model="newPauta.time">
+									</span>
+                                </div>
+                            </div>
+                            <div class="control-group info">
+                                <label class="control-label" for="inputObservation">Observaciones</label>
+
+                                <div class="controls">
+								    <span class="span6 input-icon input-icon-right">
+                                        <textarea rows="4" cols="50" ng-model="newPauta.observation">
+                                        </textarea>
+									</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="saveModelPauta()">Agregar a pauta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <button class="btn btn-success btn-more" ng-if="paginate > 0" ng-click="searchModelPaginate()" id="bootbox-options">Mas Resultados</button>
     </div>
 
@@ -374,8 +446,12 @@
 {% endblock %}
 
 {% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui.1.10.3.js"></script>
+
     <script src="{{ STATIC_URL }}js/angular.js"></script>
     <script src="{{ STATIC_URL }}js/apps/commons/directives/messages.js"></script>
+    <script src="{{ STATIC_URL }}js/apps/commons/directives/datePicker.js"></script>
+
     <script src="{{ STATIC_URL }}js/apps/libs/ng-tags-input.js"></script>
     <script src="{{ STATIC_URL }}js/apps/search/app.js"></script>
     <script src="{{ STATIC_URL }}js/apps/search/controllers/controller.js"></script>
@@ -392,9 +468,12 @@
             list: '{% url "list_data_json" %}',
             urlMessage: '{% url "message_data_json" %}',
             saveList: '{% url "list_save_json" %}',
+            saveModelPautalUrl: '{% url 'project_pauta_add' %}',
             saveModelList: '{% url "add_model_list_save_json" %}',
             sendMessageUrl: '{% url "send_message_data_json" %}',
-            list_participate : '{% url "search_model_participate"  pk=':pk' %}'
+            list_participate : '{% url "search_model_participate"  pk=':pk' %}',
+            projectCharacterUrl: '{% url 'pauta_detail_model_json' pk=':pk' %}',
+            projectListUrl: '{% url "project_pauta_list" %}'
         });
         angular.module('searchApp').value('csrfToken', {
             csrfToken: '{{ csrf_token }}'
