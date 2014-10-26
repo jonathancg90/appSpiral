@@ -330,7 +330,7 @@ class ListModelView(LoginRequiredMixin, PermissionRequiredMixin,
             return {
                 'model_code': detail.model.model_code,
                 'photo': detail.model.main_image,
-                'measures': 'Altura: %s %s' %(detail.model.height,'' if detail.model.weight is None else ' - peso: '+detail.model.weight),
+                'measures': 'Altura: %s %s' %(str(detail.model.height),'' if detail.model.weight is None else ' - peso: '+str(detail.model.weight)),
                 'name_complete': detail.model.name_complete,
                 'dni': detail.model.number_doc,
                 'phone': '%s | %s' %(detail.model.phone_fixed, detail.model.phone_mobil)
