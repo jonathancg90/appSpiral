@@ -115,12 +115,14 @@ class TabFacebookTask(PeriodicTask):
                 model.height = model_data.get('estatura')
                 model.terms = model_data.get('terminos')
                 model.save()
+                print('Modelo registrado: ' + model.name_complete )
                 ids = ids + model_data.get('id_adulto') + ','
                 self.save_model_feature(model, model_data)
                 self.save_model_photo(model, model_data)
                 self.update_main_image(model)
                 transaction.commit()
             except Exception, e:
+                print('Ocurrio un error')
                 transaction.rollback()
         return ids
 
@@ -188,6 +190,9 @@ class TabFacebookTask(PeriodicTask):
         for model_data in data:
             terms = False
             try:
+                model_data.update({
+                    'estatura': model_data.get('estatura').replace(',','.')
+                })
                 if len(model_data.get('estatura')) == 0 \
                         or float(model_data.get('estatura').replace(',','.')) > 3:
                     estatura = 0
