@@ -121,6 +121,7 @@ class TabFacebookTask(PeriodicTask):
                 self.update_main_image(model)
                 transaction.commit()
             except Exception, e:
+                print('Ocurrio un error')
                 transaction.rollback()
         return ids
 
@@ -188,6 +189,9 @@ class TabFacebookTask(PeriodicTask):
         for model_data in data:
             terms = False
             try:
+                model_data.update({
+                    'estatura': model_data.get('estatura').replace(',','.')
+                })
                 if len(model_data.get('estatura')) == 0 \
                         or float(model_data.get('estatura').replace(',','.')) > 3:
                     estatura = 0
