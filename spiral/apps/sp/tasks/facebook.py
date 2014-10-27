@@ -121,9 +121,8 @@ class TabFacebookTask(PeriodicTask):
                 self.save_model_photo(model, model_data)
                 self.update_main_image(model)
                 transaction.commit()
-            except Exception, e:
-                import pdb;pdb.set_trace()
-                print('Ocurrio un error')
+            except Exception as e:
+                print 'Ocurrio un error: ', e
                 transaction.rollback()
         return ids
 
