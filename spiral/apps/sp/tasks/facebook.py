@@ -122,7 +122,7 @@ class TabFacebookTask(PeriodicTask):
                 self.update_main_image(model)
                 transaction.commit()
             except Exception, e:
-                print('Ocurrio un error')
+                print('Ocurrio un error' + e.message)
                 transaction.rollback()
         return ids
 
