@@ -115,6 +115,7 @@ class TabFacebookTask(PeriodicTask):
                 model.height = model_data.get('estatura')
                 model.terms = model_data.get('terminos')
                 model.save()
+                print('Modelo registrado: ' + model.name_complete )
                 ids = ids + model_data.get('id_adulto') + ','
                 self.save_model_feature(model, model_data)
                 self.save_model_photo(model, model_data)
