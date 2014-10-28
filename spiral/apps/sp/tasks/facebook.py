@@ -123,6 +123,7 @@ class TabFacebookTask(PeriodicTask):
                     self.update_main_image(model)
                     transaction.commit()
                 else:
+                    transaction.commit()
                     ids = ids + model_data.get('id_adulto') + ','
             except Exception as e:
                 print 'Ocurrio un error: ', e
