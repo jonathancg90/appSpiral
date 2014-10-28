@@ -98,32 +98,33 @@ class TabFacebookTask(PeriodicTask):
         ids = ''
         for model_data in data:
             try:
-                model = Model()
-                model.name_complete = model_data.get('nom_datos') + ' ' + model_data.get('app_datos') + ' ' + model_data.get('apm_datos')
-                model.model_code = Model.get_code()
-                model.status = Model.STATUS_WEBSITE
-                model.type_doc = self.type_document(model_data.get('tipdoc_datos'))
-                model.number_doc = model_data.get('num_doc_datos')
-                model.address = model_data.get('dir_datos')
-                model.email = model_data.get('mail_datos')
-                model.birth = model_data.get('fec_datos')
-                model.gender = self.get_gender(model_data.get('sexo'))
-                model.city = self.get_city(model_data.get('dep_datos'))
-                model.nationality = self.get_country(model_data.get('naci'))
-                model.phone_fixed = model_data.get('fijo_datos')
-                model.phone_mobil = model_data.get('movil_datos')
-                model.height = model_data.get('estatura')
-                model.terms = model_data.get('terminos')
-                import pdb;pdb.set_trace()
-                model.save()
-                print('Modelo registrado: ' + model.name_complete )
-                ids = ids + model_data.get('id_adulto') + ','
-                self.save_model_feature(model, model_data)
-                self.save_model_photo(model, model_data)
-                self.update_main_image(model)
-                transaction.commit()
+                if Model.objects.filter(number_doc=model_data.get('num_doc_datos')).exists():
+                    model = Model()
+                    model.name_complete = model_data.get('nom_datos') + ' ' + model_data.get('app_datos') + ' ' + model_data.get('apm_datos')
+                    model.model_code = Model.get_code()
+                    model.status = Model.STATUS_WEBSITE
+                    model.type_doc = self.type_document(model_data.get('tipdoc_datos'))
+                    model.number_doc = model_data.get('num_doc_datos')
+                    model.address = model_data.get('dir_datos')
+                    model.email = model_data.get('mail_datos')
+                    model.birth = model_data.get('fec_datos')
+                    model.gender = self.get_gender(model_data.get('sexo'))
+                    model.city = self.get_city(model_data.get('dep_datos'))
+                    model.nationality = self.get_country(model_data.get('naci'))
+                    model.phone_fixed = model_data.get('fijo_datos')
+                    model.phone_mobil = model_data.get('movil_datos')
+                    model.height = model_data.get('estatura')
+                    model.terms = model_data.get('terminos')
+                    model.save()
+                    print('Modelo registrado: ' + model.name_complete )
+                    ids = ids + model_data.get('id_adulto') + ','
+                    self.save_model_feature(model, model_data)
+                    self.save_model_photo(model, model_data)
+                    self.update_main_image(model)
+                    transaction.commit()
+                else:
+                    ids = ids + model_data.get('id_adulto') + ','
             except Exception as e:
-                ids = ids + model_data.get('id_adulto') + ','
                 print 'Ocurrio un error: ', e
                 print 'DNI: ' + model_data.get('num_doc_datos')
                 transaction.rollback()
