@@ -114,6 +114,7 @@ class TabFacebookTask(PeriodicTask):
                 model.phone_mobil = model_data.get('movil_datos')
                 model.height = model_data.get('estatura')
                 model.terms = model_data.get('terminos')
+                import pdb;pdb.set_trace()
                 model.save()
                 print('Modelo registrado: ' + model.name_complete )
                 ids = ids + model_data.get('id_adulto') + ','
