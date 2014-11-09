@@ -116,15 +116,25 @@ class TabFacebookTask(PeriodicTask):
                     model.height = model_data.get('estatura')
                     model.terms = model_data.get('terminos')
                     model.save()
-                    print('Modelo registrado: ' + model.name_complete )
                     ids = ids + model_data.get('id_adulto') + ','
                     self.save_model_feature(model, model_data)
                     self.save_model_photo(model, model_data)
                     self.update_main_image(model)
                     transaction.commit()
                 else:
-                    transaction.commit()
-                    ids = ids + model_data.get('id_adulto') + ','
+                    try:
+                        model = Model.objects.get(number_doc=model_data.get('num_doc_datos'))
+                        model.email = model_data.get('mail_datos')
+                        model.phone_fixed = model_data.get('fijo_datos')
+                        model.phone_mobil = model_data.get('movil_datos')
+                        model.address = model_data.get('dir_datos')
+                        model.save()
+
+                        transaction.commit()
+                        ids = ids + model_data.get('id_adulto') + ','
+                    except:
+                        transaction.rollback()
+                        ids = ids + model_data.get('id_adulto') + ','
             except Exception as e:
                 print 'Ocurrio un error: ', e
                 print 'DNI: ' + model_data.get('num_doc_datos')
