@@ -98,7 +98,7 @@ class TabFacebookTask(PeriodicTask):
         ids = ''
         for model_data in data:
             try:
-                if Model.objects.filter(number_doc=model_data.get('num_doc_datos')).exists():
+                if not Model.objects.filter(number_doc=model_data.get('num_doc_datos')).exists():
                     model = Model()
                     model.name_complete = model_data.get('nom_datos') + ' ' + model_data.get('app_datos') + ' ' + model_data.get('apm_datos')
                     model.model_code = Model.get_code()
@@ -132,7 +132,8 @@ class TabFacebookTask(PeriodicTask):
 
                         transaction.commit()
                         ids = ids + model_data.get('id_adulto') + ','
-                    except:
+                    except Exception, e:
+                        print 'Ocurrio un error: ', e
                         transaction.rollback()
                         ids = ids + model_data.get('id_adulto') + ','
             except Exception as e:

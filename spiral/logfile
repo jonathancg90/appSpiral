@@ -1,0 +1,10 @@
+[20/Nov/2014 23:02:50] DEBUG [migration:286] comenzo: 20/11/2014 23:02
+[20/Nov/2014 23:37:22] DEBUG [migration:1445] pais no encontrado BOSNIA Y HERCEGOVINA
+[20/Nov/2014 23:37:22] DEBUG [migration:1445] pais no encontrado BOSNIA Y HERCEGOVINA
+[20/Nov/2014 23:41:51] DEBUG [migration:1445] pais no encontrado SENEGAL
+[21/Nov/2014 01:33:22] DEBUG [migration:384] quantize result has too many digits for current context | 006202
+[21/Nov/2014 03:24:39] DEBUG [migration:384] quantize result has too many digits for current context | 009958
+[21/Nov/2014 05:55:33] DEBUG [migration:384] quantize result has too many digits for current context | 019168
+[21/Nov/2014 06:03:48] DEBUG [migration:384] quantize result has too many digits for current context | 020136
+[21/Nov/2014 06:14:02] DEBUG [migration:384]  | 021036
+[21/Nov/2014 06:14:23] DEBUG [migration:384]  | 021088
