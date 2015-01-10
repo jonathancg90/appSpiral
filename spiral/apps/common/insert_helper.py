@@ -17,6 +17,9 @@ from apps.sp.models.Brand import Brand
 from apps.sp.models.Entry import Entry
 from apps.sp.models.PhotoCasting import UsePhotos
 from apps.sp.models.Commercial import Commercial
+from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import Permission
+from django.contrib.admin.models import ContentType
 
 
 class ReaderJsonHelper(object):
@@ -255,3 +258,113 @@ class DataTestHelper(object):
     def insert_data(self):
         self.insert_client()
         self.insert_commercial()
+
+
+class RolesHelper(object):
+
+    def __init__(self):
+        self.roles = [
+            {
+                'name': 'Gestion de Modelos',
+                'permissions': [
+                    Permission.objects.get(codename='add_model'),
+                    Permission.objects.get(codename='change_model'),
+                    Permission.objects.get(codename='add_picture'),
+                    Permission.objects.get(codename='change_modelfeaturedetail'),
+                    Permission.objects.get(codename='add_modelfeaturedetail'),
+                    Permission.objects.get(codename='delete_modelfeaturedetail'),
+                ]
+            },
+            {
+                'name': 'Listas',
+                'permissions': [
+                    Permission.objects.get(codename='add_list'),
+                    Permission.objects.get(codename='change_list'),
+                    Permission.objects.get(codename='delete_list'),
+                    Permission.objects.get(codename='add_usercollaborationdetail'),
+                    Permission.objects.get(codename='change_usercollaborationdetail'),
+                    Permission.objects.get(codename='delete_usercollaborationdetail'),
+                    Permission.objects.get(codename='add_detaillist'),
+                    Permission.objects.get(codename='change_detaillist'),
+                    Permission.objects.get(codename='delete_detaillist'),
+                ]
+
+            },
+            {
+                'name': 'Pautas',
+                'permissions': [
+                    Permission.objects.get(codename='add_pauta'),
+                    Permission.objects.get(codename='change_pauta'),
+                    Permission.objects.get(codename='delete_pauta'),
+                    Permission.objects.get(codename='add_detailpauta'),
+                    Permission.objects.get(codename='change_detailpauta'),
+                    Permission.objects.get(codename='delete_detailpauta'),
+                ]
+            },
+            {
+                'name': 'Buscador',
+                'permissions': [
+                    Permission.objects.get(codename='change_model'),
+                ]
+            },
+            {
+                'name': 'Proyecto - paso 1',
+                'permissions': [
+                    Permission.objects.get(codename='add_project'),
+                    Permission.objects.get(codename='add_casting'),
+                    Permission.objects.get(codename='add_extras'),
+                    Permission.objects.get(codename='add_photocasting'),
+                    Permission.objects.get(codename='add_representation'),
+                ]
+            },
+            {
+                'name': 'Proyecto - paso 2',
+                'permissions': [
+                    Permission.objects.get(codename='add_castingdetailmodel'),
+                    Permission.objects.get(codename='add_extrasdetailmodel'),
+                    Permission.objects.get(codename='add_representationdetailmodel'),
+                    Permission.objects.get(codename='add_photocastingdetailmodel'),
+                    ]
+            },
+            {
+                'name': 'Proyecto - paso 3',
+                'permissions': [
+                    Permission.objects.get(codename='add_payment'),
+                ]
+            },
+            {
+                'name': 'Proyecto - paso 4',
+                'permissions': [
+                    Permission.objects.get(codename='add_projectdetailstaff'),
+                ]
+            },
+            {
+                'name': 'Mantenimiento',
+                'permissions': [
+                    Permission.objects.get(codename='add_brand'),
+                    Permission.objects.get(codename='change_brand'),
+                    Permission.objects.get(codename='delete_brand'),
+                    Permission.objects.get(codename='add_commercial'),
+                    Permission.objects.get(codename='change_commercial'),
+                    Permission.objects.get(codename='delete_commercial'),
+                    Permission.objects.get(codename='add_entry'),
+                    Permission.objects.get(codename='change_entry'),
+                    Permission.objects.get(codename='delete_entry'),
+                    Permission.objects.get(codename='add_client'),
+                    Permission.objects.get(codename='change_client'),
+                    Permission.objects.get(codename='delete_client'),
+                    Permission.objects.get(codename='add_studio'),
+                    Permission.objects.get(codename='change_studio'),
+                    Permission.objects.get(codename='delete_studio'),
+                ]
+
+            }
+        ]
+
+    def insert_roles(self):
+        for role in self.roles:
+            group = Group()
+            group.name = role.get('name')
+            group.save()
+            for permission in role.get('permissions'):
+                group.permissions.add(permission)

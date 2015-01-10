@@ -10,6 +10,7 @@ from apps.sp.models.PhotoCasting import TypePhotoCasting
 from apps.sp.models.PhotoCasting import UsePhotos
 from apps.sp.models.Broadcast import Broadcast
 from apps.sp.models.Contract import TypeContract
+from django.contrib.auth.models import Group, User
 from apps.sp.models.PictureDetail import MediaFeature
 from apps.common.insert_helper import CountryHelper
 from apps.common.insert_helper import TypeClientHelper
@@ -24,7 +25,7 @@ from apps.common.insert_helper import MediaFeatureHelper
 from apps.common.insert_helper import PhotoUseHelper
 from apps.common.insert_helper import TypeContractHelper
 from apps.sp.management.migration.Model import ModelProcessMigrate
-
+from apps.common.insert_helper import RolesHelper
 
 class Command(BaseCommand):
     data_delete = False
@@ -94,6 +95,9 @@ class Command(BaseCommand):
 
         if entity == 'media_feature':
             self.insert_media_feature()
+
+        if entity == 'roles':
+            self.insert_roles()
 
     def insert_features(self):
         if self.data_delete:
@@ -235,7 +239,23 @@ class Command(BaseCommand):
             data_test_helper.insert_data()
             self.stdout.write('Successfully inserted data: test data. \n')
 
-
     def migration_process(self):
         model_process_migrate = ModelProcessMigrate()
         model_process_migrate.start_migration()
+
+    def insert_roles(self):
+        if self.data_delete:
+            groups = Group.objects.all()
+            for group in groups:
+                users = User.objects.filter(groups=group)
+                group_permissions = group.permissions.all()
+                for user in users:
+                    for group_permission in group_permissions:
+                        user.user_permissions.remove(group_permission)
+                group.delete()
+
+            self.stdout.write('delete data: group and permissions. \n')
+        else:
+            roles_helper = RolesHelper()
+            roles_helper.insert_roles()
+
