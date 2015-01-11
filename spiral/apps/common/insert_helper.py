@@ -324,7 +324,7 @@ class RolesHelper(object):
                     Permission.objects.get(codename='add_extrasdetailmodel'),
                     Permission.objects.get(codename='add_representationdetailmodel'),
                     Permission.objects.get(codename='add_photocastingdetailmodel'),
-                    ]
+                ]
             },
             {
                 'name': 'Proyecto - paso 3',

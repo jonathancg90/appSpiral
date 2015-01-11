@@ -40,6 +40,10 @@
         }
         .btn-advance {
             margin-top: 5px;
+            margin-right: -3px;
+        }
+        .btn-view {
+            margin-top: 5px;
         }
         .text-list{
             overflow: hidden;
@@ -160,6 +164,14 @@
                                 Avanzado
                                 <i class="icon-eye-open bigger-125 icon-on-right"></i>
                             </button>
+                            <button class="btn btn-purple btn-view" ng-click="changeView('list')" ng-show="view.card">
+                                <i class="icon-list bigger-125 icon-on-right"></i>
+                            </button>
+                            <button class="btn btn-purple btn-view" ng-click="changeView('card')" ng-show="view.list">
+                                <i class="icon-credit-card bigger-125 icon-on-right"></i>
+                            </button>
+
+
                             <div ng-if="cant_result>0 && typeSearch.advance == true">
                                 Resultados: {[{ cant_result  }]}
                             </div>
@@ -182,7 +194,7 @@
                     <div class="loader" ng-show="loader">
                         <img src="{{ STATIC_URL }}admin/img/gif-load.gif" alt=""/>
                     </div>
-                    <ul class="ace-thumbnails">
+                    <ul class="ace-thumbnails" ng-show="view.card">
                         <li ng-repeat="model in models | textFilter:search" class="list-models">
                                 <a data-rel="colorbox" data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <img alt="150x150" src="{{ MEDIA_URL }}{[{ model.main_image }]}" style="width: 150px; height: 150px"/>
@@ -269,6 +281,55 @@
                         </li>
 
                     </ul>
+
+                    <table class="table table-bordered table-striped" ng-show="view.list">
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Telefonos</th>
+                            <th>Edad</th>
+                            <th>Opciones</th>
+                        </tr>
+                        <tr ng-repeat="model in models | textFilter:search">
+                            <td>
+                                <img alt="150x150" src="{{ MEDIA_URL }}{[{ model.main_image }]}" style="width: 150px; height: 150px"/>
+                            </td>
+                            <td>
+                                {[{ model.name_complete }]}
+                            </td>
+                            <td>
+                                {[{ model.email }]}
+                            </td>
+                            <td>
+                                {[{ model.phone_mobil }]} | {[{ model.phone_fixed }]}
+                            </td>
+                            <td>
+                                {[{ model.age }]} | {[{ model.birth }]}
+                            </td>
+                            <td>
+                                <div class="hidden-phone visible-desktop action-buttons">
+                                    <a href="#" ng-click="getDetail(model.model_code)">
+                                        <i class="icon-eye-open" data-toggle="modal" data-target="#myProfile"></i>
+                                    </a>
+
+                                    <a href="#" data-toggle="modal" data-target="#listAdd" ng-click="getList(model)">
+                                        <i class="icon-paper-clip"></i>
+                                    </a>
+
+                                    <a href="{[{ urlCrud }]}?pk={[{ model.model_code }]}">
+                                        <i class="icon-pencil"></i>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="icon-remove red"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
                 </div><!--PAGE CONTENT ENDS-->
 
         </div><!--/.span-->

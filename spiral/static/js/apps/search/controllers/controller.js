@@ -30,6 +30,10 @@ controllers.searchController = function($scope, ModelFactory,
     $scope.paginate = 0;
     $scope.tooltip = [];
     $scope.showParticipate = false;
+    $scope.view = {
+        'list': false,
+        'card':  true
+    };
     $scope.typeSearch = {
         'simple': true,
         'advance': false
@@ -223,6 +227,17 @@ controllers.searchController = function($scope, ModelFactory,
                         $scope.myList = [];
                     }
                 });
+        }
+    };
+
+    $scope.changeView = function(view){
+        debugger
+        if(view == 'list'){
+            $scope.view.list = true;
+            $scope.view.card = false;
+        } else {
+            $scope.view.list = false;
+            $scope.view.card = true;
         }
     };
 
