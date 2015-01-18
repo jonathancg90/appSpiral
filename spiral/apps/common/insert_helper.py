@@ -273,6 +273,7 @@ class RolesHelper(object):
                     Permission.objects.get(codename='change_modelfeaturedetail'),
                     Permission.objects.get(codename='add_modelfeaturedetail'),
                     Permission.objects.get(codename='delete_modelfeaturedetail'),
+                    Permission.objects.get(codename='delete_picture'),
                 ]
             },
             {
@@ -356,6 +357,13 @@ class RolesHelper(object):
                     Permission.objects.get(codename='add_studio'),
                     Permission.objects.get(codename='change_studio'),
                     Permission.objects.get(codename='delete_studio'),
+                    Permission.objects.get(codename='add_mediafeature'),
+                    Permission.objects.get(codename='change_mediafeature'),
+                    Permission.objects.get(codename='delete_mediafeature'),
+                    Permission.objects.get(codename='add_mediafeaturevalue'),
+                    Permission.objects.get(codename='change_mediafeaturevalue'),
+                    Permission.objects.get(codename='delete_mediafeaturevalue'),
+
                 ]
 
             }

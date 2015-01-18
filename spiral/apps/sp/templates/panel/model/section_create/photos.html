@@ -13,6 +13,12 @@
                 Subir
             </a>
         </li>
+        <li>
+            <a data-toggle="tab" href="#photo-criteria">
+                <i class="green icon-camera bigger-110"></i>
+                Criterios
+            </a>
+        </li>
     </ul>
 
     <div class="tab-content" >
@@ -27,21 +33,33 @@
             <ul class="ace-thumbnails">
                 <li ng-repeat="image in model.images">
                     {#small#}
-                    <a href="#" data-rel="colorbox" ng-if="size == 0">
+                    <span data-rel="colorbox" ng-if="size == 0">
                         <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[0].url }]}"/>
-                    </a>
+                        <div>
+                            <a href="" ng-click="deletePicture(image.main_id)">Borrar</a>
+                        </div>
+                    </span>
                     {#medium#}
-                    <a href="#" data-rel="colorbox" ng-if="size == 1">
+                    <span href="#" data-rel="colorbox" ng-if="size == 1">
                         <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[1].url }]}"/>
-                    </a>
+                        <div>
+                            <a href="" ng-click="deletePicture(image.main_id)">Borrar</a>
+                        </div>
+                    </span>
                     {#large#}
-                    <a href="#" data-rel="colorbox" ng-if="size == 2" >
+                    <span href="#" data-rel="colorbox" ng-if="size == 2" >
                         <img alt="" src="{{ MEDIA_URL }}{[{ image.thumbs[2].url }]}"/>
-                    </a>
+                        <div>
+                            <a href="" ng-click="deletePicture(image.main_id)">Borrar</a>
+                        </div>
+                    </span>
                     {#original#}
-                    <a href="#" data-rel="colorbox" ng-if="size == 3" >
+                    <span href="#" data-rel="colorbox" ng-if="size == 3" >
                         <img alt="" src="{{ MEDIA_URL }}{[{ image.main_picture }]}"/>
-                    </a>
+                        <div>
+                            <a href="" ng-click="deletePicture(image.main_id)">Borrar</a>
+                        </div>
+                    </span>
                 </li>
             </ul>
         </div>
@@ -126,6 +144,38 @@
                 </table>
                 {% endverbatim %}
             </form>
+        </div>
+
+        <div id="photo-criteria" class="tab-pane">
+            <div>
+                <select>
+                    <option>Default</option>
+                </select>
+                <img src="" />
+            </div>
+            <hr>
+            <div>
+
+                <select>
+                    <option>Criterio</option>
+                </select>
+                <select>
+                    <option>Detalle</option>
+                </select>
+                <button class="btn btn-primary">Agregar</button>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Criterio</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

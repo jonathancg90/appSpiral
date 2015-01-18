@@ -29,4 +29,5 @@ urlpatterns = patterns('',
     url(r'^list/', include('apps.sp.urls.panel.list')),
     url(r'^pauta/', include('apps.sp.urls.panel.pauta')),
     url(r'^message/', include('apps.sp.urls.panel.message')),
+    url(r'^media-feature/', include('apps.sp.urls.panel.media_feature')),
 )

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import json
-
 from datetime import date
+
+from django.conf import settings
 from django.db import transaction
+from django.core.files.storage import default_storage
 from django.views.generic import View, TemplateView, CreateView
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
@@ -377,6 +379,40 @@ class ModelFeatureUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
             transaction.rollback()
 
         return self.render_to_response(context)
+
+
+class DeleteImageModelView(LoginRequiredMixin, PermissionRequiredMixin,
+                           JSONResponseMixin, View):
+    entity_class = Model
+    STATUS_ERROR = 'warning'
+    MESSAGE_SUCCESS = 'Foto eliminada'
+    MESSAGE_ERROR = 'No se ha podido eliminar su foto'
+    permissions = {
+        "permission": ('sp.delete_picture', ),
+    }
+
+    def delete_thumbnails(self, picture):
+        thumbnails = PictureThumbnail.objects.filter(picture=picture)
+        for thumbnail in thumbnails:
+            url = '%s/%s' %(settings.MEDIA_ROOT, thumbnail.file)
+            default_storage.delete(url)
+            thumbnail.delete()
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        picture_id = kwargs.get('pk')
+        picture = Picture.objects.get(id=picture_id)
+        url_file = '%s/%s' %(settings.MEDIA_ROOT, picture.file.name)
+        if default_storage.exists(url_file):
+            default_storage.delete(url_file)
+            self.delete_thumbnails(picture)
+            picture.delete()
+            context['message'] = self.MESSAGE_SUCCESS
+        else:
+            context['message'] = self.MESSAGE_ERROR
+            context['status'] = self.STATUS_ERROR
+
+        return self.render_json_response(context)
 
 
 class ModelFeatureCreateView(LoginRequiredMixin, PermissionRequiredMixin,

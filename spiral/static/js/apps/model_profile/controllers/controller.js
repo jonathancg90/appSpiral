@@ -27,10 +27,6 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         }
     });
 
-    $scope.prueba = function(){
-        alert('hola');
-    };
-
     $scope.changeModel = function(){
         $scope.model = {};
         $('#commercial').html('');
@@ -226,15 +222,25 @@ controllers.DemoFileUploadController = function($scope,
                                                 $http,
                                                 $filter,
                                                 $window,
+                                                modelUrls,
                                                 modelStorage){
 
     $scope.model = modelStorage.model;
     $scope.size = 0;
 
     var url = '/panel/model/model-control/save-picture/';
+    var urlDelete = modelUrls.urlDeletePicture;
 
     $scope.options = {
         url: url
+    };
+    $scope.deletePicture = function(id) {
+        debugger
+        urlDelete = urlDelete.replace(':pk', id);
+        $http.get(urlDelete)
+            .then(function(response) {
+                debugger
+            });
     };
 
 };

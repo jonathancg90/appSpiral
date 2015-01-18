@@ -5,7 +5,7 @@ from apps.sp.views.panel.Model import ModelControlTemplateView, \
     ModelCreateView, PictureModelCreateView, \
     ModelDataJsonView, ModelFeatureCreateView, \
     ModelFeatureDeleteView, ModelFeatureUpdateView, \
-    ModelUpdateView, ModelSimpleSearchView
+    ModelUpdateView, ModelSimpleSearchView, DeleteImageModelView
 
 urlpatterns = patterns('',
 
@@ -29,6 +29,10 @@ urlpatterns = patterns('',
     url(r'^model-control/update-feature/(?P<pk>[^/]+)/$',
         ModelFeatureUpdateView.as_view(),
         name='panel_model_update_feature'),
+
+    url(r'^model-control/delete-picture/(?P<pk>[^/]+)/$',
+        DeleteImageModelView.as_view(),
+        name='panel_model_delete_picture'),
 
     url(r'^model-control/delete-feature/$',
         ModelFeatureDeleteView.as_view(),

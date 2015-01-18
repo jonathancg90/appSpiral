@@ -136,7 +136,8 @@
         delete_feature: '{% url "panel_model_delete_feature"  %}',
         urlCountries: '{% url "country_list_json" %}',
         urlSearch: '{% url "panel_information_model" pk=':pk' %}',
-        urlCommercial: '{% url "model_commercial_list" key=':key' %}'
+        urlCommercial: '{% url "model_commercial_list" key=':key' %}',
+        urlDeletePicture: '{% url "panel_model_delete_picture" pk=':pk' %}'
     });
     // search urls
     angular.module('modelApp').value("modelData", {

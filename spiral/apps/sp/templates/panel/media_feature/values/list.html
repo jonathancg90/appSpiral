@@ -1,0 +1,73 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load common_tags %}
+{% load crispy_forms_tags %}
+
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+        <style>
+            .tools {
+                float: right !important;
+            }
+        </style>
+    {% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="tools">
+            <a href="{%   url "media_feature_value_create" media_feature.id %}" class="btn btn-success">
+                <i class="icon-plus icon-white"></i> {% trans 'Nuevo valor' %}</a>
+        </div>
+        <h2>{%  trans 'Valores multimedia :' %}{{ media_feature.name }}</h2>
+    </div>
+    <ul class="nav nav-pills">
+      <li class="active">
+        <a href="#" id="hide-show-search">Mostrar / Ocultar</a>
+      </li>
+    </ul>
+    <div id="search-form">
+        <form method="get" action="" class="form-horizontal well well-small search-form">
+            <div class="row-fluid">
+                {% crispy search_form %}
+                <div class="form-actions">
+                    <input type="submit" class="btn" value="{% trans 'Search' %}">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans 'Nombre' %}</th>
+                    <th>{% trans 'Opciones' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for media_feature_value in object_list %}
+                <tr>
+                    <td>{{ media_feature_value.name }}</td>
+                    <td><a href="{% url "media_feature_value_edit" media_feature_value.pk %}">{% trans 'Update' %}</a> |
+                        <a href="{% url "media_feature_value_delete" media_feature_value.pk %}">{% trans 'Delete' %}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% url 'media_feature_value_list' as page_url %}
+    {% pagination_ctl page_obj url=page_url url_args=search_url_params %}
+    </div>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+    <script>
+        $(document).on('ready',function(){
+            $('#hide-show-search').click(function(){
+                $('#search-form').toggle('fade');
+            });
+        });
+    </script>
+
+{% endblock %}

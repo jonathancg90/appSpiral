@@ -1,7 +1,6 @@
 from django import forms
 from apps.sp.models.Entry import Entry
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Button
 
 
 class EntryForm(forms.ModelForm):

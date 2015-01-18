@@ -1,0 +1,26 @@
+{% extends 'panel/panel_basev3.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+    {% block extra_style %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/chosen.css" type="text/css" />
+    {% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+            <h2>{% trans "Nuevo Valor Multimedia: " %}{{ media_feature.name }} </h2>
+    </div>
+      <form method="post" action="" class="form-horizontal">
+          {% csrf_token %}
+
+          {% crispy form %}
+          <div class="form-actions">
+              <a class="btn" href="{% url "media_feature_value_list" media_feature.id %}">{% trans 'Cancelar' %}</a> o
+              <input type="submit" class="btn btn-inverse" value="{% trans 'Crear'%}" />
+          </div>
+      </form>
+{% endblock %}
+
+{% block script_bottom %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.js"></script>
+{% endblock %}
