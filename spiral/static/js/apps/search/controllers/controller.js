@@ -15,6 +15,7 @@ controllers.searchController = function($scope, ModelFactory,
         urlMessage = searchUrls.urlMessage,
         saveModelPautalUrl = searchUrls.saveModelPautalUrl,
         urlSendMessage = searchUrls.sendMessageUrl,
+        quickUpdateUrl = searchUrls.quickUpdateUrl,
         listParticipate = searchUrls.list_participate;
 
     $scope.loader = false;
@@ -103,6 +104,53 @@ controllers.searchController = function($scope, ModelFactory,
         $('#addPauta').modal('show');
         $('#myProfile').modal('hide');
     };
+
+    $scope.quickUpdateModel = function(){
+        if($scope.formUpdate.$valid){
+            $http.post(quickUpdateUrl, angular.toJson($scope.updateModel))
+                .then(function(response) {
+                    if(response.status == 200) {
+                        $scope.flashType = 'success';
+                        $scope.flashMessage = 'Modelo Actualizado';
+                        $('#updateModel').modal('hide');
+                        $scope.messages = response.data.message;
+                        $scope.messageLoader = false;
+                        angular.forEach($scope.models, function(model, key) {
+                            if($scope.updateModel.model_code == model.model_code){
+                                model.name_complete = $scope.updateModel.name_complete;
+                                model.phone_mobil = $scope.updateModel.phone_mobil;
+                                model.phone_fixed = $scope.updateModel.phone_fixed;
+                                model.height = $scope.updateModel.height;
+                                model.weight = $scope.updateModel.weight;
+                                model.email = $scope.updateModel.email;
+                                model.address = $scope.updateModel.address;
+                            }
+                        });
+
+                    }
+                });
+        }else {
+            $scope.flashModalType = 'warning';
+            $scope.flashModalMessage = 'Formulario invalido, verifique la informacion ingresada';
+        }
+    };
+
+    $scope.getModalUpdate = function(model){
+        $scope.updateModel= {
+            "model_code": model.model_code,
+            "name_complete": model.name_complete,
+            "phone_mobil": model.phone_mobil,
+            "phone_fixed": model.phone_fixed,
+            "height": parseFloat(model.height),
+            "weight": parseFloat(model.weight),
+            "email": model.email,
+            "address": model.address
+        };
+
+        $('.modal').modal('hide');
+        $('#updateModel').modal('show');
+    };
+
 
     $scope.saveModelPauta = function(){
         if($scope.newPauta.project != undefined &&
@@ -370,6 +418,7 @@ controllers.searchController = function($scope, ModelFactory,
                 'mode': $scope.mode,
                 'features': angular.toJson(get_feature_params())
             };
+            debugger
             var response = ModelFactory.Search(searchUrl, data);
             response.then(function(models) {
                 $scope.all = models;
@@ -491,6 +540,11 @@ controllers.searchController = function($scope, ModelFactory,
             });
         $scope.tooltip.push(
             {
+                name: "visita",
+                type: "range"
+            });
+        $scope.tooltip.push(
+            {
                 name: "orden casting",
                 type: "orden"
             });
@@ -524,6 +578,7 @@ controllers.searchController = function($scope, ModelFactory,
      */
     function get_advance_params(){
         var data = [];
+        debugger
         angular.forEach($scope.tags, function(tag, key) {
             if(tag.feature == false || tag.feature == undefined){
                 if(tag.camp == 'sp_model.nationality_id'){
@@ -560,36 +615,52 @@ controllers.searchController = function($scope, ModelFactory,
                         'camp': 'sp_model.height'
                     });
                 }
-                if(tag.text.split("-").length == 2){
-                    var values= tag.text.split("-");
-                    if(values[1] == "web") {
-                        data.push({
-                            'id': 3,
-                            'feature': false,
-                            'camp': 'sp_model.status'
-                        });
-                    }
-                    if(values[1] > "extra") {
-                        data.push({
-                            'id': values[1],
-                            'feature': false,
-                            'camp': 'sp_model.last_visit'
-                        });
-                    }
-                    if(values[1] > "casting") {
-                        data.push({
-                            'id': values[1],
-                            'feature': false,
-                            'camp': 'sp_model.last_visit'
-                        });
+                if(tag.text.indexOf("solo") > -1) {
+                    if(tag.text.split("-").length == 2) {
+                        var values = tag.text.split("-");
+                        if (values[1] == "web") {
+                            data.push({
+                                'id': 3,
+                                'feature': false,
+                                'camp': 'sp_model.status'
+                            });
+                        }
+                        if (values[1] == "extra") {
+                            data.push({
+                                'id': values[1],
+                                'feature': false,
+                                'camp': 'sp_model.last_visit'
+                            });
+                        }
+                        if (values[1] == "casting") {
+                            data.push({
+                                'id': 'True',
+                                'feature': false,
+                                'camp': 'sp_model.last_visit'
+                            });
+                        }
                     }
                 }
-                if(tag.text.indexOf("orden") > -1) {
+                if(tag.text.split('-')[0].indexOf("orden") > -1) {
                     var values= tag.text.split("-");
                     data.push({
                         'id': values[1],
                         'feature': false,
                         'camp': 'orden'
+                    });
+                }
+                if(tag.text.split('-')[0].indexOf("visita") > -1) {
+                    var values= tag.text.split("-"),
+                        fechas = [];
+                    for(var i=0; i<values.length; i++){
+                        if(isNaN(parseInt(values[i])) == false){
+                            fechas.push(values[i]);
+                        }
+                    }
+                    data.push({
+                        'id': fechas,
+                        'feature': false,
+                        'camp': 'sp_model.last_visit'
                     });
                 }
             }

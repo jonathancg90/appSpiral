@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import url, patterns
+from apps.sp.views.panel.Model import ModelCreateView
+from apps.sp.views.panel.Model import ModelDataJsonView
+from apps.sp.views.panel.Model import PictureModelCreateView
+from apps.sp.views.panel.Model import ModelFeatureCreateView
+from apps.sp.views.panel.Model import ModelFeatureDeleteView
+from apps.sp.views.panel.Model import ModelFeatureUpdateView
+from apps.sp.views.panel.Model import ModelUpdateView
+from apps.sp.views.panel.Model import ModelSimpleSearchView
 from apps.sp.views.panel.Model import ModelControlTemplateView, \
-    ModelCreateView, PictureModelCreateView, \
-    ModelDataJsonView, ModelFeatureCreateView, \
-    ModelFeatureDeleteView, ModelFeatureUpdateView, \
-    ModelUpdateView, ModelSimpleSearchView, DeleteImageModelView
+    DeleteImageModelView, QuickModelUpdateView
 
 urlpatterns = patterns('',
 
@@ -21,6 +26,10 @@ urlpatterns = patterns('',
     url(r'^model-control/update-profile/(?P<pk>[^/]+)/$',
         ModelUpdateView.as_view(),
         name='panel_model_update_profile'),
+
+    url(r'^model-control/quick-update/$',
+        QuickModelUpdateView.as_view(),
+        name='quick_update_url'),
 
     url(r'^model-control/save-feature/(?P<pk>[^/]+)/$',
         ModelFeatureCreateView.as_view(),

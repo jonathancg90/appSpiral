@@ -8,6 +8,7 @@ from apps.common.view import NewJSONResponseMixin
 from apps.sp.models.Country import Country
 from apps.sp.models.Model import Model
 from apps.sp.models.Project import Project
+from django.contrib.auth.models import Permission
 from apps.sp.models.List import DetailList, UserCollaborationDetail, List
 from apps.sp.models.Feature import Feature, FeatureValue
 from apps.sp.logic.search import Search
@@ -17,9 +18,15 @@ class ModelSearchTemplateView(LoginRequiredMixin, PermissionRequiredMixin, Templ
     template_name = 'panel/search/model/search.html'
     model = Model
 
+    def verify_permissions(self):
+        permission = Permission.objects.filter(codename='add_model')
+        has_permission = self.request.user.has_perm(permission)
+        return has_permission
+
     def get_context_data(self, **kwargs):
         context = super(ModelSearchTemplateView, self).get_context_data(**kwargs)
         context['menu'] = 'search'
+        context['update_model'] = self.verify_permissions()
         return context
 
 
@@ -42,6 +49,7 @@ class ModelSearchView(LoginRequiredMixin, NewJSONResponseMixin, View):
         for item in self._advance:
             if item.get('camp') == 'orden':
                 data = {'as': 'desc'}
+
                 if item.get('id') == 'casting':
                     data.update({'camp': 'cant_casting'})
                     self._advance.remove(item)

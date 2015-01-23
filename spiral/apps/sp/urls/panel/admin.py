@@ -8,6 +8,10 @@ from apps.sp.views.panel.admin.User import AdminUserListView,\
     AdminUserDetailView, AdminUserGroupDeleteView, AdminUserPermissionDetailView, \
     AdminUserCreateView, AdminUserUpdateView, AdminUserChangeStatusRedirectView
 
+from apps.sp.views.panel.admin.Support import AdminSupportListView
+from apps.sp.views.panel.admin.Support import AdminSupportReportView
+from apps.sp.views.panel.admin.Support import AdminSupportCompleteRedirectView
+
 from apps.sp.views.panel.Dashboard import SettingsTemplateView
 
 urlpatterns = patterns('',
@@ -37,6 +41,7 @@ urlpatterns = patterns('',
                            AdminUserListView.as_view(),
                            name='admin_user_list'),
 
+
                        url(r'^user/list/create/$',
                            AdminUserCreateView.as_view(),
                            name='admin_user_create'),
@@ -60,4 +65,17 @@ urlpatterns = patterns('',
                        url(r'^user/(?P<pk>\d+)/detail/group/delete/$',
                            AdminUserGroupDeleteView.as_view(),
                            name='admin_user_group_delete'),
+
+                    #Support
+                       url(r'^user/support/$',
+                           AdminSupportListView.as_view(),
+                           name='admin_user_support_list'),
+
+                       url(r'^user/support/save/$',
+                           AdminSupportReportView.as_view(),
+                           name='admin_user_support_save'),
+
+                       url(r'^user/support/complete/(?P<pk>\d+)/$',
+                           AdminSupportCompleteRedirectView.as_view(),
+                           name='admin_user_support_complete'),
 )

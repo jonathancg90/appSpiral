@@ -73,7 +73,8 @@ class Search(object):
         ]
         self._table_model_column['between'] = [
             self._table_model_birth,
-            self._table_model_height
+            self._table_model_height,
+            self._table_model_last_visit
         ]
         self._table_model_column['exact'] = [
             self._table_model_nationality,
@@ -157,6 +158,12 @@ class Search(object):
                             now = datetime.datetime.now()
                             end = (now - relativedelta(years=int(search[0]))).strftime('%Y-%m-%d')
                             start = (now - relativedelta(years=int(search[1]))).strftime('%Y-%m-%d')
+                        elif column == 'sp_model.last_visit':
+                            if len(search) >=2:
+                                end = '%s-01-01' %(search[0])
+                                start = '%s-01-01' %(search[1])
+                            else:
+                                continue
                         else:
                             end = search[1]
                             start = search[0]

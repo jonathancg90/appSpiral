@@ -71,6 +71,8 @@ class ModelDataJsonView(LoginRequiredMixin, PermissionRequiredMixin,
             "phone_fixed": model.phone_fixed,
             "phone_mobil": model.phone_mobil,
             "pauta": self.get_pauta(model),
+            "height": str(model.height),
+            "weight": str(model.weight),
             "measures": '%s %s | %s %s' %(str(model.weight), 'Kg',  str(model.height), 'mts')
         }
         if model.nationality is None:
@@ -200,7 +202,9 @@ class ModelCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         return super(ModelCreateView, self).dispatch(request, *args, **kwargs)
 
     def get_model(self):
-        return Model()
+        model = Model()
+        model.model_code = Model.get_code()
+        return model
 
     def save_model(self, data):
         if self.kwargs.get('pk', None) is None:
@@ -208,11 +212,10 @@ class ModelCreateView(LoginRequiredMixin, PermissionRequiredMixin,
                 return None, self.ERROR_MODEL_DNI
         else:
             if Model.objects.filter(number_doc=data.get('num_doc')).\
-                    exclude(pk=self.kwargs.get('pk', None)).exists():
+                    exclude(model_code=self.kwargs.get('pk', None)).exists():
                 return None, self.ERROR_MODEL_DNI
         try:
             model = self.get_model()
-            model.model_code = Model.get_code()
             model.name_complete = data.get('name_complete')
             model.type_doc = data.get('type_doc').get('id')
             model.number_doc = data.get('num_doc')
@@ -254,7 +257,7 @@ class ModelUpdateView(ModelCreateView):
     }
 
     def get_model(self):
-        return Model.objects.get(pk=self.kwargs.get('pk'))
+        return Model.objects.get(model_code=self.kwargs.get('pk'))
 
 
 class PictureModelCreateView(LoginRequiredMixin, PermissionRequiredMixin,
@@ -413,6 +416,37 @@ class DeleteImageModelView(LoginRequiredMixin, PermissionRequiredMixin,
             context['status'] = self.STATUS_ERROR
 
         return self.render_json_response(context)
+
+
+class QuickModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
+                           JSONResponseMixin, View):
+    model = Model
+    STATUS_ERROR = 'warning'
+    MESSAGE_SUCCESS = 'Modelo actualizado'
+    MESSAGE_ERROR = 'No se ha podido actualizar'
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(QuickModelUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        try:
+            data = json.loads(request.body)
+            model = Model.objects.get(model_code=data.get('model_code'))
+            model.phone_fixed = data.get('phone_fixed')
+            model.weight = data.get('weight')
+            model.height = data.get('height')
+            model.address = data.get('address')
+            model.email = data.get('email')
+            model.phone_mobil = data.get('phone_mobil')
+            model.save()
+            context['message'] = self.MESSAGE_SUCCESS
+        except Exception , e:
+            context['message'] = self.MESSAGE_ERROR
+            context['status'] = self.STATUS_ERROR
+
+        return self.render_to_response(context)
 
 
 class ModelFeatureCreateView(LoginRequiredMixin, PermissionRequiredMixin,

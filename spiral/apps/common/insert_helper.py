@@ -306,6 +306,7 @@ class RolesHelper(object):
                 'name': 'Buscador',
                 'permissions': [
                     Permission.objects.get(codename='change_model'),
+                    Permission.objects.get(codename='add_support'),
                 ]
             },
             {
@@ -363,6 +364,9 @@ class RolesHelper(object):
                     Permission.objects.get(codename='add_mediafeaturevalue'),
                     Permission.objects.get(codename='change_mediafeaturevalue'),
                     Permission.objects.get(codename='delete_mediafeaturevalue'),
+                    Permission.objects.get(codename='add_support'),
+                    Permission.objects.get(codename='change_support'),
+                    Permission.objects.get(codename='delete_support'),
 
                 ]
 

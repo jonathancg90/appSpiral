@@ -8,6 +8,7 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
         urlSearch = modelUrls.urlSearch,
         urlCommercial = modelUrls.urlCommercial;
 
+    $scope.query_complete = 0;
     $scope.docTypes = jQuery.parseJSON(modelData.docTypes);
     $scope.genders = jQuery.parseJSON(modelData.genders);
     $scope.pk = modelData.pk;
@@ -17,15 +18,22 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
     $scope.optionalInput = false;
     $scope.created = false;
 
-    $scope.$watch('pk', function(newValue, oldValue){
-        if(newValue){
-            if(modelData.pk != "" && modelData.pk != undefined){
-                $scope.model.profile = {};
-                $scope.model.profile['code']  = modelData.pk;
-                $scope.getModel();
-            }
+
+    $scope.$watch('query_complete', function(newValue, oldValue){
+        if(newValue == 1) {
+            $scope.$watch('pk', function(newValue, oldValue){
+                if(newValue){
+                    debugger
+                    if(modelData.pk != "" && modelData.pk != undefined){
+                        $scope.model.profile = {};
+                        $scope.model.profile['code']  = modelData.pk;
+                        $scope.getModel();
+                    }
+                }
+            });
         }
     });
+
 
     $scope.changeModel = function(){
         $scope.model = {};
@@ -35,10 +43,12 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
 
     ModelFactory.getCountries(urlCountries).then(function(counries) {
         $scope.countries = counries;
+        $scope.query_complete += 1;
     });
 
     $scope.showOptional = function(){
         $scope.optionalInput = ! $scope.optionalInput;
+        $scope.created = false
     };
 
     $scope.saveProfile = function(){
@@ -80,6 +90,9 @@ controllers.ProfileController = function($scope, ModelFactory, modelUrls, modelD
                 $scope.created = true;
                 $scope.$emit("Remove_Message");
                 $scope.model.profile = model.profile;
+                $scope.model.profile.height = parseFloat($scope.model.profile.height);
+                $scope.model.profile.weight = parseFloat($scope.model.profile.weight);
+
                 modelStorage.model.profile = $scope.model.profile;
                 modelStorage.model.images = model.images;
                 modelStorage.model.commercial = model.commercial;

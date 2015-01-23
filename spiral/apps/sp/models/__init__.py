@@ -28,6 +28,7 @@ from apps.sp.models.Extras import Extras, ExtrasDetailModel, ExtraDetailParticip
 from apps.sp.models.PhotoCasting import PhotoCasting, TypePhotoCasting, PhotoCastingDetailParticipate
 from apps.sp.models.Representation import Representation, RepresentationDetailModel, TypeEvent
 from apps.sp.models.PictureDetail import PictureDetailFeature, MediaFeature, MediaFeatureValue
+from apps.sp.models.Support import Support
 
 __all__ = [
     'Message',
@@ -55,6 +56,7 @@ __all__ = [
     'Currency',
     'TypeClient',
     'Entry.py',
+    'Support',
     'City',
     'DutyDetail',
     'Model_has_commercial',
