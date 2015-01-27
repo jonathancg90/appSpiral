@@ -160,8 +160,8 @@ class Search(object):
                             start = (now - relativedelta(years=int(search[1]))).strftime('%Y-%m-%d')
                         elif column == 'sp_model.last_visit':
                             if len(search) >=2:
-                                end = '%s-01-01' %(search[0])
-                                start = '%s-01-01' %(search[1])
+                                end = '%s-01-01' %(search[1])
+                                start = '%s-01-01' %(search[0])
                             else:
                                 continue
                         else:
